@@ -11,9 +11,9 @@ namespace NetOffice.DeveloperToolbox
 {
     public enum ColorShift
     {
-        Red=0,
-        Green=1,
-        Blue =2,
+        Red = 0,
+        Green = 1,
+        Blue = 2,
         All = 3
     }
 
