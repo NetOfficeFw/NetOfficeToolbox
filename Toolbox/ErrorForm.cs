@@ -104,7 +104,8 @@ namespace NetOffice.DeveloperToolbox
 
         public static void ShowError(Exception exception)
         {
-
+            ErrorForm form = new ErrorForm(exception, ErrorCategory.NonCritical, ProjectWizardControl.CurrentLanguageID);
+            form.ShowDialog();
         }
 
         private int ValidateLanguageID(int currentLanguageID)
