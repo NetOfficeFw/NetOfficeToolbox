@@ -22,6 +22,11 @@ namespace NetOffice.DeveloperToolbox
             comboBoxLoadBehavior.SelectedIndex = 0;
         }
 
+        public new void KeyDown(KeyEventArgs e)
+        {
+
+        }
+
         private void radioButton_CheckedChanged(object sender, EventArgs e)
         {
             ChangeSettings();
