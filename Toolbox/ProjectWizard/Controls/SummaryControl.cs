@@ -11,9 +11,9 @@ namespace NetOffice.DeveloperToolbox
 {
     public partial class SummaryControl : UserControl, IWizardControl
     {
-        List<Control> _listControls;
+        List<IWizardControl> _listControls;
 
-        public SummaryControl(List<Control> listControls)
+        public SummaryControl(List<IWizardControl> listControls)
         {
             InitializeComponent();
             _listControls = listControls;
@@ -97,7 +97,6 @@ namespace NetOffice.DeveloperToolbox
 
         private void ShowSummary()
         {
-
             labelSummaryCaption.Text = string.Empty;
             string summaryCaption = "";
             string summaryValue = "";
@@ -107,9 +106,21 @@ namespace NetOffice.DeveloperToolbox
                 IWizardControl control = item as IWizardControl;
                 if (null != control)
                 {
-                    string[] array = control.GetSettingsSummary();
-                    summaryCaption += array[0] + Environment.NewLine;
-                    summaryValue += array[1] + Environment.NewLine;
+                    if (ProjectWizardControl.Singleton.IsAddinProject)
+                    {
+                        string[] array = control.GetSettingsSummary();
+                        summaryCaption += array[0] + Environment.NewLine;
+                        summaryValue += array[1] + Environment.NewLine;
+                    }
+                    else
+                    {
+                        if ( (!(control is LoadControl)) && (!(control is GuiControl)))
+                        {
+                            string[] array = control.GetSettingsSummary();
+                            summaryCaption += array[0] + Environment.NewLine;
+                            summaryValue += array[1] + Environment.NewLine;
+                        }
+                    }
                 }
             }
             labelSummaryCaption.Text = summaryCaption;

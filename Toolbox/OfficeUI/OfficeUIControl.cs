@@ -27,6 +27,8 @@ namespace NetOffice.DeveloperToolbox
         public OfficeUIControl()
         {
             InitializeComponent();
+            NetOffice.DebugConsole.Mode = ConsoleMode.Console;
+            NetOffice.Settings.UseExceptionMessage = ExceptionMessageHandling.CopyAllInnerExceptionMessagesToTopLevelException;
             _waitControl = new WaitControl(_currentLanguageID);
             _waitControl.Visible = false;
             this.Controls.Add(_waitControl);
@@ -97,6 +99,21 @@ namespace NetOffice.DeveloperToolbox
 
         #endregion
 
+        #region Methods
+
+        private void DisposeCurrentOpenOfficeApplication()
+        {
+            if (null != _officeApplication)
+            {
+                _officeApplication.Quit();
+                _officeApplication.Dispose();
+                _officeApplication = null;
+            }
+            buttonCloseOfficeApp.Enabled = false;
+            propertyGridItems.SelectedObject = null;
+            treeViewOfficeUI.Nodes.Clear();
+        }
+
         private void Run(string officeAppName)
         {
             try
@@ -158,6 +175,10 @@ namespace NetOffice.DeveloperToolbox
             _waitControl.Hide();
         }
 
+        #endregion
+
+        #region Trigger
+
         private void buttonStartApplication_Click(object sender, EventArgs e)
         {
             try
@@ -188,7 +209,7 @@ namespace NetOffice.DeveloperToolbox
 
                 if (e.Node.Tag is OfficeApi.CommandBar)
                 {
-                    if(!_wait)
+                    if (!_wait)
                         ShowWaitPanel(false);
                     OfficeApi.CommandBar commandBar = e.Node.Tag as OfficeApi.CommandBar;
                     propertyGridItems.SelectedObject = commandBar;
@@ -320,35 +341,6 @@ namespace NetOffice.DeveloperToolbox
             DisposeCurrentOpenOfficeApplication();
         }
 
-        #region Private Helper
-
-        private void DisposeCurrentOpenOfficeApplication()
-        {
-            if (null != _officeApplication)
-            {
-                _officeApplication.Quit();
-                _officeApplication.Dispose();
-                _officeApplication = null;
-            }
-            buttonCloseOfficeApp.Enabled = false;
-            propertyGridItems.SelectedObject = null;
-            treeViewOfficeUI.Nodes.Clear();
-        }
-
-        private static Image ReadImageFromRessource(string ressourcePath)
-        {
-            System.IO.Stream ressourceStream = null;
-            string assemblyName = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
-            ressourcePath = assemblyName + ".OfficeUI." + ressourcePath;
-            ressourceStream = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream(ressourcePath);
-            if (ressourceStream == null)
-                throw (new System.IO.IOException("Error accessing resource Stream."));
-            Bitmap newIcon = new Bitmap(ressourceStream);
-            return newIcon;
-        }
-
-        #endregion
-
         private void buttonInfo_Click(object sender, EventArgs e)
         {
             try
@@ -364,5 +356,25 @@ namespace NetOffice.DeveloperToolbox
                 errorForm.ShowDialog(this);
             }
         }
+
+        #endregion
+
+        #region Static Helper
+
+        private static Image ReadImageFromRessource(string ressourcePath)
+        {
+            System.IO.Stream ressourceStream = null;
+            string assemblyName = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
+            ressourcePath = assemblyName + ".OfficeUI." + ressourcePath;
+            ressourceStream = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream(ressourcePath);
+            if (ressourceStream == null)
+                throw (new System.IO.IOException("Error accessing resource Stream."));
+            Bitmap newIcon = new Bitmap(ressourceStream);
+            return newIcon;
+        }
+
+        #endregion
+
+
     }
 }
