@@ -12,8 +12,8 @@ namespace NetOffice.DeveloperToolbox.Forms
     {
         #region Fields
 
-        ErrorCategory _category;
-        bool _isExpanded;
+        private ErrorCategory _category;
+        private bool _isExpanded;
 
         #endregion
 
@@ -30,7 +30,7 @@ namespace NetOffice.DeveloperToolbox.Forms
             DisplayException(exception);
             currentLanguageID = ValidateLanguageID(currentLanguageID);
             Translation.Translator.TranslateControls(this, "Ressources.ErrorFormStrings.txt", currentLanguageID);
-            this.Height = buttonOK.Top + buttonOK.Height + 40;
+            this.Height = pictureBoxSplitter1.Top + (ClientRectangle.Height - DisplayRectangle.Height);
         }
 
         public ErrorForm(Exception exception, ErrorCategory category, int currentLanguageID)
@@ -42,65 +42,7 @@ namespace NetOffice.DeveloperToolbox.Forms
             DisplayException(exception);
             currentLanguageID = ValidateLanguageID(currentLanguageID);
             Translation.Translator.TranslateControls(this, "Ressources.ErrorFormStrings.txt", currentLanguageID);
-            this.Height = buttonOK.Top + buttonOK.Height + 40;
-        }
-
-        #endregion
-
-        #region Trigger
-
-        private void buttonDetails_Click(object sender, EventArgs e)
-        {
-            if (_isExpanded)
-            {
-                this.Height = buttonOK.Top + buttonOK.Height + 40;
-                this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-                listViewTrace.Anchor = AnchorStyles.None;
-                listViewTrace.Left = 26;
-                listViewTrace.Top = 130;
-                listViewTrace.Width = 374;
-                listViewTrace.Height = 164;
-            }
-            else
-            {
-                this.Height = 360;
-                this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
-                listViewTrace.Left = 26;
-                listViewTrace.Top = 130;
-                listViewTrace.Width = (buttonOK.Left + buttonOK.Width) - listViewTrace.Left;
-                listViewTrace.Height = 164;
-                listViewTrace.Anchor = AnchorStyles.Bottom | AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            }
-            _isExpanded = !_isExpanded;
-        }
-
-        private void buttonOK_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            if (ErrorCategory.Critical == _category)
-                Application.Exit();
-        }
-
-        private void buttonCopyToClipboard_Click(object sender, EventArgs e)
-        {
-            string clipboardContent = "";
-
-            foreach (ListViewItem item in listViewTrace.Items)
-                clipboardContent += item.SubItems[0].Text + " | " + item.SubItems[1].Text + " | " + item.SubItems[2].Text + " | " + item.SubItems[3].Text + Environment.NewLine;
-
-            Clipboard.SetData(DataFormats.Text, clipboardContent);
-        }
-
-        private void linkLabelDiscussionBoard_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            try
-            {
-                System.Diagnostics.Process.Start((sender as LinkLabel).Tag as string);
-            }
-            catch
-            {
-                ;
-            }
+            this.Height = pictureBoxSplitter1.Top + (ClientRectangle.Height - DisplayRectangle.Height);
         }
 
         #endregion
@@ -110,12 +52,24 @@ namespace NetOffice.DeveloperToolbox.Forms
         public static void ShowError(Exception exception, ErrorCategory category, int currentLanguageID)
         {
             ErrorForm form = new ErrorForm(exception, category, currentLanguageID);
-            form.ShowDialog();
+            if (null != MainForm.Singleton && MainForm.Singleton.Visible)
+                form.ShowDialog(MainForm.Singleton);
+            else
+            {
+                form.StartPosition = FormStartPosition.CenterScreen;
+                form.ShowDialog();
+            }
         }
 
         public static void ShowError(IWin32Window parent, Exception exception, ErrorCategory category, int currentLanguageID)
         {
             ErrorForm form = new ErrorForm(exception, category, currentLanguageID);
+            form.ShowDialog(parent);
+        }
+
+        public static void ShowError(IWin32Window parent, Exception exception, ErrorCategory category)
+        {
+            ErrorForm form = new ErrorForm(exception, category, 1033 );
             form.ShowDialog(parent);
         }
 
@@ -153,8 +107,68 @@ namespace NetOffice.DeveloperToolbox.Forms
                     viewItem.SubItems.Add(exception.TargetSite.ToString());
                 else
                     viewItem.SubItems.Add("");
+                viewItem.Tag = exception;
                 exception = exception.InnerException;
                 i++;
+            }
+        }
+
+        #endregion
+
+        #region Trigger
+
+        private void buttonDetails_Click(object sender, EventArgs e)
+        {
+            if (_isExpanded)
+            {
+                this.Height = pictureBoxSplitter1.Top + (ClientRectangle.Height - DisplayRectangle.Height);
+            }
+            else
+            {
+                this.Height = pictureBoxSplitter2.Top + pictureBoxSplitter2.Height + (ClientRectangle.Height - DisplayRectangle.Height);
+            }
+            _isExpanded = !_isExpanded;
+        }
+
+        private void buttonOK_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            if (ErrorCategory.Critical == _category)
+                Application.Exit();
+        }
+
+        private void buttonCopyToClipboard_Click(object sender, EventArgs e)
+        {
+            string clipboardContent = "";
+
+            foreach (ListViewItem item in listViewTrace.Items)
+                clipboardContent += item.SubItems[0].Text + " | " + item.SubItems[1].Text + " | " + item.SubItems[2].Text + " | " + item.SubItems[3].Text + Environment.NewLine;
+
+            Clipboard.SetData(DataFormats.Text, clipboardContent);
+        }
+
+        private void linkLabelDiscussionBoard_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start((sender as LinkLabel).Tag as string);
+            }
+            catch
+            {
+                ;
+            }
+        }
+
+        private void listViewTrace_DoubleClick(object sender, EventArgs e)
+        {
+            if (listViewTrace.SelectedItems.Count > 0)
+            {
+                Exception exception = listViewTrace.SelectedItems[0].Tag as Exception;
+                if (null != exception)
+                {
+                    string details = String.Format("{0}{2}{2}{1}", exception.Message, exception, Environment.NewLine);
+                    MessageBox.Show(this, details, "Exception", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                }
             }
         }
 
