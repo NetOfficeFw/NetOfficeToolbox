@@ -12,6 +12,8 @@ namespace NetOffice.DeveloperToolbox.Translation
     public partial class LanguageSummaryControl : UserControl
     {
         private ToolLanguage _selectedLanguage;
+        private bool _initialize;
+        private bool _firstChangePassed;
 
         public LanguageSummaryControl()
         {
@@ -33,6 +35,7 @@ namespace NetOffice.DeveloperToolbox.Translation
 
         private void ShowLanguage()
         {
+            _initialize = true;
             if (null != _selectedLanguage)
             {
                 textBoxNameGlobal.DataBindings.Add("Text", _selectedLanguage, "NameGlobal", true, DataSourceUpdateMode.OnPropertyChanged);
@@ -52,6 +55,7 @@ namespace NetOffice.DeveloperToolbox.Translation
                 textBoxAuthorSite.Text = String.Empty;
                 textBoxAuthorMail.Text = String.Empty;
             }
+            _initialize = false;
         }
 
         private string GetLanguageLCID(string languageName)
@@ -115,6 +119,14 @@ namespace NetOffice.DeveloperToolbox.Translation
         {
             try
             {
+                if (_initialize)
+                    return;
+                if (!_firstChangePassed)
+                {
+                    _firstChangePassed = true;
+                    return;
+                }
+
                 string lcid = GetLanguageLCID(textBoxNameGlobal.Text.Trim());
                 if (null != lcid)
                 {
