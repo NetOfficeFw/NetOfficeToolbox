@@ -29,6 +29,7 @@ namespace NetOffice.DeveloperToolbox.Translation
         public LanguageSummaryControl()
         {
             InitializeComponent();
+
         }
 
         #endregion
@@ -80,6 +81,7 @@ namespace NetOffice.DeveloperToolbox.Translation
             _initialize = false;
         }
 
+
         private string GetLanguageLCID(string languageName)
         {
             string countriesContent = Ressources.RessourceUtils.ReadString("Translation.Countries.txt");
@@ -108,11 +110,6 @@ namespace NetOffice.DeveloperToolbox.Translation
             return array2[languageIndex-1];
         }
 
-        private void Item_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            _selectedLanguage.IsDirty = true;
-        }
-
         private decimal ToDecimal(string value)
         {
             decimal d = 0;
@@ -121,6 +118,22 @@ namespace NetOffice.DeveloperToolbox.Translation
                 return 0;
             else
                 return d;
+        }
+
+        #endregion
+
+        #region Trigger
+
+        private void Item_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            try
+            {
+                _selectedLanguage.IsDirty = true;
+            }
+            catch
+            {
+                ;
+            }
         }
 
         private void linkLabelLCID_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
