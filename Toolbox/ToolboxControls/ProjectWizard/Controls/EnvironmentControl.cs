@@ -87,6 +87,15 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
 
         public new void KeyDown(KeyEventArgs e)
         {
+            switch (e.KeyCode)
+            {
+                case Keys.D1:
+                    radioButtonVB.Checked = true;
+                    break;
+                case Keys.D2:
+                    radioButtonCSharp.Checked = true;
+                    break;
+            }
         }
 
         public bool IsReadyForNextStep
