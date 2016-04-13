@@ -57,92 +57,77 @@
     <ApplicationIcon>Ressources\NetOffice.Icon.32x32.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AccessApi, Version=1.7.1.0, Culture=neutral, PublicKeyToken=3bfc48da42c3238a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="AccessApi, Version=1.7.3.0, Culture=neutral, PublicKeyToken=3bfc48da42c3238a, processorArchitecture=MSIL">
+      <HintPath>..\packages\NetOffice.Access.1.7.3.0\lib\net40\AccessApi.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
-      <HintPath>..\Libs\AccessApi.dll</HintPath>
-      <Private>False</Private>
     </Reference>
-    <Reference Include="ADODBApi, Version=1.7.1.0, Culture=neutral, PublicKeyToken=a426381b6dbd993f, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="ADODBApi, Version=1.7.3.0, Culture=neutral, PublicKeyToken=a426381b6dbd993f, processorArchitecture=MSIL">
+      <HintPath>..\packages\NetOffice.Access.1.7.3.0\lib\net40\ADODBApi.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
-      <HintPath>..\Libs\ADODBApi.dll</HintPath>
-      <Private>False</Private>
     </Reference>
-    <Reference Include="DAOApi, Version=1.7.1.0, Culture=neutral, PublicKeyToken=19cb4234a61cee95, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DAOApi, Version=1.7.3.0, Culture=neutral, PublicKeyToken=19cb4234a61cee95, processorArchitecture=MSIL">
+      <HintPath>..\packages\NetOffice.Access.1.7.3.0\lib\net40\DAOApi.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
-      <HintPath>..\Libs\DAOApi.dll</HintPath>
-      <Private>False</Private>
     </Reference>
-    <Reference Include="ExcelApi, Version=1.7.1.0, Culture=neutral, PublicKeyToken=9084b9221296229e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="ExcelApi, Version=1.7.3.0, Culture=neutral, PublicKeyToken=9084b9221296229e, processorArchitecture=MSIL">
+      <HintPath>..\packages\NetOffice.Excel.1.7.3.0\lib\net40\ExcelApi.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
-      <HintPath>..\Libs\ExcelApi.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Libs\ICSharpCode.SharpZipLib.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Mono.Cecil, Version=0.9.4.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Libs\Mono.Cecil.dll</HintPath>
+    <Reference Include="Mono.Cecil, Version=0.9.6.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mono.Cecil.0.9.6.1\lib\net40\Mono.Cecil.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="MSComctlLibApi, Version=1.7.1.0, Culture=neutral, PublicKeyToken=b97b7d9cfa816715, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Mono.Cecil.Mdb, Version=0.9.6.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mono.Cecil.0.9.6.1\lib\net40\Mono.Cecil.Mdb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Mono.Cecil.Pdb, Version=0.9.6.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mono.Cecil.0.9.6.1\lib\net40\Mono.Cecil.Pdb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Mono.Cecil.Rocks, Version=0.9.6.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mono.Cecil.0.9.6.1\lib\net40\Mono.Cecil.Rocks.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MSComctlLibApi, Version=1.7.3.0, Culture=neutral, PublicKeyToken=b97b7d9cfa816715, processorArchitecture=MSIL">
+      <HintPath>..\packages\NetOffice.Access.1.7.3.0\lib\net40\MSComctlLibApi.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
-      <HintPath>..\Libs\MSComctlLibApi.dll</HintPath>
-      <Private>False</Private>
     </Reference>
-    <Reference Include="MSDATASRCApi, Version=1.7.1.0, Culture=neutral, PublicKeyToken=afe692b65e0db609, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="MSDATASRCApi, Version=1.7.3.0, Culture=neutral, PublicKeyToken=afe692b65e0db609, processorArchitecture=MSIL">
+      <HintPath>..\packages\NetOffice.Access.1.7.3.0\lib\net40\MSDATASRCApi.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
-      <HintPath>..\Libs\MSDATASRCApi.dll</HintPath>
-      <Private>False</Private>
     </Reference>
-    <Reference Include="MSHTMLApi, Version=1.7.1.0, Culture=neutral, PublicKeyToken=9fe3ce00842d84e9, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="MSHTMLApi, Version=1.7.3.0, Culture=neutral, PublicKeyToken=9fe3ce00842d84e9, processorArchitecture=MSIL">
+      <HintPath>..\packages\NetOffice.MSProject.1.7.3.0\lib\net40\MSHTMLApi.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
-      <HintPath>..\Libs\MSHTMLApi.dll</HintPath>
-      <Private>False</Private>
     </Reference>
-    <Reference Include="MSProjectApi, Version=1.7.1.0, Culture=neutral, PublicKeyToken=b3f793e50f46b653, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="MSProjectApi, Version=1.7.3.0, Culture=neutral, PublicKeyToken=b3f793e50f46b653, processorArchitecture=MSIL">
+      <HintPath>..\packages\NetOffice.MSProject.1.7.3.0\lib\net40\MSProjectApi.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
-      <HintPath>..\Libs\MSProjectApi.dll</HintPath>
-      <Private>False</Private>
     </Reference>
-    <Reference Include="NetOffice, Version=1.6.1.0, Culture=neutral, PublicKeyToken=297f57b43ae7c1de, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="NetOffice, Version=1.7.3.0, Culture=neutral, PublicKeyToken=297f57b43ae7c1de, processorArchitecture=MSIL">
+      <HintPath>..\packages\NetOffice.Core.1.7.3.0\lib\net40\NetOffice.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
-      <HintPath>..\Libs\NetOffice.dll</HintPath>
-      <Private>False</Private>
     </Reference>
-    <Reference Include="OfficeApi, Version=1.7.1.0, Culture=neutral, PublicKeyToken=a39beb0835c43c8e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="OfficeApi, Version=1.7.3.0, Culture=neutral, PublicKeyToken=a39beb0835c43c8e, processorArchitecture=MSIL">
+      <HintPath>..\packages\NetOffice.Core.1.7.3.0\lib\net40\OfficeApi.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
-      <HintPath>..\Libs\OfficeApi.dll</HintPath>
-      <Private>False</Private>
     </Reference>
-    <Reference Include="OutlookApi, Version=1.7.1.0, Culture=neutral, PublicKeyToken=b118031aaa1097f3, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="OutlookApi, Version=1.7.3.0, Culture=neutral, PublicKeyToken=b118031aaa1097f3, processorArchitecture=MSIL">
+      <HintPath>..\packages\NetOffice.Outlook.1.7.3.0\lib\net40\OutlookApi.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
-      <HintPath>..\Libs\OutlookApi.dll</HintPath>
-      <Private>False</Private>
     </Reference>
-    <Reference Include="OWC10Api, Version=1.7.1.0, Culture=neutral, PublicKeyToken=a2b945645f1c78b9, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="OWC10Api, Version=1.7.3.0, Culture=neutral, PublicKeyToken=a2b945645f1c78b9, processorArchitecture=MSIL">
+      <HintPath>..\packages\NetOffice.Access.1.7.3.0\lib\net40\OWC10Api.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
-      <HintPath>..\Libs\OWC10Api.dll</HintPath>
-      <Private>False</Private>
     </Reference>
-    <Reference Include="PowerPointApi, Version=1.7.1.0, Culture=neutral, PublicKeyToken=f3aefb8851e52dd2, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="PowerPointApi, Version=1.7.3.0, Culture=neutral, PublicKeyToken=f3aefb8851e52dd2, processorArchitecture=MSIL">
+      <HintPath>..\packages\NetOffice.PowerPoint.1.7.3.0\lib\net40\PowerPointApi.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
-      <HintPath>..\Libs\PowerPointApi.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -156,23 +141,17 @@
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="VBIDEApi, Version=1.7.1.0, Culture=neutral, PublicKeyToken=931cec8882205047, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
-      <HintPath>..\Libs\VBIDEApi.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="VBIDEApi, Version=1.7.3.0, Culture=neutral, PublicKeyToken=931cec8882205047, processorArchitecture=MSIL">
+      <HintPath>..\packages\NetOffice.Core.1.7.3.0\lib\net40\VBIDEApi.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="VisioApi, Version=1.7.1.0, Culture=neutral, PublicKeyToken=bfcd37a3a83f1609, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
-      <HintPath>..\Libs\VisioApi.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="VisioApi, Version=1.7.3.0, Culture=neutral, PublicKeyToken=bfcd37a3a83f1609, processorArchitecture=MSIL">
+      <HintPath>..\packages\NetOffice.Visio.1.7.3.0\lib\net40\VisioApi.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="WordApi, Version=1.7.1.0, Culture=neutral, PublicKeyToken=f66d74591aaf8089, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
-      <HintPath>..\Libs\WordApi.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="WordApi, Version=1.7.3.0, Culture=neutral, PublicKeyToken=f66d74591aaf8089, processorArchitecture=MSIL">
+      <HintPath>..\packages\NetOffice.Word.1.7.3.0\lib\net40\WordApi.dll</HintPath>
+      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -683,6 +662,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="1049.lng" />
     <None Include="app.config" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
