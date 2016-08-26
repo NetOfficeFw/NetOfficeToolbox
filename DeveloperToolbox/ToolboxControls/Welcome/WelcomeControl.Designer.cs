@@ -31,8 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WelcomeControl));
             this.labelVersionHint = new System.Windows.Forms.Label();
             this.panelMainLeft = new System.Windows.Forms.Panel();
-            this.labelBeginBottom = new NetOffice.DeveloperToolbox.Controls.Text.AdvRichTextBox();
-            this.labelBeginTop = new NetOffice.DeveloperToolbox.Controls.Text.AdvRichTextBox();
             this.labelBeginTitle = new System.Windows.Forms.Label();
             this.pictureBoxIconLeft = new System.Windows.Forms.PictureBox();
             this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
@@ -48,6 +46,8 @@
             this.labelIWant = new System.Windows.Forms.Label();
             this.linkLabelNetOfficeUpdates = new System.Windows.Forms.LinkLabel();
             this.pictureBoxHeader = new System.Windows.Forms.PictureBox();
+            this.labelBeginBottom = new NetOffice.DeveloperToolbox.Controls.Text.AdvRichTextBox();
+            this.labelBeginTop = new NetOffice.DeveloperToolbox.Controls.Text.AdvRichTextBox();
             this.panelMainLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxIconLeft)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
@@ -63,7 +63,7 @@
             this.labelVersionHint.BackColor = System.Drawing.Color.Transparent;
             this.labelVersionHint.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelVersionHint.ForeColor = System.Drawing.Color.Gray;
-            this.labelVersionHint.Location = new System.Drawing.Point(800, 733);
+            this.labelVersionHint.Location = new System.Drawing.Point(452, 695);
             this.labelVersionHint.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.labelVersionHint.Name = "labelVersionHint";
             this.labelVersionHint.Size = new System.Drawing.Size(216, 30);
@@ -72,51 +72,15 @@
             // 
             // panelMainLeft
             // 
-            this.panelMainLeft.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.panelMainLeft.Controls.Add(this.labelBeginBottom);
             this.panelMainLeft.Controls.Add(this.labelBeginTop);
             this.panelMainLeft.Controls.Add(this.labelBeginTitle);
             this.panelMainLeft.Controls.Add(this.pictureBoxIconLeft);
-            this.panelMainLeft.Location = new System.Drawing.Point(40, 131);
+            this.panelMainLeft.Location = new System.Drawing.Point(40, 92);
             this.panelMainLeft.Margin = new System.Windows.Forms.Padding(6);
             this.panelMainLeft.Name = "panelMainLeft";
             this.panelMainLeft.Size = new System.Drawing.Size(542, 585);
             this.panelMainLeft.TabIndex = 99;
-            // 
-            // labelBeginBottom
-            // 
-            this.labelBeginBottom.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.labelBeginBottom.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.labelBeginBottom.Cursor = System.Windows.Forms.Cursors.Default;
-            this.labelBeginBottom.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.labelBeginBottom.ForeColor = System.Drawing.Color.Black;
-            this.labelBeginBottom.Location = new System.Drawing.Point(24, 283);
-            this.labelBeginBottom.Margin = new System.Windows.Forms.Padding(6);
-            this.labelBeginBottom.Name = "labelBeginBottom";
-            this.labelBeginBottom.ReadOnly = true;
-            this.labelBeginBottom.SelectionAlignment = NetOffice.DeveloperToolbox.Controls.Text.TextAlign.Justify;
-            this.labelBeginBottom.Size = new System.Drawing.Size(510, 200);
-            this.labelBeginBottom.TabIndex = 105;
-            this.labelBeginBottom.Text = "You can find a help button in the upper right corner of every tab. I am looking f" +
-    "orward to your message if you have any questions, suggestions, comments or reque" +
-    "sts regarding the Developer Toolbox.";
-            // 
-            // labelBeginTop
-            // 
-            this.labelBeginTop.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.labelBeginTop.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.labelBeginTop.Cursor = System.Windows.Forms.Cursors.Default;
-            this.labelBeginTop.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.labelBeginTop.ForeColor = System.Drawing.Color.Black;
-            this.labelBeginTop.Location = new System.Drawing.Point(24, 98);
-            this.labelBeginTop.Margin = new System.Windows.Forms.Padding(6);
-            this.labelBeginTop.Name = "labelBeginTop";
-            this.labelBeginTop.ReadOnly = true;
-            this.labelBeginTop.SelectionAlignment = NetOffice.DeveloperToolbox.Controls.Text.TextAlign.Justify;
-            this.labelBeginTop.Size = new System.Drawing.Size(510, 179);
-            this.labelBeginTop.TabIndex = 104;
-            this.labelBeginTop.Text = "The NetOffice Developer Toolbox supports .NET Office developers in his daily work" +
-    " with a set of helpful functions.";
             // 
             // labelBeginTitle
             // 
@@ -151,7 +115,7 @@
             this.pictureBoxLogo.Location = new System.Drawing.Point(586, 92);
             this.pictureBoxLogo.Margin = new System.Windows.Forms.Padding(6);
             this.pictureBoxLogo.Name = "pictureBoxLogo";
-            this.pictureBoxLogo.Size = new System.Drawing.Size(676, 623);
+            this.pictureBoxLogo.Size = new System.Drawing.Size(328, 585);
             this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBoxLogo.TabIndex = 95;
             this.pictureBoxLogo.TabStop = false;
@@ -159,7 +123,7 @@
             // 
             // panelMainRight
             // 
-            this.panelMainRight.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.panelMainRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panelMainRight.Controls.Add(this.labelMailMe);
             this.panelMainRight.Controls.Add(this.linkLabelMailMe);
             this.panelMainRight.Controls.Add(this.labelQuestion);
@@ -170,7 +134,7 @@
             this.panelMainRight.Controls.Add(this.linkLabelNetOfficeIssues);
             this.panelMainRight.Controls.Add(this.labelIWant);
             this.panelMainRight.Controls.Add(this.linkLabelNetOfficeUpdates);
-            this.panelMainRight.Location = new System.Drawing.Point(1266, 131);
+            this.panelMainRight.Location = new System.Drawing.Point(918, 92);
             this.panelMainRight.Margin = new System.Windows.Forms.Padding(6);
             this.panelMainRight.Name = "panelMainRight";
             this.panelMainRight.Size = new System.Drawing.Size(542, 585);
@@ -313,9 +277,44 @@
             this.pictureBoxHeader.Location = new System.Drawing.Point(370, 25);
             this.pictureBoxHeader.Margin = new System.Windows.Forms.Padding(6);
             this.pictureBoxHeader.Name = "pictureBoxHeader";
-            this.pictureBoxHeader.Size = new System.Drawing.Size(1198, 69);
+            this.pictureBoxHeader.Size = new System.Drawing.Size(1090, 69);
             this.pictureBoxHeader.TabIndex = 103;
             this.pictureBoxHeader.TabStop = false;
+            // 
+            // labelBeginBottom
+            // 
+            this.labelBeginBottom.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.labelBeginBottom.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.labelBeginBottom.Cursor = System.Windows.Forms.Cursors.Default;
+            this.labelBeginBottom.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.labelBeginBottom.ForeColor = System.Drawing.Color.Black;
+            this.labelBeginBottom.Location = new System.Drawing.Point(24, 283);
+            this.labelBeginBottom.Margin = new System.Windows.Forms.Padding(6);
+            this.labelBeginBottom.Name = "labelBeginBottom";
+            this.labelBeginBottom.ReadOnly = true;
+            this.labelBeginBottom.SelectionAlignment = NetOffice.DeveloperToolbox.Controls.Text.TextAlign.Justify;
+            this.labelBeginBottom.Size = new System.Drawing.Size(510, 200);
+            this.labelBeginBottom.TabIndex = 105;
+            this.labelBeginBottom.Text = "You can find a help button in the upper right corner of every tab. I am looking f" +
+    "orward to your message if you have any questions, suggestions, comments or reque" +
+    "sts regarding the Developer Toolbox.";
+            // 
+            // labelBeginTop
+            // 
+            this.labelBeginTop.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.labelBeginTop.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.labelBeginTop.Cursor = System.Windows.Forms.Cursors.Default;
+            this.labelBeginTop.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.labelBeginTop.ForeColor = System.Drawing.Color.Black;
+            this.labelBeginTop.Location = new System.Drawing.Point(24, 98);
+            this.labelBeginTop.Margin = new System.Windows.Forms.Padding(6);
+            this.labelBeginTop.Name = "labelBeginTop";
+            this.labelBeginTop.ReadOnly = true;
+            this.labelBeginTop.SelectionAlignment = NetOffice.DeveloperToolbox.Controls.Text.TextAlign.Justify;
+            this.labelBeginTop.Size = new System.Drawing.Size(510, 179);
+            this.labelBeginTop.TabIndex = 104;
+            this.labelBeginTop.Text = "The NetOffice Developer Toolbox supports .NET Office developers in his daily work" +
+    " with a set of helpful functions.";
             // 
             // WelcomeControl
             // 
@@ -328,8 +327,9 @@
             this.Controls.Add(this.pictureBoxLogo);
             this.Controls.Add(this.panelMainRight);
             this.Margin = new System.Windows.Forms.Padding(0);
+            this.MinimumSize = new System.Drawing.Size(1500, 916);
             this.Name = "WelcomeControl";
-            this.Size = new System.Drawing.Size(1848, 954);
+            this.Size = new System.Drawing.Size(1500, 916);
             this.Resize += new System.EventHandler(this.WelcomeControl_Resize);
             this.panelMainLeft.ResumeLayout(false);
             this.panelMainLeft.PerformLayout();

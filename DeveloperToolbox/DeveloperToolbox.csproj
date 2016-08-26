@@ -35,6 +35,9 @@
   <PropertyGroup>
     <ApplicationIcon>Resources\NetOffice.Icon.32x32.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AccessApi, Version=1.7.3.0, Culture=neutral, PublicKeyToken=3bfc48da42c3238a, processorArchitecture=MSIL">
       <HintPath>..\packages\NetOffice.Access.1.7.3.0\lib\net40\AccessApi.dll</HintPath>
@@ -597,6 +600,7 @@
       <DependentUpon>TranslationControl.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="app.manifest" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

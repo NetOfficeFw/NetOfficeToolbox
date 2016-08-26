@@ -39,16 +39,16 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
-            //
+            // 
             // imageListTabMain
-            //
+            // 
             this.imageListTabMain.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListTabMain.ImageStream")));
             this.imageListTabMain.TransparentColor = System.Drawing.Color.Black;
             this.imageListTabMain.Images.SetKeyName(0, "NetOffice.Icon.png");
             this.imageListTabMain.Images.SetKeyName(1, "info_rhombus.png");
-            //
+            // 
             // tabControlMain
-            //
+            // 
             this.tabControlMain.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.tabControlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControlMain.ImageList = this.imageListTabMain;
@@ -56,36 +56,36 @@
             this.tabControlMain.Margin = new System.Windows.Forms.Padding(0);
             this.tabControlMain.Name = "tabControlMain";
             this.tabControlMain.SelectedIndex = 0;
-            this.tabControlMain.Size = new System.Drawing.Size(936, 661);
+            this.tabControlMain.Size = new System.Drawing.Size(1574, 929);
             this.tabControlMain.TabIndex = 0;
             this.tabControlMain.SelectedIndexChanged += new System.EventHandler(this.TabControlMain_SelectedIndexChanged);
             this.tabControlMain.Deselecting += new System.Windows.Forms.TabControlCancelEventHandler(this.TabControlMain_Deselecting);
-            //
+            // 
             // splitContainer1
-            //
+            // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
             this.splitContainer1.IsSplitterFixed = true;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Margin = new System.Windows.Forms.Padding(0);
             this.splitContainer1.Name = "splitContainer1";
-            //
+            // 
             // splitContainer1.Panel1
-            //
+            // 
             this.splitContainer1.Panel1.Controls.Add(this.tabControlMain);
-            //
+            // 
             // splitContainer1.Panel2
-            //
+            // 
             this.splitContainer1.Panel2.Controls.Add(this.translationEditor);
             this.splitContainer1.Panel2Collapsed = true;
             this.splitContainer1.Panel2MinSize = 200;
-            this.splitContainer1.Size = new System.Drawing.Size(936, 661);
+            this.splitContainer1.Size = new System.Drawing.Size(1574, 929);
             this.splitContainer1.SplitterDistance = 25;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 1;
-            //
+            // 
             // translationEditor
-            //
+            // 
             this.translationEditor.BackColor = System.Drawing.SystemColors.Control;
             this.translationEditor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.translationEditor.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -96,22 +96,22 @@
             this.translationEditor.TabIndex = 0;
             this.translationEditor.UserClose += new System.EventHandler(this.TranslationEditor_UserClose);
             this.translationEditor.LanguageChanged += new NetOffice.DeveloperToolbox.Translation.LanuageChangedEventHandler(this.TranslationEditor_LanguageChanged);
-            //
+            // 
             // MainForm
-            //
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 30F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(936, 661);
+            this.ClientSize = new System.Drawing.Size(1574, 929);
             this.Controls.Add(this.splitContainer1);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
-            this.MinimumSize = new System.Drawing.Size(944, 688);
+            this.MinimumSize = new System.Drawing.Size(1600, 1000);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = " NetOffice Developer Toolbox";
+            this.Text = "NetOffice Developer Toolbox";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.Shown += new System.EventHandler(this.MainForm_Shown);
