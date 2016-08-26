@@ -76,7 +76,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OutlookSecurity
 
         public Image Icon
         {
-            get { return Resources.ResourceUtils.ReadIconImageFromRessource("ToolboxControls.OutlookSecurity.Icon.ico"); }
+            get { return Resources.ResourceUtils.ReadIconImageFromResource("ToolboxControls.OutlookSecurity.Icon.ico"); }
         }
 
         public bool SupportsInfoMessage

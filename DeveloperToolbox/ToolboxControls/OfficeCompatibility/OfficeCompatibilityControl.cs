@@ -124,7 +124,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
 
         public Image Icon
         {
-            get { return Resources.ResourceUtils.ReadImageFromRessource("ToolboxControls.OfficeCompatibility.Icon.png"); }
+            get { return Resources.ResourceUtils.ReadImageFromResource("ToolboxControls.OfficeCompatibility.Icon.png"); }
         }
 
         public bool SupportsHelpContent

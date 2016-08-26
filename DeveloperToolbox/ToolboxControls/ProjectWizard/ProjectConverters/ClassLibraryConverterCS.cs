@@ -33,7 +33,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
 
         public override string CreateSolution()
         {
-            ReadRessourceFiles();
+            ReadResourceFiles();
             ReplaceMarker();
             WriteResultFilesToTempFolder();
             CopyUsedNetOfficeAssembliesToTempTarget();
@@ -68,7 +68,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
             _assemblyFile = _assemblyFile.Replace("$assemblyguid$", Guid.NewGuid().ToString().ToUpper());
         }
 
-        private void ReadRessourceFiles()
+        private void ReadResourceFiles()
         {
             _solutionFile = ReadProjectTemplateFile("ClassLibraryCS.Solution.txt");
             _projectFile = ReadProjectTemplateFile("ClassLibraryCS.Project.txt");

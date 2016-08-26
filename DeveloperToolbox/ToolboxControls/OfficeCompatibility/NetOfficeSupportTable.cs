@@ -477,23 +477,23 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
             return fullFileName;
         }
 
-        private static Stream ReadEmbeddedAssembly(string ressourcePath)
+        private static Stream ReadEmbeddedAssembly(string resourcePath)
         {
-            System.IO.Stream ressourceStream = null;
+            System.IO.Stream resourceStream = null;
             string assemblyName = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
-            ressourcePath = assemblyName + ".OfficeCompatibility." + ressourcePath;
-            ressourceStream = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream(ressourcePath);
-            if (null == ressourceStream)
+            resourcePath = assemblyName + ".OfficeCompatibility." + resourcePath;
+            resourceStream = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream(resourcePath);
+            if (null == resourceStream)
             {
-                throw new System.IO.FileLoadException(ressourcePath + " not found");
+                throw new System.IO.FileLoadException(resourcePath + " not found");
             }
             System.IO.MemoryStream outStream = new System.IO.MemoryStream();
-            using (GZipStream Decompress = new GZipStream(ressourceStream, CompressionMode.Decompress))
+            using (GZipStream Decompress = new GZipStream(resourceStream, CompressionMode.Decompress))
             {
                 Decompress.CopyTo(outStream);
             }
             outStream.Seek(0, SeekOrigin.Begin);
-            ressourceStream.Close();
+            resourceStream.Close();
             return outStream;
         }
     }

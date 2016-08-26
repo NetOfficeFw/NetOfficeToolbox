@@ -38,7 +38,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
 
         public override string CreateSolution()
         {
-            ReadRessourceFiles();
+            ReadResourceFiles();
             ReplaceMarker();
             WriteResultFilesToTempFolder();
             CopyUsedNetOfficeAssembliesToTempTarget();
@@ -173,17 +173,17 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
 
             if (Options.UseRibbonUI)
             {
-                _addinFile = _addinFile.Replace("$readRessource$", ReadProjectTemplateFile("SimpleMultiAddinCS.ReadResource.txt"));
+                _addinFile = _addinFile.Replace("$readResource$", ReadProjectTemplateFile("SimpleMultiAddinCS.ReadResource.txt"));
             }
             else
             {
-                _addinFile = _addinFile.Replace("$readRessource$", String.Empty);
+                _addinFile = _addinFile.Replace("$readResource$", String.Empty);
             }
 
             _addinFile = ValidateFileContentFormat(_addinFile);
         }
 
-        private void ReadRessourceFiles()
+        private void ReadResourceFiles()
         {
             _taskPaneFile = ReadProjectTemplateFile("SimpleMultiAddinCS.TaskPane.txt");
             _taskPaneDesignerFile = ReadProjectTemplateFile("SimpleMultiAddinCS.TaskPane_Designer.txt");

@@ -28,10 +28,10 @@ namespace NetOffice.DeveloperToolbox
         /// <summary>
         /// Return all names and values for localization based on language
         /// </summary>
-        /// <param name="control">instance must have a RessourceTable attribute</param>
+        /// <param name="control">instance must have a ResourceTable attribute</param>
         /// <param name="languageID">target language id</param>
         /// <returns>target names and values</returns>
-        public static Dictionary<string, string> GetRessourceValues(Control control, int languageID)
+        public static Dictionary<string, string> GetResourceValues(Control control, int languageID)
         {
             Type type = control.GetType();
             Assembly assembly = type.Assembly;
@@ -45,7 +45,7 @@ namespace NetOffice.DeveloperToolbox
         /// </summary>
         /// <param name="type">type of instance(must have ResourceTableAttribute)</param>
         /// <returns>target names</returns>
-        public static string[] GetRessourceNames(Type type)
+        public static string[] GetResourceNames(Type type)
         {
             object[] obj = type.GetCustomAttributes(typeof(ResourceTableAttribute), false);
             ResourceTableAttribute attrib = obj[0] as ResourceTableAttribute;
@@ -54,7 +54,7 @@ namespace NetOffice.DeveloperToolbox
             string content = reader.ReadToEnd();
             reader.Dispose();
             stream.Dispose();
-            return Translation.Translator.ReadRessourceNames(content);
+            return Translation.Translator.ReadResourceNames(content);
         }
     }
 }

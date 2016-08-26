@@ -17,8 +17,8 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
         private string _ribbonFile;
         private string _appDesignerFile;
         private string _myApplicationFile;
-        private string _ressourceDesgnerFile;
-        private string _ressourceResFile;
+        private string _resourceDesgnerFile;
+        private string _resourceResFile;
         private string _settingDesignerFile;
         private string _settingsSettingsFile;
         private string _solutionFile;
@@ -44,7 +44,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
 
         public override string CreateSolution()
         {
-            ReadRessourceFiles();
+            ReadResourceFiles();
             ReplaceMarker();
             WriteResultFilesToTempFolder();
             CopyUsedNetOfficeAssembliesToTempTarget();
@@ -60,7 +60,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
         {
             _projectGuid = Guid.NewGuid();
 
-            _ressourceDesgnerFile = _ressourceDesgnerFile.Replace("$safeprojectname$", Options.AssemblyName);
+            _resourceDesgnerFile = _resourceDesgnerFile.Replace("$safeprojectname$", Options.AssemblyName);
 
             _settingDesignerFile = _settingDesignerFile.Replace("$safeprojectname$", Options.AssemblyName);
 
@@ -232,15 +232,15 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
             _addinFile = ValidateFileContentFormat(_addinFile);
         }
 
-        private void ReadRessourceFiles()
+        private void ReadResourceFiles()
         {
             _taskPaneFile = ReadProjectTemplateFile("ToolsSingleAddinVB.TaskPane.txt");
             _taskPaneDesignerFile = ReadProjectTemplateFile("ToolsSingleAddinVB.TaskPane_Designer.txt");
             _ribbonFile = ReadProjectTemplateFile("ToolsSingleAddinVB.RibbonUI.txt");
             _appDesignerFile = ReadProjectTemplateFile("ToolsSingleAddinVB.Application_Designer.txt");
             _myApplicationFile = ReadProjectTemplateFile("ToolsSingleAddinVB.Application_myapp.txt");
-            _ressourceDesgnerFile = ReadProjectTemplateFile("ToolsSingleAddinVB.Resources_Designer.txt");
-            _ressourceResFile = ReadProjectTemplateFile("ToolsSingleAddinVB.Resources_resx.txt");
+            _resourceDesgnerFile = ReadProjectTemplateFile("ToolsSingleAddinVB.Resources_Designer.txt");
+            _resourceResFile = ReadProjectTemplateFile("ToolsSingleAddinVB.Resources_resx.txt");
             _settingDesignerFile = ReadProjectTemplateFile("ToolsSingleAddinVB.Settings_Designer.txt");
             _settingsSettingsFile = ReadProjectTemplateFile("ToolsSingleAddinVB.Settings_settings.txt");
             _solutionFile = ReadProjectTemplateFile("ToolsSingleAddinVB.Solution.txt");
@@ -254,8 +254,8 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
         {
             File.AppendAllText(Path.Combine(TempPropertiesPath, "Application.Designer.vb"), _appDesignerFile, Encoding.UTF8);
             File.AppendAllText(Path.Combine(TempPropertiesPath, "Application.myapp"), _myApplicationFile, Encoding.UTF8);
-            File.AppendAllText(Path.Combine(TempPropertiesPath, "Resources.Designer.vb"), _ressourceDesgnerFile, Encoding.UTF8);
-            File.AppendAllText(Path.Combine(TempPropertiesPath, "Resources.resx"), _ressourceResFile, Encoding.UTF8);
+            File.AppendAllText(Path.Combine(TempPropertiesPath, "Resources.Designer.vb"), _resourceDesgnerFile, Encoding.UTF8);
+            File.AppendAllText(Path.Combine(TempPropertiesPath, "Resources.resx"), _resourceResFile, Encoding.UTF8);
             File.AppendAllText(Path.Combine(TempPropertiesPath, "Settings.Designer.vb"), _settingDesignerFile, Encoding.UTF8);
             File.AppendAllText(Path.Combine(TempPropertiesPath, "Settings.settings"), _settingsSettingsFile, Encoding.UTF8);
             File.AppendAllText(Path.Combine(TempSolutionPath, String.Format("{0}.sln", Options.AssemblyName)), _solutionFile, Encoding.UTF8);

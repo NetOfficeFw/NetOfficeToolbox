@@ -48,13 +48,13 @@ namespace NetOffice.DeveloperToolbox.Controls.InfoLayer
         /// Creates an instance of the class
         /// </summary>
         /// <param name="text">rtf text</param>
-        /// <param name="isRessourceAddress">indicates first argument is a resource address instead of rtf text</param>
-        public InfoControl(string text, bool isRessourceAddress)
+        /// <param name="isResourceAddress">indicates first argument is a resource address instead of rtf text</param>
+        public InfoControl(string text, bool isResourceAddress)
         {
             InitializeComponent();
             this.Dock = DockStyle.Fill;
 
-            if (isRessourceAddress)
+            if (isResourceAddress)
             {
                 richTextBoxHelpContent.LoadFile(ReadStream(text), RichTextBoxStreamType.RichText);
             }
@@ -83,12 +83,12 @@ namespace NetOffice.DeveloperToolbox.Controls.InfoLayer
         {
             Assembly ass = Assembly.GetExecutingAssembly();
             string assemblyName = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
-            System.IO.Stream ressourceStream = ass.GetManifestResourceStream(assemblyName + "." + resId);
-            if (ressourceStream == null)
+            System.IO.Stream resourceStream = ass.GetManifestResourceStream(assemblyName + "." + resId);
+            if (resourceStream == null)
             {
                 throw (new System.IO.IOException("Error accessing resource Stream."));
             }
-            return ressourceStream;
+            return resourceStream;
         }
 
         #endregion

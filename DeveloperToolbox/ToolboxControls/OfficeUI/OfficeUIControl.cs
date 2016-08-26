@@ -65,7 +65,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeUI
 
         public Image Icon
         {
-            get { return Resources.ResourceUtils.ReadImageFromRessource("ToolboxControls.OfficeUI.Icon.png"); }
+            get { return Resources.ResourceUtils.ReadImageFromResource("ToolboxControls.OfficeUI.Icon.png"); }
         }
 
         public bool SupportsHelpContent

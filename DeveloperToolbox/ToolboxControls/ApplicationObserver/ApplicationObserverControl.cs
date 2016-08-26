@@ -82,7 +82,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
 
         public Image Icon
         {
-            get { return Resources.ResourceUtils.ReadImageFromRessource("ToolboxControls.ApplicationObserver.Icon.png"); }
+            get { return Resources.ResourceUtils.ReadImageFromResource("ToolboxControls.ApplicationObserver.Icon.png"); }
         }
 
         public bool SupportsHelpContent

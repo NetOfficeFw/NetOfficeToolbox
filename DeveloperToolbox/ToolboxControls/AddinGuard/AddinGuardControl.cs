@@ -150,7 +150,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
 
         public Image Icon
         {
-            get { return Resources.ResourceUtils.ReadImageFromRessource("ToolboxControls.AddinGuard.Icon.png"); }
+            get { return Resources.ResourceUtils.ReadImageFromResource("ToolboxControls.AddinGuard.Icon.png"); }
         }
 
         public bool SupportsHelpContent

@@ -167,6 +167,6 @@ $unregister$
 
 #End Region
 
-$readRessource$
+$readResource$
 
 End Class

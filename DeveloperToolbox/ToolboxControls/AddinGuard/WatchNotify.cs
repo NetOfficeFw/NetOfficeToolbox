@@ -178,8 +178,8 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
 
         private string GetMessage(string key, int languageId)
         {
-            string ressourceString = ReadString("AddinGuard.Messages.txt");
-            string[] splitArray = ressourceString.Split(new string[] { "[End]" }, StringSplitOptions.RemoveEmptyEntries);
+            string resourceString = ReadString("AddinGuard.Messages.txt");
+            string[] splitArray = resourceString.Split(new string[] { "[End]" }, StringSplitOptions.RemoveEmptyEntries);
 
             Dictionary<string, string> transLateTable = GetTranslateResources(splitArray, languageId);
 
@@ -224,21 +224,21 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
             }
         }
 
-        private static string ReadString(string ressourcePath)
+        private static string ReadString(string resourcePath)
         {
-            System.IO.Stream ressourceStream = null;
+            System.IO.Stream resourceStream = null;
             System.IO.StreamReader textStreamReader = null;
             try
             {
                 string assemblyName = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
-                ressourcePath = assemblyName + "." + ressourcePath;
-                ressourceStream = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream(ressourcePath);
-                if (ressourceStream == null)
+                resourcePath = assemblyName + "." + resourcePath;
+                resourceStream = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream(resourcePath);
+                if (resourceStream == null)
                 {
                     throw (new System.IO.IOException("Error accessing resource Stream."));
                 }
 
-                textStreamReader = new System.IO.StreamReader(ressourceStream);
+                textStreamReader = new System.IO.StreamReader(resourceStream);
                 if (textStreamReader == null)
                 {
                     throw (new System.IO.IOException("Error accessing resource File."));
@@ -257,9 +257,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
                 {
                     textStreamReader.Close();
                 }
-                if (null != ressourceStream)
+                if (null != resourceStream)
                 {
-                    ressourceStream.Close();
+                    resourceStream.Close();
                 }
             }
         }

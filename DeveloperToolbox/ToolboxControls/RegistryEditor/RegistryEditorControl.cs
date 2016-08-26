@@ -141,7 +141,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
 
         public Image Icon
         {
-            get { return Resources.ResourceUtils.ReadIconImageFromRessource("ToolboxControls.RegistryEditor.Icon.ico"); }
+            get { return Resources.ResourceUtils.ReadIconImageFromResource("ToolboxControls.RegistryEditor.Icon.ico"); }
         }
 
         public bool SupportsHelpContent

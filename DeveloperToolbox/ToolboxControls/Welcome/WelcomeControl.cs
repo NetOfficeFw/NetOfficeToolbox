@@ -54,7 +54,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.Welcome
 
         public Image Icon
         {
-            get { return Resources.ResourceUtils.ReadImageFromRessource("ToolboxControls.Welcome.welcome.png"); }
+            get { return Resources.ResourceUtils.ReadImageFromResource("ToolboxControls.Welcome.welcome.png"); }
         }
 
         public bool SupportsHelpContent

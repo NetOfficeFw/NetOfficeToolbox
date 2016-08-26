@@ -121,7 +121,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
 
         public Image Icon
         {
-            get { return Resources.ResourceUtils.ReadImageFromRessource("ToolboxControls.ProjectWizard.Icon.png"); }
+            get { return Resources.ResourceUtils.ReadImageFromResource("ToolboxControls.ProjectWizard.Icon.png"); }
         }
 
         public bool SupportsInfoMessage

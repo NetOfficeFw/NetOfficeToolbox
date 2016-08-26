@@ -15,23 +15,23 @@ namespace NetOffice.DeveloperToolbox.Translation
         /// <summary>
         /// Read content as string from resource file
         /// </summary>
-        /// <param name="ressourcePath">path to resource file</param>
+        /// <param name="resourcePath">path to resource file</param>
         /// <returns>content of resource file</returns>
-        public static string ReadString(string ressourcePath)
+        public static string ReadString(string resourcePath)
         {
-            System.IO.Stream ressourceStream = null;
+            System.IO.Stream resourceStream = null;
             System.IO.StreamReader textStreamReader = null;
             try
             {
                 string assemblyName = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
-                ressourcePath = assemblyName + "." + ressourcePath;
-                ressourceStream = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream(ressourcePath);
-                if (ressourceStream == null)
+                resourcePath = assemblyName + "." + resourcePath;
+                resourceStream = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream(resourcePath);
+                if (resourceStream == null)
                 {
                     throw (new System.IO.IOException("Error accessing resource Stream."));
                 }
 
-                textStreamReader = new System.IO.StreamReader(ressourceStream);
+                textStreamReader = new System.IO.StreamReader(resourceStream);
                 if (textStreamReader == null)
                 {
                     throw (new System.IO.IOException("Error accessing resource File."));
@@ -50,9 +50,9 @@ namespace NetOffice.DeveloperToolbox.Translation
                 {
                     textStreamReader.Close();
                 }
-                if (null != ressourceStream)
+                if (null != resourceStream)
                 {
-                    ressourceStream.Close();
+                    resourceStream.Close();
                 }
             }
         }
@@ -60,12 +60,12 @@ namespace NetOffice.DeveloperToolbox.Translation
         /// <summary>
         /// Read resource localization file value names
         /// </summary>
-        /// <param name="ressourceContent">resource adress</param>
+        /// <param name="resourceContent">resource adress</param>
         /// <returns>names from resource file</returns>
-        public static string[] ReadRessourceNames(string ressourceContent)
+        public static string[] ReadResourceNames(string resourceContent)
         {
             List<String> list = new List<string>();
-            string[] splitArray = ressourceContent.Split(new string[] { "[End]" }, StringSplitOptions.RemoveEmptyEntries);
+            string[] splitArray = resourceContent.Split(new string[] { "[End]" }, StringSplitOptions.RemoveEmptyEntries);
             Dictionary<string, string> translateTable = GetTranslateResources(splitArray, 1031);
             foreach (var item in translateTable)
             {
@@ -121,9 +121,9 @@ namespace NetOffice.DeveloperToolbox.Translation
         /// </summary>
         /// <param name="control">target control to translate</param>
         /// <param name="componentName">name of the control</param>
-        /// <param name="ressourceFileName">resource file to use</param>
+        /// <param name="resourceFileName">resource file to use</param>
         /// <param name="lanuageID">target language id</param>
-        public static void AutoTranslateControls(Control control, string componentName, string ressourceFileName, int lanuageID)
+        public static void AutoTranslateControls(Control control, string componentName, string resourceFileName, int lanuageID)
         {
             Translation.ToolLanguage language = Forms.MainForm.Singleton.Languages.Where(l => l.LCID == lanuageID).FirstOrDefault();
             if (null != language)
@@ -133,7 +133,7 @@ namespace NetOffice.DeveloperToolbox.Translation
             }
             else
             {
-                Translation.Translator.TranslateControls(control, ressourceFileName, lanuageID);
+                Translation.Translator.TranslateControls(control, resourceFileName, lanuageID);
             }
         }
 
@@ -237,12 +237,12 @@ namespace NetOffice.DeveloperToolbox.Translation
         /// Translate a control and its sub controls based on a language id
         /// </summary>
         /// <param name="control">control to translate</param>
-        /// <param name="ressourceFile">used resource file</param>
+        /// <param name="resourceFile">used resource file</param>
         /// <param name="languageId">language id</param>
-        public static void TranslateControls(Control control, string ressourceFile, int languageId)
+        public static void TranslateControls(Control control, string resourceFile, int languageId)
         {
-            string ressourceContent = ReadString(ressourceFile);
-            string[] splitArray = ressourceContent.Split(new string[] { "[End]" }, StringSplitOptions.RemoveEmptyEntries);
+            string resourceContent = ReadString(resourceFile);
+            string[] splitArray = resourceContent.Split(new string[] { "[End]" }, StringSplitOptions.RemoveEmptyEntries);
             Dictionary<string, string> translateTable = GetTranslateResources(splitArray, languageId);
 
             ILocalizationDesign toolBoxControl = control as ILocalizationDesign;
@@ -300,16 +300,16 @@ namespace NetOffice.DeveloperToolbox.Translation
         /// <summary>
         /// Get a localized value from resource file
         /// </summary>
-        /// <param name="ressourceFile">resource adress</param>
+        /// <param name="resourceFile">resource adress</param>
         /// <param name="languageId">target language id</param>
-        /// <param name="ressourceName">target value name</param>
+        /// <param name="resourceName">target value name</param>
         /// <returns>target value</returns>
-        public static string GetRessourceValue(string ressourceFile, int languageId, string ressourceName)
+        public static string GetResourceValue(string resourceFile, int languageId, string resourceName)
         {
-            string ressourceContent = ReadString(ressourceFile);
-            string[] splitArray = ressourceContent.Split(new string[] { "[End]" }, StringSplitOptions.RemoveEmptyEntries);
+            string resourceContent = ReadString(resourceFile);
+            string[] splitArray = resourceContent.Split(new string[] { "[End]" }, StringSplitOptions.RemoveEmptyEntries);
             Dictionary<string, string> translateTable = GetTranslateResources(splitArray, languageId);
-            var res = translateTable.Where(n => n.Key == ressourceName).FirstOrDefault();
+            var res = translateTable.Where(n => n.Key == resourceName).FirstOrDefault();
             if (null != res.Key)
             {
                 return res.Value;
@@ -324,13 +324,13 @@ namespace NetOffice.DeveloperToolbox.Translation
         /// Get all localized name values from a resource file based on language id
         /// </summary>
         /// <param name="control">target control as replace provider</param>
-        /// <param name="ressourceFile">resource adress</param>
+        /// <param name="resourceFile">resource adress</param>
         /// <param name="languageId">language id</param>
         /// <returns>localized names & values</returns>
-        public static Dictionary<string, string> GetTranslateResources(Control control, string ressourceFile, int languageId)
+        public static Dictionary<string, string> GetTranslateResources(Control control, string resourceFile, int languageId)
         {
-            string ressourceContent = ReadString(ressourceFile);
-            string[] splitArray = ressourceContent.Split(new string[] { "[End]" }, StringSplitOptions.RemoveEmptyEntries);
+            string resourceContent = ReadString(resourceFile);
+            string[] splitArray = resourceContent.Split(new string[] { "[End]" }, StringSplitOptions.RemoveEmptyEntries);
             Dictionary<string, string> translateTable = GetTranslateResources(splitArray, languageId, control as ILocalizationReplaceProvider);
             return translateTable;
         }

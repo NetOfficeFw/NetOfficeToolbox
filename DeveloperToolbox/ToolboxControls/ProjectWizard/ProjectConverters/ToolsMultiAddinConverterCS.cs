@@ -38,7 +38,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
 
         public override string CreateSolution()
         {
-            ReadRessourceFiles();
+            ReadResourceFiles();
             ReplaceMarker();
             WriteResultFilesToTempFolder();
             CopyUsedNetOfficeAssembliesToTempTarget();
@@ -208,7 +208,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
             _addinFile = ValidateFileContentFormat(_addinFile);
         }
 
-        private void ReadRessourceFiles()
+        private void ReadResourceFiles()
         {
             _taskPaneFile = ReadProjectTemplateFile("ToolsMultiAddinCS.TaskPane.txt");
             _taskPaneDesignerFile = ReadProjectTemplateFile("ToolsMultiAddinCS.TaskPane_Designer.txt");

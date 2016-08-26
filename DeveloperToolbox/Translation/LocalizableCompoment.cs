@@ -34,8 +34,8 @@ namespace NetOffice.DeveloperToolbox.Translation
             _controlType = controlType;
             ControlResources = new ItemCollection();
 
-            string[] names = ResourceTableAttribute.GetRessourceNames(controlType);
-            Dictionary<string, string> values = ResourceTableAttribute.GetRessourceValues(Design, parent.LCID);
+            string[] names = ResourceTableAttribute.GetResourceNames(controlType);
+            Dictionary<string, string> values = ResourceTableAttribute.GetResourceValues(Design, parent.LCID);
             foreach (var resName in names)
             {
                 string resValue ="";
@@ -86,8 +86,8 @@ namespace NetOffice.DeveloperToolbox.Translation
             _controlType = controlType;
             ControlResources = new ItemCollection();
 
-            string[] names = ResourceTableAttribute.GetRessourceNames(controlType);
-            Dictionary<string, string> values = ResourceTableAttribute.GetRessourceValues(Design, parent.LCID);
+            string[] names = ResourceTableAttribute.GetResourceNames(controlType);
+            Dictionary<string, string> values = ResourceTableAttribute.GetResourceValues(Design, parent.LCID);
             foreach (var resName in names)
             {
                 string resValue = "";

@@ -14,8 +14,8 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
 
         private string _appDesignerFile;
         private string _myApplicationFile;
-        private string _ressourceDesignerFile;
-        private string _ressourceResFile;
+        private string _resourceDesignerFile;
+        private string _resourceResFile;
         private string _settingsDesignerFile;
         private string _settingsSettingsFile;
         private string _solutionFile;
@@ -39,7 +39,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
 
         public override string CreateSolution()
         {
-            ReadRessourceFiles();
+            ReadResourceFiles();
             ReplaceMarker();
             WriteResultFilesToTempFolder();
             CopyUsedNetOfficeAssembliesToTempTarget();
@@ -55,7 +55,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
         {
             _projectGuid = Guid.NewGuid();
 
-            _ressourceDesignerFile = _ressourceDesignerFile.Replace("$safeprojectname$", Options.AssemblyName);
+            _resourceDesignerFile = _resourceDesignerFile.Replace("$safeprojectname$", Options.AssemblyName);
 
             _settingsDesignerFile = _settingsDesignerFile.Replace("$safeprojectname$", Options.AssemblyName);
 
@@ -78,12 +78,12 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
             _assemblyFile = _assemblyFile.Replace("$assemblyguid$", Guid.NewGuid().ToString().ToUpper());
         }
 
-        private void ReadRessourceFiles()
+        private void ReadResourceFiles()
         {
             _appDesignerFile = ReadProjectTemplateFile("ConsoleVB.Application_Designer.txt");
             _myApplicationFile = ReadProjectTemplateFile("ConsoleVB.Application_myapp.txt");
-            _ressourceDesignerFile = ReadProjectTemplateFile("ConsoleVB.Resources_Designer.txt");
-            _ressourceResFile = ReadProjectTemplateFile("ConsoleVB.Resources_resx.txt");
+            _resourceDesignerFile = ReadProjectTemplateFile("ConsoleVB.Resources_Designer.txt");
+            _resourceResFile = ReadProjectTemplateFile("ConsoleVB.Resources_resx.txt");
             _settingsDesignerFile = ReadProjectTemplateFile("ConsoleVB.Settings_Designer.txt");
             _settingsSettingsFile = ReadProjectTemplateFile("ConsoleVB.Settings_settings.txt");
             _solutionFile = ReadProjectTemplateFile("ConsoleVB.Solution.txt");
@@ -96,8 +96,8 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
         {
             File.AppendAllText(Path.Combine(TempPropertiesPath, "Application.Designer.vb"), _appDesignerFile, Encoding.UTF8);
             File.AppendAllText(Path.Combine(TempPropertiesPath, "Application.myapp"), _myApplicationFile, Encoding.UTF8);
-            File.AppendAllText(Path.Combine(TempPropertiesPath, "Resources.Designer.vb"), _ressourceDesignerFile, Encoding.UTF8);
-            File.AppendAllText(Path.Combine(TempPropertiesPath, "Resources.resx"), _ressourceResFile, Encoding.UTF8);
+            File.AppendAllText(Path.Combine(TempPropertiesPath, "Resources.Designer.vb"), _resourceDesignerFile, Encoding.UTF8);
+            File.AppendAllText(Path.Combine(TempPropertiesPath, "Resources.resx"), _resourceResFile, Encoding.UTF8);
             File.AppendAllText(Path.Combine(TempPropertiesPath, "Settings.Designer.vb"), _settingsDesignerFile, Encoding.UTF8);
             File.AppendAllText(Path.Combine(TempPropertiesPath, "Settings.settings"), _settingsSettingsFile, Encoding.UTF8);
             File.AppendAllText(Path.Combine(TempSolutionPath, String.Format("{0}.sln", Options.AssemblyName)), _solutionFile, Encoding.UTF8);

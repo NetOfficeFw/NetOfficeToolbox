@@ -2,26 +2,26 @@
         #region Static Helper Methods
 
         /// <summary>
-        /// reads text file from ressource
+        /// reads text file from resource
         /// </summary>
-        /// <param name="fileName">relative ressource path</param>
-        /// <returns>ressource string</returns>
+        /// <param name="fileName">relative resource path</param>
+        /// <returns>resource string</returns>
         protected internal static string ReadResourceFile(string fileName)
         {
             Assembly assembly = typeof(Addin).Assembly;
-            System.IO.Stream ressourceStream = assembly.GetManifestResourceStream(assembly.GetName().Name + "." + fileName);
-            if (ressourceStream == null)
+            System.IO.Stream resourceStream = assembly.GetManifestResourceStream(assembly.GetName().Name + "." + fileName);
+            if (resourceStream == null)
                 throw (new System.IO.IOException("Error accessing resource Stream."));
 
-            System.IO.StreamReader textStreamReader = new System.IO.StreamReader(ressourceStream);
+            System.IO.StreamReader textStreamReader = new System.IO.StreamReader(resourceStream);
             if (textStreamReader == null)
                 throw (new System.IO.IOException("Error accessing resource File."));
 
             string text = textStreamReader.ReadToEnd();
 			textStreamReader.Close();
-            ressourceStream.Close();
+            resourceStream.Close();
             textStreamReader.Dispose();
-            ressourceStream.Dispose();
+            resourceStream.Dispose();
 
             return text;
         }

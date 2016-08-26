@@ -15,8 +15,8 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
         private string _form1File;
         private string _form1DesignerFile;
         private string _programFile;
-        private string _ressourceDesignerFile;
-        private string _ressourceResFile;
+        private string _resourceDesignerFile;
+        private string _resourceResFile;
         private string _settingsDesignerFile;
         private string _settingsSettingsFile;
         private string _solutionFile;
@@ -39,7 +39,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
 
         public override string CreateSolution()
         {
-            ReadRessourceFiles();
+            ReadResourceFiles();
             ReplaceMarker();
             WriteResultFilesToTempFolder();
             CopyUsedNetOfficeAssembliesToTempTarget();
@@ -60,7 +60,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
 
             _form1DesignerFile = _form1DesignerFile.Replace("$safeprojectname$", Options.AssemblyName);
 
-            _ressourceDesignerFile = _ressourceDesignerFile.Replace("$safeprojectname$", Options.AssemblyName);
+            _resourceDesignerFile = _resourceDesignerFile.Replace("$safeprojectname$", Options.AssemblyName);
 
             _settingsDesignerFile = _settingsDesignerFile.Replace("$safeprojectname$", Options.AssemblyName);
 
@@ -82,13 +82,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
             _assemblyFile = _assemblyFile.Replace("$assemblyguid$", Guid.NewGuid().ToString().ToUpper());
         }
 
-        private void ReadRessourceFiles()
+        private void ReadResourceFiles()
         {
             _form1File = ReadProjectTemplateFile("WindowsFormsCS.Form1.txt");
             _form1DesignerFile = ReadProjectTemplateFile("WindowsFormsCS.Form1_Designer.txt");
             _programFile = ReadProjectTemplateFile("WindowsFormsCS.Program.txt");
-            _ressourceDesignerFile = ReadProjectTemplateFile("WindowsFormsCS.Resources_Designer.txt");
-            _ressourceResFile = ReadProjectTemplateFile("WindowsFormsCS.Resources_resx.txt");
+            _resourceDesignerFile = ReadProjectTemplateFile("WindowsFormsCS.Resources_Designer.txt");
+            _resourceResFile = ReadProjectTemplateFile("WindowsFormsCS.Resources_resx.txt");
             _settingsDesignerFile = ReadProjectTemplateFile("WindowsFormsCS.Settings_Designer.txt");
             _settingsSettingsFile = ReadProjectTemplateFile("WindowsFormsCS.Settings_settings.txt");
             _solutionFile = ReadProjectTemplateFile("WindowsFormsCS.Solution.txt");
@@ -101,8 +101,8 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
             File.AppendAllText(Path.Combine(TempProjectPath, "Form1.cs"), _form1File, Encoding.UTF8);
             File.AppendAllText(Path.Combine(TempProjectPath, "Form1.Designer.cs"), _form1DesignerFile, Encoding.UTF8);
             File.AppendAllText(Path.Combine(TempProjectPath, "Program.cs"), _programFile, Encoding.UTF8);
-            File.AppendAllText(Path.Combine(TempPropertiesPath, "Resources.Designer.cs"), _ressourceDesignerFile, Encoding.UTF8);
-            File.AppendAllText(Path.Combine(TempPropertiesPath, "Resources.resx"), _ressourceResFile, Encoding.UTF8);
+            File.AppendAllText(Path.Combine(TempPropertiesPath, "Resources.Designer.cs"), _resourceDesignerFile, Encoding.UTF8);
+            File.AppendAllText(Path.Combine(TempPropertiesPath, "Resources.resx"), _resourceResFile, Encoding.UTF8);
             File.AppendAllText(Path.Combine(TempPropertiesPath, "Settings.Designer.cs"), _settingsDesignerFile, Encoding.UTF8);
             File.AppendAllText(Path.Combine(TempPropertiesPath, "Settings.settings"), _settingsSettingsFile, Encoding.UTF8);
             File.AppendAllText(Path.Combine(TempSolutionPath, String.Format("{0}.sln", Options.AssemblyName)), _solutionFile, Encoding.UTF8);

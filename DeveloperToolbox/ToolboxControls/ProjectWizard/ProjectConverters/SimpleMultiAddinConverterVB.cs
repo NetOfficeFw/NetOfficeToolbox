@@ -17,8 +17,8 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
         private string _ribbonFile;
         private string _appDesignerFile;
         private string _myApplicationFile;
-        private string _ressourceDesgnerFile;
-        private string _ressourceResFile;
+        private string _resourceDesgnerFile;
+        private string _resourceResFile;
         private string _settingDesignerFile;
         private string _settingsSettingsFile;
         private string _solutionFile;
@@ -44,7 +44,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
 
         public override string CreateSolution()
         {
-            ReadRessourceFiles();
+            ReadResourceFiles();
             ReplaceMarker();
             WriteResultFilesToTempFolder();
             CopyUsedNetOfficeAssembliesToTempTarget();
@@ -60,7 +60,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
         {
             _projectGuid = Guid.NewGuid();
 
-            _ressourceDesgnerFile = _ressourceDesgnerFile.Replace("$safeprojectname$", Options.AssemblyName);
+            _resourceDesgnerFile = _resourceDesgnerFile.Replace("$safeprojectname$", Options.AssemblyName);
 
             _settingDesignerFile = _settingDesignerFile.Replace("$safeprojectname$", Options.AssemblyName);
 
@@ -180,25 +180,25 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
 
             if (Options.UseRibbonUI)
             {
-                _addinFile = _addinFile.Replace("$readRessource$", ReadProjectTemplateFile("SimpleMultiAddinVB.ReadResource.txt"));
+                _addinFile = _addinFile.Replace("$readResource$", ReadProjectTemplateFile("SimpleMultiAddinVB.ReadResource.txt"));
             }
             else
             {
-                _addinFile = _addinFile.Replace("$readRessource$", String.Empty);
+                _addinFile = _addinFile.Replace("$readResource$", String.Empty);
             }
 
             _addinFile = ValidateFileContentFormat(_addinFile);
         }
 
-        private void ReadRessourceFiles()
+        private void ReadResourceFiles()
         {
             _taskPaneFile = ReadProjectTemplateFile("SimpleMultiAddinVB.TaskPane.txt");
             _taskPaneDesignerFile = ReadProjectTemplateFile("SimpleMultiAddinVB.TaskPane_Designer.txt");
             _ribbonFile = ReadProjectTemplateFile("SimpleMultiAddinVB.RibbonUI.txt");
             _appDesignerFile = ReadProjectTemplateFile("SimpleMultiAddinVB.Application_Designer.txt");
             _myApplicationFile = ReadProjectTemplateFile("SimpleMultiAddinVB.Application_myapp.txt");
-            _ressourceDesgnerFile = ReadProjectTemplateFile("SimpleMultiAddinVB.Resources_Designer.txt");
-            _ressourceResFile = ReadProjectTemplateFile("SimpleMultiAddinVB.Resources_resx.txt");
+            _resourceDesgnerFile = ReadProjectTemplateFile("SimpleMultiAddinVB.Resources_Designer.txt");
+            _resourceResFile = ReadProjectTemplateFile("SimpleMultiAddinVB.Resources_resx.txt");
             _settingDesignerFile = ReadProjectTemplateFile("SimpleMultiAddinVB.Settings_Designer.txt");
             _settingsSettingsFile = ReadProjectTemplateFile("SimpleMultiAddinVB.Settings_settings.txt");
             _solutionFile = ReadProjectTemplateFile("SimpleMultiAddinVB.Solution.txt");
@@ -212,8 +212,8 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
         {
             File.AppendAllText(Path.Combine(TempPropertiesPath, "Application.Designer.vb"), _appDesignerFile, Encoding.UTF8);
             File.AppendAllText(Path.Combine(TempPropertiesPath, "Application.myapp"), _myApplicationFile, Encoding.UTF8);
-            File.AppendAllText(Path.Combine(TempPropertiesPath, "Resources.Designer.vb"), _ressourceDesgnerFile, Encoding.UTF8);
-            File.AppendAllText(Path.Combine(TempPropertiesPath, "Resources.resx"), _ressourceResFile, Encoding.UTF8);
+            File.AppendAllText(Path.Combine(TempPropertiesPath, "Resources.Designer.vb"), _resourceDesgnerFile, Encoding.UTF8);
+            File.AppendAllText(Path.Combine(TempPropertiesPath, "Resources.resx"), _resourceResFile, Encoding.UTF8);
             File.AppendAllText(Path.Combine(TempPropertiesPath, "Settings.Designer.vb"), _settingDesignerFile, Encoding.UTF8);
             File.AppendAllText(Path.Combine(TempPropertiesPath, "Settings.settings"), _settingsSettingsFile, Encoding.UTF8);
             File.AppendAllText(Path.Combine(TempSolutionPath, String.Format("{0}.sln", Options.AssemblyName)), _solutionFile, Encoding.UTF8);
