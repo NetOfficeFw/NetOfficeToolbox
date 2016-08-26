@@ -119,16 +119,10 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
 
         public void Activate()
         {
-            animatedPanel1.Animation1Enabled = true;
-            controlBackColorAnimator1.Start(false);
-            controlForeColorAnimator1.Start(false);
         }
 
         public void Deactivate()
         {
-            animatedPanel1.Animation1Enabled = false;
-            controlBackColorAnimator1.Stop();
-            controlForeColorAnimator1.Stop();
         }
 
         public XmlDocument SettingsDocument

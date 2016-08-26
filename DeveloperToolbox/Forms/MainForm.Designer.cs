@@ -95,7 +95,6 @@
             this.translationEditor.Size = new System.Drawing.Size(96, 100);
             this.translationEditor.TabIndex = 0;
             this.translationEditor.UserClose += new System.EventHandler(this.TranslationEditor_UserClose);
-            this.translationEditor.UserTranslationAbout += new System.EventHandler(this.TranslationEditor_UserTranslationAbout);
             this.translationEditor.LanguageChanged += new NetOffice.DeveloperToolbox.Translation.LanuageChangedEventHandler(this.TranslationEditor_LanguageChanged);
             //
             // MainForm

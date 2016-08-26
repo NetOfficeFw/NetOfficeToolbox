@@ -585,32 +585,6 @@ namespace NetOffice.DeveloperToolbox.Forms
                 ErrorForm.ShowError(this, exception,ErrorCategory.NonCritical, CurrentLanguageID);
             }
         }
-
-        private void TranslationEditor_UserTranslationAbout(object sender, EventArgs e)
-        {
-            try
-            {
-                // nearly impossible but dont trust anyone
-                foreach (Control item in splitContainer1.Panel1.Controls)
-                {
-                    if (item is Controls.Custom.InviteControl)
-                    {
-                        return;
-                    }
-                }
-
-                Controls.Custom.InviteControl ctrl = new Controls.Custom.InviteControl();
-                Controls.Add(ctrl);
-                ctrl.Dock = DockStyle.Fill;
-                ctrl.BringToFront();
-
-            }
-            catch (Exception exception)
-            {
-                ErrorForm.ShowError(this, exception, ErrorCategory.NonCritical, CurrentLanguageID);
-            }
-        }
-
         #endregion
     }
 }

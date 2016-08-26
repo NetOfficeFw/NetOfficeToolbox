@@ -117,20 +117,12 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls
         {
             buttonInfo.Visible = InnerInstance.SupportsHelpContent;
             InnerInstance.Activate(firstTime);
-            if (InnerInstance.SupportsHelpContent)
-            {
-                controlBackColorAnimator1.Start(false);
-            }
             SetupInfoMessage();
         }
 
         public void Deactivated()
         {
             InnerInstance.Deactivated();
-            if (InnerInstance.SupportsHelpContent)
-            {
-                controlBackColorAnimator1.Start(false);
-            }
         }
 
         public void LoadComplete()

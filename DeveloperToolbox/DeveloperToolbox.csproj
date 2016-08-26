@@ -130,17 +130,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\Buttons\RoundedButton.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Controls\Check\GlowCheckBox.cs">
       <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\Custom\InviteControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\Custom\InviteControl.Designer.cs">
-      <DependentUpon>InviteControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\Error\ErrorControl.cs">
       <SubType>UserControl</SubType>
@@ -375,9 +366,6 @@
     <Compile Include="ToolboxControls\ProjectWizard\ProjectConverters\ConsoleConverterCS.cs" />
     <Compile Include="ToolboxControls\ProjectWizard\ProjectConverters\ConsoleConverterVB.cs" />
     <Compile Include="ToolboxControls\ProjectWizard\ProjectConverters\Converter.cs" />
-    <EmbeddedResource Include="Controls\Custom\InviteControl.resx">
-      <DependentUpon>InviteControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Controls\Error\ErrorControl.resx">
       <DependentUpon>ErrorControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -482,22 +470,6 @@
     <Compile Include="Translation\TranslationControl.Designer.cs">
       <DependentUpon>TranslationControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Utils\Animation\Colors\AnimatorBase.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Utils\Animation\Colors\ControlBackColorAnimator.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Utils\Animation\Colors\ControlForeColorAnimator.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Utils\Animation\Effects\EffectsAnimator.cs" />
-    <Compile Include="Utils\Animation\Panel\AnimatedPanel.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Utils\Animation\Panel\ImageShape.cs" />
-    <Compile Include="Utils\Animation\Panel\Shape.cs" />
-    <Compile Include="Utils\Animation\Round\RoundedRectangleRegion.cs" />
     <Compile Include="Utils\Native\Win32.cs" />
     <Compile Include="Utils\Registry\UtilsRegistryKeyExporter.cs" />
     <Compile Include="Utils\Resources\ResourceUtils.cs" />

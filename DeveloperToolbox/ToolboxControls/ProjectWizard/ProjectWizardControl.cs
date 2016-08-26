@@ -163,15 +163,10 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
 
         public void Activate(bool firstTime)
         {
-            controlForeColorAnimator1.Start(false);
-            controlBackColorAnimator1.Start(false);
         }
 
         public void Deactivated()
         {
-            controlForeColorAnimator1.Stop();
-            controlBackColorAnimator1.Stop();
-
             if (IsCurrentlyActive)
             {
                 Reset();
