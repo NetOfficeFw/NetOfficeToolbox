@@ -1177,28 +1177,6 @@
         TkSuQmCC
 </value>
   </data>
-  <data name="buttonLanguageEditor.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
-        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAADnklEQVQ4T2WSa1DUBRTF/zVMQhBoBZIx
-        PAQWBFxEQxhgeS2PMCx3gRBBKlkegoAhAVMqqCG7GCQE1EbyEFZpEYKAYgoxeUQ0xrM0bXSmGSNFlIFq
-        ZKZpf23M9qV+n+6He869Z+YI/2V7slQkTXpHHZS3bS74sDPhJS4EF9nMvXzEvLtLayLj+mOu3BQs+Cl7
-        DQiPGGSCII7INw1IOKHdqyzWlfe08ta5GQpbrqC5WMbgZDRDl3zpabOn/YzZzNK0TS7zfrGQb7oqdo8r
-        MQtJVo0XtvbRNFuKsreFQ9ohFI1XOa19n9mROO5023D/gjN3Oq25NSZZWp61O8QDwWLVwGOfW3/FZxpq
-        v3uT2rGjZKozyDy/SEnXBB2dhcx9IkY3mYNuOAXdRDa/dllzrt70x3/iCA5Jaz1jT0uo+aYI1VgucRVK
-        qocvU35phebRMUa/yGGx3QdGFMAKupEUFrQi2s4+SVOLcaLewESrGizk+EAapaPp1I2Xof66D83sX3RP
-        z3J5sJiFni36y4YPJvUfdFtyptmRQLlvtxCQtueuUm9Q9OWL7CwPJUfTSEFXPy3Tf6KZmufz8XpuTqSw
-        2GvPvTYRv3Tacu3bQGr0sZ7aLpsTAlPSkB2rxPNgIn5l99nT9Adv9P7Oya8eorq8RONQP9qBE3zcJkfb
-        EkZ1XQQNfVtQdnpj7heP4JWQRczJMh5NnMG56C7SqgckNi+Tof2N/e3LJJ9dJLZqCtVAFMcv+pDd4cQu
-        tRc7VWGYB0Uh+CQoFkIOV/CErJXHk6/glH8DP+Vtoqrm2VFzj4DyZfK0x1B8Gk1Ca7j+gD/Bp7yJq3kO
-        I7HstiDeoejwzG5AonIhXlWA2as/8Gz2VZzzr+NacAP73J/Z17ab6IZtPK/2JPQ9MbJaT+RKXwSniFZh
-        ozRV5J+aowutsCfmI2/2Vh7AMvUatge+x/F1fayDM4jzMvArDWHj/kyi3pZQcN4DUbyvTnCVilaLZOn7
-        WqcoS4L/KVteqHEg8mg4HmmVuOQO4547iGN6HzbJWtbJ1UTmykiptsdabnRhVbyKZbCZVaTrlF/xeiIq
-        7fQm1mw98hIOinYcFS3YvfIhGxIqsUt6l+Cs3WzYZTSxLsxQ43+xjBOsn5Gv6fPKeFq3NSsbt/R6NqV+
-        gFtqHZsz6nBPqcBKmqYzdotuE9zdzQyy/2MeuMnZ2C1Ks9Y75paVJGllfVDiQwv9bLI5QmMsjnAwrBkQ
-        hL8BAgEPBkKwPToAAAAASUVORK5CYII=
-</value>
-  </data>
   <data name="pictureBoxHeader.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAlUAAAAjCAIAAAAygGgQAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
