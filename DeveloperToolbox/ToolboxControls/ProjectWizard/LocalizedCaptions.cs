@@ -18,7 +18,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
         public string GetCaption(IWizardControl ctrl)
         {
             if (null == ctrl)
+            {
                 return "<Error>";
+            }
             string name = ctrl.GetType().Name;
             name = name.Substring(0, name.Length - "Control".Length);
             name += "Caption";
@@ -29,7 +31,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
         public string GetDescription(IWizardControl ctrl)
         {
             if (null == ctrl)
+            {
                 return "<Error>";
+            }
             string name = ctrl.GetType().Name;
             name = name.Substring(0, name.Length - "Control".Length);
             name += "Description";

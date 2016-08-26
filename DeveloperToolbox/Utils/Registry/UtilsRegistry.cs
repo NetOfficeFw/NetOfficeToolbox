@@ -82,7 +82,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Registry
             get
             {
                 if (null == _key)
+                {
                     _key = new UtilsRegistryKey(this, _innerKey, _path);
+                }
                 return _key;
             }
         }
@@ -100,7 +102,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Registry
             get
             {
                 if (null == _entries)
+                {
                     _entries = new UtilsRegistryEntries(Key);
+                }
                 return _entries;
             }
         }

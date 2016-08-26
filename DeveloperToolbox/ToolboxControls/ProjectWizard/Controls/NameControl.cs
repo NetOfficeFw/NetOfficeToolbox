@@ -73,7 +73,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
                 try
                 {
                     if(null != ClassNameInvalid())
+                    {
                         return false;
+                    }
                     return (("" != textBoxClassName.Text.Trim()) && (!ProjectWizardControl.Singleton.FolderExists(textBoxClassName.Text.Trim())));
                 }
                 catch (Exception ex)
@@ -90,9 +92,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
             {
 
                 if (Forms.MainForm.Singleton.CurrentLanguageID == 1031)
+                {
                     return "Tragen Sie Informationen zu Ihrem Assembly ein.";
+                }
                 else
+                {
                     return "Informations about your assembly.";
+                }
             }
         }
 
@@ -101,9 +107,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
             get
             {
                 if (Forms.MainForm.Singleton.CurrentLanguageID == 1031)
+                {
                     return "Diese Informationen sind für Anwender sichtbar.";
+                }
                 else
+                {
                     return "These informations are visible for your customers.";
+                }
             }
         }
 
@@ -137,9 +147,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
             }
 
             if (Forms.MainForm.Singleton.CurrentLanguageID == 1031)
+            {
                 SetGermanDefaultName();
+            }
             else
+            {
                 SetEnglishDefaultName();
+            }
         }
 
         public void Activate()
@@ -148,9 +162,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
             if (_firstActivateFlag == false)
             {
                 if (Forms.MainForm.Singleton.CurrentLanguageID == 1031)
+                {
                     SetGermanDefaultName();
+                }
                 else
+                {
                     SetEnglishDefaultName();
+                }
                 _firstActivateFlag = true;
             }
         }
@@ -273,7 +291,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
             try
             {
                 if (null != ReadyStateChanged)
+                {
                     ReadyStateChanged(this);
+                }
             }
             catch (Exception ex)
             {
@@ -288,17 +308,25 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
             {
                 string str = item.ToString();
                 if (str.Trim().Length == 0)
+                {
                     continue;
+                }
                 if (textBoxClassName.Text.IndexOf(item) > -1)
+                {
                     return item.ToString();
+                }
             }
             foreach (var item in System.IO.Path.GetInvalidPathChars())
             {
                 string str = item.ToString();
                 if (str.Trim().Length == 0)
+                {
                     continue;
+                }
                 if (textBoxClassName.Text.IndexOf(item) > -1)
+                {
                     return item.ToString();
+                }
             }
             return null;
         }
@@ -313,9 +341,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
                     string name = box.Name.Substring("textBox".Length);
                     XmlNode node = _settings.FirstChild.SelectSingleNode(name);
                     if (box.Name == "textBoxClassName")
+                    {
                         node.InnerText = box.Text.Trim().Replace(" ", "");
+                    }
                     else
+                    {
                         node.InnerText = box.Text.Trim();
+                    }
                 }
             }
         }
@@ -339,9 +371,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
                 ChangeSettings();
                 RaiseChangeEvent();
                 if (ProjectWizardControl.Singleton.FolderExists(textBoxClassName.Text.Trim()))
+                {
                     labelHint.Visible = true;
+                }
                 else
+                {
                     labelHint.Visible = false;
+                }
 
                 string res = ClassNameInvalid();
                 if (null != res)

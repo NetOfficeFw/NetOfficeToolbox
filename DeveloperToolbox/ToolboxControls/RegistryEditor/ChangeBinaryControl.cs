@@ -37,7 +37,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
         private void RaiseClose()
         {
             if (null != Close)
+            {
                 Close(this, EventArgs.Empty);
+            }
         }
 
         #endregion
@@ -100,7 +102,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
         private static byte[] StringToByteArray(string str)
         {
             if (null == str)
+            {
                 return null;
+            }
             System.Text.UnicodeEncoding enc = new System.Text.UnicodeEncoding();
             return enc.GetBytes(str);
         }

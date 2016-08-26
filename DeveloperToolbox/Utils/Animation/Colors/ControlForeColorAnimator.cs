@@ -58,9 +58,11 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
 			set
 			{
 				if (_startColor == value)
-					return;
+				{
+				    return;
+				}
 
-				_startColor = value;
+			    _startColor = value;
 
 				OnStartValueChanged(EventArgs.Empty);
 			}
@@ -77,9 +79,11 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
 			set
 			{
 				if (_endColor == value)
-					return;
+				{
+				    return;
+				}
 
-				_endColor = value;
+			    _endColor = value;
 
 				OnEndValueChanged(EventArgs.Empty);
 			}
@@ -98,17 +102,23 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
 			set
 			{
 				if (_control == value)
-					return;
+				{
+				    return;
+				}
+
+			    if (_control != null)
+			    {
+			        _control.ForeColorChanged -= new EventHandler(OnCurrentValueChanged);
+			    }
+
+			    _control = value;
 
 				if (_control != null)
-					_control.ForeColorChanged -= new EventHandler(OnCurrentValueChanged);
+				{
+				    _control.ForeColorChanged += new EventHandler(OnCurrentValueChanged);
+				}
 
-				_control = value;
-
-				if (_control != null)
-					_control.ForeColorChanged += new EventHandler(OnCurrentValueChanged);
-
-				base.ResetValues();
+			    base.ResetValues();
 			}
 		}
 
@@ -125,7 +135,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
 			set
 			{
 				if (_control != null)
-					_control.ForeColor = (Color)value;
+				{
+				    _control.ForeColor = (Color)value;
+				}
 			}
 		}
 
@@ -158,9 +170,11 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
 		protected override object GetValueForStep(double step)
 		{
 			if (_startColor == Color.Empty || _endColor == Color.Empty)
-				return CurrentValue;
+			{
+			    return CurrentValue;
+			}
 
-			return InterpolateColors(_startColor, _endColor, step);
+		    return InterpolateColors(_startColor, _endColor, step);
 		}
 
 		#endregion

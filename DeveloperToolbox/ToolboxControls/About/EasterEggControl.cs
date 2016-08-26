@@ -56,7 +56,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.About
         private void RaiseDone()
         {
             if (null != Done)
+            {
                 Done(this, EventArgs.Empty);
+            }
         }
 
         #endregion
@@ -104,7 +106,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.About
                     {
                         delayTicks++;
                         if (delayTicks < 5)
+                        {
                             return;
+                        }
                         if (!playWait)
                         {
                             pictureBoxWait.Visible = true;
@@ -146,7 +150,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.About
             try
             {
                 if (null != _playerWait)
+                {
                     _playerWait.Play();
+                }
             }
             catch
             {
@@ -159,7 +165,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.About
             try
             {
                 if (null != _playerGunshot)
+                {
                     _playerGunshot.Play();
+                }
             }
             catch
             {

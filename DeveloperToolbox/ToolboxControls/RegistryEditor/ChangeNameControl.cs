@@ -37,7 +37,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
         private void RaiseClose()
         {
             if (null != Close)
+            {
                 Close(this, EventArgs.Empty);
+            }
         }
 
         #endregion
@@ -136,7 +138,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             try
             {
                 if (textBoxValue.Text.Trim() != textBoxName.Text)
+                {
                     this.DialogResult = DialogResult.OK;
+                }
                 RaiseClose();
             }
             catch (Exception exception)

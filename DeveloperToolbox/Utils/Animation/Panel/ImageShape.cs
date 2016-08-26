@@ -32,7 +32,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation.Panel
             set
             {
                 if (value < 0.1f || value > 1.0f)
+                {
                     throw new ArgumentException();
+                }
                 _opacity = value;
                 if (_opacity < 1.0f)
                 {

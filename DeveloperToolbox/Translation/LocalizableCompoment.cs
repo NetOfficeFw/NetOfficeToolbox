@@ -58,9 +58,13 @@ namespace NetOffice.DeveloperToolbox.Translation
                     {
                         TextBox textBox = ctrl as TextBox;
                         if (null != textBox && textBox.Multiline)
+                        {
                             ControlRessources.Add(new LocalizableWideString(resName, resValue));
+                        }
                         else
+                        {
                             ControlRessources.Add(new LocalizableString(resName, resValue));
+                        }
                     }
 
                 }
@@ -106,9 +110,13 @@ namespace NetOffice.DeveloperToolbox.Translation
                     {
                         TextBox textBox = ctrl as TextBox;
                         if (null != textBox && textBox.Multiline)
+                        {
                             ControlRessources.Add(new LocalizableWideString(resName, resValue));
+                        }
                         else
+                        {
                             ControlRessources.Add(new LocalizableString(resName, resValue));
+                        }
                     }
 
                 }
@@ -149,7 +157,9 @@ namespace NetOffice.DeveloperToolbox.Translation
                     _control = Activator.CreateInstance(_controlType) as UserControl;
                     ILocalizationDesign designSupport = _control as ILocalizationDesign;
                     if (null != designSupport)
+                    {
                         designSupport.EnableDesignView(Parent.LCID, Value2);
+                    }
                 }
                 return _control;
             }

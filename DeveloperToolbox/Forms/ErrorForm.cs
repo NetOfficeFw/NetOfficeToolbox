@@ -59,7 +59,9 @@ namespace NetOffice.DeveloperToolbox.Forms
         {
             ErrorForm form = new ErrorForm(exception, category, currentLanguageID);
             if (null != MainForm.Singleton && MainForm.Singleton.Visible)
+            {
                 form.ShowDialog(MainForm.Singleton);
+            }
             else
             {
                 form.StartPosition = FormStartPosition.CenterScreen;

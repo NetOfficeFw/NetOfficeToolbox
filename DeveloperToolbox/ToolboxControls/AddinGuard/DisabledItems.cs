@@ -39,7 +39,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
         {
             _parent.StopFlag = true;
             while (!_parent.StopFlagAgreed)
+            {
                 ;
+            }
             _items.Remove(_items[index]);
             _parent.StopFlag = false;
         }

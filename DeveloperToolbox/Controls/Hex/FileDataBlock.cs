@@ -37,7 +37,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
         public void RemoveBytesFromEnd(long count)
         {
             if (count > _length)
+            {
                 throw new ArgumentOutOfRangeException("count");
+            }
 
             _length -= count;
         }
@@ -45,7 +47,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
         public void RemoveBytesFromStart(long count)
         {
             if (count > _length)
+            {
                 throw new ArgumentOutOfRangeException("count");
+            }
 
             _fileOffset += count;
             _length -= count;
@@ -54,10 +58,14 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
         public override void RemoveBytes(long position, long count)
         {
             if (position > _length)
+            {
                 throw new ArgumentOutOfRangeException("position");
+            }
 
             if (position + count > _length)
+            {
                 throw new ArgumentOutOfRangeException("count");
+            }
 
 
             long prefixLength = position;

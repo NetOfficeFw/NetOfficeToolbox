@@ -206,8 +206,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Tree
             set
             {
                 for (int i = 0; i < value; i++)
+                {
                     this.Nodes.Add(new TreeGridNode());
-
+                }
             }
         }
         #endregion
@@ -342,21 +343,30 @@ namespace NetOffice.DeveloperToolbox.Controls.Tree
 					}
 					else
 						// no more rows, site this node at the end.
-						break;
-
+					{
+					    break;
+					}
 				}
 				if (currentRow == node.Parent)
-					rowIndex = currentRow.RowIndex + 1;
+				{
+				    rowIndex = currentRow.RowIndex + 1;
+				}
 				else if (currentRow.Level < node.Level)
-					rowIndex = currentRow.RowIndex;
+				{
+				    rowIndex = currentRow.RowIndex;
+				}
 				else
-					rowIndex = currentRow.RowIndex + 1;
+				{
+				    rowIndex = currentRow.RowIndex + 1;
+				}
 			}
 			else
-				rowIndex = 0;
+			{
+			    rowIndex = 0;
+			}
 
 
-			Debug.Assert(rowIndex != -1);
+		    Debug.Assert(rowIndex != -1);
 			this.SiteNode(node, rowIndex);
 
 			Debug.Assert(node.IsSited);
@@ -439,8 +449,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Tree
             // while we are expanding and collapsing a node mouse moves are
             // supressed to keep selections from being messed up.
             if (!this._inExpandCollapseMouseCapture)
+            {
                 base.OnMouseMove(e);
-
+            }
         }
         #endregion
 

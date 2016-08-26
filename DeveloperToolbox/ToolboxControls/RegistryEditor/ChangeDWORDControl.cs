@@ -37,7 +37,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
         private void RaiseClose()
         {
             if (null != Close)
+            {
                 Close(this, EventArgs.Empty);
+            }
         }
 
         #endregion
@@ -143,9 +145,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
         {
 
             if (radioButtonHex.Checked == true)
+            {
                 return ConvertDecimalStringToHexValue(value);
+            }
             else
+            {
                 return ConvertHexStringToDecimal(value);
+            }
         }
 
         private object ConvertDecimalStringToHexValue(string value)
@@ -167,7 +173,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                 return string.Format("{0:x}", value);
             }
             else
+            {
                 return value.ToString();
+            }
         }
 
         private string FinalConvertValue(string value)
@@ -217,7 +225,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             try
             {
                 if ("1234567890,\b".IndexOf(e.KeyChar.ToString()) < 0)
+                {
                     e.Handled = true;
+                }
             }
             catch (Exception exception)
             {

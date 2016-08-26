@@ -35,7 +35,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
         public void ShowNotification(AddinKey item, NotifyKind notfiyKind, RegistryChangeInfo changeInfo)
         {
             if (_parent.FirstRun)
+            {
                 return;
+            }
             string message = GetMessage(notfiyKind);
             switch (notfiyKind)
             {
@@ -68,18 +70,26 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
             }
 
             if (_parent.NotifyType == NotificationType.MessageBox)
+            {
                 MessageBox.Show(message, "NetOffice.DeveloperToolbox", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
             else
+            {
                 _trayIcon.ShowBalloonTip(2000, message, "NetOffice.DeveloperToolbox " + notfiyKind.ToString(), ToolTipIcon.Info);
+            }
 
             if (null != MessageFired)
+            {
                 MessageFired(message, new EventArgs());
+            }
         }
 
         public void ShowNotification(DisabledKey item, NotifyKind notfiyKind, RegistryChangeInfo changeInfo)
         {
             if (_parent.FirstRun)
+            {
                 return;
+            }
             string message = GetMessage(notfiyKind);
             switch (notfiyKind )
             {
@@ -96,18 +106,26 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
             }
 
             if (_parent.NotifyType == NotificationType.MessageBox)
+            {
                 MessageBox.Show(message, "NetOffice.DeveloperToolbox", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
             else
+            {
                 _trayIcon.ShowBalloonTip(2000, message, "NetOffice.DeveloperToolbox " + notfiyKind.ToString(), ToolTipIcon.Info);
+            }
 
             if (null != MessageFired)
+            {
                 MessageFired(message, new EventArgs());
+            }
         }
 
         public void ShowNotification(AddinsKey item, NotifyKind notfiyKind, RegistryChangeInfo changeInfo)
         {
             if (_parent.FirstRun)
+            {
                 return;
+            }
 
             string message = GetMessage(notfiyKind);
             switch (notfiyKind)
@@ -128,12 +146,18 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
                     throw new ArgumentOutOfRangeException(notfiyKind.ToString() + " is not valid in this context");            }
 
             if (_parent.NotifyType == NotificationType.MessageBox)
+            {
                 MessageBox.Show(message, "NetOffice.DeveloperToolbox", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
             else
+            {
                 _trayIcon.ShowBalloonTip(2000, message, "NetOffice.DeveloperToolbox " + notfiyKind.ToString(), ToolTipIcon.Info);
+            }
 
             if (null != MessageFired)
+            {
                 MessageFired(message, new EventArgs());
+            }
         }
 
         #endregion
@@ -146,7 +170,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
             int languageId = _parent.ActiveLanguageID;
             string message = GetMessage(id, languageId);
             if (null == message)
+            {
                 throw new ArgumentException(notfiyKind.ToString() + " not found.");
+            }
             return message;
         }
 
@@ -208,11 +234,15 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
                 ressourcePath = assemblyName + "." + ressourcePath;
                 ressourceStream = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream(ressourcePath);
                 if (ressourceStream == null)
+                {
                     throw (new System.IO.IOException("Error accessing resource Stream."));
+                }
 
                 textStreamReader = new System.IO.StreamReader(ressourceStream);
                 if (textStreamReader == null)
+                {
                     throw (new System.IO.IOException("Error accessing resource File."));
+                }
 
                 string text = textStreamReader.ReadToEnd();
                 return text;
@@ -224,9 +254,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
             finally
             {
                 if (null != textStreamReader)
+                {
                     textStreamReader.Close();
+                }
                 if (null != ressourceStream)
+                {
                     ressourceStream.Close();
+                }
             }
         }
 

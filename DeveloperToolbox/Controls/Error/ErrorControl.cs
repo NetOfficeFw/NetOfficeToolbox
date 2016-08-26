@@ -39,7 +39,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Error
         private void RaiseUserClose()
         {
             if (null != UserClose)
+            {
                 UserClose(this, EventArgs.Empty);
+            }
         }
 
         #endregion
@@ -59,7 +61,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Error
             labelErrorMessage.Text = message;
             labelErrorMessage.Visible = true;
             if (ErrorCategory.Critical == category)
+            {
                 labelExitMessage.Visible = true;
+            }
             DisplayException(exception);
             currentLanguageID = ValidateLanguageID(currentLanguageID);
             Translation.Translator.TranslateControls(this, "Ressources.ErrorFormStrings.txt", currentLanguageID);
@@ -75,7 +79,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Error
         {
             _category = category;
             if (ErrorCategory.Critical == category)
+            {
                 labelExitMessage.Visible = true;
+            }
             DisplayException(exception);
             currentLanguageID = ValidateLanguageID(currentLanguageID);
             Translation.Translator.TranslateControls(this, "Ressources.ErrorFormStrings.txt", currentLanguageID);
@@ -106,9 +112,13 @@ namespace NetOffice.DeveloperToolbox.Controls.Error
                 viewItem.SubItems.Add(exception.Message);
                 viewItem.SubItems.Add(exception.GetType().Name.ToString());
                 if (null != exception.TargetSite)
+                {
                     viewItem.SubItems.Add(exception.TargetSite.ToString());
+                }
                 else
+                {
                     viewItem.SubItems.Add("");
+                }
                 viewItem.Tag = exception;
                 exception = exception.InnerException;
                 i++;
@@ -189,7 +199,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Error
             {
                 RaiseUserClose();
                 if (ErrorCategory.Critical == _category)
+                {
                     Application.Exit();
+                }
             }
             catch (Exception exception)
             {
@@ -204,7 +216,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Error
                 string clipboardContent = "";
 
                 foreach (ListViewItem item in listViewTrace.Items)
+                {
                     clipboardContent += item.SubItems[0].Text + " | " + item.SubItems[1].Text + " | " + item.SubItems[2].Text + " | " + item.SubItems[3].Text + Environment.NewLine;
+                }
 
                 Clipboard.SetData(DataFormats.Text, clipboardContent);
             }

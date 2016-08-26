@@ -56,7 +56,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation.Colors
             set
             {
                 if (_startColor == value)
+                {
                     return;
+                }
 
                 _startColor = value;
 
@@ -75,7 +77,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation.Colors
             set
             {
                 if (_endColor == value)
+                {
                     return;
+                }
 
                 _endColor = value;
 
@@ -96,15 +100,21 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation.Colors
             set
             {
                 if (_control == value)
+                {
                     return;
+                }
 
                 if (_control != null)
+                {
                     _control.BackColorChanged -= new EventHandler(OnCurrentValueChanged);
+                }
 
                 _control = value;
 
                 if (_control != null)
+                {
                     _control.BackColorChanged += new EventHandler(OnCurrentValueChanged);
+                }
 
                 base.ResetValues();
             }
@@ -123,7 +133,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation.Colors
             set
             {
                 if (_control != null)
+                {
                     _control.BackColor = (Color)value;
+                }
             }
         }
 
@@ -156,7 +168,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation.Colors
         protected override object GetValueForStep(double step)
         {
             if (_startColor == Color.Empty || _endColor == Color.Empty)
+            {
                 return CurrentValue;
+            }
 
             return InterpolateColors(_startColor, _endColor, step);
         }

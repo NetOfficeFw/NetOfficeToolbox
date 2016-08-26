@@ -109,7 +109,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation.Panel
             _state = g.Save();
             Matrix mx = new Matrix();
             if(_rotate)
+            {
                 mx.Rotate(_rotation, MatrixOrder.Append);
+            }
             mx.Translate(this.Location.X, this.Location.Y, MatrixOrder.Append);
             g.Transform = mx;
         }
@@ -129,16 +131,24 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation.Panel
         public virtual void Tick()
         {
             if (this.Location.X > this.Limits.Right)
+            {
                 this.Location = new Point(this.Limits.Right - 1, this.Location.Y);
+            }
             if (this.Location.Y > this.Limits.Bottom)
+            {
                 this.Location = new Point(this.Location.X, this.Limits.Bottom - 1);
+            }
 
             int newx = this.Location.X + this.Vector.Width;
             if (newx > this.Limits.Right || newx < this.Limits.Left)
+            {
                 this.Vector = new Size(-1 * this.Vector.Width, this.Vector.Height);
+            }
             int newy = this.Location.Y + this.Vector.Height;
             if (newy > this.Limits.Bottom || newy < this.Limits.Top)
+            {
                 this.Vector = new Size(this.Vector.Width, -1 * this.Vector.Height);
+            }
 
             Location = new Point(this.Location.X + this.Vector.Width, this.Location.Y + this.Vector.Height);
 

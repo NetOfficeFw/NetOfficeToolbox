@@ -122,7 +122,9 @@ namespace NetOffice.OutlookSecurity
                 lock (_lock)
                 {
                     if (_timer.Enabled != value)
+                    {
                         _timer.Enabled = value;
+                    }
                 }
             }
         }
@@ -142,7 +144,9 @@ namespace NetOffice.OutlookSecurity
                 lock (_lock)
                 {
                     if (_timeOutSeconds != value)
+                    {
                         _timeOutSeconds = value;
+                    }
                 }
             }
         }
@@ -162,7 +166,9 @@ namespace NetOffice.OutlookSecurity
                 lock (_lock)
                 {
                     if (_strategy != value)
+                    {
                         _strategy = value;
+                    }
                 }
             }
         }
@@ -181,14 +187,18 @@ namespace NetOffice.OutlookSecurity
                 {
                     List<IntPtr> childWindows = User32.GetChildWindows(item.Key.Handle);
                     if (!ContainsOneComboBoxOrRichEdit(childWindows))
+                    {
                         continue;
+                    }
 
                     if ((DateTime.Now - item.Value).TotalSeconds >= _timeOutSeconds)
                     {
                         if (!item.Key.ExceptionThrown)
                         {
                             if (null != _onError)
+                            {
                                 _onError(new TimeoutException(String.Format(_timeOutMessage, item.Key.Handle)));
+                            }
                             item.Key.ExceptionThrown = true;
                         }
                         continue;
@@ -199,7 +209,9 @@ namespace NetOffice.OutlookSecurity
                     if ((IntPtr.Zero != checkBox) && (!string.IsNullOrEmpty(checkBoxText)))
                     {
                         if(!item.Key.CheckBoxPassed)
+                        {
                             DoControlClick(checkBox);
+                        }
                         item.Key.CheckBoxPassed = true;
                     }
 
@@ -208,7 +220,9 @@ namespace NetOffice.OutlookSecurity
                     if ((IntPtr.Zero != leftButton) && (!string.IsNullOrEmpty(buttonText)))
                     {
                         if (ContainsOneVisibleProgress(childWindows, item.Key.Handle) & ((DateTime.Now - item.Value).TotalSeconds <= _delaySeconds))
+                        {
                             continue;
+                        }
                         EnableControl(leftButton);
                         DoControlClick(leftButton);
                     }
@@ -232,7 +246,9 @@ namespace NetOffice.OutlookSecurity
                         }
 
                         if ((!string.IsNullOrEmpty(checkBoxText)) && (!string.IsNullOrEmpty(buttonText)))
+                        {
                             _onAction(item.Key, securityCheckbox, securityButton);
+                        }
                     }
                 }
             }
@@ -287,9 +303,13 @@ namespace NetOffice.OutlookSecurity
             {
                 string className = User32.GetClassName(item).ToLower();
                 if (_comboClassName == className)
+                {
                     comboCount++;
+                }
                 else if (_richClassName == className)
+                {
                     richCount++;
+                }
             }
 
             return (1 == comboCount || 1 == richCount);
@@ -301,7 +321,9 @@ namespace NetOffice.OutlookSecurity
             {
                 string className = User32.GetClassName(item);
                 if (_progressClassName == className.ToLower() && User32.IsWindowVisible(item))
+                {
                     return true;
+                }
             }
             return false;
         }
@@ -356,7 +378,9 @@ namespace NetOffice.OutlookSecurity
         {
             Process[] outlookProcess = System.Diagnostics.Process.GetProcessesByName(_outlookProcessName);
             if (0 == outlookProcess.Length)
+            {
                 return new Dictionary<SecurityDialog, DateTime>();
+            }
 
             return GetSecurityDialogs(outlookProcess);
         }
@@ -396,7 +420,9 @@ namespace NetOffice.OutlookSecurity
             {
                 SecurityDialog existing = GetDialogFromHandle(_listDialogs, item.Key.Handle);
                 if (null == existing)
+                {
                     _listDialogs.Add(item.Key, item.Value);
+                }
             }
 
             List<SecurityDialog> toDelete = new List<SecurityDialog>();
@@ -404,10 +430,14 @@ namespace NetOffice.OutlookSecurity
             {
                 SecurityDialog existing = GetDialogFromHandle(_listDialogs, item.Key.Handle);
                 if (null == existing)
+                {
                     toDelete.Add(item.Key);
+                }
             }
             foreach (SecurityDialog item in toDelete)
+            {
                 _listDialogs.Remove(item);
+            }
 
             return _listDialogs;
         }
@@ -417,7 +447,9 @@ namespace NetOffice.OutlookSecurity
             foreach (KeyValuePair<SecurityDialog, DateTime> item in dictionary)
             {
                 if (item.Key.Handle == handle)
+                {
                     return item.Key;
+                }
             }
             return null;
         }
@@ -429,7 +461,9 @@ namespace NetOffice.OutlookSecurity
         private static void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
             if (!Enabled)
+            {
                 return;
+            }
 
             try
             {
@@ -439,7 +473,9 @@ namespace NetOffice.OutlookSecurity
             {
                 Enabled = false;
                 if (null != _onError)
+                {
                     _onError(exception);
+                }
             }
         }
 

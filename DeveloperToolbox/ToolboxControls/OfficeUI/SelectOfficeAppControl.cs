@@ -137,7 +137,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeUI
         private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             if ((listView1.SelectedIndices.Count > 0))
+            {
                 buttonSelect_Click(this, new EventArgs());
+            }
         }
 
         private void buttonSelect_Click(object sender, EventArgs e)

@@ -108,7 +108,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Text
 					m_topPartSizePercent = value;
 				}
 				else
-					throw new InvalidEnumArgumentException("The value must be more than zero. and less than 100.");
+				{
+				    throw new InvalidEnumArgumentException("The value must be more than zero. and less than 100.");
+				}
 			}
 		}
 

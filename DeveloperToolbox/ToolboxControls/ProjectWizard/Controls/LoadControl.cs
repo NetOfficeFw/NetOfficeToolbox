@@ -67,9 +67,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
             get
             {
                 if (radioButtonCurrentUser.Checked)
+                {
                     return "CurrentUser";
+                }
                 else
+                {
                     return "LocalMachine";
+                }
             }
         }
 
@@ -87,9 +91,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
             get
             {
                 if (Forms.MainForm.Singleton.CurrentLanguageID == 1031)
+                {
                     return "Vom wem soll Ihr Automations Addin geladen werden?";
+                }
                 else
+                {
                     return "Choose Load Behavior options.";
+                }
             }
         }
 
@@ -98,9 +106,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
             get
             {
                 if (Forms.MainForm.Singleton.CurrentLanguageID == 1031)
+                {
                     return "Entscheiden Sie wann und von wem Ihr Addin geladen wird.";
+                }
                 else
+                {
                     return "Decide when it has to be loaded";
+                }
             }
         }
 
@@ -245,7 +257,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
                 return text;
             }
             else
+            {
                 return comboBoxLoadBehavior.Text;
+            }
         }
 
         private void ChangeSettings()
@@ -285,7 +299,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
         private void RaiseChangeEvent()
         {
             if (null != ReadyStateChanged)
+            {
                 ReadyStateChanged(this);
+            }
         }
 
         #endregion
@@ -310,7 +326,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
             try
             {
                 if (noChangeEventFlag)
+                {
                     return;
+                }
 
                 ChangeSettings();
                 RaiseChangeEvent();

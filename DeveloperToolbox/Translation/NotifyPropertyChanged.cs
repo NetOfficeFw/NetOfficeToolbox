@@ -71,7 +71,9 @@ namespace NetOffice.DeveloperToolbox.Translation
         protected internal void RaisePropertyChanged(string propertyName)
         {
             if (null != PropertyChanged)
+            {
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
 
         #endregion

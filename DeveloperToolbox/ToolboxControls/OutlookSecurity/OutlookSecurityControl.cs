@@ -163,8 +163,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OutlookSecurity
                     configNode.AppendChild(node);
                 }
                 else
-                  node.InnerText = BoolToString(checkBoxSupressEnabled.Checked);
-
+                {
+                    node.InnerText = BoolToString(checkBoxSupressEnabled.Checked);
+                }
             }
             catch (Exception exception)
             {
@@ -186,7 +187,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OutlookSecurity
                 return Ressources.RessourceUtils.CreateStreamFromString(content);
             }
             else
+            {
                 return Ressources.RessourceUtils.ReadStream("ToolboxControls.OutlookSecurity.Info" + lcid.ToString() + ".rtf");
+            }
         }
 
         public void Release()
@@ -241,9 +244,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OutlookSecurity
         private static string BoolToString(bool b)
         {
             if (b)
+            {
                 return "true";
+            }
             else
+            {
                 return "false";
+            }
         }
 
         #endregion
@@ -268,7 +275,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OutlookSecurity
             try
             {
                 if (_programaticChange)
+                {
                     return;
+                }
                 NetOffice.OutlookSecurity.Suppress.Enabled = checkBoxSupressEnabled.Checked;
             }
             catch (Exception exception)
@@ -300,9 +309,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OutlookSecurity
         {
             _exception= exception;
             if (this.InvokeRequired)
+            {
                 this.Invoke(new MethodInvoker(Supress_OnError));
+            }
             else
+            {
                 Supress_OnError();
+            }
         }
 
         private void Supress_OnAction()
@@ -325,9 +338,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OutlookSecurity
                 _targetBox = targetBox;
                 _targetButton = targetButton;
                 if (this.InvokeRequired)
+                {
                     this.Invoke(new MethodInvoker(Supress_OnAction));
+                }
                 else
+                {
                     Supress_OnAction();
+                }
             }
             catch (Exception exception)
             {

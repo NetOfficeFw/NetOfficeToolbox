@@ -64,11 +64,15 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
                 {
                     string val = UtilsRegistryEntry.ByteArrayToBinaryString((_value as byte[]));
                     if(null != val)
+                    {
                         val = val.ToLower();
+                    }
                     return val;
                 }
                 else
+                {
                     return _value;
+                }
             }
         }
 

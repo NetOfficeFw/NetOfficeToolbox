@@ -203,7 +203,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                 return Ressources.RessourceUtils.CreateStreamFromString(content);
             }
             else
+            {
                 return Ressources.RessourceUtils.ReadStream("ToolboxControls.OfficeCompatibility.Info" + lcid.ToString() + ".rtf");
+            }
         }
 
         public void Release()
@@ -265,7 +267,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                 OpenFileDialog dialog = new OpenFileDialog();
                 dialog.Filter = "*.dll|*.dll|*.exe|*.exe|All Files|*.*";
                 if (DialogResult.OK  != dialog.ShowDialog(this))
+                {
                     return;
+                }
 
                 _assemblyFullFileName = dialog.FileName;
                 buttonRefresh_Click(this, new EventArgs());
@@ -281,7 +285,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
             try
             {
                 if (null == _result)
+                {
                     return;
+                }
 
                 ReportControl reportBox = new ReportControl(_result, Host.CurrentLanguageID);
                 this.Controls.Add(reportBox);
@@ -342,9 +348,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
             try
             {
                 if (Host.CurrentLanguageID == 1031)
+                {
                     System.Diagnostics.Process.Start("http://netoffice.codeplex.com/wikipage?title=UnsupportedVersions_DE");
+                }
                 else
+                {
                     System.Diagnostics.Process.Start("http://netoffice.codeplex.com/wikipage?title=UnsupportedVersions_EN");
+                }
             }
             catch (Exception exception)
             {

@@ -46,9 +46,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
             get
             {
                 if (radioButtonCSharp.Checked)
+                {
                     return "C#";
+                }
                 else
+                {
                     return "VB";
+                }
             }
         }
 
@@ -60,11 +64,17 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
             get
             {
                 if (radioButtonVS2010.Checked)
+                {
                     return "2010";
+                }
                 else if (radioButtonVS2012.Checked)
+                {
                     return "2012";
+                }
                 else
+                {
                     return "2013";
+                }
             }
         }
 
@@ -108,9 +118,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
             get
             {
                 if (Forms.MainForm.Singleton.CurrentLanguageID == 1031)
+                {
                     return "Umgebung";
+                }
                 else
+                {
                     return "Environment";
+                }
             }
         }
 
@@ -119,9 +133,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
             get
             {
                 if (Forms.MainForm.Singleton.CurrentLanguageID == 1031)
+                {
                     return "Der Assistent kann die Implementierung für Sie vorbereiten.";
+                }
                 else
+                {
                     return "The assistent prepare the implementation for you.";
+                }
             }
         }
 
@@ -246,7 +264,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
         private void RaiseChangeEvent()
         {
             if (null != ReadyStateChanged)
+            {
                 ReadyStateChanged(this);
+            }
         }
 
         #endregion

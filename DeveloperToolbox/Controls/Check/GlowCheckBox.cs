@@ -42,12 +42,18 @@ namespace NetOffice.DeveloperToolbox.Controls.Check
             int leftOffset = offset + Padding.Left;
             int topOffset = (int)(ClientRectangle.Height - stringMeasure.Height) / 2;
             if (topOffset < 0)
+            {
                 topOffset = offset + Padding.Top;
+            }
             else
+            {
                 topOffset += Padding.Top;
+            }
 
             if (Checked)
+            {
                 pevent.Graphics.DrawRectangle(_selectedPen, 0, topOffset + 4, 10, 10);
+            }
         }
 
         protected override void Dispose(bool disposing)

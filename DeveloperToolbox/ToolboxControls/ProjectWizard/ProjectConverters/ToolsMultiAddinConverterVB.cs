@@ -83,7 +83,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
                 {
                     int argumentStartIndex = applicationPath.IndexOf("/", 0);
                     if (argumentStartIndex > -1)
+                    {
                         applicationPath = applicationPath.Substring(0, argumentStartIndex).Trim();
+                    }
                     _projectUserFile = _projectUserFile.Replace("$toolsversion$", this.Tools[Options.IDE]);
                     _projectUserFile = _projectUserFile.Replace("$path$", applicationPath);
                     _applicationFound = true;
@@ -91,9 +93,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
             }
 
             if (Options.UseTaskPane)
+            {
                 _projectFile = _projectFile.Replace("$taskpaneFileReference$", "  <Compile Include=\"MyTaskPane.vb\">\r\n   <SubType>UserControl</SubType>\r\n   </Compile>\r\n  <Compile Include=\"MyTaskPane.Designer.vb\">\r\n    <DependentUpon>MyTaskPane.vb</DependentUpon>\r\n  </Compile>");
+            }
             else
+            {
                 _projectFile = _projectFile.Replace("$taskpaneFileReference$", String.Empty);
+            }
 
             _addinFile = _addinFile.Replace("$appName$", Options.OfficeApps[0]);
             _addinFile = _addinFile.Replace("$safeprojectname$", Options.AssemblyName);
@@ -121,7 +127,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
 
             string attribute2String = "\t<MultiRegister(";
             foreach (var item in Options.OfficeApps)
+            {
                 attribute2String += "RegisterIn." + item + ", ";
+            }
             attribute2String = attribute2String.Substring(0, attribute2String.Length - 2);
             attribute2String += ")>";
             _addinFile = _addinFile.Replace("$attributes2$", attribute2String);
@@ -167,9 +175,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
             {
 
                 if (Options.UseRibbonUI || Options.HiveKey == "LocalMachine")
+                {
                     attributeString += ", CustomPane(GetType(MyTaskPane), \"My TaskPane\", true, PaneDockPosition.msoCTPDockPositionRight)";
+                }
                 else
+                {
                     attributeString += "CustomPane(GetType(MyTaskPane), \"My TaskPane\", true, PaneDockPosition.msoCTPDockPositionRight)";
+                }
 
                 _addinFile = _addinFile.Replace("$taskpaneDefine$", " , Office.ICustomTaskPaneConsumer");
                 _addinFile = _addinFile.Replace("$taskpaneField$", "\tPrivate _mytaskPane As MyTaskPane");
@@ -212,7 +224,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
             }
 
             if (!String.IsNullOrWhiteSpace(attributeString))
+            {
                 attributeString = "<" + attributeString + ">";
+            }
             _addinFile = _addinFile.Replace("$attributes$", attributeString);
 
             _addinFile = ValidateFileContentFormat(_addinFile);
@@ -250,10 +264,14 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
             File.AppendAllText(Path.Combine(TempPropertiesPath, "AssemblyInfo.vb"), _assemblyFile, Encoding.UTF8);
 
             if (_applicationFound)
+            {
                 File.AppendAllText(Path.Combine(TempProjectPath, String.Format("{0}.vbproj.user", Options.AssemblyName)), _projectUserFile, Encoding.UTF8);
+            }
 
             if (Options.UseRibbonUI)
+            {
                 File.AppendAllText(Path.Combine(TempProjectPath, "RibbonUI.xml"), _ribbonFile, Encoding.UTF8);
+            }
             if (Options.UseTaskPane)
             {
                 File.AppendAllText(Path.Combine(TempProjectPath, "MyTaskPane.vb"), _taskPaneFile, Encoding.UTF8);

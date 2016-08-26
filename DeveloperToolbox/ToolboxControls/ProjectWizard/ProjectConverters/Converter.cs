@@ -164,7 +164,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
                 return result;
             }
             else
+            {
                 return null;
+            }
         }
 
         #endregion
@@ -187,14 +189,22 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
                         {
                             case ProgrammingLanguage.CSharp:
                                 if(options.OfficeApps.Length > 1)
+                                {
                                     return new SimpleMultiAddinConverterCS(options);
+                                }
                                 else
+                                {
                                     return new SimpleSingleAddinConverterCS(options);
+                                }
                             case ProgrammingLanguage.VB:
                                 if (options.OfficeApps.Length > 1)
+                                {
                                     return new SimpleMultiAddinConverterVB(options);
+                                }
                                 else
+                                {
                                     return new SimpleSingleAddinConverterVB(options);
+                                }
                             default:
                                 throw new ArgumentOutOfRangeException("language");
                         }
@@ -205,14 +215,22 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
                         {
                             case ProgrammingLanguage.CSharp:
                                 if (options.OfficeApps.Length > 1)
+                                {
                                     return new ToolsMultiAddinConverterCS(options);
+                                }
                                 else
+                                {
                                     return new ToolsSingleAddinConverterCS(options);
+                                }
                             case ProgrammingLanguage.VB:
                                 if (options.OfficeApps.Length > 1)
+                                {
                                     return new ToolsMultiAddinConverterVB(options);
+                                }
                                 else
+                                {
                                     return new ToolsSingleAddinConverterVB(options);
+                                }
                             default:
                                 throw new ArgumentOutOfRangeException("language");
                         }
@@ -290,10 +308,14 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
                             lastLineEmpty = false;
                         }
                         else
+                        {
                             lastLineEmpty = true;
+                        }
 
                         if (tempItem == "{")
+                        {
                             lastLineEmpty = true;
+                        }
                     }
                 }
 
@@ -327,10 +349,14 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
                             lastLineEmpty = false;
                         }
                         else
+                        {
                             lastLineEmpty = true;
+                        }
 
                         if (tempItem == "{")
+                        {
                             lastLineEmpty = true;
+                        }
                     }
                 }
 
@@ -350,9 +376,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
         protected internal void MoveTempSolutionFolderToTarget()
         {
             if (!Directory.Exists(TargetSolutionPath))
+            {
                 FileSystem.DirectoryMove(TempSolutionPath, TargetSolutionPath);
+            }
             else
+            {
                 throw new InvalidOperationException(Forms.MainForm.Singleton.CurrentLanguageID == 1031 ? "Der angegebene Ordner existiert bereits." : "Directory already exists.");
+            }
         }
 
         protected internal string GetNetOfficeProjectReferenceItems()
@@ -368,7 +398,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
             List<string> apps = CreateValidatedReferenceList(officeApps);
 
             foreach (string app in apps)
+            {
                 sb.Append(templateItem.Replace("%Name%", app).Replace("%RealName%", app + "Api") + Environment.NewLine);
+            }
             sb.Append(templateItem.Replace("%Name%", "NetOffice").Replace("%RealName%", "NetOffice"));
 
             return sb.ToString();
@@ -387,16 +419,24 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
             List<string> apps = CreateValidatedReferenceList(officeApps);
 
             if (language == ProgrammingLanguage.CSharp)
+            {
                 sb.Append("using NetOffice;" + Environment.NewLine);
+            }
             else
+            {
                 sb.Append("Imports NetOffice" + Environment.NewLine);
+            }
 
             foreach (string app in apps)
             {
                 if (language == ProgrammingLanguage.CSharp)
+                {
                     sb.Append(usingTemplateCSharp.Replace("%Alias%", app).Replace("%Name%", app) + Environment.NewLine);
+                }
                 else
+                {
                     sb.Append(usingTemplateVB.Replace("%Alias%", app).Replace("%Name%", app) + Environment.NewLine);
+                }
             }
             return sb.ToString();
         }
@@ -434,7 +474,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
                         sb.Append("using NetOffice.%Name%Api.Tools;".Replace("%Name%", app) + Environment.NewLine);
                     }
                     else
+                    {
                         sb.Append(usingTemplateCSharp.Replace("%Alias%", app).Replace("%Name%", app) + Environment.NewLine);
+                    }
                 }
                 else
                 {
@@ -444,7 +486,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
                         sb.Append("Imports NetOffice.%Name%Api.Tools".Replace("%Name%", app) + Environment.NewLine);
                     }
                     else
+                    {
                         sb.Append(usingTemplateVB.Replace("%Alias%", app).Replace("%Name%", app) + Environment.NewLine);
+                    }
                 }
             }
             return sb.ToString();
@@ -478,13 +522,17 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
             string assembliesTempTarget = TempNetOfficePath;
             File.Copy(Path.Combine(assembliesFolderPath, "NetOffice.xml"), Path.Combine(assembliesTempTarget, "NetOffice.xml"));
             foreach (var item in apps)
+            {
                 File.Copy(Path.Combine(assembliesFolderPath, item + "Api.xml"), Path.Combine(assembliesTempTarget, item + "Api.xml"));
+            }
 
             if (runtime == NetVersion.Net4 || runtime == NetVersion.Net4Client)
             {
                 File.Copy(Path.Combine(assembliesFolderPath, "NetOffice.dll"), Path.Combine(assembliesTempTarget, "NetOffice.dll"));
                 foreach (var item in apps)
+                {
                     File.Copy(Path.Combine(assembliesFolderPath, item + "Api.dll"), Path.Combine(assembliesTempTarget, item + "Api.dll"));
+                }
             }
             else
             {
@@ -528,7 +576,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
             List<string> apps = new List<string>();
             List<String> dependecies = new List<string>();
             foreach (var item in officeApps)
+            {
                 apps.Add(item);
+            }
 
             foreach (var item in apps)
             {
@@ -536,49 +586,83 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
                 {
                     case "Excel":
                         if (!dependecies.Any(a => a == "Office"))
+                        {
                             dependecies.Add("Office");
+                        }
                         if (!dependecies.Any(a => a == "VBIDE"))
+                        {
                             dependecies.Add("VBIDE");
+                        }
                         break;
                     case "Word":
                         if (!dependecies.Any(a => a == "Office"))
+                        {
                             dependecies.Add("Office");
+                        }
                         if (!dependecies.Any(a => a == "VBIDE"))
+                        {
                             dependecies.Add("VBIDE");
+                        }
                         break;
                     case "Outlook":
                         if (!dependecies.Any(a => a == "Office"))
+                        {
                             dependecies.Add("Office");
+                        }
                         break;
                     case "PowerPoint":
                         if (!dependecies.Any(a => a == "Office"))
+                        {
                             dependecies.Add("Office");
+                        }
                         if (!dependecies.Any(a => a == "VBIDE"))
+                        {
                             dependecies.Add("VBIDE");
+                        }
                         break;
                     case "Access":
                         if (!dependecies.Any(a => a == "Office"))
+                        {
                             dependecies.Add("Office");
+                        }
                         if (!dependecies.Any(a => a == "VBIDE"))
+                        {
                             dependecies.Add("VBIDE");
+                        }
                         if (!dependecies.Any(a => a == "DAO"))
+                        {
                             dependecies.Add("DAO");
+                        }
                         if (!dependecies.Any(a => a == "ADODB"))
+                        {
                             dependecies.Add("ADODB");
+                        }
                         if (!dependecies.Any(a => a == "OWC10"))
+                        {
                             dependecies.Add("OWC10");
+                        }
                         if (!dependecies.Any(a => a == "MSDATASRC"))
+                        {
                             dependecies.Add("MSDATASRC");
+                        }
                         if (!dependecies.Any(a => a == "MSComctlLib"))
+                        {
                             dependecies.Add("MSComctlLib");
+                        }
                         break;
                     case "MSProject":
                         if (!dependecies.Any(a => a == "Office"))
+                        {
                             dependecies.Add("Office");
+                        }
                         if (!dependecies.Any(a => a == "VBIDE"))
+                        {
                             dependecies.Add("VBIDE");
+                        }
                         if (!dependecies.Any(a => a == "MSHTML"))
+                        {
                             dependecies.Add("MSHTML");
+                        }
                         break;
                     case "Visio":
                         break;
@@ -588,7 +672,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
             }
 
             foreach (var item in dependecies)
+            {
                 apps.Add(item);
+            }
 
             return apps;
         }
@@ -600,7 +686,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
         public void Dispose()
         {
             if (Directory.Exists(_tempPath))
+            {
                 Directory.Delete(_tempPath, true);
+            }
         }
 
         #endregion
@@ -613,7 +701,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
             {
                 case NetVersion.Net45:
                     if (options.IDE != IDE.VS2013)
+                    {
                         throw new ArgumentException("Invalid Framework=>IDE settings");
+                    }
                     break;
             }
         }

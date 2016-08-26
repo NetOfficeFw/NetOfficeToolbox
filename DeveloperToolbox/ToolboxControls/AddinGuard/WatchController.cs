@@ -127,7 +127,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
             {
                 _stopFlag = value;
                 if (!_enabled)
+                {
                     _stopFlagAgreed = true;
+                }
             }
         }
 
@@ -279,25 +281,33 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
         internal void RaisePropertyChanged(WatchController item)
         {
             if (null != PropertyChanged)
+            {
                 PropertyChanged(item, new PropertyChangedEventArgs(""));
+            }
         }
 
         internal void RaisePropertyChanged(DisabledKey item)
         {
             if (null != PropertyChanged)
+            {
                 PropertyChanged(item, new PropertyChangedEventArgs(""));
+            }
         }
 
         internal void RaisePropertyChanged(AddinsKey item)
         {
             if (null != PropertyChanged)
+            {
                 PropertyChanged(item, new PropertyChangedEventArgs(""));
+            }
         }
 
         internal void RaiseError(Exception exception)
         {
             if (null != PropertyChanged)
+            {
                 PropertyChanged(exception, new PropertyChangedEventArgs(""));
+            }
         }
 
         #endregion
@@ -307,14 +317,18 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
         void _timer_Elapsed(object sender, ElapsedEventArgs e)
         {
             if (_isDisposed)
+            {
                 return;
+            }
 
-             try
+            try
              {
                  if (_enabled)
                  {
                      while (_stopFlag)
+                     {
                          _stopFlagAgreed = true;
+                     }
                      _stopFlagAgreed = false;
 
                      foreach (DisabledKey item in _disabledItems)
@@ -322,7 +336,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
                          RegistryChangeInfo changeInfo = null;
                          NotifyKind kind = item.CheckChangedValueCount(ref changeInfo);
                          if (kind != NotifyKind.Nothing)
+                         {
                              _notify.ShowNotification(item, kind, changeInfo);
+                         }
                      }
 
                      foreach (AddinsKey addins in _addinItems)
@@ -330,13 +346,17 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
                          RegistryChangeInfo changeInfo = null;
                          NotifyKind kind = addins.CheckChangedSubKeys(ref changeInfo);
                          if (kind != NotifyKind.Nothing)
+                         {
                              _notify.ShowNotification(addins, kind, changeInfo);
+                         }
 
                          foreach (AddinKey addin in addins.Addins)
                          {
                              kind = addin.CheckChangedValues(ref changeInfo);
                              if (kind != NotifyKind.Nothing)
+                             {
                                  _notify.ShowNotification(addin, kind, changeInfo);
+                             }
                          }
                      }
 

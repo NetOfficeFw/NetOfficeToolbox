@@ -46,19 +46,33 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
             {
                 List<string> list = new List<string>();
                 if (checkBoxExcel.Checked)
+                {
                     list.Add("Excel");
+                }
                 if (checkBoxWord.Checked)
+                {
                     list.Add("Word");
+                }
                 if (checkBoxOutlook.Checked)
+                {
                     list.Add("Outlook");
+                }
                 if (checkBoxPowerPoint.Checked)
+                {
                     list.Add("PowerPoint");
+                }
                 if (checkBoxAccess.Checked)
+                {
                     list.Add("Access");
+                }
                 if (checkBoxProject.Checked)
+                {
                     list.Add("Project");
+                }
                 if (checkBoxVisio.Checked)
+                {
                     list.Add("Visio");
+                }
                 return list;
             }
         }
@@ -77,7 +91,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
                 {
                     CheckBox box = item as CheckBox;
                     if ((null != box) && (box.Checked))
+                    {
                         return true;
+                    }
                 }
                 return false;
             }
@@ -89,9 +105,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
             {
 
                 if (Forms.MainForm.Singleton.CurrentLanguageID == 1031)
+                {
                     return "Welche Office Anwendungen möchten Sie unterstützen?";
+                }
                 else
+                {
                     return "Which Office applications you want support?";
+                }
             }
         }
 
@@ -100,9 +120,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
             get
             {
                 if (Forms.MainForm.Singleton.CurrentLanguageID == 1031)
+                {
                     return "Wählen Sie eine oder mehrere Office Anwendungen.";
+                }
                 else
+                {
                     return "Select one or more Office application(s).";
+                }
             }
         }
 
@@ -161,7 +185,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
                     break;
                 case Keys.D7:
                     if (checkBoxVisio.Enabled)
+                    {
                         checkBoxVisio.Checked = !checkBoxVisio.Checked;
+                    }
                     break;
                 default:
                     break;
@@ -205,7 +231,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
             foreach (XmlNode item in _settings.FirstChild.ChildNodes)
             {
                 if (item.Attributes[0].Value.Equals("TRUE", StringComparison.InvariantCultureIgnoreCase))
+                {
                     result[1] += item.Name + " ";
+                }
             }
 
             return result;
@@ -263,7 +291,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
         private void RaiseChangeEvent()
         {
             if (null != ReadyStateChanged)
+            {
                 ReadyStateChanged(this);
+            }
         }
 
         private void ChangeSettings()

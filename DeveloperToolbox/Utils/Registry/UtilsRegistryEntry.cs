@@ -48,9 +48,13 @@ namespace NetOffice.DeveloperToolbox.Utils.Registry
             get
             {
                 if(string.IsNullOrEmpty(_valueName))
+                {
                     return "(Standard)";
+                }
                 else
+                {
                     return _valueName;
+                }
             }
             set
             {
@@ -69,7 +73,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Registry
             get
             {
                 if (_type == UtilsRegistryEntryType.Faked)
+                {
                     return null;
+                }
 
                 RegistryKey key = _parent.Open();
                 object regValue = key.GetValue(_valueName);
@@ -99,7 +105,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Registry
             get
             {
                 if (_type == UtilsRegistryEntryType.Faked)
+                {
                     return RegistryValueKind.String;
+                }
 
                 RegistryKey key = _parent.Open();
                 RegistryValueKind kind = key.GetValueKind(_valueName);
@@ -128,7 +136,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Registry
         {
             int lenght = value.Length;
             if ((10 - lenght) >= 2)
+            {
                 value = "0x" + value;
+            }
             lenght = value.Length;
             if ((10 - lenght) > 0)
             {
@@ -157,9 +167,13 @@ namespace NetOffice.DeveloperToolbox.Utils.Registry
                 case RegistryValueKind.String:
                 case RegistryValueKind.Unknown:
                     if (_type == UtilsRegistryEntryType.Faked)
+                    {
                         return lcid == 1033 ? "(Value not set)" : "(Wert nicht gesetzt)";
+                    }
                     else if ((_type == UtilsRegistryEntryType.Default) && (null == Value))
+                    {
                         return lcid == 1033 ? "(Value not set)" : "(Wert nicht gesetzt)";
+                    }
                     return Value as string;
                 default:
                     throw new ArgumentException(kind.ToString() + " is out of range");
@@ -180,7 +194,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Registry
         private static byte[] StringToByteArray(string str)
         {
             if (null == str)
+            {
                 return null;
+            }
             System.Text.UnicodeEncoding enc = new System.Text.UnicodeEncoding();
             return enc.GetBytes(str);
         }
@@ -188,7 +204,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Registry
         private static string ByteArrayToString(byte[] arr)
         {
             if (null == arr)
+            {
                 return null;
+            }
             System.Text.UnicodeEncoding enc = new System.Text.UnicodeEncoding();
             return enc.GetString(arr);
         }

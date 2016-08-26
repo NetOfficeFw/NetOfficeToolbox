@@ -139,7 +139,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeUI
                 return Ressources.RessourceUtils.CreateStreamFromString(content);
             }
             else
+            {
                 return Ressources.RessourceUtils.ReadStream("ToolboxControls.OfficeUI.Info" + lcid.ToString() + ".rtf");
+            }
         }
 
         public void Release()
@@ -307,23 +309,33 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeUI
                 if (e.Node.Tag is OfficeApi.CommandBar)
                 {
                     if (!_wait)
+                    {
                         ShowWaitPanel(false);
+                    }
                     OfficeApi.CommandBar commandBar = e.Node.Tag as OfficeApi.CommandBar;
                     propertyGridItems.SelectedObject = commandBar;
                     if (!_wait)
+                    {
                         HideWaitPanel();
+                    }
                 }
                 else if (e.Node.Tag is OfficeApi.CommandBarControl)
                 {
                     if (!_wait)
+                    {
                         ShowWaitPanel(false);
+                    }
                     OfficeApi.CommandBarControl commandBarControl = e.Node.Tag as OfficeApi.CommandBarControl;
                     propertyGridItems.SelectedObject = commandBarControl;
                     if (!_wait)
+                    {
                         HideWaitPanel();
+                    }
                 }
                 else
+                {
                     propertyGridItems.SelectedObject = null;
+                }
             }
             catch (Exception exception)
             {
@@ -332,7 +344,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeUI
             finally
             {
                 if (!_wait)
+                {
                     HideWaitPanel();
+                }
             }
         }
 
@@ -373,7 +387,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeUI
             try
             {
                 if (treeViewOfficeUI.SelectedNodes.Count == 0)
+                {
                     return;
+                }
 
                 foreach (TreeNode node in treeViewOfficeUI.SelectedNodes)
                 {
@@ -400,7 +416,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeUI
             try
             {
                 if (treeViewOfficeUI.SelectedNodes.Count == 0)
+                {
                     return;
+                }
 
                 List<TreeNode> listDelete = new List<TreeNode>();
                 foreach (TreeNode node in treeViewOfficeUI.SelectedNodes)
@@ -420,8 +438,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeUI
                 }
 
                 foreach (TreeNode node in listDelete)
+                {
                     node.Remove();
-
+                }
             }
             catch (Exception exception)
             {

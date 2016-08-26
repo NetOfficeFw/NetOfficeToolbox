@@ -27,7 +27,9 @@ namespace NetOffice.DeveloperToolbox.Ressources
             ressourcePath = assemblyName + "." + ressourcePath;
             ressourceStream = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream(ressourcePath);
             if (ressourceStream == null)
+            {
                 throw (new System.IO.IOException("Error accessing resource Stream."));
+            }
             Bitmap newIcon = new Bitmap(ressourceStream);
             return newIcon;
         }
@@ -44,7 +46,9 @@ namespace NetOffice.DeveloperToolbox.Ressources
             ressourcePath = assemblyName + "." + ressourcePath;
             ressourceStream = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream(ressourcePath);
             if (ressourceStream == null)
+            {
                 throw (new System.IO.IOException("Error accessing resource Stream."));
+            }
             Bitmap newIcon = new Icon(ressourceStream).ToBitmap();
             return newIcon;
         }
@@ -60,7 +64,9 @@ namespace NetOffice.DeveloperToolbox.Ressources
             string assemblyName = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
             System.IO.Stream ressourceStream = ass.GetManifestResourceStream(assemblyName + "." + ressourcePath);
             if (ressourceStream == null)
+            {
                 throw (new System.IO.IOException("Error accessing resource Stream."));
+            }
             ressourceStream.Seek(0, SeekOrigin.Begin);
             return ressourceStream;
         }
@@ -91,7 +97,9 @@ namespace NetOffice.DeveloperToolbox.Ressources
         {
             string s = null;
             if (_cache.TryGetValue(ressourcePath, out s))
+            {
                 return s;
+            }
 
             System.IO.Stream ressourceStream = null;
             System.IO.StreamReader textStreamReader = null;
@@ -99,12 +107,16 @@ namespace NetOffice.DeveloperToolbox.Ressources
             {
                 string assemblyName = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
                 if(true == autoPrevRootNameSpace)
+                {
                     ressourcePath = assemblyName + "." + ressourcePath;
+                }
                 ressourceStream = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream(ressourcePath);
                 if (ressourceStream == null)
                 {
                     if (throwExceptionIfNotFound)
+                    {
                         throw (new System.IO.IOException("Error accessing resource Stream."));
+                    }
                     else
                     {
                         Console.WriteLine("Error accessin resource Stream {0}", ressourcePath);
@@ -114,11 +126,15 @@ namespace NetOffice.DeveloperToolbox.Ressources
 
                 textStreamReader = new System.IO.StreamReader(ressourceStream);
                 if (textStreamReader == null)
+                {
                     throw (new System.IO.IOException("Error accessing resource File."));
+                }
 
                 string text = textStreamReader.ReadToEnd();
                 if(!_cache.ContainsKey(ressourcePath))
+                {
                     _cache.Add(ressourcePath, text);
+                }
                 return text;
             }
             catch (Exception exception)
@@ -128,9 +144,13 @@ namespace NetOffice.DeveloperToolbox.Ressources
             finally
             {
                 if (null != textStreamReader)
+                {
                     textStreamReader.Close();
+                }
                 if (null != ressourceStream)
+                {
                     ressourceStream.Close();
+                }
             }
         }
     }

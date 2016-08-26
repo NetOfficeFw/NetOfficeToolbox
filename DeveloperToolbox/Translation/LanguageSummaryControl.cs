@@ -86,7 +86,9 @@ namespace NetOffice.DeveloperToolbox.Translation
         {
             string countriesContent = Ressources.RessourceUtils.ReadString("Translation.Countries.txt");
             if (null == countriesContent)
+            {
                 return null;
+            }
             int languageIndex = -1;
             string[] array = countriesContent.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
             for (int i = 0; i < array.Length; i++)
@@ -99,14 +101,20 @@ namespace NetOffice.DeveloperToolbox.Translation
             }
 
             if (languageIndex < 0)
+            {
                 return null;
+            }
 
             string lcidContent = Ressources.RessourceUtils.ReadString("Translation.LCIDs.txt");
             if (null == lcidContent)
+            {
                 return null;
+            }
             string[] array2 = lcidContent.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
             if (array.Length <= array2.Length)
+            {
                 return null;
+            }
             return array2[languageIndex-1];
         }
 
@@ -115,9 +123,13 @@ namespace NetOffice.DeveloperToolbox.Translation
             decimal d = 0;
             decimal.TryParse(value, out d);
             if (d < 0 || d > 20000)
+            {
                 return 0;
+            }
             else
+            {
                 return d;
+            }
         }
 
         #endregion
@@ -154,7 +166,9 @@ namespace NetOffice.DeveloperToolbox.Translation
             try
             {
                 if (_initialize)
+                {
                     return;
+                }
 
                 string lcid = GetLanguageLCID(textBoxNameGlobal.Text.Trim());
                 if (null != lcid && textBoxLanguageID.Text.Trim() == "0")

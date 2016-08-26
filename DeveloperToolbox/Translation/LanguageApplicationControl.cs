@@ -59,7 +59,9 @@ namespace NetOffice.DeveloperToolbox.Translation
         private void RaiseSelectionChanged()
         {
             if (null != SelectionChanged)
+            {
                 SelectionChanged(null, EventArgs.Empty);
+            }
         }
 
         #endregion
@@ -79,7 +81,9 @@ namespace NetOffice.DeveloperToolbox.Translation
                     return node.Cells[0].Value as string;
                 }
                 else
+                {
                     return null;
+                }
             }
         }
 
@@ -109,7 +113,9 @@ namespace NetOffice.DeveloperToolbox.Translation
         internal void HandleKeyDown()
         {
             if (treeGridView1.SelectedRows.Count == 0 || treeGridView1.Focused)
+            {
                 return;
+            }
 
             TreeGridNode selectedNode = treeGridView1.SelectedRows[0] as TreeGridNode;
             int currentRowIndex = selectedNode.Index;
@@ -117,20 +123,30 @@ namespace NetOffice.DeveloperToolbox.Translation
             {
                 TreeGridNode parentNode = selectedNode.Parent as TreeGridNode;
                 if (currentRowIndex + 1 < parentNode.Nodes.Count)
+                {
                     parentNode.Nodes[currentRowIndex + 1].Cells[0].Selected = true;
+                }
             }
             else
             {
                 if (currentRowIndex + 1 < treeGridView1.Rows.Count)
+                {
                     treeGridView1.Rows[currentRowIndex + 1].Selected = true;
+                }
             }
 
             if (textBoxString.Visible)
+            {
                 textBoxString.Focus();
+            }
             else if (textBoxWideString.Visible)
+            {
                 textBoxWideString.Focus();
+            }
             else if (textBoxRichString.Visible)
+            {
                 textBoxRichString.Focus();
+            }
         }
 
         /// <summary>
@@ -139,7 +155,9 @@ namespace NetOffice.DeveloperToolbox.Translation
         internal void HandleKeyUp()
         {
             if (treeGridView1.SelectedRows.Count == 0 || treeGridView1.Focused)
+            {
                 return;
+            }
 
             TreeGridNode selectedNode = treeGridView1.SelectedRows[0] as TreeGridNode;
             int currentRowIndex = selectedNode.Index;
@@ -147,27 +165,38 @@ namespace NetOffice.DeveloperToolbox.Translation
             {
                 TreeGridNode parentNode = selectedNode.Parent as TreeGridNode;
                 if (currentRowIndex > 0)
+                {
                     parentNode.Nodes[currentRowIndex -1].Cells[0].Selected = true;
+                }
             }
             else
             {
                 if (currentRowIndex - 1 > 0)
+                {
                     treeGridView1.Rows[currentRowIndex -1].Selected = true;
+                }
             }
 
             if (textBoxString.Visible)
+            {
                 textBoxString.Focus();
+            }
             else if (textBoxWideString.Visible)
+            {
                 textBoxWideString.Focus();
+            }
             else if (textBoxRichString.Visible)
+            {
                 textBoxRichString.Focus();
-
+            }
         }
 
         private void EnableInput(Control control, bool enabled)
         {
             if(control.IsDisposed || control.IsHandleCreated == false)
+            {
                 return;
+            }
             IntPtr controlPtr = (IntPtr)control.Handle.ToInt32();
             EnableWindow(controlPtr, enabled);
         }
@@ -175,10 +204,14 @@ namespace NetOffice.DeveloperToolbox.Translation
         private ToolLanguageForm FindOwner(Control ctrl)
         {
             if (null == ctrl)
+            {
                 return null;
+            }
 
             if (ctrl.Parent is ToolLanguageForm)
+            {
                 return ctrl.Parent as ToolLanguageForm;
+            }
             else
             {
                 ToolLanguageForm p = FindOwner(ctrl.Parent);
@@ -204,7 +237,9 @@ namespace NetOffice.DeveloperToolbox.Translation
                     {
                         string text = subItem.Value;
                         if(text.Equals("this"))
+                        {
                             text = "[Title]";
+                        }
                         TreeGridNode subNode = node.Nodes.Add(text);
                         subNode.Tag = subItem;
                         subNode.ImageIndex = 1;
@@ -212,13 +247,17 @@ namespace NetOffice.DeveloperToolbox.Translation
                 }
             }
             if (treeGridView1.SelectedRows.Count > 0)
+            {
                 treeGridView1_SelectionChanged(treeGridView1, EventArgs.Empty);
+            }
         }
 
         private void Clear()
         {
             while (tabPage1.Controls.Count > 0)
+            {
                 tabPage1.Controls.Remove(tabPage1.Controls[0]);
+            }
             textBoxString.Visible = false;
             textBoxWideString.Visible = false;
             textBoxRichString.Visible = false;
@@ -284,7 +323,9 @@ namespace NetOffice.DeveloperToolbox.Translation
             RaiseSelectionChanged();
             Clear();
             if(null == _owner)
+            {
                 _owner = FindOwner(this);
+            }
             _owner.StopHighLightControl1();
             _lastHightlight = null;
 
@@ -320,7 +361,9 @@ namespace NetOffice.DeveloperToolbox.Translation
                     ShowStringEditor(component, node.Tag as NotifyPropertyChanged);
                 }
                 else
+                {
                     ShowStringEditor(null, node.Tag as NotifyPropertyChanged);
+                }
 
                 if (null != component)
                 {
@@ -340,9 +383,13 @@ namespace NetOffice.DeveloperToolbox.Translation
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (tabControl1.SelectedIndex == 1)
+            {
                 _owner.StopHighLightControl1();
+            }
             else
+            {
                 _owner.StartHighLightControl1(_lastHightlight);
+            }
         }
 
         private void treeGridView1_DoubleClick(object sender, EventArgs e)
@@ -352,11 +399,15 @@ namespace NetOffice.DeveloperToolbox.Translation
                 int index = treeGridView1.SelectedCells[0].RowIndex;
                 TreeGridNode node = treeGridView1.Rows[index] as TreeGridNode;
                 if (node.Nodes.Count > 0 && false == node.IsExpanded)
+                {
                     node.Expand();
+                }
                 else
                 {
                     if (node.Nodes.Count > 0 && true == node.IsExpanded)
+                    {
                         node.Collapse();
+                    }
                 }
             }
         }
@@ -364,7 +415,9 @@ namespace NetOffice.DeveloperToolbox.Translation
         private void textBoxString_TextChanged(object sender, EventArgs e)
         {
             if (!textBoxString.Enabled || !textBoxString.Visible || null == _currentComponent || null == _currentItem)
+            {
                 return;
+            }
             (_currentComponent.Design as ILocalizationDesign).Localize(_currentItem.Value, textBoxString.Text);
             _currentItem.Value2 = textBoxString.Text;
             _selectedLanguage.IsDirty = true;
@@ -373,7 +426,9 @@ namespace NetOffice.DeveloperToolbox.Translation
         private void textBoxWideString_TextChanged(object sender, EventArgs e)
         {
             if (!textBoxWideString.Enabled || !textBoxWideString.Visible || null == _currentComponent || null == _currentItem)
+            {
                 return;
+            }
             (_currentComponent.Design as ILocalizationDesign).Localize(_currentItem.Value, textBoxWideString.Text);
             _currentItem.Value2 = textBoxWideString.Text;
             _selectedLanguage.IsDirty = true;
@@ -382,7 +437,9 @@ namespace NetOffice.DeveloperToolbox.Translation
         private void textBoxRichString_TextChanged(object sender, EventArgs e)
         {
             if (!textBoxRichString.Enabled || !textBoxRichString.Visible || null == _currentComponent || null == _currentItem)
+            {
                 return;
+            }
             (_currentComponent.Design as ILocalizationDesign).Localize(_currentItem.Value, textBoxRichString.RichText);
             _currentItem.Value2 = textBoxRichString.RichText;
             _selectedLanguage.IsDirty = true;

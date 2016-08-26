@@ -124,7 +124,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
             {
                 bool openModeWrite = true;
                 if ((_parent.RootKey == Registry.LocalMachine) && (_root.ReadOnlyModeForMachineKeys))
+                {
                     openModeWrite = false;
+                }
 
                 RegistryKey key = _parent.RootKey.OpenSubKey(_registryPath, openModeWrite);
                 if (null != key)
@@ -271,7 +273,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
             try
             {
                 if ((null == oldValue) || (null == newValue))
+                {
                     return false;
+                }
                 int oldVal = Convert.ToInt32(oldValue);
                 int newVal = Convert.ToInt32(newValue);
                 return ((newVal == 2) && (oldVal == 3));
@@ -296,7 +300,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
                     }
                 }
                 if (!found)
+                {
                     return oldValue;
+                }
             }
 
             throw new ArgumentException("No deleted Value found");
@@ -316,7 +322,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
                     }
                 }
                 if (!found)
+                {
                     return newValue;
+                }
             }
             throw new ArgumentException("No new Value found");
         }
@@ -335,10 +343,14 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
                         break;
                     }
                     else
+                    {
                         item = oldValue;
+                    }
                 }
                 if (!found)
+                {
                     return item;
+                }
             }
             throw new ArgumentException("No changed Name found");
         }

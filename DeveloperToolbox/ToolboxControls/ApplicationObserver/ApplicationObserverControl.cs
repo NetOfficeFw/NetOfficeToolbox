@@ -135,7 +135,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
         public void LoadConfiguration(XmlNode configNode)
         {
             if (configNode.ChildNodes.Count == 0)
+            {
                 configNode.InnerXml = Ressources.RessourceUtils.ReadString("ToolboxControls.ApplicationObserver.IconsAndConfig.DefaultConfiguration.txt");
+            }
 
             string val = "";
 
@@ -177,7 +179,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
         public void SaveConfiguration(XmlNode configNode)
         {
             if (configNode.ChildNodes.Count == 0)
+            {
                 configNode.InnerXml = Ressources.RessourceUtils.ReadString("ToolboxControls.ApplicationObserver.IconsAndConfig.DefaultConfiguration.txt");
+            }
 
             configNode.SelectSingleNode("Excel").Attributes[0].Value = listViewApps.Items[0].Checked.ToString();
             configNode.SelectSingleNode("Winword").Attributes[0].Value = listViewApps.Items[1].Checked.ToString();
@@ -206,7 +210,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
                 return Ressources.RessourceUtils.CreateStreamFromString(content);
             }
             else
+            {
                 return Ressources.RessourceUtils.ReadStream("ToolboxControls.ApplicationObserver.Info" + lcid.ToString() + ".rtf");
+            }
         }
 
 
@@ -312,7 +318,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
                     Color color = i % 2 != 0 ? Color.White : Color.LightGray;
                     item.BackColor = color;
                     foreach (ListViewItem.ListViewSubItem subItem in item.SubItems)
+                    {
                         subItem.BackColor = color;
+                    }
                     i++;
                 }
             }
@@ -353,7 +361,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
                 string appName = e.Item.Text;
 
                 if (((e.Item.SubItems[1].Text != "0") && (!buttonKillApps.Enabled)))
+                {
                     buttonKillApps.Enabled = true;
+                }
 
                 switch (appName)
                 {
@@ -415,29 +425,49 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
             try
             {
                 if (true == checkBoxAppKill.Checked)
+                {
                     checkBoxAppKill.Checked = false;
+                }
 
                 string CtrlKeys = "";
                 if (e.Control)
+                {
                     CtrlKeys += "Ctrl ";
+                }
                 if (e.Alt)
+                {
                     CtrlKeys += "Alt ";
+                }
 
                 if (e.KeyCode == (Keys.LButton | Keys.ShiftKey))
+                {
                     textBoxHotKey.Text = CtrlKeys;
+                }
                 else if (e.KeyCode == Keys.Menu)
+                {
                     textBoxHotKey.Text = CtrlKeys;
+                }
                 else
+                {
                     textBoxHotKey.Text = CtrlKeys + e.KeyCode.ToString();
+                }
 
                 if ((e.Control) && (e.Alt))
+                {
                     _applicationObserver.HotKey = e.KeyCode | Keys.Control | Keys.Alt;
+                }
                 else if (e.Control)
+                {
                     _applicationObserver.HotKey = e.KeyCode | Keys.Control;
+                }
                 else if (e.Alt)
+                {
                     _applicationObserver.HotKey = e.KeyCode | Keys.Alt;
+                }
                 else
+                {
                     _applicationObserver.HotKey = e.KeyCode;
+                }
             }
             catch (Exception exception)
             {

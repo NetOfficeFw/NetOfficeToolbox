@@ -58,9 +58,12 @@ namespace NetOffice.DeveloperToolbox.Controls.Tree
 
 		internal protected virtual void UpdateStyle(){
 			// styles shouldn't be modified when we are not sited.
-			if (this.IsSited == false) return;
+			if (this.IsSited == false)
+			{
+			    return;
+			}
 
-			int level = this.Level;
+		    int level = this.Level;
 
 			Padding p = this._previousPadding;
 			Size preferredSize;
@@ -112,7 +115,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Tree
 					return row.Level;
 				}
 				else
-					return -1;
+				{
+				    return -1;
+				}
 			}
 		}
 
@@ -136,13 +141,19 @@ namespace NetOffice.DeveloperToolbox.Controls.Tree
 		{
 
             TreeGridNode node = this.OwningNode;
-            if (node == null) return;
+            if (node == null)
+            {
+                return;
+            }
 
-            Image image = node.Image;
+		    Image image = node.Image;
 
-            if (this._imageHeight == 0 && image != null) this.UpdateStyle();
+            if (this._imageHeight == 0 && image != null)
+            {
+                this.UpdateStyle();
+            }
 
-			// paint the cell normally
+		    // paint the cell normally
 			base.Paint(graphics, clipBounds, cellBounds, rowIndex, cellState, value, formattedValue, errorText, cellStyle, advancedBorderStyle, paintParts);
 
             // TODO: Indent width needs to take image size into account
@@ -158,11 +169,15 @@ namespace NetOffice.DeveloperToolbox.Controls.Tree
 			{
 				Point pp;
 				if (_imageHeight > cellBounds.Height)
-                    pp = new Point(glyphRect.X + this.glyphWidth, cellBounds.Y + _imageHeightOffset);
+				{
+				    pp = new Point(glyphRect.X + this.glyphWidth, cellBounds.Y + _imageHeightOffset);
+				}
 				else
-                    pp = new Point(glyphRect.X + this.glyphWidth, (cellBounds.Height / 2 - _imageHeight / 2) + cellBounds.Y);
+				{
+				    pp = new Point(glyphRect.X + this.glyphWidth, (cellBounds.Height / 2 - _imageHeight / 2) + cellBounds.Y);
+				}
 
-				// Graphics container to push/pop changes. This enables us to set clipping when painting
+			    // Graphics container to push/pop changes. This enables us to set clipping when painting
 				// the cell's image -- keeps it from bleeding outsize of cells.
 				System.Drawing.Drawing2D.GraphicsContainer gc = graphics.BeginContainer();
 				{
@@ -255,7 +270,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Tree
                 graphics.DrawLine(new Pen(new SolidBrush(Color.Black)), x + 2, y + 4, x + w - 2, y + 4);
 
                 if (!node.IsExpanded)
+                {
                     graphics.DrawLine(new Pen(new SolidBrush(Color.Black)), x + 4, y + 2, x + 4, y + h - 2);
+                }
 
                 //// Paint node glyphs
                 //if (node.IsExpanded)
@@ -272,7 +289,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Tree
 
             TreeGridNode node = this.OwningNode;
             if (node != null)
+            {
                 node._grid._inExpandCollapseMouseCapture = false;
+            }
         }
 		protected override void OnMouseDown(DataGridViewCellMouseEventArgs e)
 		{
@@ -289,10 +308,14 @@ namespace NetOffice.DeveloperToolbox.Controls.Tree
 				{
                     node._grid._inExpandCollapseMouseCapture = true;
                     if (node.IsExpanded)
+                    {
                         node.Collapse();
-					else
+                    }
+                    else
+                    {
                         node.Expand();
-                }
+                    }
+				}
 			}
 		}
 		public TreeGridNode OwningNode

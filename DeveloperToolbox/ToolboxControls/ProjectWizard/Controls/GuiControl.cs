@@ -85,9 +85,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
             get
             {
                 if (Forms.MainForm.Singleton.CurrentLanguageID == 1031)
+                {
                     return "Ribbon UI:";
+                }
                 else
+                {
                     return "Ribbon UI:";
+                }
             }
         }
 
@@ -96,9 +100,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
             get
             {
                 if (Forms.MainForm.Singleton.CurrentLanguageID == 1031)
+                {
                     return "Klassische UI:";
+                }
                 else
+                {
                     return "Classic UI:";
+                }
             }
         }
 
@@ -118,9 +126,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
             get
             {
                 if (Forms.MainForm.Singleton.CurrentLanguageID == 1031)
+                {
                     return "Benutzerschnittstelle";
+                }
                 else
+                {
                     return "User Interface";
+                }
             }
         }
 
@@ -129,9 +141,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
             get
             {
                 if (Forms.MainForm.Singleton.CurrentLanguageID == 1031)
+                {
                     return "Der Assistent kann die Implementierung für Sie vorbereiten.";
+                }
                 else
+                {
                     return "The assistent prepare the implementation for you.";
+                }
             }
         }
 
@@ -172,7 +188,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
                     break;
                 case Keys.D4:
                     if(checkBoxToogleButton.Enabled)
+                    {
                         checkBoxToogleButton.Checked = !checkBoxToogleButton.Checked;
+                    }
                     break;
                 default:
                     break;
@@ -245,9 +263,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
             string toogle = true == checkBoxToogleButton.Checked ? " + Toogle" : "";
             result[0] += Environment.NewLine + "TaskPane";
             if (checkBoxRibbonUISupport.Checked)
+            {
                 result[1] += Environment.NewLine + ProjectWizardControl.Singleton.Localized.Yes + toogle;
+            }
             else
+            {
                 result[1] += Environment.NewLine + ProjectWizardControl.Singleton.Localized.No;
+            }
 
             return result;
         }
@@ -322,7 +344,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
         private void RaiseChangeEvent()
         {
             if (null != ReadyStateChanged)
+            {
                 ReadyStateChanged(this);
+            }
         }
 
         #endregion
@@ -335,7 +359,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
             {
                 checkBoxToogleButton.Enabled = checkBoxTaskPaneSupport.Checked && checkBoxRibbonUISupport.Checked;
                 if (!checkBoxToogleButton.Enabled && checkBoxToogleButton.Checked)
+                {
                     checkBoxToogleButton.Checked = false;
+                }
                 ChangeSettings();
                 RaiseChangeEvent();
             }
@@ -351,7 +377,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
             {
                 checkBoxToogleButton.Enabled = checkBoxTaskPaneSupport.Checked && checkBoxRibbonUISupport.Checked;
                 if (!checkBoxToogleButton.Enabled && checkBoxToogleButton.Checked)
+                {
                     checkBoxToogleButton.Checked = false;
+                }
                 ChangeSettings();
                 RaiseChangeEvent();
             }

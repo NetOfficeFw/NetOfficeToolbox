@@ -27,11 +27,15 @@ namespace NetOffice.DeveloperToolbox.Translation
                 ressourcePath = assemblyName + "." + ressourcePath;
                 ressourceStream = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream(ressourcePath);
                 if (ressourceStream == null)
+                {
                     throw (new System.IO.IOException("Error accessing resource Stream."));
+                }
 
                 textStreamReader = new System.IO.StreamReader(ressourceStream);
                 if (textStreamReader == null)
+                {
                     throw (new System.IO.IOException("Error accessing resource File."));
+                }
 
                 string text = textStreamReader.ReadToEnd();
                 return text;
@@ -43,9 +47,13 @@ namespace NetOffice.DeveloperToolbox.Translation
             finally
             {
                 if (null != textStreamReader)
+                {
                     textStreamReader.Close();
+                }
                 if (null != ressourceStream)
+                {
                     ressourceStream.Close();
+                }
             }
         }
 
@@ -60,7 +68,9 @@ namespace NetOffice.DeveloperToolbox.Translation
             string[] splitArray = ressourceContent.Split(new string[] { "[End]" }, StringSplitOptions.RemoveEmptyEntries);
             Dictionary<string, string> translateTable = GetTranslateRessources(splitArray, 1031);
             foreach (var item in translateTable)
+            {
                 list.Add(item.Key);
+            }
             return list.ToArray();
         }
 
@@ -73,7 +83,9 @@ namespace NetOffice.DeveloperToolbox.Translation
         public static void TranslateControl(Control rootControl, string name, string text)
         {
             if (name.Equals("this", StringComparison.InvariantCulture))
+            {
                 rootControl.Text = text;
+            }
 
             foreach (Control item in rootControl.Controls)
             {
@@ -135,7 +147,9 @@ namespace NetOffice.DeveloperToolbox.Translation
             string caption = "";
             strings.TryGetValue("this", out caption);
             if (!string.IsNullOrEmpty(caption))
+            {
                 control.Text = caption;
+            }
 
             ILocalizationDesign toolBoxControl = control as ILocalizationDesign;
             if ((null != toolBoxControl) && (null != toolBoxControl.Components))
@@ -148,7 +162,9 @@ namespace NetOffice.DeveloperToolbox.Translation
                         string message = "";
                         strings.TryGetValue(menuStrip.Name, out message);
                         if (!string.IsNullOrEmpty(message))
+                        {
                             menuStrip.Text = message;
+                        }
 
                         foreach (ToolStripItem unkownItem in menuStrip.Items)
                         {
@@ -158,7 +174,9 @@ namespace NetOffice.DeveloperToolbox.Translation
                                 message = "";
                                 strings.TryGetValue(menuItem.Name, out message);
                                 if (!string.IsNullOrEmpty(message))
+                                {
                                     menuItem.Text = message;
+                                }
                                 ForEachItems(menuItem, strings);
                             }
                         }
@@ -174,7 +192,9 @@ namespace NetOffice.DeveloperToolbox.Translation
                     string message = "";
                     strings.TryGetValue(toolStrip.Name, out message);
                     if (!string.IsNullOrEmpty(message))
+                    {
                         toolStrip.Text = message;
+                    }
 
                     foreach (ToolStripItem unkownItem in toolStrip.Items)
                     {
@@ -184,7 +204,9 @@ namespace NetOffice.DeveloperToolbox.Translation
                             message = "";
                             strings.TryGetValue(menuItem.Name, out message);
                             if (!string.IsNullOrEmpty(message))
+                            {
                                 menuItem.Text = message;
+                            }
                             ForEachItems(menuItem, strings);
                         }
                     }
@@ -199,9 +221,13 @@ namespace NetOffice.DeveloperToolbox.Translation
                 {
                     RichTextBox box =item as RichTextBox;
                     if (null != box)
+                    {
                         box.Rtf = message;
+                    }
                     else
+                    {
                         item.Text = message;
+                    }
                 }
                 ForEachSubControls(item, strings);
             }
@@ -230,7 +256,9 @@ namespace NetOffice.DeveloperToolbox.Translation
                         string message = "";
                         translateTable.TryGetValue(menuStrip.Name, out message);
                         if (!string.IsNullOrEmpty(message))
+                        {
                             menuStrip.Text = message;
+                        }
 
                         foreach (ToolStripItem unkownItem in menuStrip.Items)
                         {
@@ -240,7 +268,9 @@ namespace NetOffice.DeveloperToolbox.Translation
                                 message = "";
                                 translateTable.TryGetValue(menuItem.Name, out message);
                                 if (!string.IsNullOrEmpty(message))
+                                {
                                     menuItem.Text = message;
+                                }
                                 ForEachItems(menuItem, translateTable);
                             }
                         }
@@ -251,14 +281,18 @@ namespace NetOffice.DeveloperToolbox.Translation
             string caption = "";
             translateTable.TryGetValue("this", out caption);
             if (!string.IsNullOrEmpty(caption))
+            {
                 control.Text = caption;
+            }
 
             foreach (Control item in control.Controls)
             {
                 string message = "";
                 translateTable.TryGetValue(item.Name, out message);
                 if (!string.IsNullOrEmpty(message))
+                {
                     item.Text = message;
+                }
                 ForEachSubControls(item, translateTable);
             }
         }
@@ -277,9 +311,13 @@ namespace NetOffice.DeveloperToolbox.Translation
             Dictionary<string, string> translateTable = GetTranslateRessources(splitArray, languageId);
             var res = translateTable.Where(n => n.Key == ressourceName).FirstOrDefault();
             if (null != res.Key)
+            {
                 return res.Value;
+            }
             else
+            {
                 return null;
+            }
         }
 
         /// <summary>
@@ -306,7 +344,9 @@ namespace NetOffice.DeveloperToolbox.Translation
         internal static string TryGetControlText(Control rootControl, string name)
         {
             if (name.Equals("this", StringComparison.InvariantCulture))
+            {
                 return rootControl.Text;
+            }
             foreach (Control item in rootControl.Controls)
             {
                 ToolStrip strip = item as ToolStrip;
@@ -315,15 +355,21 @@ namespace NetOffice.DeveloperToolbox.Translation
                     foreach (ToolStripItem stripItem in strip.Items)
                     {
                         if (stripItem.Name.Equals(name, StringComparison.InvariantCulture))
+                        {
                             return stripItem.Text;
+                        }
                     }
                 }
 
                 if (item.Name.Equals(name, StringComparison.InvariantCulture))
+                {
                     return item.Text;
+                }
                 Control subCtrol = TryGetControl(item, name);
                 if (null != subCtrol)
+                {
                     return subCtrol.Text;
+                }
             }
             return null;
         }
@@ -337,7 +383,9 @@ namespace NetOffice.DeveloperToolbox.Translation
         internal static Control TryGetControl(Control rootControl, string name)
         {
             if(name.Equals("this", StringComparison.InvariantCulture))
+            {
                 return rootControl;
+            }
             foreach (Control item in rootControl.Controls)
             {
                 ToolStrip strip = item as ToolStrip;
@@ -346,15 +394,21 @@ namespace NetOffice.DeveloperToolbox.Translation
                     foreach (ToolStripItem stripItem in strip.Items)
                     {
                         if (stripItem.Name.Equals(name, StringComparison.InvariantCulture))
+                        {
                             return item;
+                        }
                     }
                 }
 
                 if (item.Name.Equals(name, StringComparison.InvariantCulture))
+                {
                     return item;
+                }
                 Control subCtrol = TryGetControl(item, name);
                 if (null != subCtrol)
+                {
                     return subCtrol;
+                }
             }
             return null;
         }
@@ -371,7 +425,9 @@ namespace NetOffice.DeveloperToolbox.Translation
                 string message = "";
                 translateTable.TryGetValue(subItem.Name, out message);
                 if (!string.IsNullOrEmpty(message))
+                {
                     subItem.Text = message;
+                }
                 ForEachItems(subItem, translateTable);
             }
         }
@@ -383,7 +439,9 @@ namespace NetOffice.DeveloperToolbox.Translation
                 string message = "";
                 translateTable.TryGetValue(subItem.Name, out message);
                 if (!string.IsNullOrEmpty(message))
+                {
                     subItem.Text = message;
+                }
                 ForEachItems(subItem, translateTable);
             }
         }
@@ -395,7 +453,9 @@ namespace NetOffice.DeveloperToolbox.Translation
                 string message = "";
                 translateTable.TryGetValue(subItem.Name, out message);
                 if (!string.IsNullOrEmpty(message))
+                {
                     subItem.Text = message;
+                }
                 ForEachSubControls(subItem, translateTable);
             }
         }
@@ -410,9 +470,13 @@ namespace NetOffice.DeveloperToolbox.Translation
                 {
                     RichTextBox box = subItem as RichTextBox;
                     if (null != box && !(box is Controls.Text.AdvRichTextBox))
+                    {
                         box.Rtf = message;
+                    }
                     else
+                    {
                         subItem.Text = message;
+                    }
                 }
                 ForEachSubControls(subItem, translateTable);
             }

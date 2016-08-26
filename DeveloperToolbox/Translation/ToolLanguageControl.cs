@@ -39,7 +39,9 @@ namespace NetOffice.DeveloperToolbox.Translation
         private void RaiseSelectedNodeTextChanged()
         {
             if (null != SelectedNodeTextChanged)
+            {
                 SelectedNodeTextChanged(null, EventArgs.Empty);
+            }
         }
 
         /// <summary>
@@ -50,7 +52,9 @@ namespace NetOffice.DeveloperToolbox.Translation
         private void RaiseSelectedTabChanged()
         {
             if (null != SelectedTabChanged)
+            {
                 SelectedTabChanged(this, EventArgs.Empty);
+            }
         }
 
         #endregion
@@ -65,11 +69,17 @@ namespace NetOffice.DeveloperToolbox.Translation
             get
             {
                 if (tabControl1.SelectedIndex == 1)
+                {
                     return languageApplicationControl1.SelectedNodeText;
+                }
                 else if (tabControl1.SelectedIndex == 2)
+                {
                     return languageComponentsControl1.SelectedNodeText;
+                }
                 else
+                {
                     return tabPage1.Text;
+                }
             }
         }
 

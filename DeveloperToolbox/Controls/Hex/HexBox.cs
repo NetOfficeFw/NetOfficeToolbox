@@ -159,9 +159,11 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 			void BeginMouseSelection(object sender, MouseEventArgs e)
 			{
                 if (e.Button != MouseButtons.Left)
+                {
                     return;
+                }
 
-				_mouseDown = true;
+			    _mouseDown = true;
 
 				if(!_shiftDown)
 				{
@@ -177,9 +179,11 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 			void UpdateMouseSelection(object sender, MouseEventArgs e)
 			{
 				if(!_mouseDown)
-					return;
+				{
+				    return;
+				}
 
-				_bpi = GetBytePositionInfo(new Point(e.X, e.Y));
+			    _bpi = GetBytePositionInfo(new Point(e.X, e.Y));
 				long selEnd = _bpi.Index;
 				long realselStart;
 				long realselLength;
@@ -223,7 +227,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
                 // detect whether key down event should be raised
                 var hasMessageHandler = this.MessageHandlers.ContainsKey(keyData);
                 if (hasMessageHandler && RaiseKeyDown(keyData))
+                {
                     return true;
+                }
 
                 MessageDelegate messageHandler = hasMessageHandler
                     ? this.MessageHandlers[keyData]
@@ -259,9 +265,11 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 				{
 					pos = Math.Max(-1, pos-_hexBox._iHexMaxHBytes);
 					if(pos == -1)
-						return true;
+					{
+					    return true;
+					}
 
-					_hexBox.SetPosition(pos);
+				    _hexBox.SetPosition(pos);
 
 					if(pos < _hexBox._startByte)
 					{
@@ -289,14 +297,18 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 				int cp = _hexBox._byteCharacterPos;
 
 				if(pos == _hexBox._byteProvider.Length && cp == 0)
-					return true;
+				{
+				    return true;
+				}
 
-				pos = Math.Min(_hexBox._byteProvider.Length, pos+_hexBox._iHexMaxHBytes);
+			    pos = Math.Min(_hexBox._byteProvider.Length, pos+_hexBox._iHexMaxHBytes);
 
 				if(pos == _hexBox._byteProvider.Length)
-					cp = 0;
+				{
+				    cp = 0;
+				}
 
-				_hexBox.SetPosition(pos, cp);
+			    _hexBox.SetPosition(pos, cp);
 
 				if(pos > _hexBox._endByte-1)
 				{
@@ -317,13 +329,17 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 				int cp = _hexBox._byteCharacterPos;
 
 				if(pos == 0 && cp == 0)
-					return true;
+				{
+				    return true;
+				}
 
-				pos = Math.Max(0, pos-_hexBox._iHexMaxBytes);
+			    pos = Math.Max(0, pos-_hexBox._iHexMaxBytes);
 				if(pos == 0)
-					return true;
+				{
+				    return true;
+				}
 
-				_hexBox.SetPosition(pos);
+			    _hexBox.SetPosition(pos);
 
 				if(pos < _hexBox._startByte)
 				{
@@ -342,14 +358,18 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 				int cp = _hexBox._byteCharacterPos;
 
 				if(pos == _hexBox._byteProvider.Length && cp == 0)
-					return true;
+				{
+				    return true;
+				}
 
-				pos = Math.Min(_hexBox._byteProvider.Length, pos+_hexBox._iHexMaxBytes);
+			    pos = Math.Min(_hexBox._byteProvider.Length, pos+_hexBox._iHexMaxBytes);
 
 				if(pos == _hexBox._byteProvider.Length)
-					cp = 0;
+				{
+				    cp = 0;
+				}
 
-				_hexBox.SetPosition(pos, cp);
+			    _hexBox.SetPosition(pos, cp);
 
 				if(pos > _hexBox._endByte-1)
 				{
@@ -369,14 +389,18 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 				long sel = _hexBox._selectionLength;
 
 				if(pos + sel < 1)
-					return true;
+				{
+				    return true;
+				}
 
-				if(pos+sel <= _bpiStart.Index)
+			    if(pos+sel <= _bpiStart.Index)
 				{
 					if(pos == 0)
-						return true;
+					{
+					    return true;
+					}
 
-					pos--;
+				    pos--;
 					sel++;
 				}
 				else
@@ -396,9 +420,11 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 				long sel = _hexBox._selectionLength;
 
 				if(pos-_hexBox._iHexMaxHBytes < 0 && pos <= _bpiStart.Index)
-					return true;
+				{
+				    return true;
+				}
 
-				if(_bpiStart.Index >= pos+sel)
+			    if(_bpiStart.Index >= pos+sel)
 				{
 					pos = pos - _hexBox._iHexMaxHBytes;
 					sel += _hexBox._iHexMaxHBytes;
@@ -432,9 +458,11 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 				long sel = _hexBox._selectionLength;
 
 				if(pos+sel >= _hexBox._byteProvider.Length)
-					return true;
+				{
+				    return true;
+				}
 
-				if(_bpiStart.Index <= pos)
+			    if(_bpiStart.Index <= pos)
 				{
 					sel++;
 					_hexBox.InternalSelect(pos, sel);
@@ -459,9 +487,11 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 				long max = _hexBox._byteProvider.Length;
 
 				if(pos+sel+_hexBox._iHexMaxHBytes > max)
-					return true;
+				{
+				    return true;
+				}
 
-				if(_bpiStart.Index <= pos)
+			    if(_bpiStart.Index <= pos)
 				{
 					sel += _hexBox._iHexMaxHBytes;
 					_hexBox.InternalSelect(pos, sel);
@@ -500,8 +530,11 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 					return true;
 				}
 
-				if(_hexBox.Parent == null) return true;
-				_hexBox.Parent.SelectNextControl(_hexBox, true, true, true, true);
+				if(_hexBox.Parent == null)
+				{
+				    return true;
+				}
+			    _hexBox.Parent.SelectNextControl(_hexBox, true, true, true, true);
 				return true;
 			}
 
@@ -518,35 +551,46 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 					return true;
 				}
 
-				if(_hexBox.Parent == null) return true;
-				_hexBox.Parent.SelectNextControl(_hexBox, false, true, true, true);
+				if(_hexBox.Parent == null)
+				{
+				    return true;
+				}
+			    _hexBox.Parent.SelectNextControl(_hexBox, false, true, true, true);
 				return true;
 			}
 
 			protected virtual bool PreProcessWmKeyDown_Back(ref Message m)
 			{
 				if(!_hexBox._byteProvider.SupportsDeleteBytes())
-					return true;
+				{
+				    return true;
+				}
 
-                if (_hexBox.ReadOnly)
-                    return true;
+			    if (_hexBox.ReadOnly)
+			    {
+			        return true;
+			    }
 
-				long pos = _hexBox._bytePos;
+			    long pos = _hexBox._bytePos;
 				long sel = _hexBox._selectionLength;
 				int cp = _hexBox._byteCharacterPos;
 
 				long startDelete = (cp == 0 && sel == 0) ? pos-1 : pos;
 				if(startDelete < 0 && sel < 1)
-					return true;
+				{
+				    return true;
+				}
 
-				long bytesToDelete = (sel > 0) ? sel : 1;
+			    long bytesToDelete = (sel > 0) ? sel : 1;
 				_hexBox._byteProvider.DeleteBytes(Math.Max(0, startDelete), bytesToDelete);
 				_hexBox.UpdateScrollSize();
 
 				if(sel == 0)
-					PerformPosMoveLeftByte();
+				{
+				    PerformPosMoveLeftByte();
+				}
 
-				_hexBox.ReleaseSelection();
+			    _hexBox.ReleaseSelection();
 				_hexBox.Invalidate();
 
 				return true;
@@ -555,18 +599,24 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 			protected virtual bool PreProcessWmKeyDown_Delete(ref Message m)
 			{
 				if(!_hexBox._byteProvider.SupportsDeleteBytes())
-					return true;
+				{
+				    return true;
+				}
 
-                if (_hexBox.ReadOnly)
-                    return true;
+			    if (_hexBox.ReadOnly)
+			    {
+			        return true;
+			    }
 
-				long pos = _hexBox._bytePos;
+			    long pos = _hexBox._bytePos;
 				long sel = _hexBox._selectionLength;
 
 				if(pos >= _hexBox._byteProvider.Length)
-					return true;
+				{
+				    return true;
+				}
 
-				long bytesToDelete = (sel > 0) ? sel : 1;
+			    long bytesToDelete = (sel > 0) ? sel : 1;
 				_hexBox._byteProvider.DeleteBytes(pos, bytesToDelete);
 
 				_hexBox.UpdateScrollSize();
@@ -582,9 +632,11 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 				int cp = _hexBox._byteCharacterPos;
 
 				if(pos < 1)
-					return true;
+				{
+				    return true;
+				}
 
-				pos = 0;
+			    pos = 0;
 				cp = 0;
 				_hexBox.SetPosition(pos, cp);
 
@@ -601,9 +653,11 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 				int cp = _hexBox._byteCharacterPos;
 
 				if(pos >= _hexBox._byteProvider.Length-1)
-					return true;
+				{
+				    return true;
+				}
 
-				pos = _hexBox._byteProvider.Length;
+			    pos = _hexBox._byteProvider.Length;
 				cp = 0;
 				_hexBox.SetPosition(pos, cp);
 
@@ -617,16 +671,22 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 			protected virtual bool PreProcessWmKeyDown_ShiftShiftKey(ref Message m)
 			{
 				if(_mouseDown)
-					return true;
-				if(_shiftDown)
-					return true;
+				{
+				    return true;
+				}
+			    if(_shiftDown)
+			    {
+			        return true;
+			    }
 
-				_shiftDown = true;
+			    _shiftDown = true;
 
 				if(_hexBox._selectionLength > 0)
-					return true;
+				{
+				    return true;
+				}
 
-				_bpiStart = new BytePositionInfo(_hexBox._bytePos, _hexBox._byteCharacterPos);
+			    _bpiStart = new BytePositionInfo(_hexBox._bytePos, _hexBox._byteCharacterPos);
 
 				return true;
 			}
@@ -679,18 +739,24 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 				if(Uri.IsHexDigit(c))
 				{
 					if(RaiseKeyPress(c))
-						return true;
+					{
+					    return true;
+					}
 
-					if(_hexBox.ReadOnly)
-						return true;
+				    if(_hexBox.ReadOnly)
+				    {
+				        return true;
+				    }
 
-					bool isInsertMode = (pos == _hexBox._byteProvider.Length);
+				    bool isInsertMode = (pos == _hexBox._byteProvider.Length);
 
 					// do insert when insertActive = true
 					if(!isInsertMode && si && _hexBox.InsertActive && cp == 0)
-						isInsertMode = true;
+					{
+					    isInsertMode = true;
+					}
 
-					if(sd && si	&& sel > 0)
+				    if(sd && si	&& sel > 0)
 					{
 						_hexBox._byteProvider.DeleteBytes(pos, sel);
 						isInsertMode = true;
@@ -702,27 +768,41 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 
 					byte currentByte;
 					if(isInsertMode)
-						currentByte = 0;
+					{
+					    currentByte = 0;
+					}
 					else
-						currentByte = _hexBox._byteProvider.ReadByte(pos);
+					{
+					    currentByte = _hexBox._byteProvider.ReadByte(pos);
+					}
 
-					string sCb = currentByte.ToString("X", System.Threading.Thread.CurrentThread.CurrentCulture);
+				    string sCb = currentByte.ToString("X", System.Threading.Thread.CurrentThread.CurrentCulture);
 					if(sCb.Length == 1)
-						sCb = "0" + sCb;
+					{
+					    sCb = "0" + sCb;
+					}
 
-					string sNewCb = c.ToString();
+				    string sNewCb = c.ToString();
 					if(cp == 0)
-						sNewCb += sCb.Substring(1, 1);
+					{
+					    sNewCb += sCb.Substring(1, 1);
+					}
 					else
-						sNewCb = sCb.Substring(0, 1) + sNewCb;
-					byte newcb = byte.Parse(sNewCb, System.Globalization.NumberStyles.AllowHexSpecifier, System.Threading.Thread.CurrentThread.CurrentCulture);
+					{
+					    sNewCb = sCb.Substring(0, 1) + sNewCb;
+					}
+				    byte newcb = byte.Parse(sNewCb, System.Globalization.NumberStyles.AllowHexSpecifier, System.Threading.Thread.CurrentThread.CurrentCulture);
 
 					if(isInsertMode)
-						_hexBox._byteProvider.InsertBytes(pos, new byte[]{newcb});
+					{
+					    _hexBox._byteProvider.InsertBytes(pos, new byte[]{newcb});
+					}
 					else
-						_hexBox._byteProvider.WriteByte(pos, newcb);
+					{
+					    _hexBox._byteProvider.WriteByte(pos, newcb);
+					}
 
-					PerformPosMoveRight();
+				    PerformPosMoveRight();
 
 					_hexBox.Invalidate();
 					return true;
@@ -753,8 +833,10 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 					case Keys.ShiftKey:
 					case Keys.Insert:
 						if(RaiseKeyUp(keyData))
-							return true;
-						break;
+						{
+						    return true;
+						}
+				        break;
 				}
 
 				switch(keyData)
@@ -830,9 +912,11 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 				else
 				{
 					if(pos == 0 && cp == 0)
-						return true;
+					{
+					    return true;
+					}
 
-					if(cp > 0)
+				    if(cp > 0)
 					{
 						cp--;
 					}
@@ -903,9 +987,11 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 				int cp = _hexBox._byteCharacterPos;
 
 				if(pos == 0)
-					return true;
+				{
+				    return true;
+				}
 
-				pos = Math.Max(0, pos-1);
+			    pos = Math.Max(0, pos-1);
 				cp = 0;
 
 				_hexBox.SetPosition(pos, cp);
@@ -927,9 +1013,11 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 				int cp = _hexBox._byteCharacterPos;
 
 				if(pos == _hexBox._byteProvider.Length)
-					return true;
+				{
+				    return true;
+				}
 
-				pos = Math.Min(_hexBox._byteProvider.Length, pos+1);
+			    pos = Math.Min(_hexBox._byteProvider.Length, pos+1);
 				cp = 0;
 
 				_hexBox.SetPosition(pos, cp);
@@ -984,8 +1072,10 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 					case Keys.Tab | Keys.Shift:
 					case Keys.Tab:
 						if(RaiseKeyDown(keyData))
-							return true;
-						break;
+						{
+						    return true;
+						}
+				        break;
 				}
 
 				switch(keyData)
@@ -1037,18 +1127,24 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 				char c = (char)m.WParam.ToInt32();
 
 				if(RaiseKeyPress(c))
-					return true;
+				{
+				    return true;
+				}
 
-				if(_hexBox.ReadOnly)
-					return true;
+			    if(_hexBox.ReadOnly)
+			    {
+			        return true;
+			    }
 
-				bool isInsertMode = (pos == _hexBox._byteProvider.Length);
+			    bool isInsertMode = (pos == _hexBox._byteProvider.Length);
 
 				// do insert when insertActive = true
 				if(!isInsertMode && si && _hexBox.InsertActive)
-					isInsertMode = true;
+				{
+				    isInsertMode = true;
+				}
 
-				if(sd && si && sel > 0)
+			    if(sd && si && sel > 0)
 				{
 					_hexBox._byteProvider.DeleteBytes(pos, sel);
 					isInsertMode = true;
@@ -1060,11 +1156,15 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 
                 byte b = _hexBox.ByteCharConverter.ToByte(c);
 				if(isInsertMode)
-					_hexBox._byteProvider.InsertBytes(pos, new byte[]{b});
+				{
+				    _hexBox._byteProvider.InsertBytes(pos, new byte[]{b});
+				}
 				else
-					_hexBox._byteProvider.WriteByte(pos, b);
+				{
+				    _hexBox._byteProvider.WriteByte(pos, b);
+				}
 
-				PerformPosMoveRightByte();
+			    PerformPosMoveRightByte();
 				_hexBox.Invalidate();
 
 				return true;
@@ -1392,9 +1492,11 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 				case ScrollEventType.ThumbTrack:
                     // to avoid performance problems use a refresh delay implemented with a timer
                     if (_thumbTrackTimer.Enabled) // stop old timer
+                    {
                         _thumbTrackTimer.Enabled = false;
+                    }
 
-                    // perform scroll immediately only if last refresh is very old
+			        // perform scroll immediately only if last refresh is very old
                     int currentThumbTrack = System.Environment.TickCount;
                     if (currentThumbTrack - _lastThumbtrack > THUMPTRACKDELAY)
                     {
@@ -1441,11 +1543,15 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
                     /* Data size has been decreased. */
                     if (_scrollVpos == _scrollVmax)
                         /* Scroll one line up if we at bottom. */
+                    {
                         PerformScrollLineUp();
+                    }
                 }
 
                 if (scrollmax == _scrollVmax && scrollpos == _scrollVpos)
+                {
                     return;
+                }
 
                 _scrollVmin = 0;
                 _scrollVmax = scrollmax;
@@ -1483,7 +1589,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 			int max = 65535;
 
 			if(_scrollVmax < max)
-				return (int)value;
+			{
+			    return (int)value;
+			}
 			else
 			{
 				double valperc = (double)value / (double)_scrollVmax * (double)100;
@@ -1513,17 +1621,23 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 		{
 			long max = 65535;
 			if(value > max)
-				return (int)max;
+			{
+			    return (int)max;
+			}
 			else
-				return (int)value;
+			{
+			    return (int)value;
+			}
 		}
 
 		void PerformScrollToLine(long pos)
 		{
 			if(pos < _scrollVmin || pos > _scrollVmax || pos == _scrollVpos )
-				return;
+			{
+			    return;
+			}
 
-			_scrollVpos = pos;
+		    _scrollVpos = pos;
 
 			UpdateVScroll();
 			UpdateVisibilityBytes();
@@ -1576,8 +1690,10 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 			int difference = (_scrollVmax > 65535) ? 10 : 9;
 
 			if(ToScrollPos(pos) == ToScrollMax(_scrollVmax)-difference)
-				pos = _scrollVmax;
-			// End Bug fix
+			{
+			    pos = _scrollVmax;
+			}
+		    // End Bug fix
 
 
 			PerformScrollToLine(pos);
@@ -1598,9 +1714,11 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 		public void ScrollByteIntoView(long index)
 		{
 			if(_byteProvider == null || _keyInterpreter == null)
-				return;
+			{
+			    return;
+			}
 
-			if(index < _startByte)
+		    if(index < _startByte)
 			{
 				long line = (long)Math.Floor((double)index / (double)_iHexMaxHBytes);
 				PerformScrollThumpPosition(line);
@@ -1618,16 +1736,22 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 		void ReleaseSelection()
 		{
 			if(_selectionLength == 0)
-				return;
-			_selectionLength = 0;
+			{
+			    return;
+			}
+		    _selectionLength = 0;
 			OnSelectionLengthChanged(EventArgs.Empty);
 
 			if(!_caretVisible)
-				CreateCaret();
+			{
+			    CreateCaret();
+			}
 			else
-				UpdateCaret();
+			{
+			    UpdateCaret();
+			}
 
-			Invalidate();
+		    Invalidate();
 		}
 
         /// <summary>
@@ -1636,9 +1760,13 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
         public bool CanSelectAll()
         {
             if (!this.Enabled)
+            {
                 return false;
+            }
             if (_byteProvider == null)
+            {
                 return false;
+            }
 
             return true;
         }
@@ -1649,7 +1777,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
         public void SelectAll()
         {
             if (this.ByteProvider == null)
+            {
                 return;
+            }
             this.Select(0, this.ByteProvider.Length);
         }
 
@@ -1661,11 +1791,15 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 		public void Select(long start, long length)
 		{
             if (this.ByteProvider == null)
+            {
                 return;
-            if (!this.Enabled)
-                return;
+            }
+		    if (!this.Enabled)
+		    {
+		        return;
+		    }
 
-			InternalSelect(start, length);
+		    InternalSelect(start, length);
 			ScrollByteIntoView();
 		}
 
@@ -1676,11 +1810,15 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 			int cp = 0;
 
 			if(sel > 0 && _caretVisible)
-				DestroyCaret();
+			{
+			    DestroyCaret();
+			}
 			else if(sel == 0 && !_caretVisible)
-				CreateCaret();
+			{
+			    CreateCaret();
+			}
 
-			SetPosition(pos, cp);
+		    SetPosition(pos, cp);
 			SetSelectionLength(sel);
 
 			UpdateCaret();
@@ -1692,45 +1830,63 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 		void ActivateEmptyKeyInterpreter()
 		{
 			if(_eki == null)
-				_eki = new EmptyKeyInterpreter(this);
+			{
+			    _eki = new EmptyKeyInterpreter(this);
+			}
 
-			if(_eki == _keyInterpreter)
-				return;
+		    if(_eki == _keyInterpreter)
+		    {
+		        return;
+		    }
 
-			if(_keyInterpreter != null)
-				_keyInterpreter.Deactivate();
+		    if(_keyInterpreter != null)
+		    {
+		        _keyInterpreter.Deactivate();
+		    }
 
-			_keyInterpreter = _eki;
+		    _keyInterpreter = _eki;
 			_keyInterpreter.Activate();
 		}
 
 		void ActivateKeyInterpreter()
 		{
 			if(_ki == null)
-				_ki = new KeyInterpreter(this);
+			{
+			    _ki = new KeyInterpreter(this);
+			}
 
-			if(_ki == _keyInterpreter)
-				return;
+		    if(_ki == _keyInterpreter)
+		    {
+		        return;
+		    }
 
-			if(_keyInterpreter != null)
-				_keyInterpreter.Deactivate();
+		    if(_keyInterpreter != null)
+		    {
+		        _keyInterpreter.Deactivate();
+		    }
 
-			_keyInterpreter = _ki;
+		    _keyInterpreter = _ki;
 			_keyInterpreter.Activate();
 		}
 
 		void ActivateStringKeyInterpreter()
 		{
 			if(_ski == null)
-				_ski = new StringKeyInterpreter(this);
+			{
+			    _ski = new StringKeyInterpreter(this);
+			}
 
-			if(_ski == _keyInterpreter)
-				return;
+		    if(_ski == _keyInterpreter)
+		    {
+		        return;
+		    }
 
-			if(_keyInterpreter != null)
-				_keyInterpreter.Deactivate();
+		    if(_keyInterpreter != null)
+		    {
+		        _keyInterpreter.Deactivate();
+		    }
 
-			_keyInterpreter = _ski;
+		    _keyInterpreter = _ski;
 			_keyInterpreter.Activate();
 		}
 		#endregion
@@ -1740,9 +1896,11 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
         void CreateCaret()
 		{
 			if(_byteProvider == null || _keyInterpreter == null || _caretVisible || !this.Focused)
-				return;
+			{
+			    return;
+			}
 
-            // define the caret width depending on InsertActive mode
+		    // define the caret width depending on InsertActive mode
             //int caretWidth = (this.InsertActive) ? 1 : (int)_charSize.Width;
             int caretHeight = (int)_charSize.Height;
 			NativeMethods.CreateCaret(Handle, IntPtr.Zero, 1, caretHeight);
@@ -1757,9 +1915,11 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 		void UpdateCaret()
 		{
             if (_byteProvider == null || _keyInterpreter == null)
-				return;
+            {
+                return;
+            }
 
-			long byteIndex =_bytePos - _startByte;
+		    long byteIndex =_bytePos - _startByte;
 			PointF p = _keyInterpreter.GetCaretPointF(byteIndex);
             p.X += _byteCharacterPos; //* _charSize.Width
 			NativeMethods.SetCaretPos((int)p.X, (int)p.Y);
@@ -1768,18 +1928,22 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 		void DestroyCaret()
 		{
             if (!_caretVisible)
-				return;
+            {
+                return;
+            }
 
-			NativeMethods.DestroyCaret();
+		    NativeMethods.DestroyCaret();
 			_caretVisible = false;
 		}
 
 		void SetCaretPosition(Point p)
 		{
             if (_byteProvider == null || _keyInterpreter == null)
-				return;
+            {
+                return;
+            }
 
-			long pos = _bytePos;
+		    long pos = _bytePos;
 			int cp = _byteCharacterPos;
 
 			if(_recHex.Contains(p))
@@ -1824,14 +1988,20 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 				_startByte + (_iHexMaxHBytes * (iY+1) - _iHexMaxHBytes) + hPos - 1);
 			byteCharaterPos = (iX % 3);
 			if(byteCharaterPos > 1)
-				byteCharaterPos = 1;
+			{
+			    byteCharaterPos = 1;
+			}
 
-			if(bytePos == _byteProvider.Length)
-				byteCharaterPos = 0;
+		    if(bytePos == _byteProvider.Length)
+		    {
+		        byteCharaterPos = 0;
+		    }
 
-			if(bytePos < 0)
-				return new BytePositionInfo(0, 0);
-			return new BytePositionInfo(bytePos, byteCharaterPos);
+		    if(bytePos < 0)
+		    {
+		        return new BytePositionInfo(0, 0);
+		    }
+		    return new BytePositionInfo(bytePos, byteCharaterPos);
 		}
 
 		BytePositionInfo GetStringBytePositionInfo(Point p)
@@ -1851,8 +2021,10 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 			byteCharacterPos = 0;
 
 			if(bytePos < 0)
-				return new BytePositionInfo(0, 0);
-			return new BytePositionInfo(bytePos, byteCharacterPos);
+			{
+			    return new BytePositionInfo(0, 0);
+			}
+		    return new BytePositionInfo(bytePos, byteCharacterPos);
 		}
 		#endregion
 
@@ -1903,12 +2075,16 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 			for(long pos = startIndex; pos < _byteProvider.Length; pos++)
 			{
 				if(_abortFind)
-					return -2;
+				{
+				    return -2;
+				}
 
-				if(pos % 1000 == 0) // for performance reasons: DoEvents only 1 times per 1000 loops
-					Application.DoEvents();
+			    if(pos % 1000 == 0) // for performance reasons: DoEvents only 1 times per 1000 loops
+			    {
+			        Application.DoEvents();
+			    }
 
-				if(_byteProvider.ReadByte(pos) != bytes[match])
+			    if(_byteProvider.ReadByte(pos) != bytes[match])
 				{
 					pos -= match;
 					match = 0;
@@ -1956,7 +2132,10 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 		#region Copy, Cut and Paste methods
         byte[] GetCopyData()
         {
-            if (!CanCopy()) return new byte[0];
+            if (!CanCopy())
+            {
+                return new byte[0];
+            }
 
             // put bytes into buffer
             byte[] buffer = new byte[_selectionLength];
@@ -1974,9 +2153,12 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 		/// </summary>
 		public void Copy()
 		{
-			if(!CanCopy()) return;
+			if(!CanCopy())
+			{
+			    return;
+			}
 
-			// put bytes into buffer
+		    // put bytes into buffer
             byte[] buffer = GetCopyData();
 
 			DataObject da = new DataObject();
@@ -2003,9 +2185,11 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 		public bool CanCopy()
 		{
 			if(_selectionLength < 1 || _byteProvider == null)
-				return false;
+			{
+			    return false;
+			}
 
-			return true;
+		    return true;
 		}
 
 		/// <summary>
@@ -2013,9 +2197,12 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 		/// </summary>
 		public void Cut()
 		{
-			if(!CanCut()) return;
+			if(!CanCut())
+			{
+			    return;
+			}
 
-			Copy();
+		    Copy();
 
 			_byteProvider.DeleteBytes(_bytePos, _selectionLength);
 			_byteCharacterPos = 0;
@@ -2032,13 +2219,19 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 		public bool CanCut()
 		{
 			if (ReadOnly || !this.Enabled)
-				return false;
-			if(_byteProvider == null)
-				return false;
-			if(_selectionLength < 1 || !_byteProvider.SupportsDeleteBytes())
-				return false;
+			{
+			    return false;
+			}
+		    if(_byteProvider == null)
+		    {
+		        return false;
+		    }
+		    if(_selectionLength < 1 || !_byteProvider.SupportsDeleteBytes())
+		    {
+		        return false;
+		    }
 
-			return true;
+		    return true;
 		}
 
 		/// <summary>
@@ -2046,12 +2239,17 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 		/// </summary>
 		public void Paste()
 		{
-			if(!CanPaste()) return;
+			if(!CanPaste())
+			{
+			    return;
+			}
 
-			if(_selectionLength > 0)
-				_byteProvider.DeleteBytes(_bytePos, _selectionLength);
+		    if(_selectionLength > 0)
+		    {
+		        _byteProvider.DeleteBytes(_bytePos, _selectionLength);
+		    }
 
-			byte[] buffer = null;
+		    byte[] buffer = null;
 			IDataObject da = Clipboard.GetDataObject();
 			if(da.GetDataPresent("BinaryData"))
 			{
@@ -2084,28 +2282,44 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 		/// </summary>
 		public bool CanPaste()
 		{
-			if (ReadOnly || !this.Enabled) return false;
+			if (ReadOnly || !this.Enabled)
+			{
+			    return false;
+			}
 
-			if(_byteProvider == null || !_byteProvider.SupportsInsertBytes())
-				return false;
+		    if(_byteProvider == null || !_byteProvider.SupportsInsertBytes())
+		    {
+		        return false;
+		    }
 
-			if(!_byteProvider.SupportsDeleteBytes() && _selectionLength > 0)
-				return false;
+		    if(!_byteProvider.SupportsDeleteBytes() && _selectionLength > 0)
+		    {
+		        return false;
+		    }
 
-			IDataObject da = Clipboard.GetDataObject();
+		    IDataObject da = Clipboard.GetDataObject();
 			if(da.GetDataPresent("BinaryData"))
-				return true;
+			{
+			    return true;
+			}
 			else if(da.GetDataPresent(typeof(string)))
-				return true;
+			{
+			    return true;
+			}
 			else
-				return false;
+			{
+			    return false;
+			}
 		}
         /// <summary>
         /// Return true if PasteHex method could be invoked.
         /// </summary>
         public bool CanPasteHex()
         {
-            if (!CanPaste()) return false;
+            if (!CanPaste())
+            {
+                return false;
+            }
 
             byte[] buffer = null;
             IDataObject da = Clipboard.GetDataObject();
@@ -2123,7 +2337,10 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
         /// </summary>
         public void PasteHex()
         {
-            if (!CanPaste()) return;
+            if (!CanPaste())
+            {
+                return;
+            }
 
             byte[] buffer = null;
             IDataObject da = Clipboard.GetDataObject();
@@ -2132,7 +2349,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
                 string hexString = (string)da.GetData(typeof(string));
                 buffer = ConvertHexToBytes(hexString);
                 if (buffer == null)
+                {
                     return;
+                }
             }
             else
             {
@@ -2140,7 +2359,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
             }
 
             if (_selectionLength > 0)
+            {
                 _byteProvider.DeleteBytes(_bytePos, _selectionLength);
+            }
 
             _byteProvider.InsertBytes(_bytePos, buffer);
 
@@ -2157,7 +2378,10 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
         /// </summary>
         public void CopyHex()
         {
-            if (!CanCopy()) return;
+            if (!CanCopy())
+            {
+                return;
+            }
 
             // put bytes into buffer
             byte[] buffer = GetCopyData();
@@ -2202,9 +2426,13 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
                         if (this.Enabled)
                         {
                             if (this.ReadOnly)
+                            {
                                 state = VisualStyleElement.TextBox.TextEdit.ReadOnly;
+                            }
                             else if (this.Focused)
+                            {
                                 state = VisualStyleElement.TextBox.TextEdit.Focused;
+                            }
                         }
                         else
                         {
@@ -2257,9 +2485,11 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
             base.OnPaint(e);
 
 			if(_byteProvider == null)
-				return;
+			{
+			    return;
+			}
 
-			// draw only in the content rectangle, so exclude the border and the scrollbar.
+		    // draw only in the content rectangle, so exclude the border and the scrollbar.
 			Region r = new Region(ClientRectangle);
 			r.Exclude(_recContent);
 			e.Graphics.ExcludeClip(r);
@@ -2267,9 +2497,11 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 			UpdateVisibilityBytes();
 
 			if(_lineInfoVisible)
-				PaintLineInfo(e.Graphics, _startByte, _endByte);
+			{
+			    PaintLineInfo(e.Graphics, _startByte, _endByte);
+			}
 
-			if(!_stringViewVisible)
+		    if(!_stringViewVisible)
 			{
 				PaintHex(e.Graphics, _startByte, _endByte);
 			}
@@ -2277,7 +2509,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 			{
 				PaintHexAndStringView(e.Graphics, _startByte, _endByte);
 				if(_shadowSelectionVisible)
-					PaintCurrentBytesSign(e.Graphics);
+				{
+				    PaintCurrentBytesSign(e.Graphics);
+				}
 			}
 		}
 
@@ -2358,9 +2592,11 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 		{
 			string sB = b.ToString(_hexStringFormat, System.Threading.Thread.CurrentThread.CurrentCulture);
 			if(sB.Length == 1)
-				sB = "0" + sB;
+			{
+			    sB = "0" + sB;
+			}
 
-			PointF bytePointF = GetBytePointF(gridPoint);
+		    PointF bytePointF = GetBytePointF(gridPoint);
 
 			bool isLastLineChar = (gridPoint.X+1 == _iHexMaxHBytes);
 			float bcWidth = (isLastLineChar) ? _charSize.Width*2 : _charSize.Width*3;
@@ -2580,9 +2816,11 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 		{
 			// stack overflowexception on big files - workaround
 			if(rec.Top < 0 || rec.Left < 0 || rec.Width <= 0 || rec.Height <= 0)
-				return;
+			{
+			    return;
+			}
 
-			Bitmap myBitmap = new Bitmap(rec.Width, rec.Height);
+		    Bitmap myBitmap = new Bitmap(rec.Width, rec.Height);
 			Graphics bitmapGraphics = Graphics.FromImage(myBitmap);
 
 			SolidBrush greenBrush = new SolidBrush(_shadowSelectionColor);
@@ -2598,16 +2836,22 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 		Color GetDefaultForeColor()
 		{
 			if(Enabled)
-				return ForeColor;
+			{
+			    return ForeColor;
+			}
 			else
-				return Color.Gray;
+			{
+			    return Color.Gray;
+			}
 		}
 		void UpdateVisibilityBytes()
 		{
 			if(_byteProvider == null || _byteProvider.Length == 0)
-				return;
+			{
+			    return;
+			}
 
-			_startByte = (_scrollVpos+1) * _iHexMaxHBytes - _iHexMaxHBytes;
+		    _startByte = (_scrollVpos+1) * _iHexMaxHBytes - _iHexMaxHBytes;
 			_endByte = (long)Math.Min(_byteProvider.Length - 1, _startByte + _iHexMaxBytes);
 		}
 		#endregion
@@ -2666,9 +2910,13 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 			{
 				int hmax  = (int)Math.Floor((double)_recHex.Width/(double)_charSize.Width);
 				if(hmax > 1)
-					SetHorizontalByteCount((int)Math.Floor((double)hmax/3));
+				{
+				    SetHorizontalByteCount((int)Math.Floor((double)hmax/3));
+				}
 				else
-					SetHorizontalByteCount(hmax);
+				{
+				    SetHorizontalByteCount(hmax);
+				}
 			}
 
 			if(_stringViewVisible)
@@ -2819,9 +3067,11 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 			set
 			{
 				if(_readOnly == value)
-					return;
+				{
+				    return;
+				}
 
-				_readOnly = value;
+			    _readOnly = value;
 				OnReadOnlyChanged(EventArgs.Empty);
 				Invalidate();
 			}
@@ -2840,9 +3090,11 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 			set
 			{
 				if(_bytesPerLine == value)
-					return;
+				{
+				    return;
+				}
 
-				_bytesPerLine = value;
+			    _bytesPerLine = value;
 				OnBytesPerLineChanged(EventArgs.Empty);
 
 				UpdateRectanglePositioning();
@@ -2863,9 +3115,11 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 			set
 			{
 				if(_useFixedBytesPerLine == value)
-					return;
+				{
+				    return;
+				}
 
-				_useFixedBytesPerLine = value;
+			    _useFixedBytesPerLine = value;
 				OnUseFixedBytesPerLineChanged(EventArgs.Empty);
 
 				UpdateRectanglePositioning();
@@ -2883,16 +3137,22 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 			set
 			{
 				if(_vScrollBarVisible == value)
-					return;
+				{
+				    return;
+				}
 
-				_vScrollBarVisible = value;
+			    _vScrollBarVisible = value;
 
 				if(_vScrollBarVisible)
-					Controls.Add(_vScrollBar);
+				{
+				    Controls.Add(_vScrollBar);
+				}
 				else
-					Controls.Remove(_vScrollBar);
+				{
+				    Controls.Remove(_vScrollBar);
+				}
 
-				UpdateRectanglePositioning();
+			    UpdateRectanglePositioning();
 				UpdateScrollSize();
 
 				OnVScrollBarVisibleChanged(EventArgs.Empty);
@@ -2909,21 +3169,31 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 			set
 			{
 				if(_byteProvider == value)
-					return;
+				{
+				    return;
+				}
 
-				if(value == null)
-					ActivateEmptyKeyInterpreter();
-				else
-					ActivateKeyInterpreter();
+			    if(value == null)
+			    {
+			        ActivateEmptyKeyInterpreter();
+			    }
+			    else
+			    {
+			        ActivateKeyInterpreter();
+			    }
 
+			    if(_byteProvider != null)
+			    {
+			        _byteProvider.LengthChanged -= new EventHandler(_byteProvider_LengthChanged);
+			    }
+
+			    _byteProvider = value;
 				if(_byteProvider != null)
-					_byteProvider.LengthChanged -= new EventHandler(_byteProvider_LengthChanged);
+				{
+				    _byteProvider.LengthChanged += new EventHandler(_byteProvider_LengthChanged);
+				}
 
-				_byteProvider = value;
-				if(_byteProvider != null)
-					_byteProvider.LengthChanged += new EventHandler(_byteProvider_LengthChanged);
-
-				OnByteProviderChanged(EventArgs.Empty);
+			    OnByteProviderChanged(EventArgs.Empty);
 
 				if(value == null) // do not raise events if value is null
 				{
@@ -2939,9 +3209,13 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 					SetSelectionLength(0);
 
 					if(_caretVisible && Focused)
-						UpdateCaret();
+					{
+					    UpdateCaret();
+					}
 					else
-						CreateCaret();
+					{
+					    CreateCaret();
+					}
 				}
 
 				CheckCurrentLineChanged();
@@ -2968,9 +3242,11 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 			set
 			{
 				if(_lineInfoVisible == value)
-					return;
+				{
+				    return;
+				}
 
-				_lineInfoVisible = value;
+			    _lineInfoVisible = value;
 				OnLineInfoVisibleChanged(EventArgs.Empty);
 
 				UpdateRectanglePositioning();
@@ -2988,7 +3264,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
             set
             {
                 if (_lineInfoOffset == value)
+                {
                     return;
+                }
 
                 _lineInfoOffset = value;
 
@@ -3006,9 +3284,11 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 			set
 			{
 				if(_borderStyle == value)
-					return;
+				{
+				    return;
+				}
 
-				_borderStyle = value;
+			    _borderStyle = value;
 				switch(_borderStyle)
 				{
 					case BorderStyle.None:
@@ -3040,9 +3320,11 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 			set
 			{
 				if(_stringViewVisible == value)
-					return;
+				{
+				    return;
+				}
 
-				_stringViewVisible = value;
+			    _stringViewVisible = value;
 				OnStringViewVisibleChanged(EventArgs.Empty);
 
 				UpdateRectanglePositioning();
@@ -3059,22 +3341,32 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 			get
 			{
 				if(_hexStringFormat == "X")
-					return HexCasing.Upper;
+				{
+				    return HexCasing.Upper;
+				}
 				else
-					return HexCasing.Lower;
+				{
+				    return HexCasing.Lower;
+				}
 			}
 			set
 			{
 				string format;
 				if(value == HexCasing.Upper)
-					format = "X";
+				{
+				    format = "X";
+				}
 				else
-					format = "x";
+				{
+				    format = "x";
+				}
 
-				if(_hexStringFormat == format)
-					return;
+			    if(_hexStringFormat == format)
+			    {
+			        return;
+			    }
 
-				_hexStringFormat = format;
+			    _hexStringFormat = format;
 				OnHexCasingChanged(EventArgs.Empty);
 
 				Invalidate();
@@ -3152,8 +3444,10 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 			set
 			{
 				if(_shadowSelectionVisible == value)
-					return;
-				_shadowSelectionVisible = value;
+				{
+				    return;
+				}
+			    _shadowSelectionVisible = value;
 				Invalidate();
 			}
 		} bool _shadowSelectionVisible = true;
@@ -3218,7 +3512,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
             set
             {
                 if (_insertActive == value)
+                {
                     return;
+                }
 
                 _insertActive = value;
 
@@ -3240,7 +3536,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
             get
             {
                 if (_byteCharConverter == null)
+                {
                     _byteCharConverter = new DefaultByteCharConverter();
+                }
                 return _byteCharConverter;
             }
             set
@@ -3271,7 +3569,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
                 sb.Append(" ");
             }
             if (sb.Length > 0)
+            {
                 sb.Remove(sb.Length - 1, 1);
+            }
             string result = sb.ToString();
             return result;
         }
@@ -3284,7 +3584,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
         {
             string sB = b.ToString(_hexStringFormat, System.Threading.Thread.CurrentThread.CurrentCulture);
             if (sB.Length == 1)
+            {
                 sB = "0" + sB;
+            }
             return sB;
         }
         /// <summary>
@@ -3295,7 +3597,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
         byte[] ConvertHexToBytes(string hex)
         {
             if (string.IsNullOrEmpty(hex))
+            {
                 return null;
+            }
             hex = hex.Trim();
             var hexArray = hex.Split(' ');
             var byteArray = new byte[hexArray.Length];
@@ -3307,7 +3611,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
                 byte b;
                 var isByte = ConvertHexToByte(hexValue, out b);
                 if (!isByte)
+                {
                     return null;
+                }
                 byteArray[i] = b;
             }
 
@@ -3354,18 +3660,22 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 		void SetHorizontalByteCount(int value)
 		{
 			if(_iHexMaxHBytes == value)
-				return;
+			{
+			    return;
+			}
 
-			_iHexMaxHBytes = value;
+		    _iHexMaxHBytes = value;
 			OnHorizontalByteCountChanged(EventArgs.Empty);
 		}
 
 		void SetVerticalByteCount(int value)
 		{
 			if(_iHexMaxVBytes == value)
-				return;
+			{
+			    return;
+			}
 
-			_iHexMaxVBytes = value;
+		    _iHexMaxVBytes = value;
 			OnVerticalByteCountChanged(EventArgs.Empty);
 		}
 
@@ -3409,7 +3719,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 		protected virtual void OnInsertActiveChanged(EventArgs e)
 		{
 			if(InsertActiveChanged != null)
-				InsertActiveChanged(this, e);
+			{
+			    InsertActiveChanged(this, e);
+			}
 		}
 
 		/// <summary>
@@ -3419,7 +3731,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 		protected virtual void OnReadOnlyChanged(EventArgs e)
 		{
 			if(ReadOnlyChanged != null)
-				ReadOnlyChanged(this, e);
+			{
+			    ReadOnlyChanged(this, e);
+			}
 		}
 
 		/// <summary>
@@ -3429,7 +3743,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 		protected virtual void OnByteProviderChanged(EventArgs e)
 		{
 			if(ByteProviderChanged != null)
-				ByteProviderChanged(this, e);
+			{
+			    ByteProviderChanged(this, e);
+			}
 		}
 
 		/// <summary>
@@ -3439,7 +3755,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 		protected virtual void OnSelectionStartChanged(EventArgs e)
 		{
 			if(SelectionStartChanged != null)
-				SelectionStartChanged(this, e);
+			{
+			    SelectionStartChanged(this, e);
+			}
 		}
 
 		/// <summary>
@@ -3449,7 +3767,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 		protected virtual void OnSelectionLengthChanged(EventArgs e)
 		{
 			if(SelectionLengthChanged != null)
-				SelectionLengthChanged(this, e);
+			{
+			    SelectionLengthChanged(this, e);
+			}
 		}
 
 		/// <summary>
@@ -3459,7 +3779,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 		protected virtual void OnLineInfoVisibleChanged(EventArgs e)
 		{
 			if(LineInfoVisibleChanged != null)
-				LineInfoVisibleChanged(this, e);
+			{
+			    LineInfoVisibleChanged(this, e);
+			}
 		}
 
 		/// <summary>
@@ -3469,7 +3791,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 		protected virtual void OnStringViewVisibleChanged(EventArgs e)
 		{
 			if(StringViewVisibleChanged != null)
-				StringViewVisibleChanged(this, e);
+			{
+			    StringViewVisibleChanged(this, e);
+			}
 		}
 
 		/// <summary>
@@ -3479,7 +3803,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 		protected virtual void OnBorderStyleChanged(EventArgs e)
 		{
 			if(BorderStyleChanged != null)
-				BorderStyleChanged(this, e);
+			{
+			    BorderStyleChanged(this, e);
+			}
 		}
 
 		/// <summary>
@@ -3489,7 +3815,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 		protected virtual void OnUseFixedBytesPerLineChanged(EventArgs e)
 		{
 			if(UseFixedBytesPerLineChanged != null)
-				UseFixedBytesPerLineChanged(this, e);
+			{
+			    UseFixedBytesPerLineChanged(this, e);
+			}
 		}
 
 		/// <summary>
@@ -3499,7 +3827,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 		protected virtual void OnBytesPerLineChanged(EventArgs e)
 		{
 			if(BytesPerLineChanged != null)
-				BytesPerLineChanged(this, e);
+			{
+			    BytesPerLineChanged(this, e);
+			}
 		}
 
 		/// <summary>
@@ -3509,7 +3839,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 		protected virtual void OnVScrollBarVisibleChanged(EventArgs e)
 		{
 			if(VScrollBarVisibleChanged != null)
-				VScrollBarVisibleChanged(this, e);
+			{
+			    VScrollBarVisibleChanged(this, e);
+			}
 		}
 
 		/// <summary>
@@ -3519,7 +3851,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 		protected virtual void OnHexCasingChanged(EventArgs e)
 		{
 			if(HexCasingChanged != null)
-				HexCasingChanged(this, e);
+			{
+			    HexCasingChanged(this, e);
+			}
 		}
 
 		/// <summary>
@@ -3529,7 +3863,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 		protected virtual void OnHorizontalByteCountChanged(EventArgs e)
 		{
 			if(HorizontalByteCountChanged != null)
-				HorizontalByteCountChanged(this, e);
+			{
+			    HorizontalByteCountChanged(this, e);
+			}
 		}
 
 		/// <summary>
@@ -3539,7 +3875,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 		protected virtual void OnVerticalByteCountChanged(EventArgs e)
 		{
 			if(VerticalByteCountChanged != null)
-				VerticalByteCountChanged(this, e);
+			{
+			    VerticalByteCountChanged(this, e);
+			}
 		}
 
 		/// <summary>
@@ -3549,7 +3887,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 		protected virtual void OnCurrentLineChanged(EventArgs e)
 		{
 			if(CurrentLineChanged != null)
-				CurrentLineChanged(this, e);
+			{
+			    CurrentLineChanged(this, e);
+			}
 		}
 
 		/// <summary>
@@ -3559,7 +3899,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 		protected virtual void OnCurrentPositionInLineChanged(EventArgs e)
 		{
 			if(CurrentPositionInLineChanged != null)
-				CurrentPositionInLineChanged(this, e);
+			{
+			    CurrentPositionInLineChanged(this, e);
+			}
 		}
 
 
@@ -3570,7 +3912,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
         protected virtual void OnCopied(EventArgs e)
         {
             if (Copied != null)
+            {
                 Copied(this, e);
+            }
         }
 
         /// <summary>
@@ -3580,7 +3924,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
         protected virtual void OnCopiedHex(EventArgs e)
         {
             if (CopiedHex != null)
+            {
                 CopiedHex(this, e);
+            }
         }
 
 		/// <summary>
@@ -3590,12 +3936,16 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 		protected override void OnMouseDown(MouseEventArgs e)
 		{
 			if(!Focused)
-				Focus();
+			{
+			    Focus();
+			}
 
-            if(e.Button == MouseButtons.Left)
-			    SetCaretPosition(new Point(e.X, e.Y));
+		    if(e.Button == MouseButtons.Left)
+		    {
+		        SetCaretPosition(new Point(e.X, e.Y));
+		    }
 
-			base.OnMouseDown (e);
+		    base.OnMouseDown (e);
 		}
 
 		/// <summary>

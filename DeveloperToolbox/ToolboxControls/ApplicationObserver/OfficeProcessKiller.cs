@@ -264,29 +264,44 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
         public void KillProcesses()
         {
             if(DialogResult.Yes != MessageBox.Show(_killQuestion, "NetOffice Developer Toolbox", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+            {
                 return ;
+            }
 
             if(Excel)
+            {
                 KillProcesses(_excelProcs);
+            }
 
             if(Word)
+            {
                 KillProcesses(_wordProcs);
+            }
 
             if(Outlook)
+            {
                 KillProcesses(_outlookProcs);
+            }
 
             if(PowerPoint)
+            {
                 KillProcesses(_powerProcs);
+            }
 
             if(Access)
+            {
                 KillProcesses(_accessProcs);
+            }
 
             if (Project)
+            {
                 KillProcesses(_projectProcs);
+            }
 
             if (Visio)
+            {
                 KillProcesses(_visioProcs);
-
+            }
         }
 
         private void KillProcesses(string name)
@@ -296,7 +311,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
                 Process[] procs = Process.GetProcessesByName(name);
 
                 foreach (Process p in procs)
+                {
                     p.Kill();
+                }
             }
             catch (System.ComponentModel.Win32Exception) { ;}
             catch (NotSupportedException) { ;}
@@ -326,7 +343,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
                 {
                     itemControl.SubItems[1].Text = length;
                     if (null != InstanceRunningCountChanged)
+                    {
                         InstanceRunningCountChanged(this, new EventArgs());
+                    }
                 }
             }
         }
@@ -336,10 +355,14 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
             try
             {
                 if (null == procs)
+                {
                     return;
+                }
 
                 foreach (Process p in procs)
+                {
                     p.Kill();
+                }
             }
             catch
             {
@@ -379,25 +402,39 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
             int result = 0;
 
             if ((true == Excel) && (null != _excelProcs))
+            {
                 result += _excelProcs.Length;
+            }
 
             if ((true == Word) && (null != _wordProcs))
+            {
                 result += _wordProcs.Length;
+            }
 
             if ((true == Outlook) && (null != _outlookProcs))
+            {
                 result += _outlookProcs.Length;
+            }
 
             if ((true == PowerPoint) && (null != _powerProcs))
+            {
                 result += _powerProcs.Length;
+            }
 
             if ((true == Access) && (null != _accessProcs))
+            {
                 result += _accessProcs.Length;
+            }
 
             if ((true == Project) && (null != _projectProcs))
+            {
                 result += _projectProcs.Length;
+            }
 
             if ((true == Visio) && (null != _visioProcs))
+            {
                 result += _visioProcs.Length;
+            }
 
             return result;
         }
@@ -426,9 +463,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
             foreach (Process item in allNewProcs)
             {
                 if (IsOfficeProcess(item))
+                {
                     resultList.Insert(0, item);
+                }
                 else
+                {
                     resultList.Add(item);
+                }
             }
 
             return resultList.ToArray();
@@ -493,7 +534,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
                     if (!found)
                     {
                         if (null != AllProcessesChanged)
+                        {
                             AllProcessesChanged(allNewProcs, new EventArgs());
+                        }
                         return;
                     }
                 }

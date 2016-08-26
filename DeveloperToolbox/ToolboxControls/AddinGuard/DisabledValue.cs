@@ -80,7 +80,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
         internal string GetDisabledItemName(string value)
         {
             if (null == value)
+            {
                 return _valueName;
+            }
 
             int i = value.LastIndexOf("\\", StringComparison.InvariantCultureIgnoreCase);
             return value.Substring(i + 1);
@@ -95,7 +97,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
                 name = name.Substring(i + 1);
             }
             else
+            {
                 name = faultyName;
+            }
 
             return name;
         }
@@ -105,7 +109,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
             if (null != value)
             {
                 if (!(value is byte[]))
+                {
                     return null;
+                }
                 byte[] byteArray = (byte[])value;
                 if (byteArray.Length > 2)
                 {
@@ -113,7 +119,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
                     val = val.Replace("\0", "");
                     int i = val.LastIndexOf("\\", StringComparison.InvariantCultureIgnoreCase);
                     if (i >= 0)
+                    {
                         return ValidateByteArrayString(val.Substring(i - 2));
+                    }
                     else
                     {
                         return ValidateByteArrayString(val);
@@ -121,22 +129,30 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
 
                 }
                 else
+                {
                     return null;
+                }
             }
             else
+            {
                 return null;
+            }
         }
 
         internal static string ValidateByteArrayString(string value)
         {
             if (null == value)
+            {
                 return value;
+            }
 
             string result = "";
             foreach (char item in value.ToCharArray())
             {
                 if ("abcdefghijklmnopqrstuvwxyz,.-:;()*".IndexOf(item.ToString(), StringComparison.InvariantCultureIgnoreCase) >= 0)
+                {
                     result += item;
+                }
             }
             return result;
         }

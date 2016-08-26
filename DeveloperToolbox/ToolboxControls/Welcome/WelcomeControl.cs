@@ -133,7 +133,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.Welcome
         public void LoadComplete()
         {
             if (checkBoxStartAppMinimized.Checked)
+            {
                 Host.MinimizeMainWindow(false);
+            }
         }
 
         public void LoadConfiguration(System.Xml.XmlNode configNode)
@@ -144,21 +146,31 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.Welcome
             XmlNode languageNode = configNode["Language"];
 
             if (null != minimizeNode)
+            {
                 checkBoxStartAppMinimized.Checked = Convert.ToBoolean(minimizeNode.InnerText);
+            }
             if(null != trayNode)
+            {
                 checkBoxMinimizeToTray.Checked = Convert.ToBoolean(trayNode.InnerText);
+            }
             if(null != startupNode)
+            {
                 checkBoxStartAppWithWindows.Checked = Convert.ToBoolean(startupNode.InnerText);
+            }
 
             if (null != languageNode)
             {
                 int lcid = 1033;
                 if (!int.TryParse((languageNode.InnerText), out lcid))
+                {
                     lcid = 1033;
+                }
                 SelectLanguage(lcid);
             }
             else
+            {
                 SelectLanguage(1033);
+            }
         }
 
         private void SelectLanguage(int lcid)
@@ -313,7 +325,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.Welcome
                 RegistryKey runKey = Registry.CurrentUser.OpenSubKey(runEntryKey, true);
                 object val = runKey.GetValue(runEntryTitle);
                 if (val == null)
+                {
                     runKey.SetValue(runEntryTitle, this.GetType().Assembly.Location);
+                }
                 runKey.Close();
             }
             else
@@ -321,7 +335,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.Welcome
                 RegistryKey runKey = Registry.CurrentUser.OpenSubKey(runEntryKey, true);
                 object val = runKey.GetValue(runEntryTitle);
                 if (val != null)
+                {
                     runKey.DeleteValue(runEntryTitle);
+                }
                 runKey.Close();
             }
         }
@@ -373,7 +389,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.Welcome
             {
                 Translation.ToolLanguage selectedLanguage = comboBoxLanguage.SelectedItem as Translation.ToolLanguage;
                 if (null != selectedLanguage && selectedLanguage.LCID != 0)
+                {
                     Host.CurrentLanguageID = selectedLanguage.LCID;
+                }
             }
             catch (Exception exception)
             {
@@ -437,7 +455,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.Welcome
             try
             {
                 if (checkBoxMinimizeToTray.Checked)
+                {
                     SetupTrayIcon(true);
+                }
             }
             catch (Exception exception)
             {

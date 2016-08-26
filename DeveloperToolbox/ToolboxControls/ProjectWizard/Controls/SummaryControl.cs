@@ -62,9 +62,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
             get
             {
                 if (Forms.MainForm.Singleton.CurrentLanguageID == 1031)
+                {
                     return "Fertig! Nur noch ein Klick bis zur Erstellung.";
+                }
                 else
+                {
                     return "Done!";
+                }
             }
         }
 
@@ -73,9 +77,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
             get
             {
                 if (Forms.MainForm.Singleton.CurrentLanguageID == 1031)
+                {
                     return "Prüfen Sie Ihre Einstellungen in der Zusammenfassung.";
+                }
                 else
+                {
                     return "Check your settings and lets get started.";
+                }
             }
         }
 
@@ -213,7 +221,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
         private void RaiseChangeEvent()
         {
             if (null != ReadyStateChanged)
+            {
                 ReadyStateChanged(this);
+            }
         }
 
         #endregion

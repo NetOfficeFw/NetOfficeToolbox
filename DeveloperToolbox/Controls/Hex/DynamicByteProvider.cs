@@ -42,7 +42,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 			_hasChanges = true;
 
 			if(Changed != null)
-				Changed(this, e);
+			{
+			    Changed(this, e);
+			}
 		}
 
 		/// <summary>
@@ -51,7 +53,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 		void OnLengthChanged(EventArgs e)
 		{
 			if(LengthChanged != null)
-				LengthChanged(this, e);
+			{
+			    LengthChanged(this, e);
+			}
 		}
 
 		/// <summary>

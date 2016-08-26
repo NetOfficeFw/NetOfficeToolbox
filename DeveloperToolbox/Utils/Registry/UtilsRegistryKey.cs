@@ -37,7 +37,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Registry
             get
             {
                 if (_root.Key.Path == this.Path)
+                {
                     return null;
+                }
 
                 int position = _path.LastIndexOf("\\", StringComparison.InvariantCultureIgnoreCase);
                 if (-1 == position)
@@ -144,7 +146,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Registry
             {
                 i++;
                 if (name.Equals(item, StringComparison.InvariantCultureIgnoreCase))
+                {
                     name += i;
+                }
             }
 
             return name;

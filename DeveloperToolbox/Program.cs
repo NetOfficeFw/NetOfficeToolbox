@@ -60,7 +60,9 @@ namespace NetOffice.DeveloperToolbox
                 CreateMutex();
                 ProceedCommandLineElevationArguments(args);
                 if (PerformSingleInstanceValidation() || PerformSelfElevation())
+                {
                     return;
+                }
 
                 // Nice to know: Its more safe to trigger the AssemblyResolve event in Main(string[] args) only and move all other code to a Main2 method (call Main2 at last in Main)
                 // because the runtime try to bind target/used assemblies(when jump into main) before the AssemblyResolve trigger is established.
@@ -79,7 +81,9 @@ namespace NetOffice.DeveloperToolbox
             catch (Exception exception)
             {
                 if (!_isShutDown)
+                {
                     Forms.ErrorForm.ShowError(null, exception, ErrorCategory.Penalty);
+                }
             }
             finally
             {
@@ -117,7 +121,9 @@ namespace NetOffice.DeveloperToolbox
                 #endif
 
                 if (!Directory.Exists(resultPath))
+                {
                     throw new DirectoryNotFoundException(resultPath);
+                }
 
                 return resultPath;
             }
@@ -179,7 +185,9 @@ namespace NetOffice.DeveloperToolbox
             string result = String.Empty;
             string[] array = Application.StartupPath.Split(new string[] { "\\" }, StringSplitOptions.RemoveEmptyEntries);
             for (int i = 0; i < array.Length - 3; i++)
+            {
                 result += array[i] + "\\";
+            }
             return result;
         }
 
@@ -206,7 +214,9 @@ namespace NetOffice.DeveloperToolbox
         private static void ReleaseMutex()
         {
             if (null != _systemSingleton && _mutexOwner)
+            {
                 _systemSingleton.ReleaseMutex();
+            }
             _systemSingleton = null;
         }
 
@@ -217,7 +227,9 @@ namespace NetOffice.DeveloperToolbox
         private static void ProceedCommandLineElevationArguments(string[] args)
         {
             if (null == args)
+            {
                 return;
+            }
 
             SelfElevation = (null != args.FirstOrDefault(e => e.Equals("-SelfElevation", StringComparison.InvariantCultureIgnoreCase)));
         }
@@ -289,7 +301,9 @@ namespace NetOffice.DeveloperToolbox
         private static Assembly LoadFile(string assemblyFullPath)
         {
             if (String.IsNullOrWhiteSpace(assemblyFullPath))
+            {
                 throw new ArgumentNullException("assemblyFullPath");
+            }
 
             try
             {
@@ -300,10 +314,14 @@ namespace NetOffice.DeveloperToolbox
                 string assemblyFileName = Path.GetFileName(assemblyFullPath);
 
                 if (!DependencySubFolder.Equals(assemblyFolderPath, StringComparison.InvariantCultureIgnoreCase))
+                {
                     throw new System.Security.SecurityException("Invalid assembly directory.");
+                }
 
                 if (!_dependencies.Contains(assemblyFileName))
+                {
                     throw new System.Security.SecurityException("Invalid assembly file.");
+                }
 
                 // UnsafeLoadFrom allows to load assemblies from may unsafe locations. A lot of issue reports before so i switch to this one
                 return Assembly.UnsafeLoadFrom(assemblyFullPath);
@@ -323,7 +341,9 @@ namespace NetOffice.DeveloperToolbox
         {
             // if its in shutdown(because a heavy error occured) we dont want to show another error again
             if (_isShutDown)
+            {
                 return;
+            }
 
             try
             {
@@ -346,24 +366,34 @@ namespace NetOffice.DeveloperToolbox
         {
             // if its in shutdown we dont need another assembly anymore
             if (_isShutDown)
+            {
                 return null;
+            }
 
             try
             {
                 // detect its a assembly reference or a file path and extract the assembly file name
                 string assemblyName = null;
                 if (args.Name.IndexOf(",", StringComparison.InvariantCultureIgnoreCase) > -1)
+                {
                     assemblyName = args.Name.Substring(0, args.Name.IndexOf(",")) + ".dll";
+                }
                 else
+                {
                     assemblyName = Path.GetFileName(args.Name);
+                }
 
                 if (_dependencies.Contains(assemblyName))
                 {
                     string assemblyFullPath = Path.Combine(Program.DependencySubFolder, assemblyName);
                     if (File.Exists(assemblyFullPath))
+                    {
                         return LoadFile(assemblyFullPath);
+                    }
                     else
+                    {
                         throw new FileNotFoundException(String.Format("Failed to load {0}", assemblyName));
+                    }
                 }
             }
             catch (Exception exception)

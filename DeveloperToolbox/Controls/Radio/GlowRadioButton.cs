@@ -29,9 +29,13 @@ namespace NetOffice.DeveloperToolbox.Controls.Radio
         private void GlowRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             if (Checked)
+            {
                 ForeColor = Color.Blue;
+            }
             else
+            {
                 ForeColor = Color.FromKnownColor(KnownColor.ControlText);
+            }
         }
 
         #endregion

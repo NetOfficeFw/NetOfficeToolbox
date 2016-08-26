@@ -29,7 +29,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
         public static AnalyzerResult AnalyzeAssembly(AssemblyDefinition assemblyDefinition)
         {
             if (!CheckNetOfficeReferencesExists(assemblyDefinition))
+            {
                 return new AnalyzerResult(false);
+            }
 
             List<AssemblyNameReference> listReferences = new List<AssemblyNameReference>();
             XDocument document = new XDocument();
@@ -58,7 +60,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
 
                         bool typeIncludesNetOfficeCalls = AnalyzeEntity(typeDefinition, newElement);
                         if (typeIncludesNetOfficeCalls)
+                        {
                             assemblyElement.Element("Classes").Add(newElement);
+                        }
                     }
                 }
             }
@@ -79,14 +83,18 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
             {
                 bool fieldResult = AnalyzeField(fieldDefinition, newElement);
                 if (fieldResult)
+                {
                     result = fieldResult;
+                }
             }
 
             foreach (MethodDefinition methodDefinition in typeDefinition.Methods)
             {
                 bool fieldResult = AnalyzeMethod(methodDefinition, newElement);
                 if (fieldResult)
+                {
                     result = fieldResult;
+                }
             }
 
             return result;
@@ -116,7 +124,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                     fields.Add(newField);
                     supportByNode.Add(new XAttribute("Name", typeName));
                     foreach (string item in supportByLibrary)
+                    {
                         supportByNode.Add(new XElement("Version", item));
+                    }
                 }
             }
 
@@ -160,7 +170,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                     {
                         supportByNode.Add(new XAttribute("Name", typeName));
                         foreach (string item in supportByLibrary)
+                        {
                             supportByNode.Add(new XElement("Version", item));
+                        }
                     }
 
                 }
@@ -186,7 +198,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                 {
                     supportByNode.Add(new XAttribute("Name", typeName));
                     foreach (string item in supportByLibrary)
+                    {
                         supportByNode.Add(new XElement("Version", item));
+                    }
                 }
 
                 returnValueNode.Add(returnValue);
@@ -238,7 +252,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                                         string memberName = _netOfficeSupportTable.GetEnumMemberNameFromValue(variableDefinition.VariableType.FullName, opValue);
                                         supportByNode.Add(new XAttribute("Name", variableDefinition.VariableType.FullName + "." + memberName));
                                         foreach (string item in supportByLibrary)
+                                        {
                                             supportByNode.Add(new XElement("Version", item));
+                                        }
                                         newParameter.Add(supportByNode);
                                         newMethodNode.Element("LocalFieldSets").Add(newParameter);
                                     }
@@ -283,7 +299,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                                         string memberName = _netOfficeSupportTable.GetEnumMemberNameFromValue(fieldDefinition.FieldType.FullName, opValue);
                                         supportByNode.Add(new XAttribute("Name", fieldDefinition.FieldType + "." + memberName));
                                         foreach (string item in supportByLibrary)
+                                        {
                                             supportByNode.Add(new XElement("Version", item));
+                                        }
                                         newParameter.Add(supportByNode);
                                         newMethodNode.Element("FieldSets").Add(newParameter);
                                     }
@@ -335,9 +353,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
             Mono.Cecil.Cil.MethodBody body = methodDefinition.Body;
             VariableDefinition definiton = body.Variables[varIndex];
             if (definiton.VariableType.FullName.StartsWith(_apiName) && CountOf(definiton.VariableType.FullName, ".") > 1 && !definiton.VariableType.FullName.Equals(_apiName + ".dll", StringComparison.InvariantCultureIgnoreCase))
+            {
                 return definiton;
+            }
             else
+            {
                 return null;
+            }
         }
 
         private static bool AnalyzeMethodVariables(MethodDefinition methodDefinition, XElement entity, XElement newMethodNode)
@@ -378,7 +400,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                          {
                              supportByNode.Add(new XAttribute("Name", typeName));
                              foreach (string item in supportByLibrary)
+                             {
                                  supportByNode.Add(new XElement("Version", item));
+                             }
                          }
                      }
                  }
@@ -426,7 +450,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                             {
                                 supportByNode.Add(new XAttribute("Name", typeName), new XAttribute("Api", componentName));
                                 foreach (string item in supportByLibrary)
+                                {
                                     supportByNode.Add(new XElement("Version", item));
+                                }
                             }
                         }
                     }
@@ -441,9 +467,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
             string[] supportByLibrary = _netOfficeSupportTable.GetTypeSupport(paramDefintion.ParameterType.FullName);
             if (paramDefintion.ParameterType.FullName.StartsWith(_apiName) && !paramDefintion.ParameterType.FullName.Equals(_apiName + ".dll", StringComparison.InvariantCultureIgnoreCase) &&
                 CountOf(paramDefintion.ParameterType.FullName, ".") > 1 && (null != supportByLibrary))
+            {
                 return supportByLibrary;
+            }
             else
+            {
                 return null;
+            }
         }
 
         private static int GetOperatorValue(Mono.Cecil.Cil.Instruction parameterInstruction, out bool sucseed)
@@ -526,7 +556,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
 
                         string[] testArray = typeName.Split(new string[] { "." }, StringSplitOptions.RemoveEmptyEntries);
                         if (testArray.Length >= 3 && testArray[2] == "Tools")
+                        {
                             continue;
+                        }
                         if ((typeName.StartsWith(_apiName)) && !typeName.Equals(_apiName + ".dll", StringComparison.InvariantCultureIgnoreCase) &&
                             CountOf(typeName, ".") > 1 && (!typeName.StartsWith("NetOffice.DeveloperToolbox")))
                         {
@@ -551,7 +583,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                             {
                                 supportByNode.Add(new XAttribute("Name", callName));
                                 foreach (string item in supportByLibrary)
+                                {
                                     supportByNode.Add(new XElement("Version", item));
+                                }
                             }
 
                             bool resultParameter = AnalyzeMethodCallParameters(itemInstruction, newObject);
@@ -591,12 +625,18 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
 
                             string enumMemberName = _netOfficeSupportTable.GetEnumMemberNameFromValue(itemParameter.ParameterType.FullName, GetOperatorValue(parameterInstruction));
                             if (null != enumMemberName)
+                            {
                                 supportByNode.Add(new XAttribute("Name", paramType + "." + enumMemberName));
+                            }
                             else
+                            {
                                 supportByNode.Add(new XAttribute("Name", paramType + "." + GetOperatorValue(parameterInstruction).ToString()));
+                            }
 
                             foreach (string item in supportByLibrary)
+                            {
                                 supportByNode.Add(new XElement("Version", item));
+                            }
                             newParameter.Add(supportByNode);
                             newMethodCallNode.Element("Parameters").Add(newParameter);
                         }
@@ -612,7 +652,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                             XElement supportByNode = new XElement("SupportByLibrary", new XAttribute("Api", componentName));
                             supportByNode.Add(new XAttribute("Name", paramType));
                             foreach (string item in supportByLibrary)
+                            {
                                 supportByNode.Add(new XElement("Version", item));
+                            }
                             newParameter.Add(supportByNode);
                             newMethodCallNode.Element("Parameters").Add(newParameter);
                         }
@@ -647,7 +689,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                                                 supportByNode.Add(new XAttribute("Name", targetName + "." + enumMemberName));
 
                                                 foreach (string item in supportByLibrary)
+                                                {
                                                     supportByNode.Add(new XElement("Version", item));
+                                                }
                                                 newParameter.Add(supportByNode);
                                                 newMethodCallNode.Element("Parameters").Add(newParameter);
                                             }
@@ -673,9 +717,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                 if (startItem.OpCode.Name.StartsWith("ld"))
                 {
                     if (startItem.OpCode.Name.StartsWith("ldarg."))
+                    {
                         return null;
+                    }
                     else
+                    {
                         return startItem;
+                    }
                 }
                 startItem = startItem.Previous;
             }
@@ -695,7 +743,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                 {
                     i++;
                     if (i == methodReference.Parameters.Count)
+                    {
                         break;
+                    }
                 }
                 startItem = startItem.Previous;
             }
@@ -707,7 +757,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                 {
                     i++;
                     if (i == index)
+                    {
                         return startItem;
+                    }
                 }
                 startItem = startItem.Next;
             }
@@ -769,7 +821,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                     case "MSProjectApi":
                     case "VisioApi":
                         if (!listReferences.Contains(item))
+                        {
                             listReferences.Add(item);
+                        }
                         break;
                 }
             }

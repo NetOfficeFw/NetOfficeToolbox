@@ -20,9 +20,13 @@ namespace NetOffice.DeveloperToolbox.Translation
         {
             var item = this.Where(i => i.Value.Equals(name, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
             if (null != item)
+            {
                 caption = item.Value2;
+            }
             else
+            {
                 caption = null;
+            }
         }
 
         /// <summary>

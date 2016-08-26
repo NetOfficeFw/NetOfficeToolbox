@@ -276,7 +276,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
             set
             {
                 if (_settingCurrentValue)
+                {
                     throw new InvalidOperationException();
+                }
 
                 try
                 {
@@ -304,18 +306,26 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
             set
             {
                 if (_triggerAnimator == value)
+                {
                     return;
+                }
 
                 if (_triggerAnimator == this)
+                {
                     throw new InvalidOperationException("Cannot set itself as TriggerAnimator.");
+                }
 
                 if (_triggerAnimator != null)
+                {
                     _triggerAnimator.AnimationFinished -= new EventHandler(OnTriggerAnimatorAnimationFinished);
+                }
 
                 _triggerAnimator = value;
 
                 if (_triggerAnimator != null)
+                {
                     _triggerAnimator.AnimationFinished += new EventHandler(OnTriggerAnimatorAnimationFinished);
+                }
             }
         }
 
@@ -333,18 +343,26 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
             set
             {
                 if (_parentAnimator == value)
+                {
                     return;
+                }
 
                 if (_parentAnimator == this)
+                {
                     throw new InvalidOperationException("Cannot set itself as ParentAnimator.");
+                }
 
                 if (_parentAnimator != null)
+                {
                     _parentAnimator.RemoveChildAnimator(this);
+                }
 
                 _parentAnimator = value;
 
                 if (_parentAnimator != null)
+                {
                     _parentAnimator.AddChildAnimator(this);
+                }
             }
         }
 
@@ -404,19 +422,27 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
             set
             {
                 if (_currentStep == value)
+                {
                     return;
+                }
 
                 _currentStep = value;
 
                 if (_currentStep > 100)
+                {
                     _currentStep = 100;
+                }
                 else if (_currentStep < 0)
+                {
                     _currentStep = 0;
+                }
 
                 CurrentValue = GetValueForStep(_currentStep);
 
                 foreach (AnimatorBase childAnimator in _childAnimators)
+                {
                     childAnimator.CurrentStep = _currentStep;
+                }
 
                 OnCurrentStepChanged(EventArgs.Empty);
             }
@@ -471,7 +497,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
         public void Start(object endValue)
         {
             if (_childAnimators.Count > 0)
+            {
                 throw new InvalidOperationException("Function cannot be called when ChildAnimators are set.");
+            }
 
             EndValue = endValue;
             Start(true);
@@ -495,11 +523,15 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
         public void Start(bool setStartValuesToCurrentValues)
         {
             if (setStartValuesToCurrentValues)
+            {
                 SetStartValuesToCurrentValue();
+            }
 
             this.CurrentStep = 0;
             if (!_timer.Enabled)
+            {
                 _timer.Start();
+            }
 
             OnAnimationStarted(EventArgs.Empty);
         }
@@ -512,7 +544,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
         {
             CurrentValue = StartValue;
             foreach (AnimatorBase childAnimator in _childAnimators)
+            {
                 childAnimator.SetCurrentValuesToStartValues();
+            }
         }
 
         /// <summary>
@@ -523,7 +557,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
         {
             StartValue = CurrentValue;
             foreach (AnimatorBase childAnimator in _childAnimators)
+            {
                 childAnimator.SetStartValuesToCurrentValue();
+            }
         }
 
         /// <summary>
@@ -536,7 +572,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
             StartValue = EndValue;
             EndValue = temp;
             foreach (AnimatorBase childAnimator in _childAnimators)
+            {
                 childAnimator.SwitchStartEndValues();
+            }
         }
 
         /// <summary>
@@ -568,7 +606,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
         protected void SynchronizeToSource()
         {
             if (!Program.IsDesign)
+            {
                 return;
+            }
 
             switch (_syncMode)
             {
@@ -589,7 +629,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
         protected void SynchronizeFromSource()
         {
             if (!Program.IsDesign)
+            {
                 return;
+            }
 
             switch (_syncMode)
             {
@@ -609,7 +651,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
         protected void ResetValues()
         {
             if (_isInitializing)
+            {
                 return;
+            }
 
             StartValue = CurrentValue;
             EndValue = CurrentValue;
@@ -626,7 +670,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
         protected virtual void OnAnimationStarted(EventArgs eventArgs)
         {
             if (AnimationStarted != null)
+            {
                 AnimationStarted(this, eventArgs);
+            }
         }
 
         /// <summary>
@@ -636,7 +682,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
         protected virtual void OnAnimationContinued(EventArgs eventArgs)
         {
             if (AnimationContinued != null)
+            {
                 AnimationContinued(this, eventArgs);
+            }
         }
 
         /// <summary>
@@ -646,7 +694,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
         protected virtual void OnAnimationStopped(EventArgs eventArgs)
         {
             if (AnimationStopped != null)
+            {
                 AnimationStopped(this, eventArgs);
+            }
         }
 
         /// <summary>
@@ -656,7 +706,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
         protected virtual void OnAnimationFinished(EventArgs eventArgs)
         {
             if (AnimationFinished != null)
+            {
                 AnimationFinished(this, eventArgs);
+            }
         }
 
         /// <summary>
@@ -666,7 +718,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
         protected virtual void OnLoopAnimationChanged(EventArgs eventArgs)
         {
             if (LoopAnimationChanged != null)
+            {
                 LoopAnimationChanged(this, eventArgs);
+            }
         }
 
         /// <summary>
@@ -676,7 +730,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
         protected virtual void OnStepSizeChanged(EventArgs eventArgs)
         {
             if (StepSizeChanged != null)
+            {
                 StepSizeChanged(this, eventArgs);
+            }
         }
 
         /// <summary>
@@ -686,7 +742,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
         protected virtual void OnIntervallChanged(EventArgs eventArgs)
         {
             if (IntervallChanged != null)
+            {
                 IntervallChanged(this, eventArgs);
+            }
         }
 
         /// <summary>
@@ -696,7 +754,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
         protected void OnSynchronizationModeChanged(EventArgs eventArgs)
         {
             if (SynchronizationModeChanged != null)
+            {
                 SynchronizationModeChanged(this, eventArgs);
+            }
         }
 
         /// <summary>
@@ -706,7 +766,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
         protected virtual void OnCurrentStepChanged(EventArgs eventArgs)
         {
             if (CurrentStepChanged != null)
+            {
                 CurrentStepChanged(this, eventArgs);
+            }
         }
 
         /// <summary>
@@ -716,10 +778,14 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
         protected virtual void OnStartValueChanged(EventArgs eventArgs)
         {
             if (_syncMode == SynchronizationMode.Start)
+            {
                 CurrentValue = StartValue;
+            }
 
             if (StartValueChanged != null)
+            {
                 StartValueChanged(this, eventArgs);
+            }
         }
 
         /// <summary>
@@ -729,10 +795,14 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
         protected virtual void OnEndValueChanged(EventArgs eventArgs)
         {
             if (_syncMode == SynchronizationMode.End)
+            {
                 CurrentValue = EndValue;
+            }
 
             if (EndValueChanged != null)
+            {
                 EndValueChanged(this, eventArgs);
+            }
         }
 
         #endregion
@@ -771,10 +841,14 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
         protected void AddChildAnimator(AnimatorBase animator)
         {
             if (animator == null)
+            {
                 throw new ArgumentNullException("animator");
+            }
 
             if (!_childAnimators.Contains(animator))
+            {
                 _childAnimators.Add(animator);
+            }
 
             animator.SetIntervall(this.Intervall, false);
             animator.SetStepSize(this.StepSize, false);
@@ -789,10 +863,14 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
         protected void RemoveChildAnimator(AnimatorBase animator)
         {
             if (animator == null)
+            {
                 throw new ArgumentNullException("animator");
+            }
 
             if (_childAnimators.Contains(animator))
+            {
                 _childAnimators.Remove(animator);
+            }
         }
 
         /// <summary>
@@ -822,7 +900,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
         protected virtual void OnCurrentValueChanged(object sender, EventArgs e)
         {
             if (SettingCurrentValue)
+            {
                 return;
+            }
 
             SynchronizeFromSource();
         }
@@ -836,12 +916,16 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
         private void SetSynchronizationMode(SynchronizationMode synchronizationMode, bool checkParentAnimator)
         {
             if (_syncMode == synchronizationMode)
+            {
                 return;
+            }
 
             if (synchronizationMode == SynchronizationMode.ResetToCurrent)
             {
                 if (!Program.IsDesign)
+                {
                     return;
+                }
 
                 ResetValues();
 
@@ -849,13 +933,17 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
             }
 
             if (_parentAnimator != null && checkParentAnimator && !_isInitializing)
+            {
                 throw new InvalidOperationException(SET_PROP_WITH_PARENT_ANIMATOR_ERROR_MESSAGE);
+            }
 
             _syncMode = synchronizationMode;
             SynchronizeToSource();
 
             foreach (AnimatorBase childAnimator in _childAnimators)
+            {
                 childAnimator.SetSynchronizationMode(synchronizationMode, false);
+            }
 
             OnSynchronizationModeChanged(EventArgs.Empty);
         }
@@ -863,15 +951,21 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
         private void SetIntervall(int intervall, bool checkParentAnimator)
         {
             if (_timer.Interval == intervall)
+            {
                 return;
+            }
 
             if (_parentAnimator != null && checkParentAnimator && !_isInitializing)
+            {
                 throw new InvalidOperationException(SET_PROP_WITH_PARENT_ANIMATOR_ERROR_MESSAGE);
+            }
 
             _timer.Interval = intervall;
 
             foreach (AnimatorBase childAnimator in _childAnimators)
+            {
                 childAnimator.SetIntervall(intervall, false);
+            }
 
             OnIntervallChanged(EventArgs.Empty);
         }
@@ -879,15 +973,21 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
         private void SetStepSize(double stepSize, bool checkParentAnimator)
         {
             if (_stepSize == stepSize)
+            {
                 return;
+            }
 
             if (_parentAnimator != null && checkParentAnimator && !_isInitializing)
+            {
                 throw new InvalidOperationException(SET_PROP_WITH_PARENT_ANIMATOR_ERROR_MESSAGE);
+            }
 
             _stepSize = stepSize;
 
             foreach (AnimatorBase childAnimator in _childAnimators)
+            {
                 childAnimator.SetStepSize(stepSize, false);
+            }
 
             OnStepSizeChanged(EventArgs.Empty);
         }
@@ -895,15 +995,21 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
         private void SetLoopMode(LoopMode loopAnimation, bool checkParentAnimator)
         {
             if (_loopMode == loopAnimation)
+            {
                 return;
+            }
 
             if (_parentAnimator != null && checkParentAnimator && !_isInitializing)
+            {
                 throw new InvalidOperationException(SET_PROP_WITH_PARENT_ANIMATOR_ERROR_MESSAGE);
+            }
 
             _loopMode = loopAnimation;
 
             foreach (AnimatorBase childAnimator in _childAnimators)
+            {
                 childAnimator.SetLoopMode(loopAnimation, false);
+            }
 
             OnLoopAnimationChanged(EventArgs.Empty);
         }
@@ -920,7 +1026,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
             {
                 bool timerEnabled = _timer.Enabled;
                 if (_timer.Enabled && !_neverEndingTimer && _loopMode == LoopMode.None)
+                {
                     _timer.Stop();
+                }
 
                 OnAnimationFinished(EventArgs.Empty);
 
@@ -1025,7 +1133,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
         public static double InterpolateDoubleValues(double value1, double value2, double percent)
         {
             if (percent < 0 || percent > 100)
+            {
                 throw new ArgumentException("Value must be between 0 and 100.", "percent");
+            }
 
             return percent * (value2 - value1) / 100 + value1;
         }
@@ -1042,7 +1152,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
         public static int InterpolateIntegerValues(int value1, int value2, double percent)
         {
             if (percent < 0 || percent > 100)
+            {
                 throw new ArgumentException("Value must be between 0 and 100.", "percent");
+            }
 
             return Convert.ToInt32(percent * (value2 - value1) / 100 + value1);
         }

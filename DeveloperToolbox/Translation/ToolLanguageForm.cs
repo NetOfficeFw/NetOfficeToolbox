@@ -55,7 +55,9 @@ namespace NetOffice.DeveloperToolbox.Translation
                 panelDefaultHint.Visible = true;
             }
             else
+            {
                 panelDefaultHint.Visible = false;
+            }
 
             toolLanguageControl1.SelectedLanguage = language;
             _highlightPen = new Pen(Color.Red, 2);
@@ -152,7 +154,9 @@ namespace NetOffice.DeveloperToolbox.Translation
         private void overlayPainter1_Paint(object sender, PaintEventArgs e)
         {
             if (_selectedTabIndex == 0 || false == IsActive)
+            {
                 return;
+            }
 
             Control targetControl = _highlightControl1;
             if (_selectedTabIndex ==1 &&  null != targetControl)
@@ -197,7 +201,9 @@ namespace NetOffice.DeveloperToolbox.Translation
             if (!_language.IsValid())
             {
                 if (DialogResult.No == MessageBox.Show(this, String.Format("Unable to save changes because no global name and/or valid LCID is set.{0}{0}Close anyway?", Environment.NewLine), "Sure?", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+                {
                     return;
+                }
                 else
                 {
                     this.Close();

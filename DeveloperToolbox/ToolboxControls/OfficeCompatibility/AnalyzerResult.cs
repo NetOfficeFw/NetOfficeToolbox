@@ -293,7 +293,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                                     select a);
 
                 if ((null == supportNodes) || (supportNodes.Count() == 0))
+                {
                     continue;
+                }
 
                 inUse = true;
 
@@ -307,17 +309,29 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                     bool find15Support = IncludesVersion(typeNodeItem, "15");
 
                     if (!find09Support)
+                    {
                         has09Support = false;
+                    }
                     if (!find10Support)
+                    {
                         has10Support = false;
+                    }
                     if (!find11Support)
+                    {
                         has11Support = false;
+                    }
                     if (!find12Support)
+                    {
                         has12Support = false;
+                    }
                     if (!find14Support)
+                    {
                         has14Support = false;
+                    }
                     if (!find15Support)
+                    {
                         has15Support = false;
+                    }
                 }
             }
 
@@ -350,11 +364,15 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
             foreach (XElement item in typeNodes)
             {
                 if (0 == item.Element("SupportByLibrary").Elements("Version").Count())
+                {
                     listToDelete.Add(item);
+                }
             }
 
             foreach (XElement item in listToDelete)
+            {
                 item.Remove();
+            }
         }
 
 
@@ -364,7 +382,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
             {
                 string versionSupport = versionItem.Value;
                 if (versionSupport == version)
+                {
                     return true;
+                }
             }
 
             return false;
@@ -373,9 +393,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
         private static SupportVersion BoolToSupportVersion(bool value)
         {
             if (true == value)
+            {
                 return SupportVersion.Support;
+            }
             else
+            {
                 return SupportVersion.NotSupport;
+            }
         }
 
         #endregion

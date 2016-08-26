@@ -41,14 +41,22 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
                 {
                     case IDE.VS2010:
                         if (language == ProgrammingLanguage.CSharp)
+                        {
                             return "# Visual C# Express 2010";
+                        }
                         else
+                        {
                             return "# Visual Basic Express 2010";
+                        }
                     case IDE.VS2012:
                         if (language == ProgrammingLanguage.CSharp)
+                        {
                             return "# Visual C# Express 2012";
+                        }
                         else
+                        {
                             return "# Visual Basic Express 2012";
+                        }
                     case IDE.VS2013:
                         return "# Visual Studio Express 2013 for Windows Desktop\r\nVisualStudioVersion = 12.0.30723.0\r\nMinimumVisualStudioVersion = 10.0.40219.1";
                     default:
@@ -170,7 +178,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
             if (sourceRoot.Equals(destRoot, StringComparison.InvariantCultureIgnoreCase))
             {
                 if (overwrite && File.Exists(destFileName))
+                {
                     File.Delete(destFileName);
+                }
                 File.Move(sourceFileName, destFileName);
             }
             else
@@ -209,10 +219,14 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
         private static void CopyTo(DirectoryInfo source, DirectoryInfo target)
         {
             if (!Directory.Exists(target.FullName))
+            {
                 Directory.CreateDirectory(target.FullName);
+            }
 
             foreach (FileInfo fileInfo in source.GetFiles())
+            {
                 fileInfo.CopyTo(Path.Combine(target.ToString(), fileInfo.Name), true);
+            }
 
             foreach (DirectoryInfo sourceSubDir in source.GetDirectories())
             {

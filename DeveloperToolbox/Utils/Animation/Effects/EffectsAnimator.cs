@@ -34,9 +34,13 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation.Effects
             else
             {
                 if (ctl.TopLevelControl == ctl)
+                {
                     flags |= 0x20000;
+                }
                 else if (effect == Effect.Blend)
+                {
                     throw new ArgumentException();
+                }
             }
             flags |= dirmap[(angle % 360) / 45];
              WinAPI.AnimateWindow(ctl.Handle, msec, flags);
@@ -60,22 +64,30 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation.Effects
                 case EffectsKind.SlideBottomToTop:
                     flags = WinAPI.AW_ACTIVATE | WinAPI.AW_VER_NEGATIVE;
                     if (useSlideIfPossible)
+                    {
                         flags |= WinAPI.AW_SLIDE;
+                    }
                     break;
                 case EffectsKind.SlideTopToBottom:
                     flags = WinAPI.AW_ACTIVATE|WinAPI.AW_VER_POSITIVE;
                     if (useSlideIfPossible)
-				        flags |= WinAPI.AW_SLIDE;
+                    {
+                        flags |= WinAPI.AW_SLIDE;
+                    }
                     break;
                 case EffectsKind.SlideLeftToRight:
                     flags = WinAPI.AW_ACTIVATE|WinAPI.AW_HOR_POSITIVE;
                     if (useSlideIfPossible)
-				        flags |= WinAPI.AW_SLIDE;
+                    {
+                        flags |= WinAPI.AW_SLIDE;
+                    }
                     break;
                 case EffectsKind.SlideRightToLeft:
                     flags = WinAPI.AW_ACTIVATE | WinAPI.AW_HOR_NEGATIVE;
                     if (useSlideIfPossible)
+                    {
                         flags |= WinAPI.AW_SLIDE;
+                    }
                     break;
                 case EffectsKind.Collapse:
                     flags = WinAPI.AW_ACTIVATE | WinAPI.AW_CENTER;

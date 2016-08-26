@@ -77,7 +77,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Registry
                     }
                 }
                 if (!found)
+                {
                     break;
+                }
                 else
                 {
                     result = "#Neu " + kind.ToString() + i.ToString();
@@ -98,7 +100,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Registry
             {
                 string[] valueNames = key.GetSubKeyNames();
                 foreach (string item in valueNames)
+                {
                     yield return this[item];
+                }
                 key.Close();
             }
         }
@@ -110,7 +114,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Registry
             {
                 string[] valueNames = key.GetSubKeyNames();
                 foreach (string item in valueNames)
+                {
                     yield return this[item];
+                }
                 key.Close();
             }
         }

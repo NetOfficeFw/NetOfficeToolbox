@@ -51,7 +51,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Tree
             int cell = 0;
 
             if (values.Length > node.Cells.Count )
+            {
                 throw new ArgumentOutOfRangeException("values");
+            }
 
             foreach (object o in values)
             {

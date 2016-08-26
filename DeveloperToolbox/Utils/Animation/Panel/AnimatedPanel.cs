@@ -70,7 +70,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation.Panel
             {
                 _animation1Rotate = value;
                 foreach (var item in _shapes1)
+                {
                     item.Rotate = value;
+                }
             }
         }
 
@@ -90,7 +92,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation.Panel
                     if (null != img)
                     {
                         if(null != value)
+                        {
                             img.Size = new System.Drawing.Size(value.Width, value.Height);
+                        }
                         img.Image = value;
                     }
                 }
@@ -107,9 +111,13 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation.Panel
             set
             {
                 if (value < 1)
+                {
                     throw new ArgumentException();
+                }
                 if (value > 256)
+                {
                     throw new ArgumentException();
+                }
                 try
                 {
                     _stopDrawing = true;
@@ -123,9 +131,13 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation.Panel
                         shape.Limits = GetLimits();
                         shape.Location = new Point(rnd.Next(this.ClientRectangle.Width), rnd.Next(this.ClientRectangle.Height));
                         if (null != Animation1Image)
+                        {
                             shape.Size = new Size(Animation1Image.Width, Animation1Image.Height);
+                        }
                         else
+                        {
                             shape.Size = new Size(32, 32);
+                        }
                         shape.RotationDelta = (float)rnd.Next(20);
                         shape.Vector = new Size(-10 + rnd.Next(20), -10 + rnd.Next(20));
                         shape.Image = Animation1Image;
@@ -156,7 +168,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation.Panel
             set
             {
                 if (_animationIntervall1 < 1)
+                {
                     throw new ArgumentException();
+                }
                 _animationIntervall1 = value;
                 _animationTimer1.Interval = value;
 
@@ -187,13 +201,17 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation.Panel
             set
             {
                 if (value < 0.0f || value > 1.0f)
+                {
                     throw new ArgumentException();
+                }
                 _opacity1 = value;
                 foreach (var item in _shapes1)
                 {
                     ImageShape shp = item as ImageShape;
                     if (null != shp)
+                    {
                         shp.Opacity = _opacity1;
+                    }
                 }
             }
         }
@@ -209,7 +227,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation.Panel
             {
                 _animation2Rotate = value;
                 foreach (var item in _shapes2)
+                {
                     item.Rotate = value;
+                }
             }
         }
 
@@ -229,7 +249,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation.Panel
                     if (null != img)
                     {
                         if (null != value)
+                        {
                             img.Size = new System.Drawing.Size(value.Width, value.Height);
+                        }
                         img.Image = value;
                     }
                 }
@@ -246,9 +268,13 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation.Panel
             set
             {
                 if (value < 1)
+                {
                     throw new ArgumentException();
+                }
                 if (value > 256)
+                {
                     throw new ArgumentException();
+                }
                 try
                 {
                     _stopDrawing = true;
@@ -262,9 +288,13 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation.Panel
                         shape.Limits = GetLimits();
                         shape.Location = new Point(rnd.Next(this.ClientRectangle.Width), rnd.Next(this.ClientRectangle.Height));
                         if (null != Animation1Image)
+                        {
                             shape.Size = new Size(Animation1Image.Width, Animation1Image.Height);
+                        }
                         else
+                        {
                             shape.Size = new Size(32, 32);
+                        }
                         shape.RotationDelta = (float)rnd.Next(20);
                         shape.Vector = new Size(-10 + rnd.Next(20), -10 + rnd.Next(20));
                         shape.Image = Animation2Image;
@@ -295,7 +325,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation.Panel
             set
             {
                 if (_animationIntervall2 < 1)
+                {
                     throw new ArgumentException();
+                }
                 _animationIntervall2 = value;
                 _animationTimer2.Interval = value;
             }
@@ -325,13 +357,17 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation.Panel
             set
             {
                 if (value < 0.0f || value > 1.0f)
+                {
                     throw new ArgumentException();
+                }
                 _opacity2 = value;
                 foreach (var item in _shapes2)
                 {
                     ImageShape shp = item as ImageShape;
                     if (null != shp)
+                    {
                         shp.Opacity = _opacity2;
+                    }
                 }
             }
         }
@@ -354,10 +390,14 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation.Panel
             if (true == _animationTimer1.Enabled && false == _stopDrawing)
             {
                 foreach (Shape s in this._shapes2)
+                {
                     s.Draw(e.Graphics);
+                }
 
                 foreach (Shape s in this._shapes1)
+                {
                     s.Draw(e.Graphics);
+                }
             }
         }
 
@@ -375,10 +415,14 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation.Panel
             if (false == _stopDrawing)
             {
                 foreach (Shape s in this._shapes1)
+                {
                     s.Limits = GetLimits();
+                }
 
                 foreach (Shape s in this._shapes2)
+                {
                     s.Limits = GetLimits();
+                }
             }
             base.OnSizeChanged(e);
         }
@@ -390,18 +434,26 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation.Panel
         private void AnimationTimer1_Tick(object sender, EventArgs e)
         {
             if (_stopDrawing)
+            {
                 return;
+            }
             foreach (Shape s in _shapes1)
+            {
                 s.Tick();
+            }
             Invalidate();
         }
 
         private void AnimationTimer2_Tick(object sender, EventArgs e)
         {
             if (_stopDrawing)
+            {
                 return;
+            }
             foreach (Shape s in _shapes2)
+            {
                 s.Tick();
+            }
             Invalidate();
         }
 

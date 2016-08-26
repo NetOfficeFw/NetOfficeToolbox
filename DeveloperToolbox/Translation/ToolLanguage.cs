@@ -58,17 +58,23 @@ namespace NetOffice.DeveloperToolbox.Translation
             Initialize();
 
             foreach (var item in template.Application.Components[0].ControlRessources)
+            {
                 Application.Components[0].ControlRessources[item.Value].Value2 = item.Value2;
+            }
 
             foreach (var item in template.Application.Components[1].ControlRessources)
+            {
                 Application.Components[1].ControlRessources[item.Value].Value2 = item.Value2;
+            }
 
             for (int i = 0; i < template.Components.Count; i++)
             {
                 LocalizableCompoment templateComponent = template.Components[i];
                 LocalizableCompoment ownComponent = Components[i];
                 foreach (var item in templateComponent.ControlRessources)
+                {
                     ownComponent.ControlRessources[item.Value].Value2 = item.Value2;
+                }
             }
 
             IsNew = true;
@@ -96,11 +102,17 @@ namespace NetOffice.DeveloperToolbox.Translation
             get
             {
                 if (String.IsNullOrWhiteSpace(Name))
+                {
                     return "<Empty>";
+                }
                 if (Name.Equals(NameGlobal, StringComparison.InvariantCultureIgnoreCase))
+                {
                     return Name;
+                }
                 else
+                {
                     return String.Format("{0} ({1})", NameGlobal, Name);
+                }
             }
         }
 
@@ -196,10 +208,16 @@ namespace NetOffice.DeveloperToolbox.Translation
             set
             {
                 if(false == IsNew && value <= 1000 || value >= 32000)
+                {
                     throw new ArgumentOutOfRangeException("Valid range is 1000-32000");
+                }
                 foreach (var item in _parent)
+                {
                     if (item != this && item.LCID == value)
+                    {
                         throw new ArgumentException("Duplicate LCID");
+                    }
+                }
                 _lcid = value;
                 RaiseNotifyPropertyChanged("LCID");
             }
@@ -226,9 +244,13 @@ namespace NetOffice.DeveloperToolbox.Translation
         internal bool IsValid()
         {
             if (String.IsNullOrWhiteSpace(_nameGlobal))
+            {
                 return false;
+            }
             if (_lcid <= 1000 || _lcid >= 32000)
+            {
                 return false;
+            }
 
             return true;
         }
@@ -283,10 +305,14 @@ namespace NetOffice.DeveloperToolbox.Translation
         internal virtual void Save()
         {
             if (!IsValid())
+            {
                 throw new InvalidOperationException("Invalid settings");
+            }
 
             if (!Directory.Exists(ToolLanguages.DirectoryPath))
+            {
                 Directory.CreateDirectory(ToolLanguages.DirectoryPath);
+            }
             string targetFilePath = Path.Combine(ToolLanguages.DirectoryPath, LCID + ToolLanguages.Extension);
 
             string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
@@ -309,7 +335,9 @@ namespace NetOffice.DeveloperToolbox.Translation
                 XElement rootAppComponent = new XElement("NetOffice.DeveloperToolbox.Translation.Component", new XAttribute("IsSystem", true));
 
                 foreach (var subItem in item.ControlRessources)
+                {
                     rootAppComponent.Add(new XElement("Pair", new XElement("Name", subItem.Value), new XElement("Value", subItem.Value2)));
+                }
 
                 rootAppComponent.Save(Path.Combine(tempPath, item.Value));
             }
@@ -320,8 +348,10 @@ namespace NetOffice.DeveloperToolbox.Translation
                 XElement rootAppComponent = new XElement("NetOffice.DeveloperToolbox.Translation.Component", new XAttribute("IsSystem", false));
 
                 foreach (var subItem in item.ControlRessources)
+                {
                     rootAppComponent.Add(new XElement("Pair", new XElement("Name", subItem.Value), new XElement("Value", System.Xml.XmlConvert.EncodeName(subItem.Value2))));
-                         rootAppComponent.Save(Path.Combine(tempPath, item.Value));
+                }
+                rootAppComponent.Save(Path.Combine(tempPath, item.Value));
             }
 
             FileStream fsOut = File.Create(targetFilePath);
@@ -458,15 +488,21 @@ namespace NetOffice.DeveloperToolbox.Translation
             LocalizableCompoment component = null;
             bool isSystem = Convert.ToBoolean(element.Attribute("IsSystem").Value);
             if(isSystem)
+            {
                 component = Application.Components[componentName];
+            }
             else
+            {
                 component = Components[componentName];
+            }
 
             foreach (var item in component.ControlRessources)
             {
                 XElement el = element.Elements("Pair").Where(e => e.Element("Name").Value == item.Value).FirstOrDefault();
                 if (null != el)
+                {
                     item.Value2 = System.Xml.XmlConvert.DecodeName(el.Element("Value").Value);
+                }
             }
         }
 
@@ -479,7 +515,9 @@ namespace NetOffice.DeveloperToolbox.Translation
         private void RaiseNotifyPropertyChanged(string propertyName)
         {
             if (null != PropertyChanged)
+            {
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
 
         #endregion

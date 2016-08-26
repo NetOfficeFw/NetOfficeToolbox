@@ -58,7 +58,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
         private void RaiseReadyStateChanged()
         {
             if (null != ReadyStateChanged)
+            {
                 ReadyStateChanged(this);
+            }
         }
 
         public bool IsReadyForNextStep
@@ -71,9 +73,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
             get
             {
                 if (Forms.MainForm.Singleton.CurrentLanguageID == 1031)
+                {
                     return "Das Projekt wurde erfolgreich erstellt";
+                }
                 else
+                {
                     return "The Project is successfully completed";
+                }
             }
         }
 
@@ -82,9 +88,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
             get
             {
                 if (Forms.MainForm.Singleton.CurrentLanguageID == 1031)
+                {
                     return "Viel Erfolg bei der Arbeit.";
+                }
                 else
+                {
                     return "We wish you much success in your work";
+                }
             }
         }
 

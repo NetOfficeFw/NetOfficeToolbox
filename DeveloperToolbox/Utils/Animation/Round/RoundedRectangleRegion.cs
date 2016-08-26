@@ -9,10 +9,14 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation.Round
         public Region GetRoundedRect(RectangleF baseRect, int radius)
         {
             if (radius <= 0)
+            {
                 return new Region(baseRect);
+            }
 
             if (radius >= (Math.Min(baseRect.Width, baseRect.Height) / 2.0))
+            {
                 return GetCapsule(baseRect);
+            }
 
             float diameter = radius + radius;
             RectangleF arcRect = new RectangleF(baseRect.Location, new SizeF(diameter, diameter));

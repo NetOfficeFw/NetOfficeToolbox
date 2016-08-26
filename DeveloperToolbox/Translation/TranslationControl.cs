@@ -46,7 +46,9 @@ namespace NetOffice.DeveloperToolbox.Translation
         private void RaiseUserClose()
         {
             if (null != UserClose)
+            {
                 UserClose(this, EventArgs.Empty);
+            }
         }
 
         /// <summary>
@@ -70,13 +72,17 @@ namespace NetOffice.DeveloperToolbox.Translation
         private void RaiseLanguageChanged(int lcid)
         {
             if (null != LanguageChanged)
+            {
                 LanguageChanged(this, lcid);
+            }
         }
 
         private void RaiseLanguageDeleted(int lcid)
         {
             if (null != LanguageDeleted)
+            {
                 LanguageDeleted(this, lcid);
+            }
         }
 
         #endregion
@@ -88,7 +94,9 @@ namespace NetOffice.DeveloperToolbox.Translation
             get
             {
                 if (dataGridView1.SelectedCells.Count == 0)
+                {
                     return null;
+                }
 
                 DataGridViewRow row = dataGridView1.Rows[dataGridView1.SelectedCells[0].RowIndex];
                 ToolLanguage selLanguage = row.Tag as ToolLanguage;
@@ -141,7 +149,9 @@ namespace NetOffice.DeveloperToolbox.Translation
             {
                 ToolLanguage lang = item.Tag as ToolLanguage;
                 if (lang == language)
+                {
                     return item;
+                }
             }
             return null;
         }
@@ -149,7 +159,9 @@ namespace NetOffice.DeveloperToolbox.Translation
         private void RaiseUserTranslationAbout()
         {
             if (null != UserTranslationAbout)
+            {
                 UserTranslationAbout(this, EventArgs.Empty);
+            }
         }
 
         #endregion
@@ -222,7 +234,9 @@ namespace NetOffice.DeveloperToolbox.Translation
                         var language = Forms.MainForm.Singleton.Languages[e.NewIndex];
                         var row = GetRow(language);
                         if (null != row)
+                        {
                             row.Cells[0].Value = String.IsNullOrWhiteSpace(language.NameGlobal) == true ? "<Empty>" : language.NameGlobal;
+                        }
                         break;
                     }
                 case ListChangedType.ItemDeleted:
@@ -232,10 +246,14 @@ namespace NetOffice.DeveloperToolbox.Translation
                         {
                             ToolLanguage lang = item.Tag as ToolLanguage;
                             if (!Forms.MainForm.Singleton.Languages.Contains(lang))
+                            {
                                 listRows.Add(item);
+                            }
                         }
                         foreach (var item in listRows)
+                        {
                             dataGridView1.Rows.Remove(item);
+                        }
 
                         break;
                     }
@@ -261,7 +279,9 @@ namespace NetOffice.DeveloperToolbox.Translation
             {
                 bool b = ToolLanguageForm.ShowForm(this, Selected);
                 if (b)
+                {
                     RaiseLanguageChanged(Selected.LCID);
+                }
             }
         }
 
@@ -274,7 +294,9 @@ namespace NetOffice.DeveloperToolbox.Translation
                 ToolLanguage newLanguage = new ToolLanguage(Forms.MainForm.Singleton.Languages, template);
                 Forms.MainForm.Singleton.Languages.Add(newLanguage);
                 if (dataGridView1.SelectedCells.Count > 0)
+                {
                     dataGridView1.SelectedCells[0].Selected = false;
+                }
                 dataGridView1.Rows[dataGridView1.Rows.Count - 1].Selected = true;
                 dataGridView1_DoubleClick(dataGridView1, EventArgs.Empty);
             }
@@ -284,15 +306,21 @@ namespace NetOffice.DeveloperToolbox.Translation
         {
             ToolLanguage language = Selected;
             if (null != language)
+            {
                 toolStripRemoveLanguage.Enabled = !(language is ToolDefaultLanguage);
+            }
             else
+            {
                 toolStripRemoveLanguage.Enabled = false;
+            }
         }
 
         private void toolStripRemoveLanguage_Click(object sender, EventArgs e)
         {
             if (Selected is ToolDefaultLanguage)
+            {
                 return;
+            }
 
             int lcid = Selected.LCID;
             Forms.MainForm.Singleton.Languages.Remove(Selected);

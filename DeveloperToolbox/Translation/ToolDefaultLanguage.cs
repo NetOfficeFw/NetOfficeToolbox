@@ -124,11 +124,15 @@ namespace NetOffice.DeveloperToolbox.Translation
                 Dictionary<string, string> values = Translator.GetTranslateRessources(component.Design, component.Attribute.Address, Convert.ToInt32(LCID));
                 ItemCollection result = new ItemCollection();
                 foreach (var item in values)
+                {
                     result.Add(new LocalizableString(item.Key, item.Value));
+                }
                return result;
            }
            else
+           {
                throw new NotImplementedException();
+           }
        }
     }
 }

@@ -80,13 +80,19 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
         public new void KeyDown(KeyEventArgs e)
         {
             if (false == textBoxSearch.Focused && e.KeyCode == Keys.F && e.Modifiers == Keys.Control)
+            {
                 textBoxSearch.Focus();
+            }
             else if (e.KeyData == Keys.F5)
+            {
                 buttonRefresh_Click(buttonRefresh, EventArgs.Empty);
+            }
             else if (e.KeyData == Keys.F3 && !String.IsNullOrWhiteSpace(textBoxSearch.Text))
             {
                 if(!textBoxSearch.Focused)
+                {
                     textBoxSearch.Focus();
+                }
                 DoSearch(textBoxSearch.Text);
             }
         }
@@ -150,7 +156,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
         {
             string space = "     ";
             if (!labelTitle.Text.StartsWith(space))
+            {
                 labelTitle.Text = space + labelTitle.Text;
+            }
         }
 
         public Stream GetHelpText(int lcid)
@@ -162,7 +170,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                 return Ressources.RessourceUtils.CreateStreamFromString(content);
             }
             else
+            {
                 return Ressources.RessourceUtils.ReadStream("ToolboxControls.RegistryEditor.Info" + lcid.ToString() + ".rtf");
+            }
         }
 
         public void Activate(bool firstTime)
@@ -171,7 +181,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             if (firstTime)
             {
                 foreach (TreeNode item in treeViewRegistry.Nodes)
+                {
                     item.Expand();
+                }
             }
         }
 
@@ -291,9 +303,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
         private static string BoolToString(bool b)
         {
             if (b)
+            {
                 return "true";
+            }
             else
+            {
                 return "false";
+            }
         }
 
         private Image GetValueKindImage(RegistryValueKind kind)
@@ -320,7 +336,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                 node = treeViewRegistry.Nodes.Add("LocalMachine");
                 node.Tag = _localMachine32;
                 foreach (UtilsRegistryKey key in _localMachine32.Key.Keys)
+                {
                     ShowRegNode(key, node);
+                }
             }
 
             if (_currentUser32.Exists)
@@ -328,7 +346,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                 node = treeViewRegistry.Nodes.Add("CurrentUser");
                 node.Tag = _currentUser32;
                 foreach (UtilsRegistryKey key in _currentUser32.Key.Keys)
+                {
                     ShowRegNode(key, node);
+                }
             }
 
             if (System.Environment.Is64BitOperatingSystem)
@@ -338,7 +358,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                     node = treeViewRegistry.Nodes.Add("LocalMachine [Wow6432Node]");
                     node.Tag = _localMachine64;
                     foreach (UtilsRegistryKey key in _localMachine64.Key.Keys)
+                    {
                         ShowRegNode(key, node);
+                    }
                 }
 
                 if (_currentUser64.Exists)
@@ -346,7 +368,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                     node = treeViewRegistry.Nodes.Add("CurrentUser [Wow6432Node]");
                     node.Tag = _currentUser64;
                     foreach (UtilsRegistryKey key in _currentUser64.Key.Keys)
+                    {
                         ShowRegNode(key, node);
+                    }
                 }
             }
         }
@@ -354,7 +378,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
         private void ShowRegNodeChilds(UtilsRegistryKey key, TreeNode node)
         {
             foreach (UtilsRegistryKey subKey in key.Keys)
+            {
                 ShowRegNode(subKey,node);
+            }
         }
 
         private void ShowRegNode(UtilsRegistryKey key, TreeNode node)
@@ -362,7 +388,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             node = node.Nodes.Add(key.Name);
             node.Tag = true;
             if(key.Keys.Count > 0)
+            {
                 node.Nodes.Add("#stub");
+            }
         }
 
         private void RestoreExpandState(string currentPath)
@@ -372,12 +400,18 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             foreach (string nodeName in splitArray)
             {
                 if (node == null)
+                {
                     node = SearchChildTree(treeViewRegistry, nodeName);
+                }
                 else
+                {
                     node = SearchChildTree(node, nodeName);
+                }
 
                 if (node != null)
+                {
                     node.Expand();
+                }
             }
             treeViewRegistry.SelectedNode = node;
         }
@@ -387,7 +421,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             foreach (TreeNode tn in treeView.Nodes)
             {
                 if (tn.Text == name)
+                {
                     return tn;
+                }
             }
             return null;
         }
@@ -397,7 +433,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             foreach (TreeNode tn in treeNode.Nodes)
             {
                 if (tn.Text == name)
+                {
                     return tn;
+                }
             }
             return null;
         }
@@ -408,16 +446,24 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             if(rootNode.Text.EndsWith("[Wow6432Node]"))
             {
                 if (node.FullPath.StartsWith("LocalMachine", StringComparison.InvariantCultureIgnoreCase))
+                {
                     return _localMachine64;
+                }
                 else
+                {
                     return _currentUser64;
+                }
             }
             else
             {
                 if (node.FullPath.StartsWith("LocalMachine", StringComparison.InvariantCultureIgnoreCase))
+                {
                     return _localMachine32;
+                }
                 else
+                {
                     return _currentUser32;
+                }
             }
         }
 
@@ -427,10 +473,14 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
 
             List<string> listNames = new List<string>();
             foreach (TreeNode item in listNodes)
+            {
                 listNames.Add(item.Text);
+            }
 
             foreach (string item in listNames)
+            {
                 result += string.Format("{0}{1}", item, Environment.NewLine);
+            }
 
             return result;
         }
@@ -440,7 +490,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
 
             List<string> listNames = new List<string>();
             foreach (TreeNode item in listNodes)
+            {
                 listNames.Add(GetFullNodePath(item));
+            }
 
             return listNames.ToArray();
         }
@@ -449,13 +501,17 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
         {
             TreeNode rootNode = node;
             while (rootNode.Parent != null)
+            {
                 rootNode = rootNode.Parent;
+            }
             UtilsRegistry registry = rootNode.Tag as UtilsRegistry;
 
             string path = registry.Key.Path;
             int position = node.FullPath.IndexOf("\\", StringComparison.InvariantCultureIgnoreCase);
             if (position > -1)
+            {
                 path += node.FullPath.Substring(position);
+            }
             return path;
         }
 
@@ -484,9 +540,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                 foreach (TreeNode item in treeViewRegistry.Nodes)
                 {
                     if (true == wow && item.Text == "LocalMachine [Wow6432Node]")
+                    {
                         return item;
+                    }
                     else if (false == wow && item.Text == "LocalMachine")
+                    {
                         return item;
+                    }
                 }
             }
             else
@@ -494,9 +554,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                 foreach (TreeNode item in treeViewRegistry.Nodes)
                 {
                     if (true == wow && item.Text == "CurrentUser [Wow6432Node]")
+                    {
                         return item;
+                    }
                     else if (false == wow && item.Text == "CurrentUser")
+                    {
                         return item;
+                    }
                 }
             }
             return null;
@@ -505,13 +569,17 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
         private void SelectKey(UtilsRegistryKey targetKey)
         {
             if (null == targetKey)
+            {
                 throw new ArgumentNullException("targetKey");
+            }
             pictureBoxNoResult.Visible = false;
 
             TreeNode rootNode = GetRootNode(targetKey.Root.IsLocalMachine, targetKey.Root.IsWow);
 
             if (!rootNode.IsExpanded)
+            {
                 rootNode.Expand();
+            }
 
             TreeNode currentNode = rootNode;
 
@@ -519,7 +587,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             foreach (var item in array)
             {
                 if (!currentNode.IsExpanded)
+                {
                     currentNode.Expand();
+                }
                 foreach (TreeNode node in currentNode.Nodes)
                 {
                     if (node.Text == item)
@@ -541,7 +611,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
         private TreeNode GetNextPossibleNode(TreeNode node)
         {
             if (node.Tag is UtilsRegistry)
+            {
                 return node;
+            }
 
             if (null != node.FirstNode)
             {
@@ -551,20 +623,28 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                     node.Collapse();
                 }
                 if (null != node.FirstNode)
+                {
                     return node.FirstNode;
+                }
             }
 
             if (null != node.NextNode)
+            {
                 return node.NextNode;
+            }
 
             TreeNode currentNode = node;
 
             while (null != currentNode.Parent)
             {
                 if (node.Tag is UtilsRegistry)
+                {
                     return null;
+                }
                 if (null != currentNode.Parent.NextNode)
+                {
                     return currentNode.Parent.NextNode;
+                }
                 currentNode = currentNode.Parent;
             }
 
@@ -579,9 +659,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             if (null == treeViewRegistry.SelectedNode)
             {
                 if (treeViewRegistry.Nodes.Count > 0)
+                {
                     treeViewRegistry.SelectedNode = treeViewRegistry.Nodes[0];
+                }
                 else
+                {
                     return;
+                }
             }
 
             TreeNode targetNode = GetNextPossibleNode(treeViewRegistry.SelectedNode);
@@ -589,7 +673,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             key = new UtilsRegistryKey(GetRegistry(targetNode), fullNodePath);
             result = SearchHive(expression, key.Root, key);
             if (null != result)
+            {
                 SelectKey(result);
+            }
             else
             {
                 if (key.Root.IsLocalMachine && false == key.Root.IsWow)
@@ -617,7 +703,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                         return;
                     }
                     else
+                    {
                         ShowNoResult();
+                    }
                 }
                 else if (key.Root.IsLocalMachine && true == key.Root.IsWow)
                 {
@@ -644,7 +732,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                         return;
                     }
                     else
+                    {
                         ShowNoResult();
+                    }
                 }
                 else if (false == key.Root.IsLocalMachine && false == key.Root.IsWow)
                 {
@@ -671,7 +761,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                         return;
                     }
                     else
+                    {
                         ShowNoResult();
+                    }
                 }
                 else
                 {
@@ -698,7 +790,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                         return;
                     }
                     else
+                    {
                         ShowNoResult();
+                    }
                 }
             }
         }
@@ -706,15 +800,21 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
         private UtilsRegistryKey SearchHive(string expression, UtilsRegistry hive, UtilsRegistryKey selectedKeyInHive)
         {
             if (null == hive)
+            {
                 return null;
+            }
 
             TreeNode testNode = GetRootNode(hive.IsLocalMachine, hive.IsWow);
             if(null == testNode)
+            {
                 return null;
+            }
 
             List<UtilsRegistryKey> rootKeys = new List<UtilsRegistryKey>();
             foreach (UtilsRegistryKey item in hive.Key.Keys)
+            {
                 rootKeys.Add(item);
+            }
 
             if ((null != selectedKeyInHive && hive.Path.Equals(selectedKeyInHive.Path, StringComparison.InvariantCultureIgnoreCase)) || null == selectedKeyInHive)
             {
@@ -723,7 +823,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                 {
                     UtilsRegistryKey resultKey = SearchTopKey(expression, item);
                     if(null != resultKey)
+                    {
                         return resultKey;
+                    }
                 }
             }
             else
@@ -735,7 +837,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                 // same top key
                 UtilsRegistryKey topKeyResult = SearchTopKey(expression, topParentKey, selectedKeyInHive);
                 if (null != topKeyResult)
+                {
                     return topKeyResult;
+                }
 
                 // bottom keys
                 bool ignore = true;
@@ -744,13 +848,17 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                     if (true == ignore)
                     {
                         if (item.Path == topParentKey.Path)
+                        {
                             ignore = false;
+                        }
                     }
                     else
                     {
                         UtilsRegistryKey bottomKeyResult = SearchTopKey(expression, item);
                         if (null != bottomKeyResult)
+                        {
                             return bottomKeyResult;
+                        }
                     }
                 }
             }
@@ -782,14 +890,18 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                             ignore = false;
                             UtilsRegistryKey res = SearchKey(expression, item);
                             if (null != res)
+                            {
                                 return res;
+                            }
                         }
                     }
                     else
                     {
                         UtilsRegistryKey res = SearchKey(expression, item);
                         if (null != res)
+                        {
                             return res;
+                        }
                     }
                 }
 
@@ -801,25 +913,33 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
         {
             int position = key.Name.IndexOf(expression, StringComparison.InvariantCultureIgnoreCase);
             if (position > -1)
+            {
                 return key;
+            }
 
             foreach (UtilsRegistryEntry item in key.Entries)
             {
                 int pos1 = item.Name.IndexOf(expression, StringComparison.InvariantCultureIgnoreCase);
                 if (pos1 > -1)
+                {
                     return key;
+                }
 
                 string valueString = item.Value.ToString();
                 int pos2 = valueString.IndexOf(expression, StringComparison.InvariantCultureIgnoreCase);
                 if (pos2 > -1)
+                {
                     return key;
+                }
             }
 
             foreach (UtilsRegistryKey item in key.Keys)
             {
                 UtilsRegistryKey resKey = SearchKey(expression, item);
                 if (null != resKey)
+                {
                     return resKey;
+                }
             }
 
             return null;
@@ -860,7 +980,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             try
             {
                 if (e.KeyData == Keys.Delete)
+                {
                     toolStripKeyDelete_Click(sender, new EventArgs());
+                }
             }
             catch (Exception exception)
             {
@@ -924,9 +1046,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                 TreeNode rootNode = GetRootNode(e.Node);
                 UtilsRegistry regRoot = rootNode.Tag as UtilsRegistry;
                 if ((regRoot.HiveKey == Registry.LocalMachine) && (!_userIsAdmin))
+                {
                     treeViewRegistry.ContextMenuStrip = contextMenuStripNoAdmin;
+                }
                 else
+                {
                     treeViewRegistry.ContextMenuStrip = contextMenuStripKeys;
+                }
 
                 toolStripKeyEdit.Enabled = (treeViewRegistry.SelectedNode != null) && (treeViewRegistry.SelectedNode.Parent != null);
                 toolStripKeyDelete.Enabled = (treeViewRegistry.SelectedNode != null) && (treeViewRegistry.SelectedNode.Parent != null);
@@ -946,7 +1072,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                 foreach (UtilsRegistryEntry item in key.Entries)
                 {
                     if (item.Type == UtilsRegistryEntryType.Default)
+                    {
                         foundDefault = true;
+                    }
                     string name = item.Name;
                     string valueType = item.ValueKind.ToString();
                     object value = item.GetValue();
@@ -1002,7 +1130,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                     DataGridViewRow row = dataGridViewRegistry.Rows[dataGridViewRegistry.SelectedCells[0].RowIndex];
                     UtilsRegistryEntry entry = row.Tag as UtilsRegistryEntry;
                     if (entry == null)
+                    {
                         return;
+                    }
                     if (entry.Type == UtilsRegistryEntryType.Normal)
                     {
                         toolStripDeleteEntry.Enabled = true;
@@ -1028,14 +1158,18 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                 string currentPath = null;
 
                 if (null != treeViewRegistry.SelectedNode)
+                {
                     currentPath = treeViewRegistry.SelectedNode.FullPath;
+                }
 
                 dataGridViewRegistry.Rows.Clear();
 
                 ShowKeys();
 
                 if (null != currentPath)
+                {
                     RestoreExpandState(currentPath);
+                }
             }
             catch (Exception exception)
             {
@@ -1048,15 +1182,21 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             try
             {
                 if (0 == treeViewRegistry.SelectedNodes.Count)
+                {
                     return;
+                }
 
                 string[] fullPathSelectedNodes = GetNodePaths(treeViewRegistry.SelectedNodes);
 
                 TreeNode parentNode = null;
                 if( (null != treeViewRegistry.SelectedNode.PrevNode) && (treeViewRegistry.SelectedNodes.Count == 1))
+                {
                     parentNode = treeViewRegistry.SelectedNode.PrevNode;
+                }
                 else
+                {
                     parentNode = treeViewRegistry.SelectedNode.Parent;
+                }
 
                 if (checkBoxDeleteQuestion.Checked)
                 {
@@ -1076,7 +1216,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
 
                     DialogResult dr = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dr == DialogResult.No)
+                    {
                         return;
+                    }
                 }
 
                 UtilsRegistry registryRoot = GetRegistry(treeViewRegistry.SelectedNode);
@@ -1104,9 +1246,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                     TreeNode rootNode = GetRootNode(treeViewRegistry.SelectedNode);
                     UtilsRegistry regRoot = rootNode.Tag as UtilsRegistry;
                     if ((regRoot.HiveKey == Registry.LocalMachine) && (!_userIsAdmin))
+                    {
                         dataGridViewRegistry.ContextMenuStrip = contextMenuStripNoAdmin;
+                    }
                     else
+                    {
                         dataGridViewRegistry.ContextMenuStrip = contextMenuStripEntries;
+                    }
                 }
 
                 toolStripDeleteEntry.Enabled = (dataGridViewRegistry.SelectedCells.Count > 0);
@@ -1178,7 +1324,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             try
             {
                 if (e.KeyData != Keys.Return || String.IsNullOrWhiteSpace(textBoxSearch.Text))
+                {
                     return;
+                }
                 DoSearch(textBoxSearch.Text);
 
             }
@@ -1209,7 +1357,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             try
             {
                 if (dataGridViewRegistry.SelectedCells.Count == 0)
+                {
                     return;
+                }
 
                 DataGridViewRow row = dataGridViewRegistry.Rows[dataGridViewRegistry.SelectedCells[0].RowIndex];
                 UtilsRegistryEntry entry = row.Tag as UtilsRegistryEntry;
@@ -1232,7 +1382,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             try
             {
                 if (dataGridViewRegistry.SelectedCells.Count == 0)
+                {
                     return;
+                }
 
                 DataGridViewRow row = dataGridViewRegistry.Rows[dataGridViewRegistry.SelectedCells[0].RowIndex];
 
@@ -1241,7 +1393,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                     string message = string.Format("Möchten Sie den Wert <{0}> löschen?", row.Cells[1].Value);
                     DialogResult dr = MessageBox.Show(message, "Löschen bestätigen", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dr == DialogResult.No)
+                    {
                         return;
+                    }
                 }
 
                 UtilsRegistryEntry entry = dataGridViewRegistry.Rows[dataGridViewRegistry.SelectedCells[0].RowIndex].Tag as UtilsRegistryEntry;
@@ -1260,7 +1414,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             try
             {
                 if (dataGridViewRegistry.SelectedCells.Count == 0)
+                {
                     return;
+                }
 
                 DataGridViewRow row = dataGridViewRegistry.Rows[dataGridViewRegistry.SelectedCells[0].RowIndex];
                 UtilsRegistryEntry entry = row.Tag as UtilsRegistryEntry;
@@ -1380,7 +1536,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                 TreeNode rootNode = GetRootNode(treeViewRegistry.SelectedNode);
                 UtilsRegistry regRoot = rootNode.Tag as UtilsRegistry;
                 if ((regRoot.HiveKey == Registry.LocalMachine) && (!_userIsAdmin))
+                {
                     return;
+                }
                 toolStripEditEntryValue_Click(this, new EventArgs());
             }
             catch (Exception exception)
@@ -1395,10 +1553,14 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             {
                 TreeNode rootNode = GetRootNode(treeViewRegistry.SelectedNode);
                 if (null == rootNode)
+                {
                     return;
+                }
                 UtilsRegistry regRoot = rootNode.Tag as UtilsRegistry;
                 if ((regRoot.HiveKey == Registry.LocalMachine) && (!_userIsAdmin))
+                {
                     return;
+                }
                 switch (e.KeyCode)
                 {
                     case Keys.Return:

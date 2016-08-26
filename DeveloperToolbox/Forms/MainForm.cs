@@ -98,7 +98,9 @@ namespace NetOffice.DeveloperToolbox.Forms
         private void RaiseLanguageEditorVisibleChanged()
         {
             if (null != LanguageEditorVisibleChanged)
+            {
                 LanguageEditorVisibleChanged(this, EventArgs.Empty);
+            }
         }
 
         public event EventHandler Minimized;
@@ -106,7 +108,9 @@ namespace NetOffice.DeveloperToolbox.Forms
         private void RaiseMinimized()
         {
             if (null != Minimized)
+            {
                 Minimized(this, EventArgs.Empty);
+            }
         }
 
         public string Caption
@@ -146,7 +150,9 @@ namespace NetOffice.DeveloperToolbox.Forms
                Size = MinimumSize;
 
                 if (changesMade)
+                {
                     RaiseLanguageEditorVisibleChanged();
+                }
             }
         }
 
@@ -162,7 +168,9 @@ namespace NetOffice.DeveloperToolbox.Forms
                 if (!_isCurrentlyLoading)
                 {
                     foreach (var item in _toolboxControls)
+                    {
                         item.SetLanguage(_currentLanguageID);
+                    }
                 }
                 translationEditor.SetLanguage(value);
             }
@@ -287,16 +295,24 @@ namespace NetOffice.DeveloperToolbox.Forms
                 {
                     string configVersion = versionAttribute.Value;
                     if (!configVersion.Equals(AssemblyInfo.AssemblyVersion, StringComparison.InvariantCultureIgnoreCase))
+                    {
                         document = CreateDefaultConfiguration();
+                    }
                 }
                 else
+                {
                     document = CreateDefaultConfiguration();
+                }
             }
             else
+            {
                 document = CreateDefaultConfiguration();
+            }
 
             foreach (var item in _toolboxControls)
+            {
                 item.LoadConfiguration(document.SelectSingleNode("NODeveloperToolbox.Settings/" + item.ControlName));
+            }
         }
 
         private void SaveConfiguration()
@@ -331,14 +347,18 @@ namespace NetOffice.DeveloperToolbox.Forms
             base.WndProc(ref m);
 
             if (_wndProcErrorOccured)
+            {
                 return;
+            }
 
             try
             {
                 if (m.Msg == Win32.WM_SHOWTOOLBOX)
                 {
                     if (WindowState == FormWindowState.Minimized)
+                    {
                         WindowState = FormWindowState.Normal;
+                    }
                     Win32.SetForegroundWindow(Handle);
                     Show();
                     BringToFront();
@@ -364,7 +384,9 @@ namespace NetOffice.DeveloperToolbox.Forms
             try
             {
                 if (lcid == CurrentLanguageID)
+                {
                     CurrentLanguageID = lcid;
+                }
             }
             catch (Exception exception)
             {
@@ -448,7 +470,9 @@ namespace NetOffice.DeveloperToolbox.Forms
                 IToolboxControl lastControl = null;
 
                 if (null != tabControlMain.SelectedTab)
+                {
                     lastControl = tabControlMain.SelectedTab.Tag as IToolboxControl;
+                }
 
                 _lastSelectedcontrol = lastControl;
             }
@@ -469,7 +493,9 @@ namespace NetOffice.DeveloperToolbox.Forms
                     bool firstShow = !_toolBoxControlsFirstShowPassed.Any(c => c == control);
                     control.Activate(firstShow);
                     if (!firstShow)
+                    {
                         _toolBoxControlsFirstShowPassed.Add(control);
+                    }
                     if (null != _lastSelectedcontrol)
                     {
                         _lastSelectedcontrol.Deactivated();
@@ -488,7 +514,9 @@ namespace NetOffice.DeveloperToolbox.Forms
             try
             {
                 if ((FormWindowState.Minimized == this.WindowState))
+                {
                     RaiseMinimized();
+                }
             }
             catch (Exception exception)
             {
@@ -519,9 +547,13 @@ namespace NetOffice.DeveloperToolbox.Forms
             try
             {
                 foreach (IToolboxControl item in ToolboxControls)
+                {
                     item.LoadComplete();
+                }
                 foreach (var item in _toolboxControls)
+                {
                     item.SetLanguage(_currentLanguageID);
+                }
             }
             catch (Exception exception)
             {
@@ -560,8 +592,12 @@ namespace NetOffice.DeveloperToolbox.Forms
             {
                 // nearly impossible but dont trust anyone
                 foreach (Control item in splitContainer1.Panel1.Controls)
+                {
                     if (item is Controls.Custom.InviteControl)
+                    {
                         return;
+                    }
+                }
 
                 Controls.Custom.InviteControl ctrl = new Controls.Custom.InviteControl();
                 Controls.Add(ctrl);

@@ -79,11 +79,17 @@ namespace NetOffice.DeveloperToolbox.Translation
             {
                 var item = this.Where(l => l.LCID == lcid).FirstOrDefault();
                 if (null != item)
+                {
                     return item;
+                }
                 else if (throwExceptionIfNotFound)
+                {
                     throw new ArgumentOutOfRangeException("lcid");
+                }
                 else
+                {
                     return null;
+                }
             }
         }
 
@@ -93,7 +99,9 @@ namespace NetOffice.DeveloperToolbox.Translation
         internal void ValidateFiles()
         {
             if (!Directory.Exists(ToolLanguages.DirectoryPath))
+            {
                 return;
+            }
 
             List<string> files = new List<string>();
             foreach (var item in Directory.GetFiles(ToolLanguages.DirectoryPath, ExtensionWildCard, SearchOption.TopDirectoryOnly))
@@ -101,9 +109,13 @@ namespace NetOffice.DeveloperToolbox.Translation
                 string itemLCID = Path.GetFileNameWithoutExtension(item);
                 int lcid = 0;
                 if(!int.TryParse(itemLCID, out lcid))
+                {
                     files.Add(item);
+                }
                 else if (!this.Contains(lcid))
+                {
                     files.Add(item);
+                }
             }
             foreach (var item in files)
             {
@@ -149,7 +161,9 @@ namespace NetOffice.DeveloperToolbox.Translation
             this[1].Initialize();
 
             if (!Directory.Exists(DirectoryPath))
+            {
                 return;
+            }
 
             string[] files = Directory.GetFiles(DirectoryPath, ExtensionWildCard, SearchOption.TopDirectoryOnly);
             foreach (var item in files)
@@ -185,7 +199,9 @@ namespace NetOffice.DeveloperToolbox.Translation
                 if (null != stream)
                 {
                     if (!Directory.Exists(DirectoryPath))
+                    {
                         Directory.CreateDirectory(DirectoryPath);
+                    }
                     byte[] bytes = new byte[stream.Length];
                     stream.Read(bytes, 0, (int)stream.Length);
                     FileStream fs = new FileStream(targetFilePath, FileMode.Create);
@@ -211,7 +227,9 @@ namespace NetOffice.DeveloperToolbox.Translation
                     try
                     {
                         if(item.IsValid())
+                        {
                             item.Save();
+                        }
                     }
                     catch (Exception exception)
                     {

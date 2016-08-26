@@ -67,9 +67,11 @@ namespace NetOffice.DeveloperToolbox.Controls.Tree
 
 			r._imageIndex = this._imageIndex;
 			if (r._imageIndex == -1)
-				r.Image = this.Image;
+			{
+			    r.Image = this.Image;
+			}
 
-			r.IsExpanded = this.IsExpanded;
+		    r.IsExpanded = this.IsExpanded;
 			//r.treeCell = new TreeGridCell();
 
 			return r;
@@ -149,9 +151,13 @@ namespace NetOffice.DeveloperToolbox.Controls.Tree
             get
             {
                 if (this._grid != null)
+                {
                     return this._grid.ImageList;
+                }
                 else
+                {
                     return null;
+                }
             }
         }
 
@@ -180,7 +186,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Tree
 					// when the image changes the cell's style must be updated
 					this._treeCell.UpdateStyle();
 					if (this.Displayed)
-						this._grid.InvalidateRow(this.RowIndex);
+					{
+					    this._grid.InvalidateRow(this.RowIndex);
+					}
 				}
 			}
 		}
@@ -201,7 +209,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Tree
 						return this.ImageList.Images[this._imageIndex];
 					}
 					else
-						return null;
+					{
+					    return null;
+					}
 				}
 				else
 				{
@@ -222,7 +232,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Tree
 					// when the image changes the cell's style must be updated
 					this._treeCell.UpdateStyle();
 					if (this.Displayed)
-						this._grid.InvalidateRow(this.RowIndex);
+					{
+					    this._grid.InvalidateRow(this.RowIndex);
+					}
 				}
 			}
 		}
@@ -237,9 +249,12 @@ namespace NetOffice.DeveloperToolbox.Controls.Tree
 		void cells_CollectionChanged(object sender, System.ComponentModel.CollectionChangeEventArgs e)
 		{
 			// Exit if there already is a tree cell for this row
-			if (_treeCell != null) return;
+			if (_treeCell != null)
+			{
+			    return;
+			}
 
-			if (e.Action == System.ComponentModel.CollectionChangeAction.Add || e.Action == System.ComponentModel.CollectionChangeAction.Refresh)
+		    if (e.Action == System.ComponentModel.CollectionChangeAction.Add || e.Action == System.ComponentModel.CollectionChangeAction.Refresh)
 			{
 				TreeGridCell treeCell = null;
 
@@ -261,7 +276,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Tree
 				}
 
 				if (treeCell != null)
-				  _treeCell = treeCell;
+				{
+				    _treeCell = treeCell;
+				}
 			}
 		}
 
@@ -292,9 +309,12 @@ namespace NetOffice.DeveloperToolbox.Controls.Tree
 			{
 				if (!childCellsCreated && this.DataGridView == null)
 				{
-                    if (this._grid == null) return null;
+                    if (this._grid == null)
+                    {
+                        return null;
+                    }
 
-					this.CreateCells(this._grid);
+				    this.CreateCells(this._grid);
 					childCellsCreated = true;
 				}
 				return base.Cells;
@@ -369,7 +389,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Tree
 					return (this.Index == parent.Nodes.Count - 1);
 				}
 				else
-					return true;
+				{
+				    return true;
+				}
 			}
 		}
 
@@ -381,7 +403,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Tree
 		public virtual bool Expand()
 		{
 			if (this._grid != null)
-				return this._grid.ExpandNode(this);
+			{
+			    return this._grid.ExpandNode(this);
+			}
 			else
 			{
 				this.IsExpanded = true;
@@ -396,12 +420,16 @@ namespace NetOffice.DeveloperToolbox.Controls.Tree
 
             // ensure that all children of this node has their grid set
             if (this._grid != null)
+            {
                 UpdateChildNodes(node);
+            }
 
-			//TODO: do we need to use index parameter?
+		    //TODO: do we need to use index parameter?
 			if ((this._isSited || this.IsRoot) && this.IsExpanded)
-				this._grid.SiteNode(node);
-			return true;
+			{
+			    this._grid.SiteNode(node);
+			}
+		    return true;
 		}
 
 		internal protected virtual bool InsertChildNodes(int index, params TreeGridNode[] nodes)
@@ -420,12 +448,16 @@ namespace NetOffice.DeveloperToolbox.Controls.Tree
 
             // ensure that all children of this node has their grid set
             if (this._grid != null)
+            {
                 UpdateChildNodes(node);
+            }
 
-			if ((this._isSited || this.IsRoot) && this.IsExpanded && !node._isSited)
-				this._grid.SiteNode(node);
+		    if ((this._isSited || this.IsRoot) && this.IsExpanded && !node._isSited)
+		    {
+		        this._grid.SiteNode(node);
+		    }
 
-			return true;
+		    return true;
 		}
 		internal protected virtual bool AddChildNodes(params TreeGridNode[] nodes)
 		{

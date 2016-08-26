@@ -45,7 +45,9 @@ namespace NetOffice.DeveloperToolbox.Forms
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.DataSource = Forms.MainForm.Singleton.Languages;
             if (!String.IsNullOrWhiteSpace(header))
+            {
                 labelHeader.Text = header;
+            }
 
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 10, 10));
         }
@@ -62,9 +64,13 @@ namespace NetOffice.DeveloperToolbox.Forms
             get
             {
                 if (dataGridView1.SelectedCells.Count > 0)
+                {
                     return dataGridView1.Rows[dataGridView1.SelectedCells[0].RowIndex].DataBoundItem as Translation.ToolLanguage;
+                }
                 else
+                {
                     return null;
+                }
             }
         }
 
@@ -83,9 +89,13 @@ namespace NetOffice.DeveloperToolbox.Forms
             SelectLanguageForm dlg = new SelectLanguageForm(header);
             DialogResult dr = dlg.ShowDialog(owner);
             if (dr == DialogResult.OK)
+            {
                 return dlg.Selected;
+            }
             else
+            {
                 return null;
+            }
         }
 
         #endregion
@@ -112,7 +122,9 @@ namespace NetOffice.DeveloperToolbox.Forms
         private void dataGridView1_DoubleClick(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedCells.Count > 0)
+            {
                 buttonSelect_Click(buttonSelect, EventArgs.Empty);
+            }
         }
 
         #endregion

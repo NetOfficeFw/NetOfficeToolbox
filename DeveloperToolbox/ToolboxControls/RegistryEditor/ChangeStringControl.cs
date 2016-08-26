@@ -37,7 +37,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
         private void RaiseClose()
         {
             if (null != Close)
+            {
                 Close(this, EventArgs.Empty);
+            }
         }
 
         #endregion

@@ -73,7 +73,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
                 {
                     int argumentStartIndex = applicationPath.IndexOf("/", 0);
                     if (argumentStartIndex > -1)
+                    {
                         applicationPath = applicationPath.Substring(0, argumentStartIndex).Trim();
+                    }
                     _projectUserFile = _projectUserFile.Replace("$toolsversion$", this.Tools[Options.IDE]);
                     _projectUserFile = _projectUserFile.Replace("$path$", applicationPath);
                     _applicationFound = true;
@@ -81,9 +83,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
             }
 
             if (Options.UseTaskPane)
+            {
                 _projectFile = _projectFile.Replace("$taskpaneFileReference$", "  <Compile Include=\"MyTaskPane.cs\">\r\n   <SubType>UserControl</SubType>\r\n   </Compile>\r\n  <Compile Include=\"MyTaskPane.Designer.cs\">\r\n    <DependentUpon>MyTaskPane.cs</DependentUpon>\r\n  </Compile>");
+            }
             else
+            {
                 _projectFile = _projectFile.Replace("$taskpaneFileReference$", String.Empty);
+            }
 
             _addinFile = _addinFile.Replace("$appName$", Options.OfficeApps[0]);
             _addinFile = _addinFile.Replace("$safeprojectname$", Options.AssemblyName);
@@ -137,9 +143,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
             if (Options.UseTaskPane)
             {
                 if (Options.UseRibbonUI || Options.HiveKey == "LocalMachine")
+                {
                     attributeString += ", CustomPane(typeof(MyTaskPane), \"My TaskPane\", true, PaneDockPosition.msoCTPDockPositionRight)";
+                }
                 else
+                {
                     attributeString += "CustomPane(typeof(MyTaskPane), \"My TaskPane\", true, PaneDockPosition.msoCTPDockPositionRight)";
+                }
             }
             else
             {
@@ -147,7 +157,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
             }
 
             if (!String.IsNullOrWhiteSpace(attributeString))
+            {
                 attributeString = "\t[" + attributeString + "]";
+            }
             _addinFile = _addinFile.Replace("$attributes$", attributeString);
 
             string getVersion = "\t\t\tConsole.WriteLine(\"Addin started in %appName% Version {0}\", Application.Version);".Replace("%appName%", Options.OfficeApps[0]);
@@ -206,10 +218,14 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
             File.AppendAllText(Path.Combine(TempProjectPath, String.Format("{0}.csproj", Options.AssemblyName)), _projectFile, Encoding.UTF8);
             File.AppendAllText(Path.Combine(TempProjectPath, "Addin.cs"), _addinFile, Encoding.UTF8);
             if(_applicationFound)
+            {
                 File.AppendAllText(Path.Combine(TempProjectPath, String.Format("{0}.csproj.user", Options.AssemblyName)), _projectUserFile, Encoding.UTF8);
+            }
             File.AppendAllText(Path.Combine(TempPropertiesPath, "AssemblyInfo.cs"), _assemblyFile, Encoding.UTF8);
             if (Options.UseRibbonUI)
-                 File.AppendAllText(Path.Combine(TempProjectPath, "RibbonUI.xml"), _ribbonFile, Encoding.UTF8);
+            {
+                File.AppendAllText(Path.Combine(TempProjectPath, "RibbonUI.xml"), _ribbonFile, Encoding.UTF8);
+            }
             if (Options.UseTaskPane)
             {
                 File.AppendAllText(Path.Combine(TempProjectPath, "MyTaskPane.cs"), _taskPaneFile, Encoding.UTF8);

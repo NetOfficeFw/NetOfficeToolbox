@@ -137,7 +137,9 @@ namespace NetOffice.OutlookSecurity
             GCHandle gch = GCHandle.FromIntPtr(pointer);
             List<IntPtr> list = gch.Target as List<IntPtr>;
             if (list == null)
+            {
                 throw new InvalidCastException("GCHandle Target could not be cast as List<IntPtr>");
+            }
 
             list.Add(handle);
 
@@ -173,7 +175,9 @@ namespace NetOffice.OutlookSecurity
             finally
             {
                 if (listHandle.IsAllocated)
+                {
                     listHandle.Free();
+                }
             }
             return result;
         }

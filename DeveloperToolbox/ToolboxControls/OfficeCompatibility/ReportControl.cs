@@ -47,7 +47,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
         {
             InitializeComponent();
             if (null == report.Report)
+            {
                 return;
+            }
             _report = report;
             _currentLanguageID = currentLanguageID;
             comboBoxFilter.SelectedIndex = 0;
@@ -58,7 +60,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
             pictureBoxProperty.Image = imageList1.Images[7];
             pictureBoxMethod.Image = imageList1.Images[5];
             if (treeViewReport.Nodes.Count > 0)
+            {
                 treeViewReport.SelectedNode = treeViewReport.Nodes[0];
+            }
         }
 
         #endregion
@@ -73,17 +77,25 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
         private int GetImageClassIndex(XElement itemClass)
         {
             if (itemClass.Attribute("IsPublic").Value.Equals("true", StringComparison.InvariantCultureIgnoreCase))
+            {
                 return 1;
+            }
             else
+            {
                 return 2;
+            }
         }
 
         private int GetImageFieldIndex(XElement itemField)
         {
             if (itemField.Attribute("IsPublic").Value.Equals("true", StringComparison.InvariantCultureIgnoreCase))
+            {
                 return 3;
+            }
             else
+            {
                 return 4;
+            }
         }
 
         private int GetImageMethodIndex(XElement itemMethod)
@@ -91,16 +103,24 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
             if (itemMethod.Attribute("IsProperty").Value.Equals("true", StringComparison.InvariantCultureIgnoreCase))
             {
                 if (itemMethod.Attribute("IsPublic").Value.Equals("true", StringComparison.InvariantCultureIgnoreCase))
+                {
                     return 7;
+                }
                 else
+                {
                     return 8;
+                }
             }
             else
             {
                 if (itemMethod.Attribute("IsPublic").Value.Equals("true", StringComparison.InvariantCultureIgnoreCase))
+                {
                     return 5;
+                }
                 else
+                {
                     return 6;
+                }
             }
         }
 
@@ -111,7 +131,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
             {
                 string name = item.Attribute("Name").Value;
                 if (name.IndexOf(",", StringComparison.InvariantCultureIgnoreCase) > 0)
+                {
                     name = name.Substring(0, name.IndexOf(",", StringComparison.InvariantCultureIgnoreCase));
+                }
                 TreeNode node = treeViewReport.Nodes.Add(name);
                 node.ImageIndex = 0;
                 node.SelectedImageIndex = 0;
@@ -186,7 +208,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
             panelNativeView.Dock = DockStyle.Fill;
 
             if (treeViewReport.Nodes.Count > 0)
+            {
                 treeViewReport.Nodes[0].Expand();
+            }
         }
 
         private void SetMethodCalls(XElement element)
@@ -198,11 +222,15 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                 {
                     string name = item.Attribute("Name").Value;
                     if (name.IndexOf("::", StringComparison.InvariantCultureIgnoreCase) > -1)
+                    {
                         name = name.Substring(0,name.IndexOf("::", StringComparison.InvariantCultureIgnoreCase));
+                    }
 
                     string type = item.Element("SupportByLibrary").Attribute("Name").Value;
                     if (type.IndexOf("::", StringComparison.InvariantCultureIgnoreCase) > -1)
+                    {
                         type = type.Substring(type.IndexOf("::", StringComparison.InvariantCultureIgnoreCase) + 2);
+                    }
 
                     if (FilterPassed(item.Element("SupportByLibrary")))
                     {
@@ -210,7 +238,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                         paramViewItem.SubItems.Add(type);
                         string supportText = item.Element("SupportByLibrary").Attribute("Api").Value + " ";
                         foreach (XElement itemVersion in item.Element("SupportByLibrary").Elements("Version"))
+                        {
                             supportText += itemVersion.Value + " ";
+                        }
                         paramViewItem.SubItems.Add(supportText);
 
                     }
@@ -220,14 +250,18 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                         foreach (XElement paramItem in itemParameters.Elements("Parameter"))
 	                    {
                             if (!FilterPassed(paramItem.Element("SupportByLibrary")))
+                            {
                                 continue;
+                            }
 
-                            ListViewItem paramViewItem2 = listViewDetail.Items.Add("   Parameter");
+	                        ListViewItem paramViewItem2 = listViewDetail.Items.Add("   Parameter");
                             paramViewItem2.SubItems.Add(paramItem.Element("SupportByLibrary").Attribute("Name").Value);
                             string supportText = paramItem.Element("SupportByLibrary").Attribute("Api").Value + " ";
                             foreach (XElement itemVersionParam in paramItem.Element("SupportByLibrary").Elements("Version"))
+                            {
                                 supportText += itemVersionParam.Value + " ";
-                            paramViewItem2.SubItems.Add(supportText);
+                            }
+	                        paramViewItem2.SubItems.Add(supportText);
 
 	                    }
 
@@ -245,13 +279,17 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                 foreach (XElement item in parametersNode.Elements("Field"))
                 {
                     if (!FilterPassed(item.Element("SupportByLibrary")))
+                    {
                         continue;
+                    }
 
                     ListViewItem paramViewItem = listViewDetail.Items.Add("Set Local Variable " + item.Attribute("Name").Value);
                     paramViewItem.SubItems.Add(item.Element("SupportByLibrary").Attribute("Name").Value);
                     string supportText = item.Element("SupportByLibrary").Attribute("Api").Value + " ";
                     foreach (XElement itemVersion in item.Element("SupportByLibrary").Elements("Version"))
+                    {
                         supportText += itemVersion.Value + " ";
+                    }
                     paramViewItem.SubItems.Add(supportText);
                 }
                 listViewDetail.Items.Add("");
@@ -266,13 +304,17 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                 foreach (XElement item in parametersNode.Elements("Field"))
                 {
                     if (!FilterPassed(item.Element("SupportByLibrary")))
+                    {
                         continue;
+                    }
 
                     ListViewItem paramViewItem = listViewDetail.Items.Add("Set Class Field " + item.Attribute("Name").Value);
                     paramViewItem.SubItems.Add(item.Element("SupportByLibrary").Attribute("Name").Value);
                     string supportText = item.Element("SupportByLibrary").Attribute("Api").Value + " ";
                     foreach (XElement itemVersion in item.Element("SupportByLibrary").Elements("Version"))
+                    {
                         supportText += itemVersion.Value + " ";
+                    }
                     paramViewItem.SubItems.Add(supportText);
                 }
                 listViewDetail.Items.Add("");
@@ -287,13 +329,17 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                 foreach (XElement item in parametersNode.Elements("Entity"))
                 {
                     if (!FilterPassed(item.Element("SupportByLibrary")))
+                    {
                         continue;
+                    }
 
                     ListViewItem paramViewItem = listViewDetail.Items.Add("new " + item.Attribute("Type").Value + "()");
                     paramViewItem.SubItems.Add(item.Attribute("Type").Value);
                     string supportText = item.Element("SupportByLibrary").Attribute("Api").Value + " ";
                     foreach (XElement itemVersion in item.Element("SupportByLibrary").Elements("Version"))
+                    {
                         supportText += itemVersion.Value + " ";
+                    }
                     paramViewItem.SubItems.Add(supportText);
                 }
                 listViewDetail.Items.Add("");
@@ -308,13 +354,17 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                 foreach (XElement item in parametersNode.Elements("Entity"))
                 {
                     if (!FilterPassed(item.Element("SupportByLibrary")))
+                    {
                         continue;
+                    }
 
                     ListViewItem paramViewItem = listViewDetail.Items.Add("Locale Variable " + item.Attribute("Name").Value);
                     paramViewItem.SubItems.Add(item.Attribute("Type").Value);
                     string supportText = item.Element("SupportByLibrary").Attribute("Api").Value + " ";
                     foreach (XElement itemVersion in item.Element("SupportByLibrary").Elements("Version"))
+                    {
                         supportText += itemVersion.Value + " ";
+                    }
                     paramViewItem.SubItems.Add(supportText);
                 }
                 listViewDetail.Items.Add("");
@@ -329,14 +379,18 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                 foreach (XElement item in parametersNode.Elements("Entity"))
                 {
                     if (!FilterPassed(item.Element("SupportByLibrary")))
+                    {
                         continue;
+                    }
 
                     ListViewItem paramViewItem = listViewDetail.Items.Add("Parameter " + item.Attribute("Name").Value);
                     paramViewItem.SubItems.Add(item.Attribute("Type").Value);
 
                     string supportText = item.Element("SupportByLibrary").Attribute("Api").Value + " ";
                     foreach (XElement itemVersion in item.Element("SupportByLibrary").Elements("Version"))
+                    {
                         supportText += itemVersion.Value + " ";
+                    }
                     paramViewItem.SubItems.Add(supportText);
                 }
                 listViewDetail.Items.Add("");
@@ -349,7 +403,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
             if (null != returnValueNode)
             {
                 if (!FilterPassed(returnValueNode.Element("Entity").Element("SupportByLibrary")))
+                {
                     return;
+                }
 
                 string valType = returnValueNode.Element("Entity").Attribute("FullType").Value;
                 ListViewItem viewItem = listViewDetail.Items.Add("Return Value");
@@ -357,7 +413,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                 viewItem.SubItems.Add(valType);
                 string supportText = returnValueNode.Element("Entity").Element("SupportByLibrary").Attribute("Api").Value + " ";
                 foreach (XElement versionItem in returnValueNode.Element("Entity").Element("SupportByLibrary").Elements("Version"))
+                {
                     supportText += versionItem.Value + " ";
+                }
                 viewItem.SubItems.Add(supportText);
 
                 listViewDetail.Items.Add("");
@@ -367,7 +425,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
         private bool FilterPassed(XElement supportNode)
         {
             if (0 == comboBoxFilter.SelectedIndex)
+            {
                 return true;
+            }
 
             bool found09 = false;
             bool found10 = false;
@@ -407,27 +467,39 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
             {
                 case 1:     // 09
                     if (found09)
+                    {
                         return false;
+                    }
                     break;
                 case 2:     // 10
                     if (found10)
+                    {
                         return false;
+                    }
                     break;
                 case 3:     // 11
                     if (found11)
+                    {
                         return false;
+                    }
                     break;
                 case 4:     // 12
                     if (found12)
+                    {
                         return false;
+                    }
                     break;
                 case 5:     // 14
                     if (found14)
+                    {
                         return false;
+                    }
                     break;
                 case 6:     // 15
                     if (found15)
+                    {
                         return false;
+                    }
                     break;
             }
 
@@ -497,7 +569,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
         {
             listViewDetail.Items.Clear();
             foreach (XElement element in elements)
+            {
                 ShowDetails(element, false);
+            }
         }
 
         private void ShowDetails(XElement element, bool clearOldItems)
@@ -536,21 +610,27 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                     listViewDetail.Columns[2].Tag = 25;
 
                     if (!FilterPassed(element.Element("SupportByLibrary")))
+                    {
                         break;
+                    }
 
                     listViewDetail.Items.Add(element.Attribute("Name").Value);
                     listViewDetail.Items[0].SubItems.Add(element.Attribute("Type").Value);
 
                     string supportText = element.Element("SupportByLibrary").Attribute("Api").Value + " ";
                     foreach (XElement item in element.Element("SupportByLibrary").Elements("Version"))
+                    {
                         supportText += item.Value + " ";
+                    }
 
                     listViewDetail.Items[0].SubItems.Add(supportText);
 
                     break;
                 case "Method":
                     if (clearOldItems)
+                    {
                         listViewDetail.Items.Clear();
+                    }
                     listViewDetail.Columns.Clear();
                     listViewDetail.Columns.Add("");
                     listViewDetail.Columns.Add("");
@@ -646,7 +726,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                 if(DialogResult.OK == dialog.ShowDialog(this))
                 {
                     if (File.Exists(dialog.FileName))
+                    {
                         File.Delete(dialog.FileName);
+                    }
 
                     string logFileContent = GetLogFileContent();
                     File.AppendAllText(dialog.FileName, logFileContent);

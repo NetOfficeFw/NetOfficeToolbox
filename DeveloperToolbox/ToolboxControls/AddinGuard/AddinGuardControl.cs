@@ -76,15 +76,21 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
             get
             {
                 if (null == treeViewRegistry.SelectedNode)
+                {
                     return null;
+                }
 
                 AddinsKey item = treeViewRegistry.SelectedNode.Tag as AddinsKey;
                 if (null != item)
+                {
                     return treeViewRegistry.SelectedNode;
+                }
 
                 item = treeViewRegistry.SelectedNode.Parent.Tag as AddinsKey;
                 if (null != item)
+                {
                     return treeViewRegistry.SelectedNode.Parent;
+                }
 
                 return null;
             }
@@ -95,11 +101,15 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
             get
             {
                 if (null == treeViewRegistry.SelectedNode)
+                {
                     return null;
+                }
 
                 AddinsKey item = treeViewRegistry.SelectedNode.Tag as AddinsKey;
                 if (null != item)
+                {
                     return item;
+                }
 
                 return treeViewRegistry.SelectedNode.Parent.Tag as AddinsKey;
             }
@@ -193,30 +203,40 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
         public void LoadConfiguration(System.Xml.XmlNode configNode)
         {
             if (configNode.ChildNodes.Count == 0)
+            {
                 configNode.InnerXml = Ressources.RessourceUtils.ReadString("ToolboxControls.AddinGuard.DefaultConfiguration.txt");
+            }
 
 
             System.Xml.XmlNode node = configNode.SelectSingleNode("Active");
             bool mode = Convert.ToBoolean(node.Value);
             if (mode)
+            {
                 radioButtonActivate.Checked = true;
+            }
 
             node = configNode.SelectSingleNode("SetLoadBehavior");
             mode = Convert.ToBoolean(node.Value);
             if (mode)
+            {
                 checkBoxRestoreLoadBehavior.Checked = true;
+            }
 
 
             node = configNode.SelectSingleNode("TrayNotify");
             mode = Convert.ToBoolean(node.Value);
             if (mode)
+            {
                 radioButtonTray.Checked = true;
+            }
         }
 
         public void SaveConfiguration(System.Xml.XmlNode configNode)
         {
             if (configNode.ChildNodes.Count == 0)
+            {
                 configNode.InnerXml = Ressources.RessourceUtils.ReadString("ToolboxControls.AddinGuard.DefaultConfiguration.txt");
+            }
 
             System.Xml.XmlNode node = configNode.SelectSingleNode("Active");
             node.InnerText  = BoolToString(radioButtonActivate.Checked);
@@ -242,7 +262,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
                 return Ressources.RessourceUtils.CreateStreamFromString(content);
             }
             else
+            {
                 return Ressources.RessourceUtils.ReadStream("ToolboxControls.AddinGuard.Info" + lcid.ToString() + ".rtf");
+            }
         }
 
         public void Release()
@@ -347,10 +369,14 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
             {
                 string selectedKey = null;
                 if (null != treeViewRegistry.SelectedNode)
+                {
                     selectedKey = treeViewRegistry.SelectedNode.Name;
+                }
 
                 if (null == _addinsItemToDisplay)
+                {
                     return;
+                }
 
                 TreeNode node = treeViewRegistry.Nodes[_addinsItemToDisplay.Name];
                 DeleteAddinNodes(node, _addinsItemToDisplay.RootKey);
@@ -360,9 +386,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
                     string key = subItem.Parent.RootKey.ToString() + "-" + subItem.Parent.Name + "-" + subItem.Name;
                     TreeNode subNode = node.Nodes.Add(key, subItem.Name);
                     if (subItem.Parent.RootKey == Registry.LocalMachine)
+                    {
                         subNode.ImageIndex = 2;
+                    }
                     else
+                    {
                         subNode.ImageIndex = 3;
+                    }
                     subNode.SelectedImageIndex = subNode.ImageIndex;
 
                     subNode.BackColor = ToColor(subItem.LoadBehavior);
@@ -373,7 +403,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
                 treeViewRegistry.ExpandAll();
 
                 if (null != selectedKey)
+                {
                     SelectNode(treeViewRegistry, selectedKey);
+                }
             }
             catch (Exception exception)
             {
@@ -387,10 +419,14 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
             {
                 string selectedKey = null;
                 if (null != treeViewRegistry.SelectedNode)
+                {
                     selectedKey = treeViewRegistry.SelectedNode.Name;
+                }
 
                 if (null == _disabledItemToDisplay)
+                {
                     return;
+                }
 
                 TreeNode node = treeViewRegistry.Nodes[_disabledItemToDisplay.Name];
                 DeleteDisabledNodes(node);
@@ -406,7 +442,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
                 treeViewRegistry.ExpandAll();
 
                 if (null != selectedKey)
+                {
                     SelectNode(treeViewRegistry, selectedKey);
+                }
             }
             catch (Exception exception)
             {
@@ -439,13 +477,21 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
                 _displayedException = sender as Exception;
 
                 if (null != _addinsItemToDisplay)
+                {
                     this.Invoke(new MethodInvoker(Controller_AddinsKeyChangedInvoke));
+                }
                 else if (null != _disabledItemToDisplay)
+                {
                     this.Invoke(new MethodInvoker(Controller_DisabledKeyChangedInvoke));
+                }
                 else if (sender is WatchController)
+                {
                     this.Invoke(new MethodInvoker(Controller_PropertyChangedInvoke));
+                }
                 else if (sender is Exception)
+                {
                     this.Invoke(new MethodInvoker(WatchNotify_ExceptionThrownInvoke));
+                }
             }
             catch (Exception exception)
             {
@@ -462,7 +508,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
             try
             {
                 if (_programmaticChange)
+                {
                     return;
+                }
 
                 CheckBox button = sender as CheckBox;
                 _controller.RestoreLastLoadBehavior = button.Checked;
@@ -478,13 +526,19 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
             try
             {
                 if (_programmaticChange)
+                {
                     return;
+                }
 
                 RadioButton button = sender as RadioButton;
                 if (button.Checked)
+                {
                     _controller.NotifyType = NotificationType.MessageBox;
+                }
                 else
+                {
                     _controller.NotifyType = NotificationType.TrayBallon;
+                }
             }
             catch (Exception exception)
             {
@@ -499,12 +553,18 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
                 RadioButton button = sender as RadioButton;
 
                 if (button.Checked)
+                {
                     checkBoxRestoreLoadBehavior.ForeColor = Color.Blue;
+                }
                 else
+                {
                     checkBoxRestoreLoadBehavior.ForeColor = Color.Gray;
+                }
 
                 if (_programmaticChange)
+                {
                     return;
+                }
 
                 _controller.Enabled = button.Checked;
             }
@@ -633,16 +693,24 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
         private static Color ToColor(int? loadBehavior)
         {
             if (null == loadBehavior)
+            {
                 return Color.Red;
+            }
 
             if (loadBehavior == 2)
+            {
                 return Color.Yellow;
+            }
 
             if (loadBehavior == 0)
+            {
                 return Color.Orange;
+            }
 
             if ((loadBehavior != 0) && (loadBehavior != 1) && (loadBehavior != 2) && (loadBehavior != 3) && (loadBehavior != 8) && (loadBehavior != 9) && (loadBehavior != 16))
+            {
                 return Color.DarkKhaki;
+            }
 
             return Color.Transparent;
         }
@@ -650,9 +718,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
         private static string BoolToString(bool b)
         {
             if (b)
+            {
                 return "true";
+            }
             else
+            {
                 return "false";
+            }
         }
 
         private static void SelectNode(TreeView treeView, string key)
@@ -681,11 +753,15 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
             foreach (TreeNode childNode in node.Nodes)
             {
                 if (childNode.Tag is DisabledValue)
+                {
                     deleteList.Add(childNode);
+                }
             }
 
             foreach (TreeNode childNode in deleteList)
+            {
                 node.Nodes.Remove(childNode);
+            }
         }
 
         private void DeleteAddinNodes(TreeNode node, RegistryKey rootKey)
@@ -697,12 +773,16 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
                 {
                     AddinKey nodeKey = childNode.Tag as AddinKey;
                     if(nodeKey.Parent.RootKey == rootKey)
+                    {
                         deleteList.Add(childNode);
+                    }
                 }
             }
 
             foreach (TreeNode childNode in deleteList)
+            {
                 node.Nodes.Remove(childNode);
+            }
         }
 
         private void UpdateSubKeys(TreeNode node)

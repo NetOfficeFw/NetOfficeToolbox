@@ -183,10 +183,14 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
                         break;
                     }
                     else
+                    {
                         item = oldValue;
+                    }
                 }
                 if (!found)
+                {
                     return item;
+                }
             }
             throw new ArgumentException("No changed Name found");
         }
@@ -205,7 +209,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
                     }
                 }
                 if (!found)
+                {
                     return oldValue;
+                }
             }
 
             throw new ArgumentException("No deleted Value found");
@@ -225,7 +231,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
                     }
                 }
                 if (!found)
+                {
                     return newValue;
+                }
             }
             throw new ArgumentException("No new Value found");
         }
@@ -257,7 +265,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
             foreach (string arrayItem in array)
             {
                 if (arrayItem == item)
+                {
                     return true;
+                }
             }
             return false;
         }
@@ -265,13 +275,19 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
         internal static bool IsEqual(object value1, object value2)
         {
             if ((null == value1) && (null == value2))
+            {
                 return true;
+            }
 
             if (null == value1)
+            {
                 return false;
+            }
 
             if (null == value2)
+            {
                 return false;
+            }
 
             string string1 = value1.ToString();
             string string2 = value2.ToString();
@@ -288,7 +304,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
             foreach (AddinKey addinKey in list)
             {
                 if (name == addinKey.Name)
+                {
                     return true;
+                }
             }
             return false;
         }
@@ -308,11 +326,15 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
                     }
                 }
                 if (!found)
+                {
                     deleteList.Add(itemAddin);
+                }
             }
 
             foreach (AddinKey itemAddin in deleteList)
+            {
                 list.Remove(itemAddin);
+            }
         }
 
         private void GetKeySubKeys()

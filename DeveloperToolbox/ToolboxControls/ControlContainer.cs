@@ -32,7 +32,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls
         {
             InitializeComponent();
             if (null == innerInstance)
+            {
                 throw new ArgumentNullException("innerInstance");
+            }
             InnerInstance = innerInstance;
             panelToolboxControl.Controls.Add(innerInstance as Control);
             (innerInstance as Control).Dock = DockStyle.Fill;
@@ -116,7 +118,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls
             buttonInfo.Visible = InnerInstance.SupportsHelpContent;
             InnerInstance.Activate(firstTime);
             if (InnerInstance.SupportsHelpContent)
+            {
                 controlBackColorAnimator1.Start(false);
+            }
             SetupInfoMessage();
         }
 
@@ -124,7 +128,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls
         {
             InnerInstance.Deactivated();
             if (InnerInstance.SupportsHelpContent)
+            {
                 controlBackColorAnimator1.Start(false);
+            }
         }
 
         public void LoadComplete()

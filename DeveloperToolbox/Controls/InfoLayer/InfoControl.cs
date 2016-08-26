@@ -85,7 +85,9 @@ namespace NetOffice.DeveloperToolbox.Controls.InfoLayer
             string assemblyName = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
             System.IO.Stream ressourceStream = ass.GetManifestResourceStream(assemblyName + "." + resId);
             if (ressourceStream == null)
+            {
                 throw (new System.IO.IOException("Error accessing resource Stream."));
+            }
             return ressourceStream;
         }
 
@@ -170,7 +172,9 @@ namespace NetOffice.DeveloperToolbox.Controls.InfoLayer
                 return content;
             }
             else
+            {
                 return "";
+            }
         }
 
         #endregion
