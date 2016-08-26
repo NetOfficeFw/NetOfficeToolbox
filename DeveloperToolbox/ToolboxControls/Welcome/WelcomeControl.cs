@@ -93,7 +93,6 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.Welcome
         {
             Host = host;
             comboBoxLanguage.DataSource = host.Languages;
-            Host.Minimized += new EventHandler(Host_Minimized);
             Host.LanguageEditorVisibleChanged += new EventHandler(Host_LanguageEditorVisibleChanged);
         }
 
@@ -108,31 +107,11 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.Welcome
 
         public void LoadComplete()
         {
-            if (checkBoxStartAppMinimized.Checked)
-            {
-                Host.MinimizeMainWindow(false);
-            }
         }
 
         public void LoadConfiguration(System.Xml.XmlNode configNode)
         {
-            XmlNode minimizeNode = configNode["StartMinimized"];
-            XmlNode trayNode = configNode["MinimizeToTray"];
-            XmlNode startupNode = configNode["RunAtStartup"];
             XmlNode languageNode = configNode["Language"];
-
-            if (null != minimizeNode)
-            {
-                checkBoxStartAppMinimized.Checked = Convert.ToBoolean(minimizeNode.InnerText);
-            }
-            if(null != trayNode)
-            {
-                checkBoxMinimizeToTray.Checked = Convert.ToBoolean(trayNode.InnerText);
-            }
-            if(null != startupNode)
-            {
-                checkBoxStartAppWithWindows.Checked = Convert.ToBoolean(startupNode.InnerText);
-            }
 
             if (null != languageNode)
             {
@@ -169,28 +148,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.Welcome
 
         public void SaveConfiguration(System.Xml.XmlNode configNode)
         {
-            XmlNode minimizeNode = configNode["StartMinimized"];
-            XmlNode trayNode = configNode["MinimizeToTray"];
-            XmlNode startupNode = configNode["RunAtStartup"];
             XmlNode languageNode = configNode["Language"];
-
-            if (null == minimizeNode)
-            {
-                minimizeNode = configNode.OwnerDocument.CreateNode(XmlNodeType.Element, "StartMinimized", null);
-                configNode.AppendChild(minimizeNode);
-            }
-
-            if (null == trayNode)
-            {
-                trayNode = configNode.OwnerDocument.CreateNode(XmlNodeType.Element, "MinimizeToTray", null);
-                configNode.AppendChild(trayNode);
-            }
-
-            if (null == startupNode)
-            {
-                startupNode = configNode.OwnerDocument.CreateNode(XmlNodeType.Element, "RunAtStartup", null);
-                configNode.AppendChild(startupNode);
-            }
 
             if (null == languageNode)
             {
@@ -198,12 +156,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.Welcome
                 configNode.AppendChild(languageNode);
             }
 
-            minimizeNode.InnerText = checkBoxStartAppMinimized.Checked.ToString();
-            trayNode.InnerText = checkBoxMinimizeToTray.Checked.ToString();
-            startupNode.InnerText = checkBoxStartAppWithWindows.Checked.ToString();
             languageNode.InnerText = (comboBoxLanguage.SelectedItem as Translation.ToolLanguage).LCID.ToString();
-
-            SetupAutoRunEntry();
         }
 
         public void SetLanguage(int id)
@@ -223,8 +176,6 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.Welcome
 
         public void Release()
         {
-            Host.Minimized -= new EventHandler(Host_Minimized);
-            SetupTrayIcon(false);
         }
 
         public IContainer Components
@@ -238,22 +189,6 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.Welcome
 
         public void EnableDesignView(int lcid, string parentComponentName)
         {
-            pictureBoxLogo.Visible = true;
-            labelBeginTitle.Visible = true;
-            labelIWant.Visible = true;
-            labelBug.Visible = true;
-            linkLabelNetOfficeIssues.Visible = true;
-            labelUpdate.Visible = true;
-            linkLabelNetOfficeUpdates.Visible = true;
-            labelQuestion.Visible = true;
-            linkLabelNetOfficeQuestions.Visible = true;
-            labelMailMe.Visible = true;
-            linkLabelMailMe.Visible = true;
-            pictureBoxHeader.Visible = true;
-            pictureBoxIconLeft.Visible = true;
-            pictureBoxIconRight.Visible = true;
-            labelBeginTop.Visible = true;
-            labelBeginBottom.Visible = true;
         }
 
         public void Localize(Translation.ItemCollection strings)
@@ -290,65 +225,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.Welcome
         #endregion
 
         #region Methods
-
-        private void SetupAutoRunEntry()
-        {
-            string runEntryKey = "Software\\Microsoft\\Windows\\CurrentVersion\\Run";
-            string runEntryTitle = "NetOffice DeveloperToolbox";
-
-            if (checkBoxStartAppWithWindows.Checked)
-            {
-                RegistryKey runKey = Registry.CurrentUser.OpenSubKey(runEntryKey, true);
-                object val = runKey.GetValue(runEntryTitle);
-                if (val == null)
-                {
-                    runKey.SetValue(runEntryTitle, this.GetType().Assembly.Location);
-                }
-                runKey.Close();
-            }
-            else
-            {
-                RegistryKey runKey = Registry.CurrentUser.OpenSubKey(runEntryKey, true);
-                object val = runKey.GetValue(runEntryTitle);
-                if (val != null)
-                {
-                    runKey.DeleteValue(runEntryTitle);
-                }
-                runKey.Close();
-            }
-        }
-
-        private void SetupTrayIcon(bool init)
-        {
-            if (true == init)
-            {
-                if (null != TrayIcon)
-                {
-                    TrayIcon.Click -= new EventHandler(TrayNotifyIcon_Click);
-                    TrayIcon.Visible = false;
-                    TrayIcon.Dispose();
-                    TrayIcon = null;
-                }
-
-                TrayIcon = new NotifyIcon();
-                TrayIcon.Icon = Host.Icon;
-                TrayIcon.Text = Host.Caption;
-                TrayIcon.Visible = true;
-                TrayIcon.Click += new EventHandler(TrayNotifyIcon_Click);
-                Host.MinimizeMainWindow(false);
-            }
-            else
-            {
-                if (null != TrayIcon)
-                {
-                    TrayIcon.Click -= new EventHandler(TrayNotifyIcon_Click);
-                    TrayIcon.Visible = false;
-                    TrayIcon.Dispose();
-                    TrayIcon = null;
-                }
-            }
-        }
-
+        
         private void ResizeControls()
         {
             pictureBoxHeader.Location = new Point((this.Width / 2) - (pictureBoxHeader.Width / 2), 13);
@@ -397,47 +274,6 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.Welcome
             catch (Exception exception)
             {
                  Forms.ErrorForm.ShowError(this, exception,ErrorCategory.NonCritical, Host.CurrentLanguageID);
-            }
-        }
-
-        private void ComboBoxLanguage_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                int languageID = comboBoxLanguage.SelectedIndex == 0 ? 1033 : 1031;
-                Host.CurrentLanguageID = languageID;
-            }
-            catch (Exception exception)
-            {
-                Forms.ErrorForm.ShowError(this, exception,ErrorCategory.NonCritical, Host.CurrentLanguageID);
-            }
-        }
-
-        private void TrayNotifyIcon_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                TrayIcon.Visible = false;
-                Host.ShowMainWindow();
-            }
-            catch (Exception exception)
-            {
-                Forms.ErrorForm.ShowError(this, exception,ErrorCategory.NonCritical, Host.CurrentLanguageID);
-            }
-        }
-
-        private void Host_Minimized(object sender, EventArgs e)
-        {
-            try
-            {
-                if (checkBoxMinimizeToTray.Checked)
-                {
-                    SetupTrayIcon(true);
-                }
-            }
-            catch (Exception exception)
-            {
-                Forms.ErrorForm.ShowError(this, exception,ErrorCategory.NonCritical, Host.CurrentLanguageID);
             }
         }
 

@@ -31,15 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WelcomeControl));
             this.labelVersionHint = new System.Windows.Forms.Label();
             this.panelMainLeft = new System.Windows.Forms.Panel();
-            this.labelBeginBottom = new NetOffice.DeveloperToolbox.Controls.Text.AdvRichTextBox();
-            this.labelBeginTop = new NetOffice.DeveloperToolbox.Controls.Text.AdvRichTextBox();
             this.labelBeginTitle = new System.Windows.Forms.Label();
             this.pictureBoxIconLeft = new System.Windows.Forms.PictureBox();
-            this.checkBoxStartAppWithWindows = new System.Windows.Forms.CheckBox();
-            this.checkBoxStartAppMinimized = new System.Windows.Forms.CheckBox();
-            this.checkBoxMinimizeToTray = new System.Windows.Forms.CheckBox();
-            this.labelLanguage = new System.Windows.Forms.Label();
-            this.comboBoxLanguage = new System.Windows.Forms.ComboBox();
             this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
             this.panelMainRight = new System.Windows.Forms.Panel();
             this.labelMailMe = new System.Windows.Forms.Label();
@@ -55,6 +48,10 @@
             this.panelOptions = new System.Windows.Forms.Panel();
             this.buttonLanguageEditor = new System.Windows.Forms.Button();
             this.pictureBoxHeader = new System.Windows.Forms.PictureBox();
+            this.labelBeginBottom = new NetOffice.DeveloperToolbox.Controls.Text.AdvRichTextBox();
+            this.labelBeginTop = new NetOffice.DeveloperToolbox.Controls.Text.AdvRichTextBox();
+            this.comboBoxLanguage = new System.Windows.Forms.ComboBox();
+            this.labelLanguage = new System.Windows.Forms.Label();
             this.panelMainLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxIconLeft)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
@@ -86,45 +83,10 @@
             this.panelMainLeft.Controls.Add(this.labelBeginTitle);
             this.panelMainLeft.Controls.Add(this.pictureBoxIconLeft);
             this.panelMainLeft.Location = new System.Drawing.Point(40, 131);
-            this.panelMainLeft.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.panelMainLeft.Margin = new System.Windows.Forms.Padding(6);
             this.panelMainLeft.Name = "panelMainLeft";
             this.panelMainLeft.Size = new System.Drawing.Size(542, 585);
             this.panelMainLeft.TabIndex = 99;
-            // 
-            // labelBeginBottom
-            // 
-            this.labelBeginBottom.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.labelBeginBottom.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.labelBeginBottom.Cursor = System.Windows.Forms.Cursors.Default;
-            this.labelBeginBottom.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.labelBeginBottom.ForeColor = System.Drawing.Color.Black;
-            this.labelBeginBottom.Location = new System.Drawing.Point(24, 283);
-            this.labelBeginBottom.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.labelBeginBottom.Name = "labelBeginBottom";
-            this.labelBeginBottom.ReadOnly = true;
-            this.labelBeginBottom.SelectionAlignment = NetOffice.DeveloperToolbox.Controls.Text.TextAlign.Justify;
-            this.labelBeginBottom.Size = new System.Drawing.Size(510, 200);
-            this.labelBeginBottom.TabIndex = 105;
-            this.labelBeginBottom.Text = "You can find a help button in the upper right corner of every tab. I am looking f" +
-    "orward to your message if you have any questions, suggestions, comments or reque" +
-    "sts regarding the Developer Toolbox.";
-            // 
-            // labelBeginTop
-            // 
-            this.labelBeginTop.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.labelBeginTop.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.labelBeginTop.Cursor = System.Windows.Forms.Cursors.Default;
-            this.labelBeginTop.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.labelBeginTop.ForeColor = System.Drawing.Color.Black;
-            this.labelBeginTop.Location = new System.Drawing.Point(24, 98);
-            this.labelBeginTop.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.labelBeginTop.Name = "labelBeginTop";
-            this.labelBeginTop.ReadOnly = true;
-            this.labelBeginTop.SelectionAlignment = NetOffice.DeveloperToolbox.Controls.Text.TextAlign.Justify;
-            this.labelBeginTop.Size = new System.Drawing.Size(510, 179);
-            this.labelBeginTop.TabIndex = 104;
-            this.labelBeginTop.Text = "The NetOffice Developer Toolbox supports .NET Office developers in his daily work" +
-    " with a set of helpful functions.";
             // 
             // labelBeginTitle
             // 
@@ -143,87 +105,11 @@
             this.pictureBoxIconLeft.BackColor = System.Drawing.Color.Transparent;
             this.pictureBoxIconLeft.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxIconLeft.Image")));
             this.pictureBoxIconLeft.Location = new System.Drawing.Point(34, 23);
-            this.pictureBoxIconLeft.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pictureBoxIconLeft.Margin = new System.Windows.Forms.Padding(6);
             this.pictureBoxIconLeft.Name = "pictureBoxIconLeft";
             this.pictureBoxIconLeft.Size = new System.Drawing.Size(34, 33);
             this.pictureBoxIconLeft.TabIndex = 77;
             this.pictureBoxIconLeft.TabStop = false;
-            // 
-            // checkBoxStartAppWithWindows
-            // 
-            this.checkBoxStartAppWithWindows.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.checkBoxStartAppWithWindows.AutoSize = true;
-            this.checkBoxStartAppWithWindows.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.checkBoxStartAppWithWindows.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxStartAppWithWindows.ForeColor = System.Drawing.Color.Blue;
-            this.checkBoxStartAppWithWindows.Location = new System.Drawing.Point(64, 66);
-            this.checkBoxStartAppWithWindows.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.checkBoxStartAppWithWindows.Name = "checkBoxStartAppWithWindows";
-            this.checkBoxStartAppWithWindows.Size = new System.Drawing.Size(263, 40);
-            this.checkBoxStartAppWithWindows.TabIndex = 94;
-            this.checkBoxStartAppWithWindows.Text = "Start with Windows";
-            this.checkBoxStartAppWithWindows.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxStartAppMinimized
-            // 
-            this.checkBoxStartAppMinimized.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.checkBoxStartAppMinimized.AutoSize = true;
-            this.checkBoxStartAppMinimized.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.checkBoxStartAppMinimized.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxStartAppMinimized.ForeColor = System.Drawing.Color.Blue;
-            this.checkBoxStartAppMinimized.Location = new System.Drawing.Point(64, 110);
-            this.checkBoxStartAppMinimized.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.checkBoxStartAppMinimized.Name = "checkBoxStartAppMinimized";
-            this.checkBoxStartAppMinimized.Size = new System.Drawing.Size(220, 40);
-            this.checkBoxStartAppMinimized.TabIndex = 93;
-            this.checkBoxStartAppMinimized.Text = "Start minimized";
-            this.checkBoxStartAppMinimized.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxMinimizeToTray
-            // 
-            this.checkBoxMinimizeToTray.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.checkBoxMinimizeToTray.AutoSize = true;
-            this.checkBoxMinimizeToTray.Checked = true;
-            this.checkBoxMinimizeToTray.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxMinimizeToTray.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.checkBoxMinimizeToTray.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxMinimizeToTray.ForeColor = System.Drawing.Color.Blue;
-            this.checkBoxMinimizeToTray.Location = new System.Drawing.Point(64, 22);
-            this.checkBoxMinimizeToTray.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.checkBoxMinimizeToTray.Name = "checkBoxMinimizeToTray";
-            this.checkBoxMinimizeToTray.Size = new System.Drawing.Size(321, 40);
-            this.checkBoxMinimizeToTray.TabIndex = 92;
-            this.checkBoxMinimizeToTray.Text = "Send to tray at minimize";
-            this.checkBoxMinimizeToTray.UseVisualStyleBackColor = true;
-            // 
-            // labelLanguage
-            // 
-            this.labelLanguage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelLanguage.AutoSize = true;
-            this.labelLanguage.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelLanguage.ForeColor = System.Drawing.Color.Blue;
-            this.labelLanguage.Location = new System.Drawing.Point(1286, 27);
-            this.labelLanguage.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.labelLanguage.Name = "labelLanguage";
-            this.labelLanguage.Size = new System.Drawing.Size(127, 36);
-            this.labelLanguage.TabIndex = 97;
-            this.labelLanguage.Text = "Language";
-            // 
-            // comboBoxLanguage
-            // 
-            this.comboBoxLanguage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBoxLanguage.BackColor = System.Drawing.Color.Orange;
-            this.comboBoxLanguage.DisplayMember = "DisplayName";
-            this.comboBoxLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxLanguage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBoxLanguage.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxLanguage.FormattingEnabled = true;
-            this.comboBoxLanguage.Location = new System.Drawing.Point(1440, 23);
-            this.comboBoxLanguage.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.comboBoxLanguage.Name = "comboBoxLanguage";
-            this.comboBoxLanguage.Size = new System.Drawing.Size(348, 44);
-            this.comboBoxLanguage.TabIndex = 96;
-            this.comboBoxLanguage.SelectedIndexChanged += new System.EventHandler(this.comboBoxLanguage_SelectedIndexChanged);
             // 
             // pictureBoxLogo
             // 
@@ -233,7 +119,7 @@
             this.pictureBoxLogo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBoxLogo.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxLogo.Image")));
             this.pictureBoxLogo.Location = new System.Drawing.Point(586, 92);
-            this.pictureBoxLogo.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pictureBoxLogo.Margin = new System.Windows.Forms.Padding(6);
             this.pictureBoxLogo.Name = "pictureBoxLogo";
             this.pictureBoxLogo.Size = new System.Drawing.Size(676, 623);
             this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -255,7 +141,7 @@
             this.panelMainRight.Controls.Add(this.labelIWant);
             this.panelMainRight.Controls.Add(this.linkLabelNetOfficeUpdates);
             this.panelMainRight.Location = new System.Drawing.Point(1266, 131);
-            this.panelMainRight.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.panelMainRight.Margin = new System.Windows.Forms.Padding(6);
             this.panelMainRight.Name = "panelMainRight";
             this.panelMainRight.Size = new System.Drawing.Size(542, 585);
             this.panelMainRight.TabIndex = 98;
@@ -332,7 +218,7 @@
             this.pictureBoxIconRight.BackColor = System.Drawing.Color.Transparent;
             this.pictureBoxIconRight.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxIconRight.Image")));
             this.pictureBoxIconRight.Location = new System.Drawing.Point(26, 23);
-            this.pictureBoxIconRight.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pictureBoxIconRight.Margin = new System.Windows.Forms.Padding(6);
             this.pictureBoxIconRight.Name = "pictureBoxIconRight";
             this.pictureBoxIconRight.Size = new System.Drawing.Size(34, 33);
             this.pictureBoxIconRight.TabIndex = 77;
@@ -396,13 +282,10 @@
             this.panelOptions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelOptions.Controls.Add(this.buttonLanguageEditor);
-            this.panelOptions.Controls.Add(this.checkBoxStartAppWithWindows);
-            this.panelOptions.Controls.Add(this.checkBoxStartAppMinimized);
-            this.panelOptions.Controls.Add(this.checkBoxMinimizeToTray);
             this.panelOptions.Controls.Add(this.labelLanguage);
             this.panelOptions.Controls.Add(this.comboBoxLanguage);
             this.panelOptions.Location = new System.Drawing.Point(0, 773);
-            this.panelOptions.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.panelOptions.Margin = new System.Windows.Forms.Padding(6);
             this.panelOptions.Name = "panelOptions";
             this.panelOptions.Size = new System.Drawing.Size(1848, 181);
             this.panelOptions.TabIndex = 102;
@@ -417,7 +300,7 @@
             this.buttonLanguageEditor.Image = ((System.Drawing.Image)(resources.GetObject("buttonLanguageEditor.Image")));
             this.buttonLanguageEditor.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.buttonLanguageEditor.Location = new System.Drawing.Point(1440, 102);
-            this.buttonLanguageEditor.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.buttonLanguageEditor.Margin = new System.Windows.Forms.Padding(6);
             this.buttonLanguageEditor.Name = "buttonLanguageEditor";
             this.buttonLanguageEditor.Size = new System.Drawing.Size(352, 48);
             this.buttonLanguageEditor.TabIndex = 98;
@@ -429,11 +312,75 @@
             // 
             this.pictureBoxHeader.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxHeader.Image")));
             this.pictureBoxHeader.Location = new System.Drawing.Point(370, 25);
-            this.pictureBoxHeader.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pictureBoxHeader.Margin = new System.Windows.Forms.Padding(6);
             this.pictureBoxHeader.Name = "pictureBoxHeader";
             this.pictureBoxHeader.Size = new System.Drawing.Size(1198, 69);
             this.pictureBoxHeader.TabIndex = 103;
             this.pictureBoxHeader.TabStop = false;
+            // 
+            // labelBeginBottom
+            // 
+            this.labelBeginBottom.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.labelBeginBottom.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.labelBeginBottom.Cursor = System.Windows.Forms.Cursors.Default;
+            this.labelBeginBottom.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.labelBeginBottom.ForeColor = System.Drawing.Color.Black;
+            this.labelBeginBottom.Location = new System.Drawing.Point(24, 283);
+            this.labelBeginBottom.Margin = new System.Windows.Forms.Padding(6);
+            this.labelBeginBottom.Name = "labelBeginBottom";
+            this.labelBeginBottom.ReadOnly = true;
+            this.labelBeginBottom.SelectionAlignment = NetOffice.DeveloperToolbox.Controls.Text.TextAlign.Justify;
+            this.labelBeginBottom.Size = new System.Drawing.Size(510, 200);
+            this.labelBeginBottom.TabIndex = 105;
+            this.labelBeginBottom.Text = "You can find a help button in the upper right corner of every tab. I am looking f" +
+    "orward to your message if you have any questions, suggestions, comments or reque" +
+    "sts regarding the Developer Toolbox.";
+            // 
+            // labelBeginTop
+            // 
+            this.labelBeginTop.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.labelBeginTop.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.labelBeginTop.Cursor = System.Windows.Forms.Cursors.Default;
+            this.labelBeginTop.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.labelBeginTop.ForeColor = System.Drawing.Color.Black;
+            this.labelBeginTop.Location = new System.Drawing.Point(24, 98);
+            this.labelBeginTop.Margin = new System.Windows.Forms.Padding(6);
+            this.labelBeginTop.Name = "labelBeginTop";
+            this.labelBeginTop.ReadOnly = true;
+            this.labelBeginTop.SelectionAlignment = NetOffice.DeveloperToolbox.Controls.Text.TextAlign.Justify;
+            this.labelBeginTop.Size = new System.Drawing.Size(510, 179);
+            this.labelBeginTop.TabIndex = 104;
+            this.labelBeginTop.Text = "The NetOffice Developer Toolbox supports .NET Office developers in his daily work" +
+    " with a set of helpful functions.";
+            // 
+            // comboBoxLanguage
+            // 
+            this.comboBoxLanguage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxLanguage.BackColor = System.Drawing.Color.Orange;
+            this.comboBoxLanguage.DisplayMember = "DisplayName";
+            this.comboBoxLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxLanguage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBoxLanguage.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxLanguage.FormattingEnabled = true;
+            this.comboBoxLanguage.Location = new System.Drawing.Point(1440, 23);
+            this.comboBoxLanguage.Margin = new System.Windows.Forms.Padding(6);
+            this.comboBoxLanguage.Name = "comboBoxLanguage";
+            this.comboBoxLanguage.Size = new System.Drawing.Size(348, 44);
+            this.comboBoxLanguage.TabIndex = 96;
+            this.comboBoxLanguage.SelectedIndexChanged += new System.EventHandler(this.comboBoxLanguage_SelectedIndexChanged);
+            // 
+            // labelLanguage
+            // 
+            this.labelLanguage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelLanguage.AutoSize = true;
+            this.labelLanguage.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelLanguage.ForeColor = System.Drawing.Color.Blue;
+            this.labelLanguage.Location = new System.Drawing.Point(1286, 27);
+            this.labelLanguage.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.labelLanguage.Name = "labelLanguage";
+            this.labelLanguage.Size = new System.Drawing.Size(127, 36);
+            this.labelLanguage.TabIndex = 97;
+            this.labelLanguage.Text = "Language";
             // 
             // WelcomeControl
             // 
@@ -471,11 +418,6 @@
         private System.Windows.Forms.Panel panelMainLeft;
         private System.Windows.Forms.Label labelBeginTitle;
         private System.Windows.Forms.PictureBox pictureBoxIconLeft;
-        private System.Windows.Forms.CheckBox checkBoxStartAppWithWindows;
-        private System.Windows.Forms.CheckBox checkBoxStartAppMinimized;
-        private System.Windows.Forms.CheckBox checkBoxMinimizeToTray;
-        private System.Windows.Forms.Label labelLanguage;
-        private System.Windows.Forms.ComboBox comboBoxLanguage;
         private System.Windows.Forms.PictureBox pictureBoxLogo;
         private System.Windows.Forms.Panel panelMainRight;
         private System.Windows.Forms.Label labelMailMe;
@@ -493,5 +435,7 @@
         private NetOffice.DeveloperToolbox.Controls.Text.AdvRichTextBox labelBeginTop;
         private NetOffice.DeveloperToolbox.Controls.Text.AdvRichTextBox labelBeginBottom;
         private System.Windows.Forms.Button buttonLanguageEditor;
+        private System.Windows.Forms.Label labelLanguage;
+        private System.Windows.Forms.ComboBox comboBoxLanguage;
     }
 }
