@@ -11,7 +11,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
     /// <summary>
     /// Name edit host dialog
     /// </summary>
-    [RessourceTable("ToolboxControls.RegistryEditor.ChangeNameDialogMessageTable.txt")]
+    [ResourceTable("ToolboxControls.RegistryEditor.ChangeNameDialogMessageTable.txt")]
     partial class ChangeNameDialog : Form
     {
         #region Ctor

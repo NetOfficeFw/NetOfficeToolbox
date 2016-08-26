@@ -34,8 +34,8 @@ namespace NetOffice.DeveloperToolbox.Translation
             _controlType = controlType;
             ControlRessources = new ItemCollection();
 
-            string[] names = RessourceTableAttribute.GetRessourceNames(controlType);
-            Dictionary<string, string> values = RessourceTableAttribute.GetRessourceValues(Design, parent.LCID);
+            string[] names = ResourceTableAttribute.GetRessourceNames(controlType);
+            Dictionary<string, string> values = ResourceTableAttribute.GetRessourceValues(Design, parent.LCID);
             foreach (var resName in names)
             {
                 string resValue ="";
@@ -82,8 +82,8 @@ namespace NetOffice.DeveloperToolbox.Translation
             _controlType = controlType;
             ControlRessources = new ItemCollection();
 
-            string[] names = RessourceTableAttribute.GetRessourceNames(controlType);
-            Dictionary<string, string> values = RessourceTableAttribute.GetRessourceValues(Design, parent.LCID);
+            string[] names = ResourceTableAttribute.GetRessourceNames(controlType);
+            Dictionary<string, string> values = ResourceTableAttribute.GetRessourceValues(Design, parent.LCID);
             foreach (var resName in names)
             {
                 string resValue = "";
@@ -127,12 +127,12 @@ namespace NetOffice.DeveloperToolbox.Translation
         /// <summary>
         /// Attribute from the component class
         /// </summary>
-        internal RessourceTableAttribute Attribute
+        internal ResourceTableAttribute Attribute
         {
             get
             {
-                object[] obj = _controlType.GetCustomAttributes(typeof(RessourceTableAttribute), false);
-                RessourceTableAttribute attrib = obj[0] as RessourceTableAttribute;
+                object[] obj = _controlType.GetCustomAttributes(typeof(ResourceTableAttribute), false);
+                ResourceTableAttribute attrib = obj[0] as ResourceTableAttribute;
                 return attrib;
             }
         }

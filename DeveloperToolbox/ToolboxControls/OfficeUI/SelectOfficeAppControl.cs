@@ -18,7 +18,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeUI
     /// <summary>
     /// Shows supported office application to create an analyze one of them
     /// </summary>
-    [RessourceTable("ToolboxControls.OfficeUI.SelectOfficeAppControlStrings.txt")]
+    [ResourceTable("ToolboxControls.OfficeUI.SelectOfficeAppControlStrings.txt")]
     public partial class SelectOfficeAppControl : UserControl, ILocalizationDesign
     {
         #region Fields

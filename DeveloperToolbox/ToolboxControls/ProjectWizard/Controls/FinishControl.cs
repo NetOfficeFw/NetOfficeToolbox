@@ -14,7 +14,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
     /// <summary>
     /// Last wizard step to show summary settings
     /// </summary>
-    [RessourceTable("ToolboxControls.ProjectWizard.Controls.FinishControl.txt")]
+    [ResourceTable("ToolboxControls.ProjectWizard.Controls.FinishControl.txt")]
     public partial class FinishControl : UserControl, IWizardControl, ILocalizationDesign
     {
         #region Fields

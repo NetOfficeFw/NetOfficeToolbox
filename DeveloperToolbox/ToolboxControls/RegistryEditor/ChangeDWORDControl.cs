@@ -12,7 +12,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
     /// <summary>
     /// DWORD Value Editor
     /// </summary>
-    [RessourceTable("ToolboxControls.RegistryEditor.ChangeDWordDialogMessageTable.txt")]
+    [ResourceTable("ToolboxControls.RegistryEditor.ChangeDWordDialogMessageTable.txt")]
     public partial class ChangeDWORDControl : UserControl, ILocalizationDesign
     {
         #region Ctor

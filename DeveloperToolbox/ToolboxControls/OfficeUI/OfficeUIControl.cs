@@ -11,7 +11,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeUI
     /// <summary>
     /// Allows to analyze the office user interface object model
     /// </summary>
-    [RessourceTable("ToolboxControls.OfficeUI.Strings.txt")]
+    [ResourceTable("ToolboxControls.OfficeUI.Strings.txt")]
     public partial class OfficeUIControl : UserControl, IToolboxControl
     {
         #region Fields

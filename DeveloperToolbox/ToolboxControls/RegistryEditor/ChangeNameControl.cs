@@ -12,7 +12,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
     /// <summary>
     /// Name Value Editor
     /// </summary>
-    [RessourceTable("ToolboxControls.RegistryEditor.ChangeNameDialogMessageTable.txt")]
+    [ResourceTable("ToolboxControls.RegistryEditor.ChangeNameDialogMessageTable.txt")]
     public partial class ChangeNameControl : UserControl, ILocalizationDesign
     {
         #region Ctor

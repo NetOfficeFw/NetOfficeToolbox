@@ -12,7 +12,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
     /// <summary>
     /// Show all selected options as summary
     /// </summary>
-    [RessourceTable("ToolboxControls.ProjectWizard.Controls.SummaryControl.txt")]
+    [ResourceTable("ToolboxControls.ProjectWizard.Controls.SummaryControl.txt")]
     public partial class SummaryControl : UserControl, IWizardControl, ILocalizationDesign
     {
         #region Fields

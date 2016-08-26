@@ -10,7 +10,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OutlookSecurity
     /// <summary>
     /// Suspend outlook security dialog through NetOffice.OutlookSecurity
     /// </summary>
-    [RessourceTable("ToolboxControls.OutlookSecurity.Strings.txt")]
+    [ResourceTable("ToolboxControls.OutlookSecurity.Strings.txt")]
     public partial class OutlookSecurityControl : UserControl, IToolboxControl
     {
         #region Fields

@@ -15,7 +15,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
     /// <summary>
     /// Project type want selected here as first
     /// </summary>
-    [RessourceTable("ToolboxControls.ProjectWizard.Controls.ProjectControl.txt")]
+    [ResourceTable("ToolboxControls.ProjectWizard.Controls.ProjectControl.txt")]
     public partial class ProjectControl : UserControl, IWizardControl, ILocalizationDesign
     {
         #region Fields

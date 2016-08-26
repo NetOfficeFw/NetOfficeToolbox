@@ -13,7 +13,7 @@ namespace NetOffice.DeveloperToolbox.Controls.InfoLayer
     /// <summary>
     /// Control to display rich text
     /// </summary>
-    [RessourceTable("Controls.InfoLayer.Strings.txt")]
+    [ResourceTable("Controls.InfoLayer.Strings.txt")]
     public partial class InfoControl : UserControl, ILocalizationDesign, ILocalizationReplaceProvider
     {
         #region Fields

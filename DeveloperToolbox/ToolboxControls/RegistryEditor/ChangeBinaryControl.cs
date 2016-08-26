@@ -12,7 +12,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
     /// <summary>
     /// Binary Value Editor
     /// </summary>
-    [RessourceTable("ToolboxControls.RegistryEditor.ChangeBinaryDialogMessageTable.txt")]
+    [ResourceTable("ToolboxControls.RegistryEditor.ChangeBinaryDialogMessageTable.txt")]
     public partial class ChangeBinaryControl : UserControl, ILocalizationDesign
     {
         #region Ctor

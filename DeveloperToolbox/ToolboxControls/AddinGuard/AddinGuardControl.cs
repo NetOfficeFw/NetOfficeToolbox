@@ -11,7 +11,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
     /// <summary>
     /// An observer for the ms-office addin keys
     /// </summary>
-    [RessourceTable("ToolboxControls.AddinGuard.Strings.txt")]
+    [ResourceTable("ToolboxControls.AddinGuard.Strings.txt")]
     public partial class AddinGuardControl : UserControl, IToolboxControl
     {
         #region Fields

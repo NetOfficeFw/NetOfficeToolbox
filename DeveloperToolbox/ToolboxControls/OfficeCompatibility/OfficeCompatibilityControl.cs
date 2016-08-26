@@ -10,7 +10,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
     /// <summary>
     /// Analyze assemblies for NetOffice requests to check how compatible is the solution
     /// </summary>
-    [RessourceTable("ToolboxControls.OfficeCompatibility.Strings.txt")]
+    [ResourceTable("ToolboxControls.OfficeCompatibility.Strings.txt")]
     public partial class OfficeCompatibilityControl : UserControl, IToolboxControl
     {
         #region Fields

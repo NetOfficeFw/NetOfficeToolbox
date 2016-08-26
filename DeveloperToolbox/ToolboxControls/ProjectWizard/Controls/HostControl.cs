@@ -13,7 +13,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
     /// <summary>
     /// Supported office applications want selected here
     /// </summary>
-    [RessourceTable("ToolboxControls.ProjectWizard.Controls.HostControl.txt")]
+    [ResourceTable("ToolboxControls.ProjectWizard.Controls.HostControl.txt")]
     public partial class HostControl : UserControl, IWizardControl, ILocalizationDesign
     {
         #region Fields

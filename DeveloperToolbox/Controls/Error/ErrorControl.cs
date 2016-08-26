@@ -7,7 +7,7 @@ namespace NetOffice.DeveloperToolbox.Controls.Error
     /// <summary>
     /// Control to display errors
     /// </summary>
-    [RessourceTable("Ressources.ErrorFormStrings.txt")]
+    [ResourceTable("Ressources.ErrorFormStrings.txt")]
     public partial class ErrorControl : UserControl, ILocalizationDesign
     {
         #region Fields

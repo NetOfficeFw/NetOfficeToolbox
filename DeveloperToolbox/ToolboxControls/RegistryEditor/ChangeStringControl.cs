@@ -12,7 +12,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
     /// <summary>
     /// String Value Editor
     /// </summary>
-    [RessourceTable("ToolboxControls.RegistryEditor.ChangeStringDialogMessageTable.txt")]
+    [ResourceTable("ToolboxControls.RegistryEditor.ChangeStringDialogMessageTable.txt")]
     public partial class ChangeStringControl : UserControl, ILocalizationDesign
     {
         #region Ctor

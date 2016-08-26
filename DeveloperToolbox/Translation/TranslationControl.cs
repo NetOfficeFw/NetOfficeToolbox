@@ -19,7 +19,7 @@ namespace NetOffice.DeveloperToolbox.Translation
     /// <summary>
     /// Shows all available languages
     /// </summary>
-    [RessourceTable("Ressources.TranslationControlStrings.txt")]
+    [ResourceTable("Ressources.TranslationControlStrings.txt")]
     public partial class TranslationControl : UserControl, ILocalizationDesign
     {
         #region Ctor

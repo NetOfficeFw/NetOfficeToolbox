@@ -12,7 +12,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
     /// <summary>
     /// User interface options in addin projects
     /// </summary>
-    [RessourceTable("ToolboxControls.ProjectWizard.Controls.GuiControl.txt")]
+    [ResourceTable("ToolboxControls.ProjectWizard.Controls.GuiControl.txt")]
     public partial class GuiControl : UserControl, IWizardControl, ILocalizationDesign
     {
         #region Fields

@@ -9,7 +9,7 @@ namespace NetOffice.DeveloperToolbox
     /// <summary>
     /// Contains information about coresponding localization resource file
     /// </summary>
-    public class RessourceTableAttribute : System.Attribute
+    public class ResourceTableAttribute : System.Attribute
     {
         /// <summary>
         /// Localization Resource File Adress
@@ -20,7 +20,7 @@ namespace NetOffice.DeveloperToolbox
         /// Creates an instance of the class
         /// </summary>
         /// <param name="address">localization resource file adress</param>
-        public RessourceTableAttribute(string address)
+        public ResourceTableAttribute(string address)
         {
             Address = address;
         }
@@ -35,20 +35,20 @@ namespace NetOffice.DeveloperToolbox
         {
             Type type = control.GetType();
             Assembly assembly = type.Assembly;
-            object[] obj = type.GetCustomAttributes(typeof(RessourceTableAttribute), false);
-            RessourceTableAttribute attrib = obj[0] as RessourceTableAttribute;
+            object[] obj = type.GetCustomAttributes(typeof(ResourceTableAttribute), false);
+            ResourceTableAttribute attrib = obj[0] as ResourceTableAttribute;
             return Translation.Translator.GetTranslateRessources(control, attrib.Address, languageID);
         }
 
         /// <summary>
         /// Returns all names for localization
         /// </summary>
-        /// <param name="type">type of instance(must have RessourceTableAttribute)</param>
+        /// <param name="type">type of instance(must have ResourceTableAttribute)</param>
         /// <returns>target names</returns>
         public static string[] GetRessourceNames(Type type)
         {
-            object[] obj = type.GetCustomAttributes(typeof(RessourceTableAttribute), false);
-            RessourceTableAttribute attrib = obj[0] as RessourceTableAttribute;
+            object[] obj = type.GetCustomAttributes(typeof(ResourceTableAttribute), false);
+            ResourceTableAttribute attrib = obj[0] as ResourceTableAttribute;
             Stream stream = type.Assembly.GetManifestResourceStream(type.Assembly.GetName().Name + "." + attrib.Address);
             StreamReader reader = new StreamReader(stream);
             string content = reader.ReadToEnd();

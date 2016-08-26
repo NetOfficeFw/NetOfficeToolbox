@@ -12,7 +12,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
     /// <summary>
     /// Loadbehavior in addin projects
     /// </summary>
-    [RessourceTable("ToolboxControls.ProjectWizard.Controls.LoadControl.txt")]
+    [ResourceTable("ToolboxControls.ProjectWizard.Controls.LoadControl.txt")]
     public partial class LoadControl : UserControl, IWizardControl, ILocalizationDesign
     {
         #region Fields

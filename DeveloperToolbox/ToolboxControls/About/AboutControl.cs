@@ -13,7 +13,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.About
     /// <summary>
     /// Application about panel
     /// </summary>
-    [RessourceTable("ToolboxControls.About.Strings.txt")]
+    [ResourceTable("ToolboxControls.About.Strings.txt")]
     public partial class AboutControl : UserControl, IToolboxControl
     {
         #region Ctor

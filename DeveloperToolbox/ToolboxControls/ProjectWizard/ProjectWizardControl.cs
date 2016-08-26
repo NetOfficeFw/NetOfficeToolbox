@@ -11,7 +11,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
     /// <summary>
     /// Allows to create new development projects in c# or vb
     /// </summary>
-    [RessourceTable("ToolboxControls.ProjectWizard.Strings.txt")]
+    [ResourceTable("ToolboxControls.ProjectWizard.Strings.txt")]
     public partial class ProjectWizardControl : UserControl, IToolboxControl
     {
         #region Fields

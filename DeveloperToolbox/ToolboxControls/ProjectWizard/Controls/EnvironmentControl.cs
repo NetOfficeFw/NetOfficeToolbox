@@ -13,7 +13,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
     /// <summary>
     /// Step 2 in wizard to select programming language / ide / .net version
     /// </summary>
-    [RessourceTable("ToolboxControls.ProjectWizard.Controls.EnvironmentControl.txt")]
+    [ResourceTable("ToolboxControls.ProjectWizard.Controls.EnvironmentControl.txt")]
     public partial class EnvironmentControl : UserControl, IWizardControl, ILocalizationDesign
     {
         #region Fields

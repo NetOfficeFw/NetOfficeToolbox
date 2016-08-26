@@ -191,7 +191,7 @@
     <Compile Include="ILocalizationDesign.cs" />
     <Compile Include="ILocalizationReplaceProvider.cs" />
     <Compile Include="LocalizationDefaultChildInfo.cs" />
-    <Compile Include="RessourceTableAttribute.cs" />
+    <Compile Include="ResourceTableAttribute.cs" />
     <Compile Include="ToolboxControls\About\AboutControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

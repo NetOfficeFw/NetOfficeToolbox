@@ -13,7 +13,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.Welcome
     /// <summary>
     /// The first title page of the application
     /// </summary>
-    [RessourceTable("ToolboxControls.Welcome.Strings.txt")]
+    [ResourceTable("ToolboxControls.Welcome.Strings.txt")]
     public partial class WelcomeControl : UserControl, IToolboxControl
     {
         #region Ctor

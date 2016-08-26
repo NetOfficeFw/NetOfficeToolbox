@@ -11,7 +11,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
     /// <summary>
     /// Observe MS processes and kill easy
     /// </summary>
-    [RessourceTable("ToolboxControls.ApplicationObserver.Strings.txt")]
+    [ResourceTable("ToolboxControls.ApplicationObserver.Strings.txt")]
     public partial class ApplicationObserverControl : UserControl, IToolboxControl
     {
         #region Fields

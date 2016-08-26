@@ -13,7 +13,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
     /// <summary>
     /// Registry editor clone for the ms-office hive keys
     /// </summary>
-    [RessourceTable("ToolboxControls.RegistryEditor.Strings.txt")]
+    [ResourceTable("ToolboxControls.RegistryEditor.Strings.txt")]
     public partial class RegistryEditorControl : UserControl, IToolboxControl
     {
         #region Fields

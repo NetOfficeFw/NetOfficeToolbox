@@ -12,7 +12,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
     /// <summary>
     /// Message Table Helper
     /// </summary>
-    [RessourceTable("ToolboxControls.ProjectWizard.CaptionStrings.txt")]
+    [ResourceTable("ToolboxControls.ProjectWizard.CaptionStrings.txt")]
     public partial class LocalizedCaptionsControl : UserControl, ILocalizationDesign
     {
         #region Ctor

@@ -14,7 +14,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
     /// <summary>
     /// Shows a detailed usage report for an analyzed assembly
     /// </summary>
-    [RessourceTable("ToolboxControls.OfficeCompatibility.Report.txt")]
+    [ResourceTable("ToolboxControls.OfficeCompatibility.Report.txt")]
     public partial class ReportControl : UserControl, ILocalizationDesign
     {
         #region Fields

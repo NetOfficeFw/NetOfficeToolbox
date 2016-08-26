@@ -13,7 +13,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
     /// <summary>
     /// Name and its description for the target assembly
     /// </summary>
-    [RessourceTable("ToolboxControls.ProjectWizard.Controls.NameControl.txt")]
+    [ResourceTable("ToolboxControls.ProjectWizard.Controls.NameControl.txt")]
     public partial class NameControl : UserControl, IWizardControl, ILocalizationDesign
     {
         #region Fields
