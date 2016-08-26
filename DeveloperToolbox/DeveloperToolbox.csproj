@@ -794,7 +794,7 @@
     <EmbeddedResource Include="ToolboxControls\AddinGuard\Strings.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NetOffice.OutlookSecurity\NetOffice.OutlookSecurity.csproj">
+    <ProjectReference Include="..\OutlookSecurity\OutlookSecurity.csproj">
       <Project>{340A1E64-C26A-4EAD-A1EB-51DEB8AF8AED}</Project>
       <Name>NetOffice.OutlookSecurity</Name>
     </ProjectReference>
