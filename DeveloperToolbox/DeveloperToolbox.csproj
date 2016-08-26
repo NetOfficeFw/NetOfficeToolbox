@@ -635,7 +635,6 @@
     <EmbeddedResource Include="Translation\TranslationControl.resx">
       <DependentUpon>TranslationControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="1049.lng" />
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

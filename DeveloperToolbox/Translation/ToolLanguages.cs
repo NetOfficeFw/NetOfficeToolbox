@@ -135,17 +135,17 @@ namespace NetOffice.DeveloperToolbox.Translation
         /// </summary>
         internal void InitializeFolder()
         {
-            try
-            {
-                // OPEN-TODO-2: a little code smell(because hardcoded). perform reflection on assembly for .lng files
-                System.Reflection.Assembly assembly =  System.Reflection.Assembly.GetExecutingAssembly();
-                ExtractLanguagePackage(assembly, "1049");
-            }
-            catch (Exception exception)
-            {
-                // no need to confusing the user
-                Console.WriteLine(exception);
-            }
+            ////try
+            ////{
+            ////    // OPEN-TODO-2: a little code smell(because hardcoded). perform reflection on assembly for .lng files
+            ////    System.Reflection.Assembly assembly =  System.Reflection.Assembly.GetExecutingAssembly();
+            ////    ExtractLanguagePackage(assembly, "1049");
+            ////}
+            ////catch (Exception exception)
+            ////{
+            ////    // no need to confusing the user
+            ////    Console.WriteLine(exception);
+            ////}
         }
 
         /// <summary>
