@@ -20,8 +20,8 @@ namespace NetOffice.DeveloperToolbox.Translation
         {
             Add(new ToolDefaultLanguage(this, ToolDefaultLanguageName.English));
             this[0].Initialize();
-            Add(new ToolDefaultLanguage(this, ToolDefaultLanguageName.German));
-            this[1].Initialize();
+            ////Add(new ToolDefaultLanguage(this, ToolDefaultLanguageName.German));
+            ////this[1].Initialize();
         }
 
         /// <summary>

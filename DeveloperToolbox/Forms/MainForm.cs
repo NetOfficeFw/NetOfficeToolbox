@@ -217,7 +217,7 @@ namespace NetOffice.DeveloperToolbox.Forms
         private void LoadLanguages()
         {
             Languages = new ToolLanguages();
-            Languages.LoadFromFolder();
+            ////Languages.LoadFromFolder();
         }
 
         private void LoadRuntimeControls()
