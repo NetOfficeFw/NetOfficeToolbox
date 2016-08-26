@@ -24,8 +24,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.About
         public AboutControl()
         {
             InitializeComponent();
-            labelVersionText.Text = String.Format("Version {0}", AssemblyInfo.AssemblyVersion);
-            labelCopyrightText.Text = AssemblyInfo.AssemblyCopyright;
+            labelVersionText.Text = $@"Version {AssemblyInfo.AssemblyVersion}, {AssemblyInfo.AssemblyCopyright}";
         }
 
         #endregion

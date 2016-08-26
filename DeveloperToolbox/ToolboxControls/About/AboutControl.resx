@@ -118,24 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="pictureBoxInfo5.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
-        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAACmElEQVQ4T42TX0hTURzH71MvPfRuQU9C
-        CUZR0V/TmmD0h2iUEVq6slRsqZloe1gFtSJ9MZGt2p+Ym26KiFkKEfQqgQg91ENCUeba3b27d7bNue2e
-        b79zncwHDX9w7u/ce+73c36/3zk/gVvXc/usd3CEeXxDzOH2Mac3oHt93h9gbm+QPA3vIHO4+tkLj591
-        9ThmdTG31wPDDBsw/lOGHlnyHv8Qy8kFweUL6IDmu51oMLfick0d6ptacKnahHaLFU2321DXYEYj+UQq
-        i2QGcFJUOXkeoKgq1FgMUUXR59yrKr1HFUTkKMKSogNS6wFWrMp0E6eNlWi81br8gTFkshpS6ezGAIqi
-        QpJkfXduGmWfJsAiAeKLaRoZjLyZXB+wYtfqm3CwxIBSQwWOlJWjpq4RPb19uLNnL+5v2YQqQaj5L4DX
-        QBQjCIVFzIcj+BORYO6w6Gu/nnXi4WYhuSag8ooJ+w+Xorr2OpjGsMRzX1zCk44i/Pxih9X2FM6BIIxb
-        C76vCeBVD4siZFlBOkPHRnk/bitEPBKAFjqPd95qnKy8AF3MzeXPAxhV/GJVLY6WGXDmnBH2ly5YzdsQ
-        FweR+GHEzORu2Dp2YXziQ76IbrquXKxRuDxkkU4gxHMXJTxq2a6LY9/OYnq8WE8jFs+gPzi66hRygBLa
-        9UR5hV5tnrOtuVgXy19PYWp0J2zthZAXkogmGF6tvgdOX5BpBJgLhTE3H8bvsITpTx/htu7D57fHMTW8
-        Azaqgfw3iUgsBSmhESCQB3gIwCPI0jNNPklVt1juofeBAV03CiiSIiwks1BpZ767sgS4SJOTUzv32Gcd
-        1KJ2alU+RsYm2YFDx3C11gRHXzcbm3jP3ANDzO5cXre7/axbb2dB+AcHytQP9qLpdgAAAABJRU5ErkJg
-        gg==
-</value>
-  </data>
   <data name="pictureBoxInfo4.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
@@ -192,6 +174,11 @@
         DQtcvjCBNf8FX1iRwBfVeO4/bMegxgwvuRSaWUA4uojIpyXCb/BNfUabRAbh7brimG0tRCLRhlLhnVM3
         Ku4+KioV+/nimug10Z3v9sAkW1/vDKGyrjHI49Wv/x/WA1dwi3F/nMVziRTVDc3eqvrmHTHpHwDEXb4u
         nqysa3LVNDSVkIYbY0oMFPUbtvkn/fRt94cAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>NetOffice.DeveloperToolbox does not try to establish a connection to the internet or a local network.
+There is no data being collected or stored except a configuration file in the application folder.
 </value>
   </data>
 </root>
