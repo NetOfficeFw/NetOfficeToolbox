@@ -1,0 +1,40 @@
+#
+# NetOfficeToolbox project AppVeyor build configuration
+#
+
+version: '1.8.0.{build}-alpha'
+
+branches:
+  except:
+    - gh-pages
+
+os: Visual Studio 2015
+
+configuration:
+  - Release
+  - Debug
+
+assembly_info:
+  patch: true
+  file: AssemblyInfo.cs
+  assembly_version: "1.8.0.{build}"
+  assembly_file_version: "1.8.0.{build}"
+  assembly_informational_version: "{version} ({branch})"
+
+before_build:
+  - cmd: nuget restore NetOffice.DeveloperToolbox.sln
+
+build:
+  project: NetOffice.DeveloperToolbox.sln
+  verbosity: normal
+
+test: off
+
+before_package:
+  - 7z a artifacts\NetOfficeToolbox_v%APPVEYOR_BUILD_VERSION%.zip "%APPVEYOR_BUILD_FOLDER%\Toolbox\bin\%CONFIGURATION%\*" -xr!*.xml
+
+artifacts:
+  - path: 'artifacts\*.zip'
+
+cache:
+  - packages -> **\packages.config
