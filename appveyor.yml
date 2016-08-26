@@ -31,7 +31,7 @@ build:
 test: off
 
 before_package:
-  - 7z a artifacts\NetOfficeToolbox_%APPVEYOR_BUILD_VERSION%.zip "%APPVEYOR_BUILD_FOLDER%\Toolbox\bin\%CONFIGURATION%\"
+  - 7z a artifacts\NetOfficeToolbox_%APPVEYOR_BUILD_VERSION%.zip "%APPVEYOR_BUILD_FOLDER%\Toolbox\bin\%CONFIGURATION%"
 
 artifacts:
   - path: 'artifacts\*.zip'
