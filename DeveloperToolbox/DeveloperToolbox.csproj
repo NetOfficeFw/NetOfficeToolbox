@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Ressources\NetOffice.Icon.32x32.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\NetOffice.Icon.32x32.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AccessApi, Version=1.7.3.0, Culture=neutral, PublicKeyToken=3bfc48da42c3238a, processorArchitecture=MSIL">
@@ -775,7 +775,7 @@
     <EmbeddedResource Include="ToolboxControls\RegistryEditor\ChangeStringDialogMessageTable.txt" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Ressources\ErrorFormStrings.txt" />
+    <EmbeddedResource Include="Resources\ErrorFormStrings.txt" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ToolboxControls\OfficeCompatibility\Strings.txt" />
@@ -790,7 +790,7 @@
     <EmbeddedResource Include="ToolboxControls\ProjectWizard\LocalizationStrings.txt" />
     <EmbeddedResource Include="ToolboxControls\ProjectWizard\Controls\SummaryControl.txt" />
     <EmbeddedResource Include="ToolboxControls\ProjectWizard\Controls\HostControl.txt" />
-    <EmbeddedResource Include="Ressources\TranslationControlStrings.txt" />
+    <EmbeddedResource Include="Resources\TranslationControlStrings.txt" />
     <EmbeddedResource Include="ToolboxControls\ProjectWizard\ProjectTemplates\ToolsMultiAddinCS\Addin.txt" />
     <EmbeddedResource Include="ToolboxControls\ProjectWizard\ProjectTemplates\ToolsMultiAddinCS\AssemblyInfo.txt" />
     <EmbeddedResource Include="ToolboxControls\ProjectWizard\ProjectTemplates\ToolsMultiAddinCS\Project.txt" />
@@ -961,7 +961,7 @@
     <EmbeddedResource Include="ToolboxControls\Welcome\welcome.png" />
     <EmbeddedResource Include="ToolboxControls\About\info_rhombus.png" />
     <Content Include="ReadMe.txt" />
-    <Content Include="Ressources\NetOffice.Icon.32x32.ico" />
+    <Content Include="Resources\NetOffice.Icon.32x32.ico" />
     <EmbeddedResource Include="ToolboxControls\ProjectWizard\Controls\ProjectControl.txt" />
     <EmbeddedResource Include="ToolboxControls\ProjectWizard\Controls\EnvironmentControl.txt" />
     <EmbeddedResource Include="ToolboxControls\ProjectWizard\Controls\GuiControl.txt" />
