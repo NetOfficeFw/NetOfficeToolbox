@@ -19,7 +19,6 @@ labelNetOfficeIsFree = NetOffice is free software.
 labelAboutWarranty = Privacy Policy
 labelWarranty1 = NetOffice.DeveloperToolbox does not try to establish a connection to the internet or a local network.
 labelWarranty2 = There is no data being collected or stored except a configuration file in the application folder.
-labelWarranty3 = If you are using Facebook this might be unfamiliar to you.
 labelTechnicalDetails = Technical Details
 labelContainsExistingWorks = This program contains code from other open source projects
 labelHotKey = systemwide hotkey-class

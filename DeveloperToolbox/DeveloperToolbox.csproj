@@ -198,12 +198,6 @@
     <Compile Include="ToolboxControls\About\AboutControl.Designer.cs">
       <DependentUpon>AboutControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ToolboxControls\About\EasterEggControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ToolboxControls\About\EasterEggControl.Designer.cs">
-      <DependentUpon>EasterEggControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="ToolboxControls\AddinGuard\NotificationType.cs" />
     <Compile Include="ToolboxControls\AddinGuard\NotifyKind.cs" />
     <Compile Include="ToolboxControls\AddinGuard\RegistryChangeInfo.cs" />
@@ -395,9 +389,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SelectLanguageForm.resx">
       <DependentUpon>SelectLanguageForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ToolboxControls\About\EasterEggControl.resx">
-      <DependentUpon>EasterEggControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ToolboxControls\ProjectWizard\Controls\FinishControl.resx">
       <DependentUpon>FinishControl.cs</DependentUpon>
@@ -705,7 +696,6 @@
     </Compile>
     <EmbeddedResource Include="ToolboxControls\RegistryEditor\Info1031.rtf" />
     <EmbeddedResource Include="ToolboxControls\RegistryEditor\Info1033.rtf" />
-    <EmbeddedResource Include="ToolboxControls\About\Wait.zip" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ToolboxControls\ApplicationObserver\IconsAndConfig\NotRunning.ico" />
@@ -801,7 +791,6 @@
     <EmbeddedResource Include="ToolboxControls\ProjectWizard\Controls\SummaryControl.txt" />
     <EmbeddedResource Include="ToolboxControls\ProjectWizard\Controls\HostControl.txt" />
     <EmbeddedResource Include="Ressources\TranslationControlStrings.txt" />
-    <EmbeddedResource Include="ToolboxControls\About\Gunshot.wav" />
     <EmbeddedResource Include="ToolboxControls\ProjectWizard\ProjectTemplates\ToolsMultiAddinCS\Addin.txt" />
     <EmbeddedResource Include="ToolboxControls\ProjectWizard\ProjectTemplates\ToolsMultiAddinCS\AssemblyInfo.txt" />
     <EmbeddedResource Include="ToolboxControls\ProjectWizard\ProjectTemplates\ToolsMultiAddinCS\Project.txt" />
