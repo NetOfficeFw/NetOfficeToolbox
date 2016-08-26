@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using ICSharpCode.SharpZipLib;
 
 namespace NetOffice.DeveloperToolbox.Translation
 {
@@ -195,21 +194,21 @@ namespace NetOffice.DeveloperToolbox.Translation
             string targetFilePath = Path.Combine(DirectoryPath, fileName + Extension);
             if (!File.Exists(targetFilePath))
             {
-                Stream stream = assembly.GetManifestResourceStream(assembly.GetName().Name + "." + fileName + Extension);
-                if (null != stream)
+                using (Stream stream = assembly.GetManifestResourceStream(assembly.GetName().Name + "." + fileName + Extension))
                 {
-                    if (!Directory.Exists(DirectoryPath))
+                    if (null != stream)
                     {
-                        Directory.CreateDirectory(DirectoryPath);
+                        if (!Directory.Exists(DirectoryPath))
+                        {
+                            Directory.CreateDirectory(DirectoryPath);
+                        }
+
+                        using (FileStream fs = new FileStream(targetFilePath, FileMode.Create))
+                        {
+                            stream.CopyTo(fs);
+                            fs.Close();
+                        }
                     }
-                    byte[] bytes = new byte[stream.Length];
-                    stream.Read(bytes, 0, (int)stream.Length);
-                    FileStream fs = new FileStream(targetFilePath, FileMode.Create);
-                    fs.Write(bytes, 0, bytes.Length);
-                    fs.Close();
-                    fs.Dispose();
-                    stream.Close();
-                    stream.Dispose();
                 }
             }
         }

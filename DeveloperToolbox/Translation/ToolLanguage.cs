@@ -3,12 +3,10 @@ using System.ComponentModel;
 using System.Collections.Generic;
 using System.Reflection;
 using System.IO;
+using System.IO.Compression;
 using System.Xml.Linq;
 using System.Linq;
 using System.Text;
-using ICSharpCode.SharpZipLib;
-using ICSharpCode.SharpZipLib.Core;
-using ICSharpCode.SharpZipLib.Zip;
 
 namespace NetOffice.DeveloperToolbox.Translation
 {
@@ -271,29 +269,29 @@ namespace NetOffice.DeveloperToolbox.Translation
         /// <param name="fileName">full qualified file name</param>
         internal virtual void Load(string fileName)
         {
-            using (ZipFile file = new ZipFile(fileName))
+            using (ZipArchive file = ZipFile.OpenRead(fileName))
             {
-                foreach (ZipEntry item in file)
+                foreach (ZipArchiveEntry item in file.Entries)
                 {
-                    using (Stream stream = file.GetInputStream(item))
+                    using (Stream stream = item.Open())
                     {
-                        StreamReader reader = new StreamReader(stream);
-                        string content = reader.ReadToEnd();
-                        XDocument document = XDocument.Parse(content);
-                        XElement root = document.Root as XElement;
-                        switch (root.Name.LocalName)
+                        using (StreamReader reader = new StreamReader(stream))
                         {
-                            case "NetOffice.DeveloperToolbox.Translation.ToolLanguage":
-                                ReadLanguageSummary(root);
-                                break;
-                            case "NetOffice.DeveloperToolbox.Translation.Component":
-                                ReadApplicationComponent(item.Name, root);
-                                break;
-                            default:
-                                break;
+                            string content = reader.ReadToEnd();
+                            XDocument document = XDocument.Parse(content);
+                            XElement root = document.Root as XElement;
+                            switch (root.Name.LocalName)
+                            {
+                                case "NetOffice.DeveloperToolbox.Translation.ToolLanguage":
+                                    this.ReadLanguageSummary(root);
+                                    break;
+                                case "NetOffice.DeveloperToolbox.Translation.Component":
+                                    this.ReadApplicationComponent(item.Name, root);
+                                    break;
+                                default:
+                                    break;
+                            }
                         }
-                        reader.Close();
-                        reader.Dispose();
                     }
                 }
             }
@@ -354,12 +352,7 @@ namespace NetOffice.DeveloperToolbox.Translation
                 rootAppComponent.Save(Path.Combine(tempPath, item.Value));
             }
 
-            FileStream fsOut = File.Create(targetFilePath);
-            ZipOutputStream zipStream = new ZipOutputStream(fsOut);
-            int folderOffset = tempPath.Length + (tempPath.EndsWith("\\") ? 0 : 1);
-            CompressFolder(tempPath, zipStream, folderOffset);
-            zipStream.IsStreamOwner = true;
-            zipStream.Close();
+            ZipFile.CreateFromDirectory(tempPath, targetFilePath);
 
             Directory.Delete(tempPath, true);
 
@@ -448,28 +441,6 @@ namespace NetOffice.DeveloperToolbox.Translation
             {
                 comp = new LocalizableCompoment(this, typeof(ToolboxControls.About.AboutControl).FullName, "About" + space + item.NameLocalization, item.TypeLocalization);
                 Components.Add(comp);
-            }
-        }
-
-        private static void CompressFolder(string path, ZipOutputStream zipStream, int folderOffset)
-        {
-            string[] files = Directory.GetFiles(path);
-
-            foreach (string filename in files)
-            {
-                FileInfo fi = new FileInfo(filename);
-                string entryName = filename.Substring(folderOffset);
-                entryName = ZipEntry.CleanName(entryName);
-                ZipEntry newEntry = new ZipEntry(entryName);
-                newEntry.DateTime = fi.LastWriteTime;
-                newEntry.Size = fi.Length;
-                zipStream.PutNextEntry(newEntry);
-                byte[] buffer = new byte[4096];
-                using (FileStream streamReader = File.OpenRead(filename))
-                {
-                    StreamUtils.Copy(streamReader, zipStream, buffer);
-                }
-                zipStream.CloseEntry();
             }
         }
 

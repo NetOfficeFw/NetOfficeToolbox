@@ -2,10 +2,9 @@
 using Microsoft.Win32;
 using System.IO;
 using System.Collections.Generic;
+using System.IO.Compression;
 using System.Linq;
 using System.Text;
-using ICSharpCode.SharpZipLib;
-using ICSharpCode.SharpZipLib.Zip;
 
 namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConverters
 {
@@ -553,19 +552,15 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
                         throw new ArgumentOutOfRangeException("runtime");
                 }
 
-                using (ZipFile zip = new ZipFile(targetPackageName))
+                using (ZipArchive zip = ZipFile.OpenRead(targetPackageName))
                 {
-                    Stream streamFirst = zip.GetInputStream(zip.GetEntry("NetOffice.dll"));
-                    FileStream fileStreamFirst = File.Create(Path.Combine(assembliesTempTarget, "NetOffice.dll"));
-                    streamFirst.CopyTo(fileStreamFirst);
-                    fileStreamFirst.Close();
+                    var netOfficeEntry = zip.GetEntry("NetOffice.dll");
+                    netOfficeEntry.ExtractToFile(Path.Combine(assembliesTempTarget, "NetOffice.dll"), true);
 
                     foreach (var item in apps)
                     {
-                        Stream stream = zip.GetInputStream(zip.GetEntry(item + "Api.dll"));
-                        FileStream fileStream = File.Create(Path.Combine(assembliesTempTarget, item + "Api.dll"));
-                        stream.CopyTo(fileStream);
-                        fileStream.Close();
+                        var libraryEntry = zip.GetEntry(item + "Api.dll");
+                        libraryEntry.ExtractToFile(Path.Combine(assembliesTempTarget, item + "Api.dll"), true);
                     }
                 }
             }
