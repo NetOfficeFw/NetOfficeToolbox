@@ -99,30 +99,6 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.Welcome
 
         public void Activate(bool firstTime)
         {
-            if (firstTime)
-            {
-                Utils.Animation.Effects.EffectsAnimator.DoEffect(pictureBoxLogo, Utils.Animation.Effects.EffectsKind.SlideTopToBottom, true, 400);
-                Utils.Animation.Effects.EffectsAnimator.DoEffect(labelVersionHint, Utils.Animation.Effects.EffectsKind.Collapse, true, 250);
-                Utils.Animation.Effects.EffectsAnimator.DoEffect(pictureBoxHeader, Utils.Animation.Effects.EffectsKind.Collapse, false, 250);
-                Utils.Animation.Effects.EffectsAnimator.DoEffect(labelBeginTitle, Utils.Animation.Effects.EffectsKind.SlideLeftToRight, false, 250);
-                Utils.Animation.Effects.EffectsAnimator.DoEffect(labelIWant, Utils.Animation.Effects.EffectsKind.SlideRightToLeft, false, 250);
-                Utils.Animation.Effects.EffectsAnimator.DoEffect(pictureBoxIconLeft, Utils.Animation.Effects.EffectsKind.FadeIn, false, 250);
-                Utils.Animation.Effects.EffectsAnimator.DoEffect(pictureBoxIconRight , Utils.Animation.Effects.EffectsKind.FadeIn, false, 250);
-                pictureBoxIconLeft.Refresh();
-                Utils.Animation.Effects.EffectsAnimator.DoEffect(labelBeginTop, Utils.Animation.Effects.EffectsKind.Collapse, false, 250);
-                labelBeginTop.Refresh();
-                Utils.Animation.Effects.EffectsAnimator.DoEffect(labelBeginBottom, Utils.Animation.Effects.EffectsKind.Collapse, false, 250);
-                labelBeginBottom.Refresh();
-                Utils.Animation.Effects.EffectsAnimator.DoEffect(labelBug, Utils.Animation.Effects.EffectsKind.SlideLeftToRight, false, 200);
-                Utils.Animation.Effects.EffectsAnimator.DoEffect(linkLabelNetOfficeIssues, Utils.Animation.Effects.EffectsKind.SlideLeftToRight, false, 200);
-                Utils.Animation.Effects.EffectsAnimator.DoEffect(labelUpdate, Utils.Animation.Effects.EffectsKind.SlideLeftToRight, false, 200);
-                Utils.Animation.Effects.EffectsAnimator.DoEffect(linkLabelNetOfficeUpdates, Utils.Animation.Effects.EffectsKind.SlideLeftToRight, false, 200);
-                Utils.Animation.Effects.EffectsAnimator.DoEffect(labelQuestion, Utils.Animation.Effects.EffectsKind.SlideLeftToRight, false, 200);
-                Utils.Animation.Effects.EffectsAnimator.DoEffect(linkLabelNetOfficeQuestions, Utils.Animation.Effects.EffectsKind.SlideLeftToRight, false, 200);
-                Utils.Animation.Effects.EffectsAnimator.DoEffect(labelMailMe, Utils.Animation.Effects.EffectsKind.SlideLeftToRight, false, 200);
-                Utils.Animation.Effects.EffectsAnimator.DoEffect(linkLabelMailMe, Utils.Animation.Effects.EffectsKind.SlideLeftToRight, false, 200);
-                controlForeColorAnimator1.Start(false);
-            }
         }
 
         public void Deactivated()
