@@ -2,7 +2,7 @@
 # NetOfficeToolbox project AppVeyor build configuration
 #
 
-version: 1.7.4-b{build}
+version: '1.7.4-b{build}'
 
 branches:
   except:
