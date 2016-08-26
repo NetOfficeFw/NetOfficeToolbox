@@ -66,7 +66,7 @@ namespace NetOffice.DeveloperToolbox.Translation
         {
             List<String> list = new List<string>();
             string[] splitArray = ressourceContent.Split(new string[] { "[End]" }, StringSplitOptions.RemoveEmptyEntries);
-            Dictionary<string, string> translateTable = GetTranslateRessources(splitArray, 1031);
+            Dictionary<string, string> translateTable = GetTranslateResources(splitArray, 1031);
             foreach (var item in translateTable)
             {
                 list.Add(item.Key);
@@ -129,7 +129,7 @@ namespace NetOffice.DeveloperToolbox.Translation
             if (null != language)
             {
                 var component = language.Components[componentName];
-                Translation.Translator.TranslateControls(control, component.ControlRessources);
+                Translation.Translator.TranslateControls(control, component.ControlResources);
             }
             else
             {
@@ -243,7 +243,7 @@ namespace NetOffice.DeveloperToolbox.Translation
         {
             string ressourceContent = ReadString(ressourceFile);
             string[] splitArray = ressourceContent.Split(new string[] { "[End]" }, StringSplitOptions.RemoveEmptyEntries);
-            Dictionary<string, string> translateTable = GetTranslateRessources(splitArray, languageId);
+            Dictionary<string, string> translateTable = GetTranslateResources(splitArray, languageId);
 
             ILocalizationDesign toolBoxControl = control as ILocalizationDesign;
             if ((null != toolBoxControl) && (null != toolBoxControl.Components))
@@ -308,7 +308,7 @@ namespace NetOffice.DeveloperToolbox.Translation
         {
             string ressourceContent = ReadString(ressourceFile);
             string[] splitArray = ressourceContent.Split(new string[] { "[End]" }, StringSplitOptions.RemoveEmptyEntries);
-            Dictionary<string, string> translateTable = GetTranslateRessources(splitArray, languageId);
+            Dictionary<string, string> translateTable = GetTranslateResources(splitArray, languageId);
             var res = translateTable.Where(n => n.Key == ressourceName).FirstOrDefault();
             if (null != res.Key)
             {
@@ -327,11 +327,11 @@ namespace NetOffice.DeveloperToolbox.Translation
         /// <param name="ressourceFile">resource adress</param>
         /// <param name="languageId">language id</param>
         /// <returns>localized names & values</returns>
-        public static Dictionary<string, string> GetTranslateRessources(Control control, string ressourceFile, int languageId)
+        public static Dictionary<string, string> GetTranslateResources(Control control, string ressourceFile, int languageId)
         {
             string ressourceContent = ReadString(ressourceFile);
             string[] splitArray = ressourceContent.Split(new string[] { "[End]" }, StringSplitOptions.RemoveEmptyEntries);
-            Dictionary<string, string> translateTable = GetTranslateRessources(splitArray, languageId, control as ILocalizationReplaceProvider);
+            Dictionary<string, string> translateTable = GetTranslateResources(splitArray, languageId, control as ILocalizationReplaceProvider);
             return translateTable;
         }
 
@@ -482,7 +482,7 @@ namespace NetOffice.DeveloperToolbox.Translation
             }
         }
 
-        private static Dictionary<string, string> GetTranslateRessources(string[] splitArray, int languageId, ILocalizationReplaceProvider provider = null)
+        private static Dictionary<string, string> GetTranslateResources(string[] splitArray, int languageId, ILocalizationReplaceProvider provider = null)
         {
             Dictionary<string, string> resultDictionary = new Dictionary<string, string>();
 

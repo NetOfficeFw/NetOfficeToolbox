@@ -84,7 +84,7 @@ namespace NetOffice.DeveloperToolbox.Translation
 
         private string GetLanguageLCID(string languageName)
         {
-            string countriesContent = Ressources.RessourceUtils.ReadString("Translation.Countries.txt");
+            string countriesContent = Resources.ResourceUtils.ReadString("Translation.Countries.txt");
             if (null == countriesContent)
             {
                 return null;
@@ -105,7 +105,7 @@ namespace NetOffice.DeveloperToolbox.Translation
                 return null;
             }
 
-            string lcidContent = Ressources.RessourceUtils.ReadString("Translation.LCIDs.txt");
+            string lcidContent = Resources.ResourceUtils.ReadString("Translation.LCIDs.txt");
             if (null == lcidContent)
             {
                 return null;

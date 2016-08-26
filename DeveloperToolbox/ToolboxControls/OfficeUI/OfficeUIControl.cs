@@ -65,7 +65,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeUI
 
         public Image Icon
         {
-            get { return Ressources.RessourceUtils.ReadImageFromRessource("ToolboxControls.OfficeUI.Icon.png"); }
+            get { return Resources.ResourceUtils.ReadImageFromRessource("ToolboxControls.OfficeUI.Icon.png"); }
         }
 
         public bool SupportsHelpContent
@@ -135,12 +135,12 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeUI
             Translation.ToolLanguage language = Host.Languages[lcid, false];
             if (null != language)
             {
-                string content = language.Components["Office UI - Help"].ControlRessources["richTextBoxHelpContent"].Value2;
-                return Ressources.RessourceUtils.CreateStreamFromString(content);
+                string content = language.Components["Office UI - Help"].ControlResources["richTextBoxHelpContent"].Value2;
+                return Resources.ResourceUtils.CreateStreamFromString(content);
             }
             else
             {
-                return Ressources.RessourceUtils.ReadStream("ToolboxControls.OfficeUI.Info" + lcid.ToString() + ".rtf");
+                return Resources.ResourceUtils.ReadStream("ToolboxControls.OfficeUI.Info" + lcid.ToString() + ".rtf");
             }
         }
 

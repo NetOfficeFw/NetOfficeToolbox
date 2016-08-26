@@ -82,7 +82,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
 
         public Image Icon
         {
-            get { return Ressources.RessourceUtils.ReadImageFromRessource("ToolboxControls.ApplicationObserver.Icon.png"); }
+            get { return Resources.ResourceUtils.ReadImageFromRessource("ToolboxControls.ApplicationObserver.Icon.png"); }
         }
 
         public bool SupportsHelpContent
@@ -136,7 +136,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
         {
             if (configNode.ChildNodes.Count == 0)
             {
-                configNode.InnerXml = Ressources.RessourceUtils.ReadString("ToolboxControls.ApplicationObserver.IconsAndConfig.DefaultConfiguration.txt");
+                configNode.InnerXml = Resources.ResourceUtils.ReadString("ToolboxControls.ApplicationObserver.IconsAndConfig.DefaultConfiguration.txt");
             }
 
             string val = "";
@@ -180,7 +180,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
         {
             if (configNode.ChildNodes.Count == 0)
             {
-                configNode.InnerXml = Ressources.RessourceUtils.ReadString("ToolboxControls.ApplicationObserver.IconsAndConfig.DefaultConfiguration.txt");
+                configNode.InnerXml = Resources.ResourceUtils.ReadString("ToolboxControls.ApplicationObserver.IconsAndConfig.DefaultConfiguration.txt");
             }
 
             configNode.SelectSingleNode("Excel").Attributes[0].Value = listViewApps.Items[0].Checked.ToString();
@@ -206,12 +206,12 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
             Translation.ToolLanguage language = Host.Languages[lcid, false];
             if (null != language)
             {
-                string content = language.Components["Application Observer-Help"].ControlRessources["richTextBoxHelpContent"].Value2;
-                return Ressources.RessourceUtils.CreateStreamFromString(content);
+                string content = language.Components["Application Observer-Help"].ControlResources["richTextBoxHelpContent"].Value2;
+                return Resources.ResourceUtils.CreateStreamFromString(content);
             }
             else
             {
-                return Ressources.RessourceUtils.ReadStream("ToolboxControls.ApplicationObserver.Info" + lcid.ToString() + ".rtf");
+                return Resources.ResourceUtils.ReadStream("ToolboxControls.ApplicationObserver.Info" + lcid.ToString() + ".rtf");
             }
         }
 

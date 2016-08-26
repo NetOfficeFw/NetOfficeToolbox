@@ -16,7 +16,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
                 if (null != language)
                 {
                     var component = language.Components["Project Wizard - Messages"];
-                    return component.ControlRessources["StepProgress"].Value2;
+                    return component.ControlResources["StepProgress"].Value2;
                 }
                 else
                 {
@@ -33,7 +33,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
                 if (null != language)
                 {
                     var component = language.Components["Project Wizard - Messages"];
-                    return component.ControlRessources["Completed"].Value2;
+                    return component.ControlResources["Completed"].Value2;
                 }
                 else
                 {
@@ -50,7 +50,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
                 if (null != language)
                 {
                     var component = language.Components["Project Wizard - Messages"];
-                    return component.ControlRessources["Yes"].Value2;
+                    return component.ControlResources["Yes"].Value2;
                 }
                 else
                 {
@@ -67,7 +67,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
                 if (null != language)
                 {
                     var component = language.Components["Project Wizard - Messages"];
-                    return component.ControlRessources["No"].Value2;
+                    return component.ControlResources["No"].Value2;
                 }
                 else
                 {
@@ -84,7 +84,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
                 if (null != language)
                 {
                     var component = language.Components["Project Wizard - Messages"];
-                    return component.ControlRessources["AddinOption1"].Value2;
+                    return component.ControlResources["AddinOption1"].Value2;
                 }
                 else
                 {
@@ -101,7 +101,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
                 if (null != language)
                 {
                     var component = language.Components["Project Wizard - Messages"];
-                    return component.ControlRessources["AddinOption2"].Value2;
+                    return component.ControlResources["AddinOption2"].Value2;
                 }
                 else
                 {
@@ -118,7 +118,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
                 if (null != language)
                 {
                     var component = language.Components["Project Wizard - Messages"];
-                    return component.ControlRessources["AddinOption3"].Value2;
+                    return component.ControlResources["AddinOption3"].Value2;
                 }
                 else
                 {
@@ -135,7 +135,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
                 if (null != language)
                 {
                     var component = language.Components["Project Wizard - Messages"];
-                    return component.ControlRessources["AddinOption4"].Value2;
+                    return component.ControlResources["AddinOption4"].Value2;
                 }
                 else
                 {
@@ -152,7 +152,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
                 if (null != language)
                 {
                     var component = language.Components["Project Wizard - Messages"];
-                    return component.ControlRessources["Registry"].Value2;
+                    return component.ControlResources["Registry"].Value2;
                 }
                 else
                 {
@@ -169,7 +169,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
                 if (null != language)
                 {
                     var component = language.Components["Project Wizard - Messages"];
-                    return component.ControlRessources["CurrentUser"].Value2;
+                    return component.ControlResources["CurrentUser"].Value2;
                 }
                 else
                 {
@@ -186,7 +186,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
                 if (null != language)
                 {
                     var component = language.Components["Project Wizard - Messages"];
-                    return component.ControlRessources["LocalMachine"].Value2;
+                    return component.ControlResources["LocalMachine"].Value2;
                 }
                 else
                 {
@@ -203,7 +203,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
                 if (null != language)
                 {
                     var component = language.Components["Project Wizard - Messages"];
-                    return component.ControlRessources["LoadBehavior"].Value2;
+                    return component.ControlResources["LoadBehavior"].Value2;
                 }
                 else
                 {
@@ -220,7 +220,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
                 if (null != language)
                 {
                     var component = language.Components["Project Wizard - Messages"];
-                    return component.ControlRessources["Language"].Value2;
+                    return component.ControlResources["Language"].Value2;
                 }
                 else
                 {
@@ -237,7 +237,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
                 if (null != language)
                 {
                     var component = language.Components["Project Wizard - Messages"];
-                    return component.ControlRessources["Runtime"].Value2;
+                    return component.ControlResources["Runtime"].Value2;
                 }
                 else
                 {
@@ -254,7 +254,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
                 if (null != language)
                 {
                     var component = language.Components["Project Wizard - Messages"];
-                    return component.ControlRessources["Applications"].Value2;
+                    return component.ControlResources["Applications"].Value2;
                 }
                 else
                 {
@@ -271,7 +271,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
                 if (null != language)
                 {
                     var component = language.Components["Project Wizard - Messages"];
-                    return component.ControlRessources["ProjectType"].Value2;
+                    return component.ControlResources["ProjectType"].Value2;
                 }
                 else
                 {
@@ -288,7 +288,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
                 if (null != language)
                 {
                     var component = language.Components["Project Wizard - Messages"];
-                    return component.ControlRessources["ProjectFolder"].Value2;
+                    return component.ControlResources["ProjectFolder"].Value2;
                 }
                 else
                 {

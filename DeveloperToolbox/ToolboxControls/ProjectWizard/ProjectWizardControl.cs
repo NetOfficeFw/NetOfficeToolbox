@@ -121,7 +121,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
 
         public Image Icon
         {
-            get { return Ressources.RessourceUtils.ReadImageFromRessource("ToolboxControls.ProjectWizard.Icon.png"); }
+            get { return Resources.ResourceUtils.ReadImageFromRessource("ToolboxControls.ProjectWizard.Icon.png"); }
         }
 
         public bool SupportsInfoMessage
@@ -203,12 +203,12 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
             Translation.ToolLanguage language = Host.Languages[lcid, false];
             if (null != language)
             {
-                string content = language.Components["Project Wizard - Help"].ControlRessources["richTextBoxHelpContent"].Value2;
-                return Ressources.RessourceUtils.CreateStreamFromString(content);
+                string content = language.Components["Project Wizard - Help"].ControlResources["richTextBoxHelpContent"].Value2;
+                return Resources.ResourceUtils.CreateStreamFromString(content);
             }
             else
             {
-                return Ressources.RessourceUtils.ReadStream("ToolboxControls.ProjectWizard.Info" + lcid.ToString() + ".rtf");
+                return Resources.ResourceUtils.ReadStream("ToolboxControls.ProjectWizard.Info" + lcid.ToString() + ".rtf");
             }
         }
 

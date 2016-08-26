@@ -57,23 +57,23 @@ namespace NetOffice.DeveloperToolbox.Translation
             _lcid = 0;
             Initialize();
 
-            foreach (var item in template.Application.Components[0].ControlRessources)
+            foreach (var item in template.Application.Components[0].ControlResources)
             {
-                Application.Components[0].ControlRessources[item.Value].Value2 = item.Value2;
+                Application.Components[0].ControlResources[item.Value].Value2 = item.Value2;
             }
 
-            foreach (var item in template.Application.Components[1].ControlRessources)
+            foreach (var item in template.Application.Components[1].ControlResources)
             {
-                Application.Components[1].ControlRessources[item.Value].Value2 = item.Value2;
+                Application.Components[1].ControlResources[item.Value].Value2 = item.Value2;
             }
 
             for (int i = 0; i < template.Components.Count; i++)
             {
                 LocalizableCompoment templateComponent = template.Components[i];
                 LocalizableCompoment ownComponent = Components[i];
-                foreach (var item in templateComponent.ControlRessources)
+                foreach (var item in templateComponent.ControlResources)
                 {
-                    ownComponent.ControlRessources[item.Value].Value2 = item.Value2;
+                    ownComponent.ControlResources[item.Value].Value2 = item.Value2;
                 }
             }
 
@@ -334,7 +334,7 @@ namespace NetOffice.DeveloperToolbox.Translation
                 XDocument appComponentDocument = new XDocument();
                 XElement rootAppComponent = new XElement("NetOffice.DeveloperToolbox.Translation.Component", new XAttribute("IsSystem", true));
 
-                foreach (var subItem in item.ControlRessources)
+                foreach (var subItem in item.ControlResources)
                 {
                     rootAppComponent.Add(new XElement("Pair", new XElement("Name", subItem.Value), new XElement("Value", subItem.Value2)));
                 }
@@ -347,7 +347,7 @@ namespace NetOffice.DeveloperToolbox.Translation
                 XDocument appComponentDocument = new XDocument();
                 XElement rootAppComponent = new XElement("NetOffice.DeveloperToolbox.Translation.Component", new XAttribute("IsSystem", false));
 
-                foreach (var subItem in item.ControlRessources)
+                foreach (var subItem in item.ControlResources)
                 {
                     rootAppComponent.Add(new XElement("Pair", new XElement("Name", subItem.Value), new XElement("Value", System.Xml.XmlConvert.EncodeName(subItem.Value2))));
                 }
@@ -496,7 +496,7 @@ namespace NetOffice.DeveloperToolbox.Translation
                 component = Components[componentName];
             }
 
-            foreach (var item in component.ControlRessources)
+            foreach (var item in component.ControlResources)
             {
                 XElement el = element.Elements("Pair").Where(e => e.Element("Name").Value == item.Value).FirstOrDefault();
                 if (null != el)

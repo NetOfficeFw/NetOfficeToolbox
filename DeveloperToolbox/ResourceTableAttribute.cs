@@ -37,7 +37,7 @@ namespace NetOffice.DeveloperToolbox
             Assembly assembly = type.Assembly;
             object[] obj = type.GetCustomAttributes(typeof(ResourceTableAttribute), false);
             ResourceTableAttribute attrib = obj[0] as ResourceTableAttribute;
-            return Translation.Translator.GetTranslateRessources(control, attrib.Address, languageID);
+            return Translation.Translator.GetTranslateResources(control, attrib.Address, languageID);
         }
 
         /// <summary>

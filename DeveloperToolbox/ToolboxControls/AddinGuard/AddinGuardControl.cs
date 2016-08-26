@@ -150,7 +150,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
 
         public Image Icon
         {
-            get { return Ressources.RessourceUtils.ReadImageFromRessource("ToolboxControls.AddinGuard.Icon.png"); }
+            get { return Resources.ResourceUtils.ReadImageFromRessource("ToolboxControls.AddinGuard.Icon.png"); }
         }
 
         public bool SupportsHelpContent
@@ -204,7 +204,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
         {
             if (configNode.ChildNodes.Count == 0)
             {
-                configNode.InnerXml = Ressources.RessourceUtils.ReadString("ToolboxControls.AddinGuard.DefaultConfiguration.txt");
+                configNode.InnerXml = Resources.ResourceUtils.ReadString("ToolboxControls.AddinGuard.DefaultConfiguration.txt");
             }
 
 
@@ -235,7 +235,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
         {
             if (configNode.ChildNodes.Count == 0)
             {
-                configNode.InnerXml = Ressources.RessourceUtils.ReadString("ToolboxControls.AddinGuard.DefaultConfiguration.txt");
+                configNode.InnerXml = Resources.ResourceUtils.ReadString("ToolboxControls.AddinGuard.DefaultConfiguration.txt");
             }
 
             System.Xml.XmlNode node = configNode.SelectSingleNode("Active");
@@ -258,12 +258,12 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
             Translation.ToolLanguage language = Host.Languages[lcid, false];
             if(null != language)
             {
-                string content = language.Components["AddinGuard-Help"].ControlRessources["richTextBoxHelpContent"].Value2;
-                return Ressources.RessourceUtils.CreateStreamFromString(content);
+                string content = language.Components["AddinGuard-Help"].ControlResources["richTextBoxHelpContent"].Value2;
+                return Resources.ResourceUtils.CreateStreamFromString(content);
             }
             else
             {
-                return Ressources.RessourceUtils.ReadStream("ToolboxControls.AddinGuard.Info" + lcid.ToString() + ".rtf");
+                return Resources.ResourceUtils.ReadStream("ToolboxControls.AddinGuard.Info" + lcid.ToString() + ".rtf");
             }
         }
 

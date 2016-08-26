@@ -6,12 +6,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace NetOffice.DeveloperToolbox.Ressources
+namespace NetOffice.DeveloperToolbox.Resources
 {
     /// <summary>
     /// Resource helper
     /// </summary>
-    internal static class RessourceUtils
+    internal static class ResourceUtils
     {
         private static Dictionary<string, string> _cache = new Dictionary<string, string>();
 

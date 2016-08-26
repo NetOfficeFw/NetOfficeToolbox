@@ -104,8 +104,8 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
             File.AppendAllText(Path.Combine(TempPropertiesPath, "Application.myapp"), _myApplicationFile, Encoding.UTF8);
             File.AppendAllText(Path.Combine(TempProjectPath, "Form1.vb"), _form1File, Encoding.UTF8);
             File.AppendAllText(Path.Combine(TempProjectPath, "Form1.Designer.vb"), _form1DesignerFile, Encoding.UTF8);
-            File.AppendAllText(Path.Combine(TempPropertiesPath, "Ressources.Designer.vb"), _ressourceDesignerFile, Encoding.UTF8);
-            File.AppendAllText(Path.Combine(TempPropertiesPath, "Ressources.resx"), _ressourceResFile, Encoding.UTF8);
+            File.AppendAllText(Path.Combine(TempPropertiesPath, "Resources.Designer.vb"), _ressourceDesignerFile, Encoding.UTF8);
+            File.AppendAllText(Path.Combine(TempPropertiesPath, "Resources.resx"), _ressourceResFile, Encoding.UTF8);
             File.AppendAllText(Path.Combine(TempPropertiesPath, "Settings.Designer.vb"), _settingsDesignerFile, Encoding.UTF8);
             File.AppendAllText(Path.Combine(TempPropertiesPath, "Settings.settings"), _settingsSettingsFile, Encoding.UTF8);
             File.AppendAllText(Path.Combine(TempSolutionPath, String.Format("{0}.sln", Options.AssemblyName)), _solutionFile, Encoding.UTF8);

@@ -46,7 +46,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.About
 
         public Image Icon
         {
-            get { return Ressources.RessourceUtils.ReadImageFromRessource("ToolboxControls.About.info_rhombus.png"); }
+            get { return Resources.ResourceUtils.ReadImageFromRessource("ToolboxControls.About.info_rhombus.png"); }
         }
 
         public bool SupportsHelpContent

@@ -370,7 +370,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
 
         protected internal string ReadProjectTemplateFile(string address)
         {
-            return Ressources.RessourceUtils.ReadString("ToolboxControls.ProjectWizard.ProjectTemplates." + address);
+            return Resources.ResourceUtils.ReadString("ToolboxControls.ProjectWizard.ProjectTemplates." + address);
         }
 
         protected internal void MoveTempSolutionFolderToTarget()

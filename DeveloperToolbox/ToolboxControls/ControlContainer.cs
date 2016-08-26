@@ -155,7 +155,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls
             {
                 string space = InnerInstance.ControlName.Substring(0, InnerInstance.ControlName.IndexOf("."));
                 var component = language.Components[space];
-                Translation.Translator.TranslateControls(InnerInstance as Control, component.ControlRessources);
+                Translation.Translator.TranslateControls(InnerInstance as Control, component.ControlResources);
             }
             else
             {

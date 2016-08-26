@@ -121,7 +121,7 @@ namespace NetOffice.DeveloperToolbox.Translation
            var component = Application.Components.First(c => c.Value.Equals(componentName, StringComparison.InvariantCultureIgnoreCase));
            if (null != component)
            {
-                Dictionary<string, string> values = Translator.GetTranslateRessources(component.Design, component.Attribute.Address, Convert.ToInt32(LCID));
+                Dictionary<string, string> values = Translator.GetTranslateResources(component.Design, component.Attribute.Address, Convert.ToInt32(LCID));
                 ItemCollection result = new ItemCollection();
                 foreach (var item in values)
                 {

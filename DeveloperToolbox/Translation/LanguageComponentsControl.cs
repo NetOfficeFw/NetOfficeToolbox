@@ -233,7 +233,7 @@ namespace NetOffice.DeveloperToolbox.Translation
                     node.DefaultCellStyle.Font = boldFont;
                     node.Tag = item;
                     node.ImageIndex = 0;
-                    foreach (var subItem in item.ControlRessources)
+                    foreach (var subItem in item.ControlResources)
                     {
                         string text = subItem.Value;
                         if(text.Equals("this"))
@@ -370,7 +370,7 @@ namespace NetOffice.DeveloperToolbox.Translation
                     ILocalizationDesign design = component.Design as ILocalizationDesign;
                     if (null != design)
                     {
-                        design.Localize(component.ControlRessources);
+                        design.Localize(component.ControlResources);
                     }
 
                     tabPage1.Controls.Add(component.Design);

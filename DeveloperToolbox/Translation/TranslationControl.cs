@@ -19,7 +19,7 @@ namespace NetOffice.DeveloperToolbox.Translation
     /// <summary>
     /// Shows all available languages
     /// </summary>
-    [ResourceTable("Ressources.TranslationControlStrings.txt")]
+    [ResourceTable("Resources.TranslationControlStrings.txt")]
     public partial class TranslationControl : UserControl, ILocalizationDesign
     {
         #region Ctor
@@ -135,11 +135,11 @@ namespace NetOffice.DeveloperToolbox.Translation
             if (null != language)
             {
                 var component = language.Application.Components["Language Selector"];
-                Translator.TranslateControls(this, component.ControlRessources);
+                Translator.TranslateControls(this, component.ControlResources);
             }
             else
             {
-                Translation.Translator.TranslateControls(this, "Ressources.TranslationControlStrings.txt", lcid);
+                Translation.Translator.TranslateControls(this, "Resources.TranslationControlStrings.txt", lcid);
             }
         }
 

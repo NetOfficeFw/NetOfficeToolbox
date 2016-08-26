@@ -181,7 +181,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
             string ressourceString = ReadString("AddinGuard.Messages.txt");
             string[] splitArray = ressourceString.Split(new string[] { "[End]" }, StringSplitOptions.RemoveEmptyEntries);
 
-            Dictionary<string, string> transLateTable = GetTranslateRessources(splitArray, languageId);
+            Dictionary<string, string> transLateTable = GetTranslateResources(splitArray, languageId);
 
             string message = "";
             transLateTable.TryGetValue(key, out message);
@@ -189,7 +189,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.AddinGuard
             return message;
         }
 
-        private Dictionary<string, string> GetTranslateRessources(string[] splitArray, int languageId)
+        private Dictionary<string, string> GetTranslateResources(string[] splitArray, int languageId)
         {
             Dictionary<string, string> resultDictionary = new Dictionary<string, string>();
 

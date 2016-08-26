@@ -168,7 +168,7 @@ namespace NetOffice.DeveloperToolbox.Controls.InfoLayer
             if (marker == "{0:$HelpContent}")
             {
                 string target = _parentComponentName.Substring(0, _parentComponentName.LastIndexOf(".")) + ".Info" + _designLCID  + ".rtf";
-                string content =Ressources.RessourceUtils.ReadString(target, false, false);
+                string content =Resources.ResourceUtils.ReadString(target, false, false);
                 return content;
             }
             else

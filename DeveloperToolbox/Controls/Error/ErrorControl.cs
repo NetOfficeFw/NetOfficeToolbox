@@ -7,7 +7,7 @@ namespace NetOffice.DeveloperToolbox.Controls.Error
     /// <summary>
     /// Control to display errors
     /// </summary>
-    [ResourceTable("Ressources.ErrorFormStrings.txt")]
+    [ResourceTable("Resources.ErrorFormStrings.txt")]
     public partial class ErrorControl : UserControl, ILocalizationDesign
     {
         #region Fields
@@ -66,7 +66,7 @@ namespace NetOffice.DeveloperToolbox.Controls.Error
             }
             DisplayException(exception);
             currentLanguageID = ValidateLanguageID(currentLanguageID);
-            Translation.Translator.TranslateControls(this, "Ressources.ErrorFormStrings.txt", currentLanguageID);
+            Translation.Translator.TranslateControls(this, "Resources.ErrorFormStrings.txt", currentLanguageID);
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace NetOffice.DeveloperToolbox.Controls.Error
             }
             DisplayException(exception);
             currentLanguageID = ValidateLanguageID(currentLanguageID);
-            Translation.Translator.TranslateControls(this, "Ressources.ErrorFormStrings.txt", currentLanguageID);
+            Translation.Translator.TranslateControls(this, "Resources.ErrorFormStrings.txt", currentLanguageID);
         }
 
         private int ValidateLanguageID(int currentLanguageID)

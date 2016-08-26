@@ -500,7 +500,7 @@
     <Compile Include="Utils\Animation\Round\RoundedRectangleRegion.cs" />
     <Compile Include="Utils\Native\Win32.cs" />
     <Compile Include="Utils\Registry\UtilsRegistryKeyExporter.cs" />
-    <Compile Include="Utils\Ressources\RessourceUtils.cs" />
+    <Compile Include="Utils\Resources\ResourceUtils.cs" />
     <Compile Include="Translation\Translator.cs" />
     <Compile Include="ToolboxControls\Welcome\WelcomeControl.cs">
       <SubType>UserControl</SubType>

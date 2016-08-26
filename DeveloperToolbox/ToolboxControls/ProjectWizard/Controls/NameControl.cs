@@ -139,7 +139,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
             if (null != language)
             {
                 var component = language.Components["Project Wizard - Name"];
-                Translation.Translator.TranslateControls(this, component.ControlRessources);
+                Translation.Translator.TranslateControls(this, component.ControlResources);
             }
             else
             {

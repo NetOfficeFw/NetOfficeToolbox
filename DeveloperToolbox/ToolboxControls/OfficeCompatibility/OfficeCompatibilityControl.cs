@@ -124,7 +124,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
 
         public Image Icon
         {
-            get { return Ressources.RessourceUtils.ReadImageFromRessource("ToolboxControls.OfficeCompatibility.Icon.png"); }
+            get { return Resources.ResourceUtils.ReadImageFromRessource("ToolboxControls.OfficeCompatibility.Icon.png"); }
         }
 
         public bool SupportsHelpContent
@@ -199,12 +199,12 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
             Translation.ToolLanguage language = Host.Languages[lcid, false];
             if (null != language)
             {
-                string content = language.Components["Office Compatibility-Help"].ControlRessources["richTextBoxHelpContent"].Value2;
-                return Ressources.RessourceUtils.CreateStreamFromString(content);
+                string content = language.Components["Office Compatibility-Help"].ControlResources["richTextBoxHelpContent"].Value2;
+                return Resources.ResourceUtils.CreateStreamFromString(content);
             }
             else
             {
-                return Ressources.RessourceUtils.ReadStream("ToolboxControls.OfficeCompatibility.Info" + lcid.ToString() + ".rtf");
+                return Resources.ResourceUtils.ReadStream("ToolboxControls.OfficeCompatibility.Info" + lcid.ToString() + ".rtf");
             }
         }
 

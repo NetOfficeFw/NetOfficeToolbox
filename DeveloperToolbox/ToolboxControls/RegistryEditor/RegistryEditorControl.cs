@@ -141,7 +141,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
 
         public Image Icon
         {
-            get { return Ressources.RessourceUtils.ReadIconImageFromRessource("ToolboxControls.RegistryEditor.Icon.ico"); }
+            get { return Resources.ResourceUtils.ReadIconImageFromRessource("ToolboxControls.RegistryEditor.Icon.ico"); }
         }
 
         public bool SupportsHelpContent
@@ -166,12 +166,12 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             Translation.ToolLanguage language = Host.Languages[lcid, false];
             if (null != language)
             {
-                string content = language.Components["Registry Editor - Help"].ControlRessources["richTextBoxHelpContent"].Value2;
-                return Ressources.RessourceUtils.CreateStreamFromString(content);
+                string content = language.Components["Registry Editor - Help"].ControlResources["richTextBoxHelpContent"].Value2;
+                return Resources.ResourceUtils.CreateStreamFromString(content);
             }
             else
             {
-                return Ressources.RessourceUtils.ReadStream("ToolboxControls.RegistryEditor.Info" + lcid.ToString() + ".rtf");
+                return Resources.ResourceUtils.ReadStream("ToolboxControls.RegistryEditor.Info" + lcid.ToString() + ".rtf");
             }
         }
 

@@ -76,7 +76,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OutlookSecurity
 
         public Image Icon
         {
-            get { return Ressources.RessourceUtils.ReadIconImageFromRessource("ToolboxControls.OutlookSecurity.Icon.ico"); }
+            get { return Resources.ResourceUtils.ReadIconImageFromRessource("ToolboxControls.OutlookSecurity.Icon.ico"); }
         }
 
         public bool SupportsInfoMessage
@@ -183,12 +183,12 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OutlookSecurity
             Translation.ToolLanguage language = Host.Languages[lcid, false];
             if (null != language)
             {
-                string content = language.Components["Outlook Security - Help"].ControlRessources["richTextBoxHelpContent"].Value2;
-                return Ressources.RessourceUtils.CreateStreamFromString(content);
+                string content = language.Components["Outlook Security - Help"].ControlResources["richTextBoxHelpContent"].Value2;
+                return Resources.ResourceUtils.CreateStreamFromString(content);
             }
             else
             {
-                return Ressources.RessourceUtils.ReadStream("ToolboxControls.OutlookSecurity.Info" + lcid.ToString() + ".rtf");
+                return Resources.ResourceUtils.ReadStream("ToolboxControls.OutlookSecurity.Info" + lcid.ToString() + ".rtf");
             }
         }
 

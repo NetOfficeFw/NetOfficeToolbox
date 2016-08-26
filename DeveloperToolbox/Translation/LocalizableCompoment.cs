@@ -32,7 +32,7 @@ namespace NetOffice.DeveloperToolbox.Translation
             Parent = parent;
             _value = name;
             _controlType = controlType;
-            ControlRessources = new ItemCollection();
+            ControlResources = new ItemCollection();
 
             string[] names = ResourceTableAttribute.GetRessourceNames(controlType);
             Dictionary<string, string> values = ResourceTableAttribute.GetRessourceValues(Design, parent.LCID);
@@ -45,25 +45,25 @@ namespace NetOffice.DeveloperToolbox.Translation
                 Controls.Text.AdvRichTextBox advrichText = ctrl as Controls.Text.AdvRichTextBox;
                 if (null != advrichText)
                 {
-                    ControlRessources.Add(new LocalizableWideString(resName, resValue));
+                    ControlResources.Add(new LocalizableWideString(resName, resValue));
                 }
                 else
                 {
                     RichTextBox richBox = ctrl as RichTextBox;
                     if (null != richBox)
                     {
-                        ControlRessources.Add(new LocalizableRTFString(resName, resValue));
+                        ControlResources.Add(new LocalizableRTFString(resName, resValue));
                     }
                     else
                     {
                         TextBox textBox = ctrl as TextBox;
                         if (null != textBox && textBox.Multiline)
                         {
-                            ControlRessources.Add(new LocalizableWideString(resName, resValue));
+                            ControlResources.Add(new LocalizableWideString(resName, resValue));
                         }
                         else
                         {
-                            ControlRessources.Add(new LocalizableString(resName, resValue));
+                            ControlResources.Add(new LocalizableString(resName, resValue));
                         }
                     }
 
@@ -84,7 +84,7 @@ namespace NetOffice.DeveloperToolbox.Translation
             _value = name;
             _value2 = parentComponentName;
             _controlType = controlType;
-            ControlRessources = new ItemCollection();
+            ControlResources = new ItemCollection();
 
             string[] names = ResourceTableAttribute.GetRessourceNames(controlType);
             Dictionary<string, string> values = ResourceTableAttribute.GetRessourceValues(Design, parent.LCID);
@@ -97,25 +97,25 @@ namespace NetOffice.DeveloperToolbox.Translation
                 Controls.Text.AdvRichTextBox advrichText = ctrl as Controls.Text.AdvRichTextBox;
                 if (null != advrichText)
                 {
-                    ControlRessources.Add(new LocalizableWideString(resName, resValue));
+                    ControlResources.Add(new LocalizableWideString(resName, resValue));
                 }
                 else
                 {
                     RichTextBox richBox = ctrl as RichTextBox;
                     if (null != richBox)
                     {
-                        ControlRessources.Add(new LocalizableRTFString(resName, resValue));
+                        ControlResources.Add(new LocalizableRTFString(resName, resValue));
                     }
                     else
                     {
                         TextBox textBox = ctrl as TextBox;
                         if (null != textBox && textBox.Multiline)
                         {
-                            ControlRessources.Add(new LocalizableWideString(resName, resValue));
+                            ControlResources.Add(new LocalizableWideString(resName, resValue));
                         }
                         else
                         {
-                            ControlRessources.Add(new LocalizableString(resName, resValue));
+                            ControlResources.Add(new LocalizableString(resName, resValue));
                         }
                     }
 
@@ -168,7 +168,7 @@ namespace NetOffice.DeveloperToolbox.Translation
         /// <summary>
         /// Localizable resources from the component
         /// </summary>
-        internal ItemCollection ControlRessources { get; private set; }
+        internal ItemCollection ControlResources { get; private set; }
 
         #endregion
     }
