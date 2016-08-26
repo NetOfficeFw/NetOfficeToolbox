@@ -1,16 +1,15 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("NetOffice DeveloperToolbox")]
-[assembly: AssemblyDescription("some stuff in a box")]
+[assembly: AssemblyTitle("NetOffice Toolbox")]
+[assembly: AssemblyDescription("Application for development with NetOffice library.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("NetOfficeFw")]
 [assembly: AssemblyProduct("NetOffice")]
-[assembly: AssemblyCopyright("Copyright ©  2011 Sebastian Lange")]
+[assembly: AssemblyCopyright("Copyright © 2011-2015 Sebastian Lange, 2015-2016 Jozef Izso")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +31,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.4.3.0")]
-[assembly: AssemblyFileVersion("1.4.3.0")]
+[assembly: AssemblyVersion("1.0.*")]
+[assembly: AssemblyFileVersion("1.0.0.0")]
