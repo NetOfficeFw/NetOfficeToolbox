@@ -22,16 +22,16 @@ assembly_info:
   assembly_informational_version: "{version} ({branch})"
 
 before_build:
-  - cmd: nuget restore NetOffice.DeveloperToolbox.sln
+  - cmd: nuget restore DeveloperToolbox.sln
 
 build:
-  project: NetOffice.DeveloperToolbox.sln
+  project: DeveloperToolbox.sln
   verbosity: normal
 
 test: off
 
 before_package:
-  - 7z a artifacts\NetOfficeToolbox_v%APPVEYOR_BUILD_VERSION%.zip "%APPVEYOR_BUILD_FOLDER%\Toolbox\bin\%CONFIGURATION%\*" -xr!*.xml
+  - 7z a artifacts\NetOfficeToolbox_v%APPVEYOR_BUILD_VERSION%.zip "%APPVEYOR_BUILD_FOLDER%\DeveloperToolbox\bin\%CONFIGURATION%\*" -xr!*.xml
 
 artifacts:
   - path: 'artifacts\*.zip'
