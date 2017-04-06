@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>DeveloperToolbox</id>
+    <title>NetOffice Developer Toolbox</title>
+    <version>$version$</version>
+    <authors>Sebastian Lange, Jozef Izso</authors>
+    <description>NetOffice Developer Toolbox is a productivity tool for .NET developers who create solutions for Microsoft Office.</description>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+  </metadata>
+  <files>
+    <file src="NetOffice.DeveloperToolbox.exe" target="lib\net45" />
+    <file src="NetOffice.DeveloperToolbox.exe.config" target="lib\net45" />
+    <file src="*.dll" target="lib\net45" />
+    <file src="*.pdb" target="lib\net45" />
+  </files>
+</package>
