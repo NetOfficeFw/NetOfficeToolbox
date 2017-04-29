@@ -1,4 +1,4 @@
-﻿namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
+namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
 {
     partial class ApplicationObserverControl
     {
@@ -193,12 +193,12 @@
             // columnName
             //
             this.columnName.Text = "Name";
-            this.columnName.Width = 100;
+            this.columnName.Width = 300;
             //
             // columnInstances
             //
             this.columnInstances.Text = "Instances";
-            this.columnInstances.Width = 100;
+            this.columnInstances.Width = 50;
             //
             // checkBoxAppsTray
             //
@@ -431,8 +431,6 @@
             //
             // ApplicationObserverControl
             //
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
@@ -459,6 +457,8 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ApplicationObserverControl";
             this.Size = new System.Drawing.Size(916, 641);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRunningOff)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRunningOn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
