@@ -1,4 +1,4 @@
-﻿namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
+namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
 {
     partial class ChangeBinaryControl
     {
@@ -108,8 +108,6 @@
             //
             // ChangeBinaryControl
             //
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
             this.Controls.Add(this.hexBox);
             this.Controls.Add(this.buttonOK);
@@ -120,6 +118,8 @@
             this.Name = "ChangeBinaryControl";
             this.Size = new System.Drawing.Size(394, 314);
             this.Resize += new System.EventHandler(this.ChangeBinaryControl_Resize);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -1,4 +1,4 @@
-﻿namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
+namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
 {
     partial class ChangeStringControl
     {
@@ -104,8 +104,6 @@
             //
             // ChangeStringControl
             //
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
             this.Controls.Add(this.buttonOK);
             this.Controls.Add(this.buttonAbort);
@@ -116,6 +114,8 @@
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "ChangeStringControl";
             this.Size = new System.Drawing.Size(351, 141);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ResumeLayout(false);
             this.PerformLayout();
 

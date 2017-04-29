@@ -1,4 +1,4 @@
-﻿namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
+namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
 {
     partial class RegistryEditorControl
     {
@@ -497,8 +497,6 @@
             //
             // RegistryEditorControl
             //
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
             this.Controls.Add(this.pictureBoxNoResult);
             this.Controls.Add(this.splitContainer1);
@@ -512,6 +510,8 @@
             this.Name = "RegistryEditorControl";
             this.Size = new System.Drawing.Size(916, 641);
             this.Resize += new System.EventHandler(this.RegistryEditorControl_Resize);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.contextMenuStripKeys.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRegistry)).EndInit();
             this.contextMenuStripEntries.ResumeLayout(false);

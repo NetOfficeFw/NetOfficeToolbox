@@ -1,4 +1,4 @@
-﻿namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
+namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
 {
     partial class ChangeDWORDControl
     {
@@ -147,8 +147,6 @@
             //
             // ChangeDWORDControl
             //
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
             this.Controls.Add(this.groupBoxBase);
             this.Controls.Add(this.buttonOK);
@@ -160,6 +158,8 @@
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "ChangeDWORDControl";
             this.Size = new System.Drawing.Size(357, 183);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.groupBoxBase.ResumeLayout(false);
             this.groupBoxBase.PerformLayout();
             this.ResumeLayout(false);

@@ -1,4 +1,4 @@
-﻿namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
+namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
 {
     partial class ChangeDWordDialog
     {
@@ -43,11 +43,10 @@
             //
             // ChangeDWordDialog
             //
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
             this.ClientSize = new System.Drawing.Size(372, 211);
             this.Controls.Add(this.changeDWORDControl1);
+            this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.KeyPreview = true;
             this.MaximizeBox = false;
@@ -59,6 +58,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Edit DWORD Value";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ChangeDWORDDialog_KeyDown);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ResumeLayout(false);
 
         }
