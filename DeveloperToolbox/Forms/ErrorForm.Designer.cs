@@ -30,25 +30,24 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ErrorForm));
             this.errorControl1 = new NetOffice.DeveloperToolbox.Controls.Error.ErrorControl();
             this.SuspendLayout();
-            //
+            // 
             // errorControl1
-            //
+            // 
             this.errorControl1.BackColor = System.Drawing.Color.LightSteelBlue;
             this.errorControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.errorControl1.Location = new System.Drawing.Point(9, 9);
             this.errorControl1.Name = "errorControl1";
-            this.errorControl1.Size = new System.Drawing.Size(616, 471);
+            this.errorControl1.Size = new System.Drawing.Size(606, 458);
             this.errorControl1.TabIndex = 0;
             this.errorControl1.UserClose += new System.EventHandler(this.errorControl1_UserClose);
-            //
+            // 
             // ErrorForm
-            //
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.ClientSize = new System.Drawing.Size(634, 489);
+            this.ClientSize = new System.Drawing.Size(624, 476);
             this.Controls.Add(this.errorControl1);
-            this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
