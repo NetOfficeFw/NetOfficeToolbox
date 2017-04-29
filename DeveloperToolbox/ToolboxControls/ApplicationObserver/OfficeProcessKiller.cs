@@ -1,9 +1,10 @@
-﻿using System;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Text;
 using System.Diagnostics;
+using System.Linq;
 
 namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
 {
@@ -553,25 +554,25 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
                 CheckChangedProcs(allProcs);
                 _allProcs = allProcs;
 
-                _excelProcs = Process.GetProcessesByName("Excel");
+                _excelProcs = _allProcs.Where(p => String.Equals(p.ProcessName, "Excel", StringComparison.OrdinalIgnoreCase)).ToArray();
                 ShowProcesses("Excel", _excelProcs);
 
-                _wordProcs = Process.GetProcessesByName("Winword");
+                _wordProcs = _allProcs.Where(p => String.Equals(p.ProcessName, "Winword", StringComparison.OrdinalIgnoreCase)).ToArray();
                 ShowProcesses("Winword", _wordProcs);
 
-                _outlookProcs = Process.GetProcessesByName("Outlook");
+                _outlookProcs = _allProcs.Where(p => String.Equals(p.ProcessName, "Outlook", StringComparison.OrdinalIgnoreCase)).ToArray();
                 ShowProcesses("Outlook", _outlookProcs);
 
-                _powerProcs = Process.GetProcessesByName("POWERPNT");
+                _powerProcs = _allProcs.Where(p => String.Equals(p.ProcessName, "POWERPNT", StringComparison.OrdinalIgnoreCase)).ToArray();
                 ShowProcesses("POWERPNT", _powerProcs);
 
-                _accessProcs = Process.GetProcessesByName("MSACCESS");
+                _accessProcs = _allProcs.Where(p => String.Equals(p.ProcessName, "MSACCESS", StringComparison.OrdinalIgnoreCase)).ToArray();
                 ShowProcesses("MSACCESS", _accessProcs);
 
-                _projectProcs = Process.GetProcessesByName("WINPROJ");
+                _projectProcs = _allProcs.Where(p => String.Equals(p.ProcessName, "WINPROJ", StringComparison.OrdinalIgnoreCase)).ToArray();
                 ShowProcesses("WINPROJ", _projectProcs);
 
-                _visioProcs = Process.GetProcessesByName("VISIO");
+                _visioProcs = _allProcs.Where(p => String.Equals(p.ProcessName, "VISIO", StringComparison.OrdinalIgnoreCase)).ToArray();
                 ShowProcesses("VISIO", _visioProcs);
 
                 int procCount = ProcessCount();
