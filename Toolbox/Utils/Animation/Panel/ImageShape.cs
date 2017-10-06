@@ -25,7 +25,7 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation.Panel
 
         public float Opacity
         {
-            get
+            get 
             {
                 return _opacity;
             }
@@ -63,7 +63,7 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation.Panel
                 else
                 {
                     graphic.DrawImage(Image, new Rectangle(Location.X, Location.Y, Size.Width, Size.Height));
-                }
+                }            
             }
         }
 

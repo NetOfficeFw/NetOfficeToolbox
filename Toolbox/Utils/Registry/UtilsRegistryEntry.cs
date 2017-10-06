@@ -83,7 +83,7 @@ namespace NetOffice.DeveloperToolbox.Utils.Registry
                     RegistryKey key = _parent.Open(true);
                     key.SetValue(_valueName, value, ValueKind);
                     key.Close();
-                    _type = UtilsRegistryEntryType.Default;
+                    _type = UtilsRegistryEntryType.Default; 
                 }
                 else
                 {
@@ -93,7 +93,7 @@ namespace NetOffice.DeveloperToolbox.Utils.Registry
                 }
             }
         }
-
+        
         public RegistryValueKind ValueKind
         {
             get
@@ -106,7 +106,7 @@ namespace NetOffice.DeveloperToolbox.Utils.Registry
                 key.Close();
                 return kind;
             }
-        }
+        }       
 
         #endregion
 

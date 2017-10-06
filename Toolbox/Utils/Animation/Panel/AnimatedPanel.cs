@@ -41,7 +41,7 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation.Panel
         public AnimatedPanel()
         {
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.DoubleBuffer | ControlStyles.ResizeRedraw | ControlStyles.UserPaint, true);
-
+           
             _shapes1 = new List<Shape>();
             Animation1ImageCount = 10;
             _animationTimer1 = new Timer();
@@ -54,7 +54,7 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation.Panel
             _animationTimer2.Interval = _animationIntervall2;
             _animationTimer2.Tick += new EventHandler(AnimationTimer2_Tick);
         }
-
+       
         #endregion
 
         #region Properties
@@ -66,7 +66,7 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation.Panel
             {
                 return _animation1Rotate;
             }
-            set
+            set 
             {
                 _animation1Rotate = value;
                 foreach (var item in _shapes1)
@@ -93,7 +93,7 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation.Panel
                             img.Size = new System.Drawing.Size(value.Width, value.Height);
                         img.Image = value;
                     }
-                }
+                }             
             }
         }
 
@@ -153,7 +153,7 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation.Panel
             {
                 return _animationIntervall1;
             }
-            set
+            set 
             {
                 if (_animationIntervall1 < 1)
                     throw new ArgumentException();

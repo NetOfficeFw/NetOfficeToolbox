@@ -15,12 +15,11 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
     /// Shows a detailed usage report for an analyzed assembly
     /// </summary>
     [RessourceTable("ToolboxControls.OfficeCompatibility.Report.txt")]
-    public partial class ReportControl : UserControl, ILocalizationDesign
+    public partial class ReportControl : UserControl
     {
         #region Fields
 
         private AnalyzerResult _report;
-        private int _currentLanguageID;
 
         #endregion
 
@@ -42,17 +41,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
         /// Creates an instance of the class
         /// </summary>
         /// <param name="report">detailed report</param>
-        /// <param name="currentLanguageID">current user language id</param>
-        public ReportControl(AnalyzerResult report, int currentLanguageID)
+        public ReportControl(AnalyzerResult report)
         {
             InitializeComponent();
             if (null == report.Report)
                 return;
             _report = report;
-            _currentLanguageID = currentLanguageID;
             comboBoxFilter.SelectedIndex = 0;
-
-            Translation.Translator.AutoTranslateControls(this, "OfficeCompatibility - Report", "ToolboxControls.OfficeCompatibility.Report.txt", currentLanguageID);
 
             pictureBoxField.Image = imageList1.Images[3];
             pictureBoxProperty.Image = imageList1.Images[7];
@@ -60,7 +55,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
             if (treeViewReport.Nodes.Count > 0)
                 treeViewReport.SelectedNode = treeViewReport.Nodes[0];
         }
-
+        
         #endregion
 
         #region Methods
@@ -123,12 +118,11 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                     classNode.ImageIndex = GetImageClassIndex(itemClass);
                     classNode.SelectedImageIndex = GetImageClassIndex(itemClass);
                     classNode.Tag = itemClass;
-
-
+                    
                     foreach (XElement itemField in itemClass.Element("Fields").Elements("Entity"))
                     {
                         if (FilterPassed(itemField.Element("SupportByLibrary")))
-                        {
+                        { 
                             TreeNode fieldNode = classNode.Nodes.Add(itemField.Attribute("Name").Value);
                             fieldNode.ImageIndex = GetImageFieldIndex(itemField);
                             fieldNode.SelectedImageIndex = GetImageFieldIndex(itemField);
@@ -179,7 +173,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                         }
 
                     }
-
+                    
                 }
             }
             panelView.Dock = DockStyle.Fill;
@@ -205,7 +199,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                         type = type.Substring(type.IndexOf("::", StringComparison.InvariantCultureIgnoreCase) + 2);
 
                     if (FilterPassed(item.Element("SupportByLibrary")))
-                    {
+                    { 
                         ListViewItem paramViewItem = listViewDetail.Items.Add("Call Method: " + name);
                         paramViewItem.SubItems.Add(type);
                         string supportText = item.Element("SupportByLibrary").Attribute("Api").Value + " ";
@@ -230,7 +224,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                             paramViewItem2.SubItems.Add(supportText);
 
 	                    }
-
+                        
                     }
                 }
                 listViewDetail.Items.Add("");
@@ -375,6 +369,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
             bool found12 = false;
             bool found14 = false;
             bool found15 = false;
+            bool found16 = false;
 
             foreach (XElement itemVersion in supportNode.Elements("Version"))
             {
@@ -397,6 +392,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                         break;
                     case "15":
                         found15 = true;
+                        break;
+                    case "16":
+                        found16 = true;
                         break;
                     default:
                         break;
@@ -429,6 +427,10 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                     if (found15)
                         return false;
                     break;
+                case 7:     // 16
+                    if (found16)
+                        return false;
+                    break;
             }
 
             return true;
@@ -437,51 +439,6 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
         private string GetLogFileContent()
         {
             return _report.Report.ToString();
-        }
-
-        #endregion
-
-        #region ILocalizationDesign
-
-        public void EnableDesignView(int lcid, string parentComponentName)
-        {
-
-        }
-
-        public void Localize(Translation.ItemCollection strings)
-        {
-            Translation.Translator.TranslateControls(this, strings);
-        }
-
-        public void Localize(string name, string text)
-        {
-            Translation.Translator.TranslateControl(this, name, text);
-        }
-
-        public string GetCurrentText(string name)
-        {
-            return Translation.Translator.TryGetControlText(this, name);
-        }
-
-        public IContainer Components
-        {
-            get { return components; }
-        }
-
-        public string NameLocalization
-        {
-            get
-            {
-                return null;
-            }
-        }
-
-        public IEnumerable<ILocalizationChildInfo> Childs
-        {
-            get
-            {
-                return new ILocalizationChildInfo[0];
-            }
         }
 
         #endregion
@@ -587,7 +544,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                 textBoxReport.Text = "";
                 return;
             }
-
+            
             XElement element = treeViewReport.SelectedNode.Tag as XElement;
             if (null != element)
             {
@@ -596,7 +553,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
             else
             {
                 List<XElement> elements = treeViewReport.SelectedNode.Tag as List<XElement>;
-                ShowDetails(elements);
+                ShowDetails(elements);            
             }
         }
 
@@ -609,7 +566,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
             }
             catch (Exception exception)
             {
-                Forms.ErrorForm.ShowError(exception,ErrorCategory.NonCritical, _currentLanguageID);
+                Forms.ErrorForm.ShowError(this, exception,ErrorCategory.NonCritical);
             }
         }
 
@@ -621,7 +578,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
             }
             catch (Exception exception)
             {
-                Forms.ErrorForm.ShowError(exception,ErrorCategory.NonCritical, _currentLanguageID);
+                Forms.ErrorForm.ShowError(this, exception, ErrorCategory.NonCritical);
             }
         }
 
@@ -654,7 +611,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
             }
             catch (Exception exception)
             {
-                Forms.ErrorForm.ShowError(exception,ErrorCategory.NonCritical, _currentLanguageID);
+                Forms.ErrorForm.ShowError(this, exception, ErrorCategory.NonCritical);
             }
         }
 

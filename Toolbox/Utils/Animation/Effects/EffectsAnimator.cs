@@ -9,7 +9,7 @@ using System.Text;
 namespace NetOffice.DeveloperToolbox.Utils.Animation.Effects
 {
     internal enum EffectsKind
-    {
+    {   
         FadeIn = 0,
         SlideBottomToTop =1,
         SlideTopToBottom = 2,
@@ -27,7 +27,7 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation.Effects
             int flags = effmap[(int)effect];
 
             if (ctl.Visible)
-            {
+            { 
                 flags |= 0x10000;
                 angle += 180;
             }
@@ -133,6 +133,6 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation.Effects
             /// </summary>
             [DllImport("user32.dll", CharSet = CharSet.Auto)]
             public static extern int AnimateWindow(IntPtr hwand, int dwTime, int dwFlags);
-        }
+        } 
     }
 }

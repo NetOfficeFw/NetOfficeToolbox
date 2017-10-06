@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Windows.Forms;
 
 namespace NetOffice.DeveloperToolbox.Controls.Check
-{
+{    
     /// <summary>
     /// Standard checkbox with alternate(blue) check color if checked
     /// </summary>
@@ -45,7 +45,7 @@ namespace NetOffice.DeveloperToolbox.Controls.Check
                 topOffset = offset + Padding.Top;
             else
                 topOffset += Padding.Top;
-
+            
             if (Checked)
                 pevent.Graphics.DrawRectangle(_selectedPen, 0, topOffset + 4, 10, 10);
         }

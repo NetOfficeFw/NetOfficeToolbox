@@ -30,19 +30,19 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ErrorForm));
             this.errorControl1 = new NetOffice.DeveloperToolbox.Controls.Error.ErrorControl();
             this.SuspendLayout();
-            //
+            // 
             // errorControl1
-            //
-            this.errorControl1.BackColor = System.Drawing.Color.LightSteelBlue;
+            // 
+            this.errorControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(227)))), ((int)(((byte)(243)))));
             this.errorControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.errorControl1.Location = new System.Drawing.Point(9, 9);
             this.errorControl1.Name = "errorControl1";
             this.errorControl1.Size = new System.Drawing.Size(616, 471);
             this.errorControl1.TabIndex = 0;
             this.errorControl1.UserClose += new System.EventHandler(this.errorControl1_UserClose);
-            //
+            // 
             // ErrorForm
-            //
+            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;

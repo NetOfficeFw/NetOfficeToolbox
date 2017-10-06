@@ -15,7 +15,16 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
         #region Fields
 
         private static string _apiName = "NetOffice";
-        private static NetOfficeSupportTable _netOfficeSupportTable = new NetOfficeSupportTable();
+        private static NetOfficeSupportTable _netOfficeSupportTable;
+
+        #endregion
+        
+        #region Ctor
+
+        static AssemblyAnalyzer()
+        {
+            _netOfficeSupportTable = new NetOfficeSupportTable();
+        }
 
         #endregion
 
@@ -49,7 +58,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                     {
                         XElement newElement = new XElement("Class",
                                                 new XAttribute("Name", typeDefinition.Name),
-
+                                                
                                                 new XAttribute("IsPublic", typeDefinition.IsPublic.ToString()),
                                                 new XElement("Fields", ""),
                                                 new XElement("Properties", ""),
@@ -58,7 +67,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
 
                         bool typeIncludesNetOfficeCalls = AnalyzeEntity(typeDefinition, newElement);
                         if (typeIncludesNetOfficeCalls)
-                            assemblyElement.Element("Classes").Add(newElement);
+                            assemblyElement.Element("Classes").Add(newElement);                      
                     }
                 }
             }
@@ -103,7 +112,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                 string typeName = NetOfficeSupportTable.GetName(fieldDefinition.FieldType.FullName);
                 string componentName = NetOfficeSupportTable.GetLibrary(fieldDefinition.FieldType.FullName);
                 XElement fields = newElement.Element("Fields");
-                XElement newField = new XElement(new XElement("Entity",
+                XElement newField = new XElement(new XElement("Entity", 
                                                  new XAttribute("Type", fieldDefinition.FieldType.FullName),
                                                  new XAttribute("Name", fieldDefinition.Name),
                                                  new XAttribute("IsPublic", fieldDefinition.IsPublic.ToString()),
@@ -112,26 +121,26 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                 XElement supportByNode = new XElement("SupportByLibrary", new XAttribute("Api", componentName));
                 newField.Add(supportByNode);
                 if (null != supportByLibrary)
-                {
+                { 
                     fields.Add(newField);
                     supportByNode.Add(new XAttribute("Name", typeName));
                     foreach (string item in supportByLibrary)
                         supportByNode.Add(new XElement("Version", item));
                 }
             }
-
+            
             return result;
         }
 
         private static bool AnalyzeMethod(MethodDefinition methodDefinition, XElement entity)
-        {
+        {   
             bool result = false;
 
             bool isProperty = methodDefinition.IsGetter || methodDefinition.IsSetter;
 
             XElement newMethodNode = new XElement("Method", new XAttribute("Name", methodDefinition.Name), new XAttribute("IsProperty", isProperty.ToString()), new XAttribute("IsPublic", methodDefinition.IsPublic.ToString()), new XElement("FieldSets"), new XElement("LocalFieldSets"));
             XElement parametersNode = null;
-
+            
             // parameter
             foreach (ParameterDefinition paramDefintion in methodDefinition.Parameters)
             {
@@ -157,7 +166,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                     XElement supportByNode = new XElement("SupportByLibrary", new XAttribute("Api", componentName));
                     newParam.Add(supportByNode);
                     if (null != supportByLibrary)
-                    {
+                    { 
                         supportByNode.Add(new XAttribute("Name", typeName));
                         foreach (string item in supportByLibrary)
                             supportByNode.Add(new XElement("Version", item));
@@ -169,7 +178,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
             // returnvalue
             if ((methodDefinition.ReturnType.FullName.StartsWith(_apiName) &&
                 !methodDefinition.ReturnType.FullName.Equals(_apiName + ".dll", StringComparison.InvariantCultureIgnoreCase) &&
-                CountOf(methodDefinition.ReturnType.FullName, ".") > 1 &&
+                CountOf(methodDefinition.ReturnType.FullName, ".") > 1 && 
                 (!methodDefinition.ReturnType.FullName.StartsWith("NetOffice.DeveloperToolbox"))))
             {
                 result = true;
@@ -183,7 +192,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                 returnValue.Add(supportByNode);
                 string[] supportByLibrary = _netOfficeSupportTable.GetTypeSupport(methodDefinition.ReturnType.FullName);
                 if (null != supportByLibrary)
-                {
+                { 
                     supportByNode.Add(new XAttribute("Name", typeName));
                     foreach (string item in supportByLibrary)
                         supportByNode.Add(new XElement("Version", item));
@@ -200,14 +209,14 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
             bool fieldSetLocalCalls = AnalyzeMethodLocalFieldSets(methodDefinition, entity, newMethodNode);
 
             if ((result) || (resultVariables) || (resultNewObjects) || (resultCalls) || (fieldSetCalls) || (fieldSetCalls))
-            {
+            { 
                 entity.Element("Methods").Add(newMethodNode);
                 result = true;
             }
 
             return result;
         }
-
+        
         private static bool AnalyzeMethodLocalFieldSets(MethodDefinition methodDefinition, XElement entity, XElement newMethodNode)
         {
             bool result = false;
@@ -336,7 +345,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
             VariableDefinition definiton = body.Variables[varIndex];
             if (definiton.VariableType.FullName.StartsWith(_apiName) && CountOf(definiton.VariableType.FullName, ".") > 1 && !definiton.VariableType.FullName.Equals(_apiName + ".dll", StringComparison.InvariantCultureIgnoreCase))
                 return definiton;
-            else
+            else 
                 return null;
         }
 
@@ -383,7 +392,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                      }
                  }
             }
-
+             
             return result;
         }
 
@@ -394,7 +403,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
             bool result = false;
             Mono.Cecil.Cil.MethodBody body = methodDefinition.Body;
             if (null != body)
-            {
+            { 
                  // method calls
                 foreach (Instruction itemInstruction in body.Instructions)
                 {
@@ -421,7 +430,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                             createNode.Add(newObject);
                             XElement supportByNode = new XElement("SupportByLibrary");
                             newObject.Add(supportByNode);
-
+                            
                             if (null != supportByLibrary)
                             {
                                 supportByNode.Add(new XAttribute("Name", typeName), new XAttribute("Api", componentName));
@@ -435,7 +444,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
 
             return result;
         }
-
+         
         private static string[] GetParameter(ParameterDefinition paramDefintion)
         {
             string[] supportByLibrary = _netOfficeSupportTable.GetTypeSupport(paramDefintion.ParameterType.FullName);
@@ -470,13 +479,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                 default:
                     try
                     {
-                        return Convert.ToInt32(parameterInstruction.Operand);
+                        return Convert.ToInt32(parameterInstruction.Operand);     
                     }
                     catch
                     {
                         sucseed = false;
                         return -1;
-                    }
+                    }                                 
             }
         }
 
@@ -504,7 +513,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                     return Convert.ToInt32(parameterInstruction.Operand);
             }
         }
-
+         
         private static bool AnalyzeMethodCalls(MethodDefinition methodDefinition, XElement entity, XElement newMethodNode)
         {
             XElement callsNode = null;
@@ -557,7 +566,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                             bool resultParameter = AnalyzeMethodCallParameters(itemInstruction, newObject);
                         }
 
-
+                        
                     }
                 }
             }
@@ -624,13 +633,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                     while (prevInstruction.OpCode.Name.StartsWith("ld") || prevInstruction.OpCode.Name.StartsWith("box"))
                     {
                         if (null != prevInstruction.Operand)
-                        {
+                        { 
                             string targetName = prevInstruction.Operand.ToString();
                             string[] dumyByLibrary = _netOfficeSupportTable.GetTypeSupport(targetName);
                             if (null != dumyByLibrary)
                             {
                                 if(null != prevInstruction.Previous.Operand)
-                                {
+                                {  
                                     int temp = 0;
                                     if (Int32.TryParse(prevInstruction.Previous.Operand.ToString(), out temp))
                                     {
@@ -653,7 +662,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                                             }
                                         }
                                     }
-                                }
+                                } 
                             }
                         }
                         prevInstruction = prevInstruction.Previous;
@@ -664,7 +673,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
 
             return result;
         }
-
+        
         private static Mono.Cecil.Cil.Instruction GetParameterInstructionForField(Instruction itemInstruction)
         {
             Instruction startItem = itemInstruction.Previous;
@@ -673,7 +682,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                 if (startItem.OpCode.Name.StartsWith("ld"))
                 {
                     if (startItem.OpCode.Name.StartsWith("ldarg."))
-                        return null;
+                        return null; 
                     else
                         return startItem;
                 }
@@ -714,16 +723,16 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
 
             return null;
         }
-
+         
         private static VariableDefinition GetVariable(Mono.Cecil.Cil.MethodBody body, Instruction item)
         {
             if (null != item.Operand)
             {
                 VariableDefinition returnVar = item.Operand as VariableDefinition;
-                return returnVar;
+                return returnVar; 
             }
             else
-            {
+            { 
                 string[] opCodeArray = item.OpCode.Name.Split(new string[] { "." }, StringSplitOptions.RemoveEmptyEntries);
                 int varIndex = Convert.ToInt32(opCodeArray[opCodeArray.Length - 1]);
                 return body.Variables[varIndex];
@@ -746,6 +755,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                         case "OfficeApi":
                         case "MSProjectApi":
                         case "VisioApi":
+                        case "PublisherApi":
                             return true;
                     }
                 }

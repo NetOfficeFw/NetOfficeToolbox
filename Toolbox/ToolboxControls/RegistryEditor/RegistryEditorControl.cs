@@ -26,7 +26,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
         private UtilsRegistry _currentUser;
         private bool          _userIsAdmin;
         private bool          _supportsInfoMessage;
-
+            
         #endregion
 
         #region Construction
@@ -57,12 +57,12 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                     }
 
                     _userIsAdmin = Program.IsAdmin;
-                    _supportsInfoMessage = !_userIsAdmin;
+                    _supportsInfoMessage = !_userIsAdmin;                 
                 }
             }
             catch (Exception exception)
             {
-                Forms.ErrorForm.ShowError(exception,ErrorCategory.NonCritical, 1033);
+                Forms.ErrorForm.ShowError(this, exception, ErrorCategory.NonCritical);
             }
         }
 
@@ -146,23 +146,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             }
         }
 
-        public void SetLanguage(int id)
+        public Stream GetHelpText()
         {
-            string space = "     ";
-            if (!labelTitle.Text.StartsWith(space))
-                labelTitle.Text = space + labelTitle.Text;
-        }
-
-        public Stream GetHelpText(int lcid)
-        {
-            Translation.ToolLanguage language = Host.Languages[lcid, false];
-            if (null != language)
-            {
-                string content = language.Components["Registry Editor - Help"].ControlRessources["richTextBoxHelpContent"].Value2;
-                return Ressources.RessourceUtils.CreateStreamFromString(content);
-            }
-            else
-                return Ressources.RessourceUtils.ReadStream("ToolboxControls.RegistryEditor.Info" + lcid.ToString() + ".rtf");
+            return Ressources.RessourceUtils.ReadStream("ToolboxControls.RegistryEditor.Info1033.rtf");
         }
 
         public void Activate(bool firstTime)
@@ -182,7 +168,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
 
         public void LoadComplete()
         {
-
+   
         }
 
         public void LoadConfiguration(XmlNode configNode)
@@ -207,7 +193,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             }
             catch (Exception exception)
             {
-                Forms.ErrorForm.ShowError(exception,ErrorCategory.NonCritical, Host.CurrentLanguageID);
+                Forms.ErrorForm.ShowError(this, exception,ErrorCategory.NonCritical);
             }
         }
 
@@ -229,7 +215,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             }
             catch (Exception exception)
             {
-                Forms.ErrorForm.ShowError(exception,ErrorCategory.NonCritical, Host.CurrentLanguageID);
+                Forms.ErrorForm.ShowError(this, exception,ErrorCategory.NonCritical);
             }
         }
 
@@ -247,40 +233,11 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
 
         }
 
-        public void Localize(Translation.ItemCollection strings)
-        {
-            Translation.Translator.TranslateControls(this, strings);
-        }
-
-        public void Localize(string name, string text)
-        {
-            Translation.Translator.TranslateControl(this, name, text);
-        }
-
-        public string GetCurrentText(string name)
-        {
-            return Translation.Translator.TryGetControlText(this, name);
-        }
-
         public string NameLocalization
         {
             get
             {
                 return null;
-            }
-        }
-
-        public IEnumerable<ILocalizationChildInfo> Childs
-        {
-            get
-            {
-                return new ILocalizationChildInfo[]{
-                    new LocalizationDefaultChildInfo("ChangeName", typeof(ChangeNameControl)),
-                    new LocalizationDefaultChildInfo("ChangeString", typeof(ChangeStringControl)),
-                    new LocalizationDefaultChildInfo("ChangeDWORD", typeof(ChangeDWORDControl)),
-                    new LocalizationDefaultChildInfo("ChangeBinary", typeof(ChangeBinaryControl)),
-                    new LocalizationDefaultChildInfo("Help", typeof(Controls.InfoLayer.InfoControl))
-                };
             }
         }
 
@@ -358,7 +315,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
         }
 
         private void ShowRegNode(UtilsRegistryKey key, TreeNode node)
-        {
+        {           
             node = node.Nodes.Add(key.Name);
             node.Tag = true;
             if(key.Keys.Count > 0)
@@ -437,11 +394,11 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
 
         private string[] GetNodePaths(List<TreeNode> listNodes)
         {
-
+            
             List<string> listNames = new List<string>();
             foreach (TreeNode item in listNodes)
                 listNames.Add(GetFullNodePath(item));
-
+            
             return listNames.ToArray();
         }
 
@@ -509,7 +466,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             pictureBoxNoResult.Visible = false;
 
             TreeNode rootNode = GetRootNode(targetKey.Root.IsLocalMachine, targetKey.Root.IsWow);
-
+ 
             if (!rootNode.IsExpanded)
                 rootNode.Expand();
 
@@ -546,7 +503,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             if (null != node.FirstNode)
             {
                 if (node.FirstNode.Text.EndsWith("#stub"))
-                {
+                { 
                     node.Expand();
                     node.Collapse();
                 }
@@ -558,7 +515,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                 return node.NextNode;
 
             TreeNode currentNode = node;
-
+            
             while (null != currentNode.Parent)
             {
                 if (node.Tag is UtilsRegistry)
@@ -583,7 +540,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                 else
                     return;
             }
-
+    
             TreeNode targetNode = GetNextPossibleNode(treeViewRegistry.SelectedNode);
             string fullNodePath = GetFullNodePath(targetNode);
             key = new UtilsRegistryKey(GetRegistry(targetNode), fullNodePath);
@@ -647,7 +604,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                         ShowNoResult();
                 }
                 else if (false == key.Root.IsLocalMachine && false == key.Root.IsWow)
-                {
+                { 
                     // currentuser32
 
                     result = SearchHive(expression, _localMachine64, null);
@@ -702,7 +659,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                 }
             }
         }
-
+       
         private UtilsRegistryKey SearchHive(string expression, UtilsRegistry hive, UtilsRegistryKey selectedKeyInHive)
         {
             if (null == hive)
@@ -755,7 +712,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                 }
             }
 
-            return null;
+            return null;  
         }
 
         private UtilsRegistryKey SearchTopKey(string expression, UtilsRegistryKey topKey)
@@ -778,7 +735,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                     if (ignore == true)
                     {
                         if (item.Path == selectedSubKey.Path)
-                        {
+                        { 
                             ignore = false;
                             UtilsRegistryKey res = SearchKey(expression, item);
                             if (null != res)
@@ -864,7 +821,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             }
             catch (Exception exception)
             {
-                Forms.ErrorForm.ShowError(exception,ErrorCategory.NonCritical, Host.CurrentLanguageID);
+                Forms.ErrorForm.ShowError(this, exception,ErrorCategory.NonCritical);
             }
         }
 
@@ -876,7 +833,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             }
             catch (Exception exception)
             {
-                Forms.ErrorForm.ShowError(exception,ErrorCategory.NonCritical, Host.CurrentLanguageID);
+                Forms.ErrorForm.ShowError(this, exception,ErrorCategory.NonCritical);
             }
         }
 
@@ -888,7 +845,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             }
             catch (Exception exception)
             {
-                Forms.ErrorForm.ShowError(exception,ErrorCategory.NonCritical, Host.CurrentLanguageID);
+                Forms.ErrorForm.ShowError(this, exception,ErrorCategory.NonCritical);
             }
         }
 
@@ -906,14 +863,14 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                 else if (null != e.Node.Tag)
                 {
                     e.Node.Nodes.Clear();
-                    string fullPath = GetFullNodePath(e.Node);
+                    string fullPath = GetFullNodePath(e.Node);  
                     UtilsRegistryKey key = new UtilsRegistryKey(GetRegistry(e.Node), fullPath);
                     ShowRegNodeChilds(key, e.Node);
                 }
             }
             catch (Exception exception)
             {
-                Forms.ErrorForm.ShowError(exception,ErrorCategory.NonCritical, Host.CurrentLanguageID);
+                Forms.ErrorForm.ShowError(this, exception,ErrorCategory.NonCritical);
             }
         }
 
@@ -961,7 +918,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                     UtilsRegistryEntry fakedKey = key.Entries.FakedDefaultKey;
                     string name = fakedKey.Name;
                     string valueType = fakedKey.ValueKind.ToString();
-                    object value = fakedKey.GetValue(Host.CurrentLanguageID);
+                    object value = fakedKey.GetValue();
                     Image typeImage = GetValueKindImage(fakedKey.ValueKind);
                     dataGridViewRegistry.Rows.Insert(0, typeImage, name, valueType, value);
                     DataGridViewRow newRow = dataGridViewRegistry.Rows[0];
@@ -972,7 +929,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             }
             catch (Exception exception)
             {
-                Forms.ErrorForm.ShowError(exception,ErrorCategory.NonCritical, Host.CurrentLanguageID);
+                Forms.ErrorForm.ShowError(this, exception,ErrorCategory.NonCritical);
             }
         }
 
@@ -987,7 +944,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             }
             catch (Exception exception)
             {
-                Forms.ErrorForm.ShowError(exception,ErrorCategory.NonCritical, Host.CurrentLanguageID);
+                Forms.ErrorForm.ShowError(this, exception,ErrorCategory.NonCritical);
             }
         }
 
@@ -1017,7 +974,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             }
             catch (Exception exception)
             {
-                Forms.ErrorForm.ShowError(exception,ErrorCategory.NonCritical, Host.CurrentLanguageID);
+                Forms.ErrorForm.ShowError(this, exception,ErrorCategory.NonCritical);
             }
         }
 
@@ -1039,10 +996,10 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             }
             catch (Exception exception)
             {
-                Forms.ErrorForm.ShowError(exception,ErrorCategory.NonCritical, Host.CurrentLanguageID);
+                Forms.ErrorForm.ShowError(this, exception,ErrorCategory.NonCritical);
             }
         }
-
+         
         private void toolStripKeyDelete_Click(object sender, EventArgs e)
         {
             try
@@ -1051,7 +1008,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                     return;
 
                 string[] fullPathSelectedNodes = GetNodePaths(treeViewRegistry.SelectedNodes);
-
+                
                 TreeNode parentNode = null;
                 if( (null != treeViewRegistry.SelectedNode.PrevNode) && (treeViewRegistry.SelectedNodes.Count == 1))
                     parentNode = treeViewRegistry.SelectedNode.PrevNode;
@@ -1063,16 +1020,8 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                     string nodeNames = GetNodeNames(treeViewRegistry.SelectedNodes);
                     string message = null;
                     string caption = null;
-                    if (Host.CurrentLanguageID == 1031)
-                    {
-                        caption = "Löschen bestätigen";
-                        message = string.Format("Möchten Sie den Schlüssel löschen?{1}{1}{0}", nodeNames, Environment.NewLine);
-                    }
-                    else
-                    {
-                       caption = "Confirm";
-                       message = string.Format("Delete?{1}{1}{0}", nodeNames, Environment.NewLine);
-                    }
+                    caption = "Confirm";
+                    message = string.Format("Delete?{1}{1}{0}", nodeNames, Environment.NewLine);
 
                     DialogResult dr = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dr == DialogResult.No)
@@ -1085,13 +1034,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                     UtilsRegistryKey key = new UtilsRegistryKey(registryRoot, fullPath);
                     key.Delete();
                 }
-
+                
                 treeViewRegistry.SelectedNode = parentNode;
-                buttonRefresh_Click(this, new EventArgs());
+                buttonRefresh_Click(this, new EventArgs());      
             }
             catch (Exception exception)
             {
-                Forms.ErrorForm.ShowError(exception,ErrorCategory.NonCritical, Host.CurrentLanguageID);
+                Forms.ErrorForm.ShowError(this, exception,ErrorCategory.NonCritical);
             }
         }
 
@@ -1115,7 +1064,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             }
             catch (Exception exception)
             {
-                Forms.ErrorForm.ShowError(exception,ErrorCategory.NonCritical, Host.CurrentLanguageID);
+                Forms.ErrorForm.ShowError(this, exception,ErrorCategory.NonCritical);
             }
         }
 
@@ -1126,11 +1075,11 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                 string fullPath = GetFullNodePath(treeViewRegistry.SelectedNode);
                 UtilsRegistryKey key = new UtilsRegistryKey(GetRegistry(treeViewRegistry.SelectedNode), fullPath);
                 key.CreateNewSubKey();
-                buttonRefresh_Click(this, new EventArgs());
+                buttonRefresh_Click(this, new EventArgs());       
             }
             catch (Exception exception)
             {
-                Forms.ErrorForm.ShowError(exception,ErrorCategory.NonCritical, Host.CurrentLanguageID);
+                Forms.ErrorForm.ShowError(this, exception,ErrorCategory.NonCritical);
             }
         }
 
@@ -1146,7 +1095,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             }
             catch (Exception exception)
             {
-                Forms.ErrorForm.ShowError(exception,ErrorCategory.NonCritical, Host.CurrentLanguageID);
+                Forms.ErrorForm.ShowError(this, exception,ErrorCategory.NonCritical);
             }
         }
 
@@ -1169,7 +1118,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             }
             catch (Exception exception)
             {
-                Forms.ErrorForm.ShowError(exception,ErrorCategory.NonCritical, Host.CurrentLanguageID);
+                Forms.ErrorForm.ShowError(this, exception,ErrorCategory.NonCritical);
             }
         }
 
@@ -1180,11 +1129,11 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                 if (e.KeyData != Keys.Return || String.IsNullOrWhiteSpace(textBoxSearch.Text))
                     return;
                 DoSearch(textBoxSearch.Text);
-
+               
             }
             catch (Exception exception)
             {
-                Forms.ErrorForm.ShowError(exception,ErrorCategory.NonCritical, Host.CurrentLanguageID);
+                Forms.ErrorForm.ShowError(this, exception,ErrorCategory.NonCritical);
             }
         }
 
@@ -1196,7 +1145,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             }
             catch (Exception exception)
             {
-                Forms.ErrorForm.ShowError(exception,ErrorCategory.NonCritical, Host.CurrentLanguageID);
+                Forms.ErrorForm.ShowError(this, exception,ErrorCategory.NonCritical);
             }
         }
 
@@ -1214,7 +1163,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                 DataGridViewRow row = dataGridViewRegistry.Rows[dataGridViewRegistry.SelectedCells[0].RowIndex];
                 UtilsRegistryEntry entry = row.Tag as UtilsRegistryEntry;
 
-                ChangeNameDialog changeDialog = new ChangeNameDialog(entry.Name, Host.CurrentLanguageID);
+                ChangeNameDialog changeDialog = new ChangeNameDialog(entry.Name, 1033);
                 if (DialogResult.OK == changeDialog.ShowDialog(this))
                 {
                     entry.Name = changeDialog.EntryNewName;
@@ -1223,7 +1172,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             }
             catch (Exception exception)
             {
-                Forms.ErrorForm.ShowError(exception,ErrorCategory.NonCritical, Host.CurrentLanguageID);
+                Forms.ErrorForm.ShowError(this, exception, ErrorCategory.NonCritical);
             }
         }
 
@@ -1238,20 +1187,20 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
 
                 if (checkBoxDeleteQuestion.Checked)
                 {
-                    string message = string.Format("Möchten Sie den Wert <{0}> löschen?", row.Cells[1].Value);
-                    DialogResult dr = MessageBox.Show(message, "Löschen bestätigen", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    string message = string.Format("Do you want delete the value <{0}> ?", row.Cells[1].Value);
+                    DialogResult dr = MessageBox.Show(message, "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dr == DialogResult.No)
                         return;
                 }
 
                 UtilsRegistryEntry entry = dataGridViewRegistry.Rows[dataGridViewRegistry.SelectedCells[0].RowIndex].Tag as UtilsRegistryEntry;
                 entry.Delete();
-
+          
                 dataGridViewRegistry.Rows.Remove(row);
             }
             catch (Exception exception)
             {
-                Forms.ErrorForm.ShowError(exception,ErrorCategory.NonCritical, Host.CurrentLanguageID);
+                Forms.ErrorForm.ShowError(this, exception,ErrorCategory.NonCritical);
             }
         }
 
@@ -1272,7 +1221,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                     case RegistryValueKind.MultiString:
                     case RegistryValueKind.String:
                     case RegistryValueKind.Unknown:
-                        ChangeStringDialog stringDialog = new ChangeStringDialog(entry.Name, entry.Value as string, Host.CurrentLanguageID);
+                        ChangeStringDialog stringDialog = new ChangeStringDialog(entry.Name, entry.Value as string, 1033);
                         if (DialogResult.OK == stringDialog.ShowDialog(this))
                         {
                             entry.Value = stringDialog.EntryValue;
@@ -1280,7 +1229,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                         }
                         break;
                     case RegistryValueKind.Binary:
-                        ChangeBinaryDialog binaryDialog = new ChangeBinaryDialog(entry.Name, (entry.Value as byte[]), Host.CurrentLanguageID);
+                        ChangeBinaryDialog binaryDialog = new ChangeBinaryDialog(entry.Name, (entry.Value as byte[]), 1033);
                         if (DialogResult.OK == binaryDialog.ShowDialog(this))
                         {
                             entry.Value = binaryDialog.Bytes;
@@ -1289,7 +1238,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                         break;
                     case RegistryValueKind.DWord:
                     case RegistryValueKind.QWord:
-                        ChangeDWordDialog dwordDialog = new ChangeDWordDialog(entry.Name, entry.Value, Host.CurrentLanguageID);
+                        ChangeDWordDialog dwordDialog = new ChangeDWordDialog(entry.Name, entry.Value, 1033);
                         if (DialogResult.OK == dwordDialog.ShowDialog(this))
                         {
                             entry.Value = dwordDialog.EntryValue;
@@ -1303,7 +1252,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             }
             catch (Exception exception)
             {
-                Forms.ErrorForm.ShowError(exception,ErrorCategory.NonCritical, Host.CurrentLanguageID);
+                Forms.ErrorForm.ShowError(this, exception,ErrorCategory.NonCritical);
             }
         }
 
@@ -1325,7 +1274,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             }
             catch (Exception exception)
             {
-                Forms.ErrorForm.ShowError(exception,ErrorCategory.NonCritical, Host.CurrentLanguageID);
+                Forms.ErrorForm.ShowError(this, exception,ErrorCategory.NonCritical);
             }
         }
 
@@ -1347,7 +1296,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             }
             catch (Exception exception)
             {
-                Forms.ErrorForm.ShowError(exception,ErrorCategory.NonCritical, Host.CurrentLanguageID);
+                Forms.ErrorForm.ShowError(this, exception,ErrorCategory.NonCritical);
             }
         }
 
@@ -1369,7 +1318,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             }
             catch (Exception exception)
             {
-                Forms.ErrorForm.ShowError(exception,ErrorCategory.NonCritical, Host.CurrentLanguageID);
+                Forms.ErrorForm.ShowError(this, exception,ErrorCategory.NonCritical);
             }
         }
 
@@ -1385,7 +1334,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             }
             catch (Exception exception)
             {
-                Forms.ErrorForm.ShowError(exception,ErrorCategory.NonCritical, Host.CurrentLanguageID);
+                Forms.ErrorForm.ShowError(this, exception,ErrorCategory.NonCritical);
             }
         }
 
@@ -1413,7 +1362,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             }
             catch (Exception exception)
             {
-                Forms.ErrorForm.ShowError(exception,ErrorCategory.NonCritical, Host.CurrentLanguageID);
+                Forms.ErrorForm.ShowError(this, exception,ErrorCategory.NonCritical);
             }
         }
 
@@ -1425,7 +1374,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             }
             catch (Exception exception)
             {
-                Forms.ErrorForm.ShowError(exception,ErrorCategory.NonCritical, Host.CurrentLanguageID);
+                Forms.ErrorForm.ShowError(this, exception,ErrorCategory.NonCritical);
             }
         }
 

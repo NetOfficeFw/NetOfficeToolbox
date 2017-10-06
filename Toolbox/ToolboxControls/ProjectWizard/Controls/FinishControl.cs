@@ -15,7 +15,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
     /// Last wizard step to show summary settings
     /// </summary>
     [RessourceTable("ToolboxControls.ProjectWizard.Controls.FinishControl.txt")]
-    public partial class FinishControl : UserControl, IWizardControl, ILocalizationDesign
+    public partial class FinishControl : UserControl, IWizardControl
     {
         #region Fields
 
@@ -68,12 +68,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
 
         public string Caption
         {
-            get
+            get 
             {
-                if (Forms.MainForm.Singleton.CurrentLanguageID == 1031)
-                    return "Das Projekt wurde erfolgreich erstellt";
-                else
-                    return "The Project is successfully completed";
+                return "The Project is successfully completed";
             }
         }
 
@@ -81,30 +78,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
         {
             get
             {
-                if (Forms.MainForm.Singleton.CurrentLanguageID == 1031)
-                    return "Viel Erfolg bei der Arbeit.";
-                else
                     return "We wish you much success in your work";
             }
         }
 
         public ImageType Image
         {
-            get { return ImageType.Finish; }
-        }
-
-        public void Translate()
-        {
-            Translation.ToolLanguage language = Forms.MainForm.Singleton.Languages.Where(l => l.LCID == Forms.MainForm.Singleton.CurrentLanguageID).FirstOrDefault();
-            if (null != language)
-            {
-                var component = language.Components["Project Wizard - Finish"];
-                Translation.Translator.TranslateControls(this, component.ControlRessources);
-            }
-            else
-            {
-                Translation.Translator.TranslateControls(this, "ToolboxControls.ProjectWizard.Controls.FinishControl.txt", Forms.MainForm.Singleton.CurrentLanguageID);
-            }
+            get { return ImageType.Finish; } 
         }
 
         public void Activate()
@@ -133,52 +113,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
 
         public new void KeyDown(KeyEventArgs e)
         {
-
-        }
-
-        #endregion
-
-        #region ILocalizationDesign
-
-        public void EnableDesignView(int lcid, string parentComponentName)
-        {
-
-        }
-
-        public void Localize(Translation.ItemCollection strings)
-        {
-            Translation.Translator.TranslateControls(this, strings);
-        }
-
-        public void Localize(string name, string text)
-        {
-            Translation.Translator.TranslateControl(this, name, text);
-        }
-
-        public string GetCurrentText(string name)
-        {
-            return Translation.Translator.TryGetControlText(this, name);
-        }
-
-        public IContainer Components
-        {
-            get { return components; }
-        }
-
-        public string NameLocalization
-        {
-            get
-            {
-                return null;
-            }
-        }
-
-        public IEnumerable<ILocalizationChildInfo> Childs
-        {
-            get
-            {
-                return new ILocalizationChildInfo[0];
-            }
+            
         }
 
         #endregion
@@ -196,7 +131,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
             catch (Exception exception)
             {
                 Forms.ErrorForm.ShowError(this, exception, ErrorCategory.NonCritical);
-            }
+            } 
         }
 
         private void buttonOpenSolution_Click(object sender, EventArgs e)

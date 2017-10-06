@@ -101,7 +101,7 @@ namespace NetOffice.DeveloperToolbox
             lock (_lock)
             {
                 if (null == _executingAssembly)
-                    _executingAssembly = Assembly.GetExecutingAssembly();
+                    _executingAssembly = Assembly.GetExecutingAssembly();                
             }
             return _executingAssembly;
         }

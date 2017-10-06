@@ -2,12 +2,12 @@
 {
     partial class FinishControl
     {
-        /// <summary>
+        /// <summary> 
         /// Erforderliche Designervariable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
+        /// <summary> 
         /// Verwendete Ressourcen bereinigen.
         /// </summary>
         /// <param name="disposing">True, wenn verwaltete Ressourcen gelöscht werden sollen; andernfalls False.</param>
@@ -22,8 +22,8 @@
 
         #region Vom Komponenten-Designer generierter Code
 
-        /// <summary>
-        /// Erforderliche Methode für die Designerunterstützung.
+        /// <summary> 
+        /// Erforderliche Methode für die Designerunterstützung. 
         /// Der Inhalt der Methode darf nicht mit dem Code-Editor geändert werden.
         /// </summary>
         private void InitializeComponent()
@@ -47,9 +47,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.controlBackColorAnimator1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.controlForeColorAnimator1)).BeginInit();
             this.SuspendLayout();
-            //
+            // 
             // animatedPanel1
-            //
+            // 
             this.animatedPanel1.Animation1Enabled = true;
             this.animatedPanel1.Animation1Image = ((System.Drawing.Image)(resources.GetObject("animatedPanel1.Animation1Image")));
             this.animatedPanel1.Animation1ImageCount = 6;
@@ -59,6 +59,7 @@
             this.animatedPanel1.Animation2Image = ((System.Drawing.Image)(resources.GetObject("animatedPanel1.Animation2Image")));
             this.animatedPanel1.Animation2ImageCount = 3;
             this.animatedPanel1.Animation2Opacity = 0.1F;
+            this.animatedPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(227)))), ((int)(((byte)(243)))));
             this.animatedPanel1.Controls.Add(this.panelHeader);
             this.animatedPanel1.Controls.Add(this.panelButtons);
             this.animatedPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -66,9 +67,9 @@
             this.animatedPanel1.Name = "animatedPanel1";
             this.animatedPanel1.Size = new System.Drawing.Size(744, 279);
             this.animatedPanel1.TabIndex = 3;
-            //
+            // 
             // panelHeader
-            //
+            // 
             this.panelHeader.BackColor = System.Drawing.Color.Transparent;
             this.panelHeader.Controls.Add(this.labelMessage);
             this.panelHeader.Controls.Add(this.pictureBox1);
@@ -76,9 +77,9 @@
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(457, 46);
             this.panelHeader.TabIndex = 2;
-            //
+            // 
             // labelMessage
-            //
+            // 
             this.labelMessage.AutoSize = true;
             this.labelMessage.BackColor = System.Drawing.Color.Transparent;
             this.labelMessage.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -88,9 +89,9 @@
             this.labelMessage.Size = new System.Drawing.Size(342, 25);
             this.labelMessage.TabIndex = 30;
             this.labelMessage.Text = "The Project is successfully completed.";
-            //
+            // 
             // pictureBox1
-            //
+            // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(12, 7);
@@ -98,9 +99,9 @@
             this.pictureBox1.Size = new System.Drawing.Size(37, 32);
             this.pictureBox1.TabIndex = 29;
             this.pictureBox1.TabStop = false;
-            //
+            // 
             // panelButtons
-            //
+            // 
             this.panelButtons.BackColor = System.Drawing.Color.Transparent;
             this.panelButtons.Controls.Add(this.buttonClose);
             this.panelButtons.Controls.Add(this.buttonOpenFolder);
@@ -109,9 +110,9 @@
             this.panelButtons.Name = "panelButtons";
             this.panelButtons.Size = new System.Drawing.Size(255, 156);
             this.panelButtons.TabIndex = 1;
-            //
+            // 
             // buttonClose
-            //
+            // 
             this.buttonClose.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.buttonClose.FlatAppearance.BorderSize = 2;
             this.buttonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -125,9 +126,9 @@
             this.buttonClose.Text = "Close";
             this.buttonClose.UseVisualStyleBackColor = true;
             this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
-            //
+            // 
             // buttonOpenFolder
-            //
+            // 
             this.buttonOpenFolder.Enabled = false;
             this.buttonOpenFolder.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.buttonOpenFolder.FlatAppearance.BorderSize = 2;
@@ -142,9 +143,9 @@
             this.buttonOpenFolder.Text = "Open Folder";
             this.buttonOpenFolder.UseVisualStyleBackColor = true;
             this.buttonOpenFolder.Click += new System.EventHandler(this.buttonOpenFolder_Click);
-            //
+            // 
             // buttonOpenSolution
-            //
+            // 
             this.buttonOpenSolution.Enabled = false;
             this.buttonOpenSolution.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.buttonOpenSolution.FlatAppearance.BorderSize = 2;
@@ -160,26 +161,26 @@
             this.buttonOpenSolution.Text = "Open Solution";
             this.buttonOpenSolution.UseVisualStyleBackColor = true;
             this.buttonOpenSolution.Click += new System.EventHandler(this.buttonOpenSolution_Click);
-            //
+            // 
             // controlBackColorAnimator1
-            //
+            // 
             this.controlBackColorAnimator1.Control = this.buttonOpenSolution;
             this.controlBackColorAnimator1.EndColor = System.Drawing.Color.CornflowerBlue;
             this.controlBackColorAnimator1.Intervall = 30;
             this.controlBackColorAnimator1.LoopMode = NetOffice.DeveloperToolbox.Utils.Animation.LoopMode.Bidirectional;
             this.controlBackColorAnimator1.StartColor = System.Drawing.Color.LightSteelBlue;
-            //
+            // 
             // controlForeColorAnimator1
-            //
+            // 
             this.controlForeColorAnimator1.Control = this.labelMessage;
             this.controlForeColorAnimator1.EndColor = System.Drawing.Color.DodgerBlue;
             this.controlForeColorAnimator1.Intervall = 35;
             this.controlForeColorAnimator1.LoopMode = NetOffice.DeveloperToolbox.Utils.Animation.LoopMode.Bidirectional;
             this.controlForeColorAnimator1.StartColor = System.Drawing.Color.SteelBlue;
             this.controlForeColorAnimator1.StepSize = 1D;
-            //
+            // 
             // FinishControl
-            //
+            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;

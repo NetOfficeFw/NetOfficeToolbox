@@ -139,7 +139,7 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation.Panel
             int newy = this.Location.Y + this.Vector.Height;
             if (newy > this.Limits.Bottom || newy < this.Limits.Top)
                 this.Vector = new Size(this.Vector.Width, -1 * this.Vector.Height);
-
+        
             Location = new Point(this.Location.X + this.Vector.Width, this.Location.Y + this.Vector.Height);
 
             this.Rotation += this.RotationDelta;

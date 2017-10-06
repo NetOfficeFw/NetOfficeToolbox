@@ -23,15 +23,15 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
         private string _solutionFile;
         private string _projectFile;
         private string _assemblyFile;
-        private Guid   _projectGuid;
+        private Guid   _projectGuid;      
 
         #endregion
 
         #region Ctor
 
         internal WindowsFormsConverterVB(ProjectOptions options) : base(options)
-        {
-
+        { 
+        
         }
 
         #endregion
@@ -71,7 +71,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
             _solutionFile = _solutionFile.Replace("$projectguid$", _projectGuid.ToString().ToUpper());
             _solutionFile = _solutionFile.Replace("$solutionformat$", this.SolutionFormats[Options.IDE]);
             _solutionFile = _solutionFile.Replace("$ideversion$", this.Environments[Options.IDE, Options.Language]);
-
+            
             _projectFile = _projectFile.Replace("$safeprojectname$", Options.AssemblyName);
             _projectFile = _projectFile.Replace("$projectguid$", _projectGuid.ToString().ToUpper());
             _projectFile = _projectFile.Replace("$toolsversion$", this.Tools[Options.IDE]);

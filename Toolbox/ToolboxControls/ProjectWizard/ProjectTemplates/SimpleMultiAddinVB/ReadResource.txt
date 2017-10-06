@@ -6,7 +6,7 @@
     ''' </summary>
     ''' <param name="fileName">relative ressource path</param>
     ''' <returns>ressource string</returns>
-    Private Shared Function ReadResourceFile(ByVal fileName As String) As String
+    Private Shared Function ReadResourceFile(ByVal fileName As String) As String 
 
 		Dim assembly As Assembly = GetType(Addin).Assembly
         Dim ressourceStream As System.IO.Stream = assembly.GetManifestResourceStream(assembly.GetName().Name + "." + fileName)
@@ -23,7 +23,7 @@
 		textStreamReader.Close()
         ressourceStream.Close()
         textStreamReader.Dispose()
-		ressourceStream.Dispose()
+		ressourceStream.Dispose()        
 
         Return text
 

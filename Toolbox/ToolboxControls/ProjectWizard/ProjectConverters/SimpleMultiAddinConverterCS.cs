@@ -28,8 +28,8 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
         #region Ctor
 
         internal SimpleMultiAddinConverterCS(ProjectOptions options) : base(options)
-        {
-
+        { 
+        
         }
 
         #endregion
@@ -58,7 +58,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
             _solutionFile = _solutionFile.Replace("$projectguid$", _projectGuid.ToString().ToUpper());
             _solutionFile = _solutionFile.Replace("$solutionformat$", this.SolutionFormats[Options.IDE]);
             _solutionFile = _solutionFile.Replace("$ideversion$", this.Environments[Options.IDE, Options.Language]);
-
+            
             _projectFile = _projectFile.Replace("$safeprojectname$", Options.AssemblyName);
             _projectFile = _projectFile.Replace("$projectguid$", _projectGuid.ToString().ToUpper());
             _projectFile = _projectFile.Replace("$toolsversion$", this.Tools[Options.IDE]);
@@ -137,7 +137,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
                 _addinFile = _addinFile.Replace("$taskpaneDefine$", " , Office.ICustomTaskPaneConsumer");
                 _addinFile = _addinFile.Replace("$taskpaneImplement$", ReadProjectTemplateFile("SimpleMultiAddinCS.TaskPaneImplement.txt").Replace("$safeprojectname$", Options.AssemblyName));
                 _addinFile = _addinFile.Replace("$taskpaneField$", "\t\tprivate MyTaskPane _mytaskPane;");
-
+                
             }
             else
             {
@@ -167,7 +167,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
 
             if (Options.UseRibbonUI)
                 _addinFile = _addinFile.Replace("$readRessource$", ReadProjectTemplateFile("SimpleMultiAddinCS.ReadResource.txt"));
-            else
+            else 
                 _addinFile = _addinFile.Replace("$readRessource$", String.Empty);
 
             _addinFile = ValidateFileContentFormat(_addinFile);
@@ -186,7 +186,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
         }
 
         private void WriteResultFilesToTempFolder()
-        {
+        {            
             File.AppendAllText(Path.Combine(TempSolutionPath, String.Format("{0}.sln", Options.AssemblyName)), _solutionFile, Encoding.UTF8);
             File.AppendAllText(Path.Combine(TempProjectPath, String.Format("{0}.csproj", Options.AssemblyName)), _projectFile, Encoding.UTF8);
             File.AppendAllText(Path.Combine(TempProjectPath, "Addin.cs"), _addinFile, Encoding.UTF8);

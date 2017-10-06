@@ -11,9 +11,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Registry
         #region Member
 
         UtilsRegistryKey _parent;
-
+        
         #endregion
-
+           
         #region Construction
 
         internal UtilsRegistryKeys(UtilsRegistryKey parent)
@@ -35,7 +35,7 @@ namespace NetOffice.DeveloperToolbox.Utils.Registry
                 return count;
             }
         }
-
+         
         public UtilsRegistryKey this[string name]
         {
             get
@@ -71,7 +71,7 @@ namespace NetOffice.DeveloperToolbox.Utils.Registry
                 foreach (string item in names)
                 {
                     if (item == result)
-                    {
+                    { 
                         found = true;
                         break;
                     }
@@ -86,7 +86,7 @@ namespace NetOffice.DeveloperToolbox.Utils.Registry
             }
             return result;
         }
-
+            
         #endregion
 
         #region IEnumerable<UtilsRegistryKey>

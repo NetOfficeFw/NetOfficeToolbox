@@ -207,15 +207,15 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
 
         #region Designer generated code
         /// <summary>
-        /// Erforderliche Methode für die Designerunterstützung.
+        /// Erforderliche Methode für die Designerunterstützung. 
         /// Der Inhalt der Methode darf nicht mit dem Code-Editor geändert werden.
         /// </summary>
         private void InitializeComponent()
         {
             this._timer = new System.Windows.Forms.Timer();
-            //
+            // 
             // _timer
-            //
+            // 
             this._timer.Tick += new EventHandler(this.OnTimerElapsed);
 
         }
@@ -322,7 +322,7 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
         /// <summary>
         /// Sets the <see cref="AnimatorBase"/> which acts as a parent of this instance.
         /// Thus the settings <see cref="Intervall"/>, <see cref="StepSize"/>, <see cref="LoopMode"/>
-        /// and <see cref="SynchronizationMode"/> of this instance will be set accordingly to and synchronized
+        /// and <see cref="SynchronizationMode"/> of this instance will be set accordingly to and synchronized 
         /// with the settings of this parent.
         /// </summary>
         [Browsable(true), DefaultValue(null), Category("Behavior")]
@@ -743,8 +743,8 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
         protected abstract object CurrentValueInternal { get; set; }
 
         /// <summary>
-        /// Gets whether the control is in the process of setting
-        /// the <see cref="CurrentValue"/> internally.
+        /// Gets whether the control is in the process of setting 
+        /// the <see cref="CurrentValue"/> internally. 
         /// </summary>
         protected bool SettingCurrentValue
         {
@@ -764,7 +764,7 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
         /// <summary>
         /// Adds an <see cref="AnimatorBase"/> which acts as a child of this instance.
         /// Thus its <see cref="Intervall"/>, <see cref="StepSize"/>, <see cref="LoopMode"/>
-        /// and <see cref="SynchronizationMode"/> will be set accordingly to and synchronized
+        /// and <see cref="SynchronizationMode"/> will be set accordingly to and synchronized 
         /// with the settings of this instance.
         /// </summary>
         /// <param name="animator">Child to add.</param>
@@ -957,7 +957,7 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
         /// <param name="color2">Second color.</param>
         /// <param name="percent">Value ranging from 0 to 100 indicating how big the part
         /// of the two colors is in the result.</param>
-        /// <returns>If percent is 0 then color1. If percent is 100 then color2. For
+        /// <returns>If percent is 0 then color1. If percent is 100 then color2. For 
         /// everything else an interpolated color is returned.</returns>
         public static Color InterpolateColors(Color color1, Color color2, double percent)
         {
@@ -975,7 +975,7 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
         /// <param name="rectangle2">Second rectangle.</param>
         /// <param name="percent">Value ranging from 0 to 100 indicating how big the part
         /// of the two rectangles is in the result.</param>
-        /// <returns>If percent is 0 then rectangle1. If percent is 100 then rectangle2. For
+        /// <returns>If percent is 0 then rectangle1. If percent is 100 then rectangle2. For 
         /// everything else an interpolated rectangle is returned.</returns>
         public static Rectangle InterpolateRectangles(Rectangle rectangle1, Rectangle rectangle2, double percent)
         {
@@ -990,7 +990,7 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
         /// <param name="point2">Second point.</param>
         /// <param name="percent">Value ranging from 0 to 100 indicating how big the part
         /// of the two points is in the result.</param>
-        /// <returns>If percent is 0 then point1. If percent is 100 then point2. For
+        /// <returns>If percent is 0 then point1. If percent is 100 then point2. For 
         /// everything else an interpolated point is returned.</returns>
         public static Point InterpolatePoints(Point point1, Point point2, double percent)
         {
@@ -1005,7 +1005,7 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
         /// <param name="size2">Second size.</param>
         /// <param name="percent">Value ranging from 0 to 100 indicating how big the part
         /// of the two sizes is in the result.</param>
-        /// <returns>If percent is 0 then size1. If percent is 100 then size2. For
+        /// <returns>If percent is 0 then size1. If percent is 100 then size2. For 
         /// everything else an interpolated size is returned.</returns>
         public static Size InterpolateSizes(Size size1, Size size2, double percent)
         {
@@ -1020,7 +1020,7 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
         /// <param name="value2">Second value.</param>
         /// <param name="percent">Value ranging from 0 to 100 indicating how big the part
         /// of the two values is in the result.</param>
-        /// <returns>If percent is 0 then value1. If percent is 100 then value2. For
+        /// <returns>If percent is 0 then value1. If percent is 100 then value2. For 
         /// everything else an interpolated value is returned.</returns>
         public static double InterpolateDoubleValues(double value1, double value2, double percent)
         {
@@ -1037,7 +1037,7 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
         /// <param name="value2">Second value.</param>
         /// <param name="percent">Value ranging from 0 to 100 indicating how big the part
         /// of the two values is in the result.</param>
-        /// <returns>If percent is 0 then value1. If percent is 100 then value2. For
+        /// <returns>If percent is 0 then value1. If percent is 100 then value2. For 
         /// everything else an interpolated value is returned.</returns>
         public static int InterpolateIntegerValues(int value1, int value2, double percent)
         {

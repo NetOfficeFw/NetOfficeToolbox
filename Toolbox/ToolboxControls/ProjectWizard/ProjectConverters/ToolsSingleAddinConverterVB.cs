@@ -34,8 +34,8 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
         #region Ctor
 
         internal ToolsSingleAddinConverterVB(ProjectOptions options) : base(options)
-        {
-
+        { 
+        
         }
 
         #endregion
@@ -94,11 +94,11 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
                 _projectFile = _projectFile.Replace("$taskpaneFileReference$", "  <Compile Include=\"MyTaskPane.vb\">\r\n   <SubType>UserControl</SubType>\r\n   </Compile>\r\n  <Compile Include=\"MyTaskPane.Designer.vb\">\r\n    <DependentUpon>MyTaskPane.vb</DependentUpon>\r\n  </Compile>");
             else
                 _projectFile = _projectFile.Replace("$taskpaneFileReference$", String.Empty);
-
+            
             _addinFile = _addinFile.Replace("$appName$", Options.OfficeApps[0]);
             _addinFile = _addinFile.Replace("$safeprojectname$", Options.AssemblyName);
             _addinFile = _addinFile.Replace("$description$", Options.AssemblyDescription);
-            _addinFile = _addinFile.Replace("$loadbeahviour$", Options.LoadBehaviour.ToString());
+            _addinFile = _addinFile.Replace("$loadbeahviour$", ConvertLoadBehavoir(Options.LoadBehaviour));
 
             _addinFile = _addinFile.Replace("$usingItems$", this.GetNetOfficeProjectUsingToolsItems());
             _addinFile = _addinFile.Replace("$randomGuid$", Guid.NewGuid().ToString().ToUpper());
@@ -119,19 +119,12 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
             string getVersion = "\t\tConsole.WriteLine(\"Addin started in %appName% Version {0}\", Application.Version)".Replace("%appName%", Options.OfficeApps[0]);
             _addinFile = _addinFile.Replace("$getversion$", getVersion);
 
-            string attributeString = "";
-            if (Options.HiveKey == "LocalMachine")
-            {
-                attributeString = "RegistryLocation(RegistrySaveLocation.LocalMachine)";
-            }
-            else
-            {
-                attributeString = "RegistryLocation(RegistrySaveLocation.CurrentUser)";
-            }
-
+            string attributeString = String.Empty;
             if (Options.UseRibbonUI)
             {
-                attributeString += ", CustomUI(\"$safeprojectname$.RibbonUI.xml\")".Replace("$safeprojectname$", Options.AssemblyName);
+                if (attributeString != "")
+                    attributeString += ", ";
+                attributeString += "CustomUI(\"RibbonUI.xml\", True)".Replace("$safeprojectname$", Options.AssemblyName);
                 _addinFile = _addinFile.Replace("$ribbonProperty$", "\tFriend Property RibbonUI() As Office.IRibbonUI\r\n"
                                                                     + "\t\tGet\r\n"
                                                                     + "\t\t\tReturn _ribbonUI\r\n"
@@ -158,10 +151,8 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
 
             if (Options.UseTaskPane)
             {
-
-                if (Options.UseRibbonUI || Options.HiveKey == "LocalMachine")
-                    attributeString += ", CustomPane(GetType(MyTaskPane), \"My TaskPane\", true, PaneDockPosition.msoCTPDockPositionRight)";
-                else
+                if (attributeString != "")
+                    attributeString += ", ";
                     attributeString += "CustomPane(GetType(MyTaskPane), \"My TaskPane\", true, PaneDockPosition.msoCTPDockPositionRight)";
 
                 _addinFile = _addinFile.Replace("$taskpaneDefine$", " , Office.ICustomTaskPaneConsumer");
@@ -173,12 +164,25 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
                 _addinFile = _addinFile.Replace("$taskpaneField$", String.Empty);
             }
 
+            if (Options.HiveKey == "LocalMachine")
+            {
+                if (attributeString != "")
+                    attributeString += ", ";
+                attributeString += "RegistryLocation(RegistrySaveLocation.LocalMachine)";
+            }
+            else
+            {
+                if (attributeString != "")
+                    attributeString += ", ";
+                attributeString += "RegistryLocation(RegistrySaveLocation.InstallScopeCurrentUser)";
+            }
+
             if (Options.UseClassicUI)
             {
                 _addinFile = _addinFile.Replace("$classicUICreateCall$", "\t\tCreateUserInterface()");
                 _addinFile = _addinFile.Replace("$classicUIRemoveCall$", "\t\tRemoveUserInterface()");
 
-                string template =
+                string template = 
                                   "\tPrivate Sub CreateUserInterface()\r\n\r\n\tEnd Sub\r\n\r\n" +
                                   "\tPrivate Sub RemoveUserInterface()\r\n\r\n\tEnd Sub";
 

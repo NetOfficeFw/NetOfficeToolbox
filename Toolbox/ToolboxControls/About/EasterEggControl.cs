@@ -17,10 +17,8 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.About
 
         private SoundPlayer _playerGunshot;
         private SoundPlayer _playerWait;
-        private int _lcid = 1033;
         private Stream _waitStream;
         private string _messageDefault = "Thanks for using Developer Toolbox";
-        private string _messageGerman = "Java Script? Dieses beschränkte kleine...";
 
         #endregion
 
@@ -32,16 +30,6 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.About
         public EasterEggControl()
         {
             InitializeComponent();
-        }
-
-        /// <summary>
-        /// Creates an instance of the class
-        /// </summary>
-        /// <param name="lcid">current user language id</param>
-        public EasterEggControl(int lcid)
-        {
-            InitializeComponent();
-            _lcid = lcid;
         }
 
         #endregion
@@ -72,7 +60,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.About
             {
                 CreatePlayers();
 
-                string txt = _lcid == 1031 ? _messageGerman : _messageDefault;
+                string txt = _messageDefault;
 
                 List<Control> list = new List<Control>();
                 int i = 0;
@@ -178,7 +166,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.About
                 _playerGunshot = new SoundPlayer(s1);
 
                 if (null == _waitStream)
-                {
+                { 
                     System.IO.Stream waitZip = a.GetManifestResourceStream("NetOffice.DeveloperToolbox.ToolboxControls.About.Wait.zip");
                     waitZip.Seek(0, SeekOrigin.Begin);
                     ZipFile file = new ZipFile(waitZip);
@@ -213,8 +201,8 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.About
             }
             catch
             {
-                ;
-            }
+                ;                
+            }          
         }
 
         #endregion

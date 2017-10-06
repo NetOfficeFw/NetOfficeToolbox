@@ -65,7 +65,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeUI
                     case "Outlook":
                          Outlook._NameSpace outlookNS = _outlookApplication.GetNamespace("MAPI");
                          Outlook.MAPIFolder inboxFolder = outlookNS.GetDefaultFolder(OutlookApi.Enums.OlDefaultFolders.olFolderInbox);
-                         inboxFolder.Display();
+                         inboxFolder.Display();                        
                         return (_outlookApplication.ActiveWindow() as OutlookApi.Explorer) .CommandBars;
                     case "Power Point":
                         return _powerpointApplication.CommandBars;

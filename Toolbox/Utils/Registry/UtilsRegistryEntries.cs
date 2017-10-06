@@ -14,11 +14,11 @@ namespace NetOffice.DeveloperToolbox.Utils.Registry
     }
 
     public class UtilsRegistryEntries : IEnumerable<UtilsRegistryEntry>
-    {
+    {       
         #region Fields
 
         private UtilsRegistryKey _parent;
-
+         
         #endregion
 
         #region Construction
@@ -34,14 +34,14 @@ namespace NetOffice.DeveloperToolbox.Utils.Registry
 
         public int Count
         {
-            get
+            get 
             {
                 return _parent.InnerKey.ValueCount;
             }
         }
         public UtilsRegistryEntry FakedDefaultKey
         {
-            get
+            get 
             {
                 UtilsRegistryEntry entry = new UtilsRegistryEntry(_parent, "", UtilsRegistryEntryType.Faked);
                 return entry;
@@ -113,5 +113,5 @@ namespace NetOffice.DeveloperToolbox.Utils.Registry
         }
 
         #endregion
-        }
+   }
 }

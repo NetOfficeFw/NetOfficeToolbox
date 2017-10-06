@@ -24,7 +24,7 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
 		/// Creates a new instance.
 		/// </summary>
 		/// <param name="container">Container the new instance should be added to.</param>
-		public ControlForeColorAnimator(IContainer container) : base(container)
+		public ControlForeColorAnimator(IContainer container) : base(container) 
 		{
 			Initialize();
 		}
@@ -32,7 +32,7 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
 		/// <summary>
 		/// Creates a new instance.
 		/// </summary>
-		public ControlForeColorAnimator()
+		public ControlForeColorAnimator() 
 		{
 			Initialize();
 		}
@@ -52,10 +52,10 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
 		/// </summary>
 		[Browsable(true), Category("Appearance")]
 		[Description("Gets or sets the starting color for the animation.")]
-		public Color StartColor
+		public Color StartColor 
 		{
 			get { return _startColor; }
-			set
+			set 
 			{
 				if (_startColor == value)
 					return;
@@ -71,10 +71,10 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
 		/// </summary>
 		[Browsable(true), Category("Appearance")]
 		[Description("Gets or sets the ending Color for the animation.")]
-		public Color EndColor
+		public Color EndColor 
 		{
 			get { return _endColor; }
-			set
+			set 
 			{
 				if (_endColor == value)
 					return;
@@ -86,7 +86,7 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
 		}
 
 		/// <summary>
-		/// Gets or sets the <see cref="Control"/> which
+		/// Gets or sets the <see cref="Control"/> which 
 		/// <see cref="System.Windows.Forms.Control.ForeColor"/> should be animated.
 		/// </summary>
 		[Browsable(true), Category("Behavior")]
@@ -122,10 +122,10 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
 		protected override object CurrentValueInternal
 		{
 			get { return _control == null ? Color.Empty : _control.ForeColor; }
-			set
+			set 
 			{
 				if (_control != null)
-					_control.ForeColor = (Color)value;
+					_control.ForeColor = (Color)value; 
 			}
 		}
 
@@ -182,7 +182,7 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation
 		{
 			get { return Color.Empty; }
 		}
-
+		
 		/// <summary>
 		/// Indicates the designer whether <see cref="StartColor"/> needs
 		/// to be serialized.

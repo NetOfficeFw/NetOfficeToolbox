@@ -27,7 +27,7 @@ namespace NetOffice.DeveloperToolbox.Controls.Text
             GetFontCollection();
             _isInitialized = true;
         }
-
+        
         #endregion
 
         #region Events
@@ -47,7 +47,7 @@ namespace NetOffice.DeveloperToolbox.Controls.Text
 
         public string RichText
         {
-            get
+            get 
             {
                 return richTextBox1.Rtf;
             }
@@ -87,7 +87,7 @@ namespace NetOffice.DeveloperToolbox.Controls.Text
                 else
                     richTextBox1.SelectionFont = new Font(font.FontFamily, font.SizeInPoints, FontStyle.Bold);
             }
-            else
+            else             
             {
                 richTextBox1.SelectionFont = new Font(toolStripComboBox1.SelectedItem.ToString(), GetSelectedFontSize(), FontStyle.Bold);
             }

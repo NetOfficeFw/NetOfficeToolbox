@@ -97,7 +97,7 @@ namespace NetOffice.DeveloperToolbox.Utils.Registry
             set
             {
                 if ((value != Name) && (value != null))
-                {
+                { 
                     RegistryKey parentKey = Parent.Open(true);
                     RegistryKey key = Open(true);
                     _innerKey = UtilsRegistry.RenameSubKey(parentKey, Name, value);
@@ -122,11 +122,11 @@ namespace NetOffice.DeveloperToolbox.Utils.Registry
                 return new UtilsRegistryEntries(this);
             }
         }
-
+       
         #endregion
 
         #region Methods
-
+        
         private string GetNewSubKeyName()
         {
             string name = "#Key";
@@ -144,9 +144,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Registry
             {
                 i++;
                 if (name.Equals(item, StringComparison.InvariantCultureIgnoreCase))
-                    name += i;
+                    name += i;                
             }
-
+         
             return name;
         }
 

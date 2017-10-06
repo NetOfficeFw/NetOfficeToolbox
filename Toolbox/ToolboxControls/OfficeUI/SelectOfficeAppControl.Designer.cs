@@ -2,12 +2,12 @@
 {
     partial class SelectOfficeAppControl
     {
-        /// <summary>
+        /// <summary> 
         /// Erforderliche Designervariable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
+        /// <summary> 
         /// Verwendete Ressourcen bereinigen.
         /// </summary>
         /// <param name="disposing">True, wenn verwaltete Ressourcen gelöscht werden sollen; andernfalls False.</param>
@@ -22,8 +22,8 @@
 
         #region Vom Komponenten-Designer generierter Code
 
-        /// <summary>
-        /// Erforderliche Methode für die Designerunterstützung.
+        /// <summary> 
+        /// Erforderliche Methode für die Designerunterstützung. 
         /// Der Inhalt der Methode darf nicht mit dem Code-Editor geändert werden.
         /// </summary>
         private void InitializeComponent()
@@ -49,12 +49,12 @@
             this.panelInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.SuspendLayout();
-            //
+            // 
             // listView1
-            //
-            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1});
@@ -77,13 +77,13 @@
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             this.listView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseDoubleClick);
-            //
+            // 
             // columnHeader1
-            //
+            // 
             this.columnHeader1.Text = "Name";
-            //
+            // 
             // imageList1
-            //
+            // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "Excel.ico");
@@ -93,9 +93,9 @@
             this.imageList1.Images.SetKeyName(4, "Access.ico");
             this.imageList1.Images.SetKeyName(5, "project.PNG");
             this.imageList1.Images.SetKeyName(6, "visio.PNG");
-            //
+            // 
             // buttonSelect
-            //
+            // 
             this.buttonSelect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonSelect.Enabled = false;
             this.buttonSelect.FlatAppearance.BorderColor = System.Drawing.Color.White;
@@ -111,9 +111,9 @@
             this.buttonSelect.Text = "Choose";
             this.buttonSelect.UseVisualStyleBackColor = true;
             this.buttonSelect.Click += new System.EventHandler(this.buttonSelect_Click);
-            //
+            // 
             // buttonClose
-            //
+            // 
             this.buttonClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonClose.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.buttonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -127,9 +127,9 @@
             this.buttonClose.Text = "Cancel";
             this.buttonClose.UseVisualStyleBackColor = true;
             this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
-            //
+            // 
             // buttonClose2
-            //
+            // 
             this.buttonClose2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonClose2.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.buttonClose2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -141,9 +141,9 @@
             this.buttonClose2.Text = "X";
             this.buttonClose2.UseVisualStyleBackColor = true;
             this.buttonClose2.Click += new System.EventHandler(this.buttonClose2_Click);
-            //
+            // 
             // panelInfo
-            //
+            // 
             this.panelInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.panelInfo.Controls.Add(this.pictureBox5);
             this.panelInfo.Controls.Add(this.labelInfo);
@@ -151,9 +151,9 @@
             this.panelInfo.Name = "panelInfo";
             this.panelInfo.Size = new System.Drawing.Size(514, 24);
             this.panelInfo.TabIndex = 81;
-            //
+            // 
             // pictureBox5
-            //
+            // 
             this.pictureBox5.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
             this.pictureBox5.Location = new System.Drawing.Point(20, 5);
@@ -161,11 +161,11 @@
             this.pictureBox5.Size = new System.Drawing.Size(16, 16);
             this.pictureBox5.TabIndex = 81;
             this.pictureBox5.TabStop = false;
-            //
+            // 
             // labelInfo
-            //
+            // 
             this.labelInfo.AutoSize = true;
-            this.labelInfo.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.labelInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(227)))), ((int)(((byte)(243)))));
             this.labelInfo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.labelInfo.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelInfo.ForeColor = System.Drawing.Color.Black;
@@ -174,12 +174,12 @@
             this.labelInfo.Size = new System.Drawing.Size(316, 13);
             this.labelInfo.TabIndex = 72;
             this.labelInfo.Text = "Get all the UI element informations is a long time operation.";
-            //
+            // 
             // SelectOfficeAppControl
-            //
+            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(227)))), ((int)(((byte)(243)))));
             this.Controls.Add(this.panelInfo);
             this.Controls.Add(this.buttonClose2);
             this.Controls.Add(this.buttonSelect);

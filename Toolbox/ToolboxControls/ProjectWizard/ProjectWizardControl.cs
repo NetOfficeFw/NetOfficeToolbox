@@ -174,34 +174,22 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
 
         public void LoadComplete()
         {
-
+           
         }
 
         public void LoadConfiguration(System.Xml.XmlNode configNode)
         {
-
+        
         }
 
         public void SaveConfiguration(System.Xml.XmlNode configNode)
         {
-
+            
         }
 
-        public void SetLanguage(int id)
+        public Stream GetHelpText()
         {
-
-        }
-
-        public Stream GetHelpText(int lcid)
-        {
-            Translation.ToolLanguage language = Host.Languages[lcid, false];
-            if (null != language)
-            {
-                string content = language.Components["Project Wizard - Help"].ControlRessources["richTextBoxHelpContent"].Value2;
-                return Ressources.RessourceUtils.CreateStreamFromString(content);
-            }
-            else
-                return Ressources.RessourceUtils.ReadStream("ToolboxControls.ProjectWizard.Info" + lcid.ToString() + ".rtf");
+            return Ressources.RessourceUtils.ReadStream("ToolboxControls.ProjectWizard.Info1033.rtf");
         }
 
         public void Release()
@@ -212,66 +200,6 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
         public IContainer Components
         {
             get { return components; }
-        }
-
-        #endregion
-
-        #region ILocalizationDesign
-
-        public void EnableDesignView(int lcid, string parentComponentName)
-        {
-            panelWizardHost.Visible = true;
-            finishButton.Visible = true;
-            cancelButton.Visible = true;
-            backButton.Visible = true;
-            nextButton.Visible = true;
-            panelLeftHeader.Visible = false;
-            panel2.Visible = false;
-            panel3.Visible = false;
-        }
-
-        public void Localize(Translation.ItemCollection strings)
-        {
-            Translation.Translator.TranslateControls(this, strings);
-        }
-
-        public void Localize(string name, string text)
-        {
-            Translation.Translator.TranslateControl(this, name, text);
-        }
-
-        public string GetCurrentText(string name)
-        {
-            return Translation.Translator.TryGetControlText(this, name);
-        }
-
-        public string NameLocalization
-        {
-            get
-            {
-                return null;
-            }
-        }
-
-        public IEnumerable<ILocalizationChildInfo> Childs
-        {
-            get
-            {
-                return new LocalizationDefaultChildInfo[] {
-                    new LocalizationDefaultChildInfo("Captions", typeof(LocalizedCaptionsControl)),
-                    new LocalizationDefaultChildInfo("Messages", typeof(LocalizationStringsControl)),
-                    new LocalizationDefaultChildInfo("Captions", typeof(LocalizationStringsControl)),
-                    new LocalizationDefaultChildInfo("Host", typeof(HostControl)),
-                    new LocalizationDefaultChildInfo("Load", typeof(LoadControl)),
-                    new LocalizationDefaultChildInfo("Environment", typeof(EnvironmentControl)),
-                    new LocalizationDefaultChildInfo("Gui", typeof(GuiControl)),
-                    new LocalizationDefaultChildInfo("Name", typeof(NameControl)),
-                    new LocalizationDefaultChildInfo("Project", typeof(ProjectControl)),
-                    new LocalizationDefaultChildInfo("Summary", typeof(SummaryControl)),
-                    new LocalizationDefaultChildInfo("Finish", typeof(FinishControl)),
-                    new LocalizationDefaultChildInfo("Help", typeof(NetOffice.DeveloperToolbox.Controls.InfoLayer.InfoControl))
-                };
-            }
         }
 
         #endregion
@@ -315,7 +243,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
             control2.Dock = DockStyle.Fill;
             control3.Dock = DockStyle.Fill;
             control4.Dock = DockStyle.Fill;
-            control4.Dock = DockStyle.Fill;
+            control5.Dock = DockStyle.Fill;
 
             SummaryControl control6 = new SummaryControl(_listControls);
 
@@ -350,7 +278,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
             }
             panelHint.Visible = true;
             panelWizardHost.Visible = false;
-
+    
             if(null != _finishControl)
                 _finishControl.Deactivate();
         }
@@ -407,7 +335,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
                                     otherChecked = true;
                                 }
                             }
-	                    }
+	                    }   
                     }
                 }
 
@@ -495,8 +423,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
                     nextButton.Visible = true;
                     finishButton.Visible = false;
                 }
-
-                (_currentControl as IWizardControl).Translate();
+                
                 (_currentControl as IWizardControl).Activate();
                 labelCaption.Text = Captions.GetCaption(_currentControl as IWizardControl);
                 labelDescription.Text = Captions.GetDescription(_currentControl as IWizardControl);
@@ -541,9 +468,8 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
             finishButton.Visible = false;
             cancelButton.Visible = false;
 
-            _finishControl.Translate();
             _finishControl.Activate();
-
+            
             labelCurrentStep.Text = Localized.Completed;;
             labelCaption.Text = _finishControl.Caption;
             labelDescription.Text = _finishControl.Description;
@@ -647,8 +573,6 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
         {
             try
             {
-                foreach (var item in _listControls)
-                    item.Translate();
                 CreateNewProject();
             }
             catch (Exception exception)

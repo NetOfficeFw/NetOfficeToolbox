@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
@@ -228,7 +228,7 @@ namespace NetOffice.DeveloperToolbox.Controls.Tree
 
         private void SelectSingleNode(TreeNode node)
         {
-            SelectNodes(new List<TreeNode>(new TreeNode[]{ node }));
+            SelectNodes(new List<TreeNode>(new TreeNode[] { node }));
         }
 
         private void SelectNodes(List<TreeNode> nodes)

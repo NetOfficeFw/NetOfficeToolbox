@@ -9,7 +9,7 @@ using System.Text;
 namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConverters
 {
     internal class SimpleSingleAddinConverterVB : Converter
-    {
+    { 
         #region Fields
 
         private string _taskPaneFile;
@@ -34,8 +34,8 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
         #region Ctor
 
         internal SimpleSingleAddinConverterVB(ProjectOptions options) : base(options)
-        {
-
+        { 
+        
         }
 
         #endregion

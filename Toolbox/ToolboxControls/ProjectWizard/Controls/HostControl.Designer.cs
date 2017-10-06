@@ -2,12 +2,12 @@
 {
     partial class HostControl
     {
-        /// <summary>
+        /// <summary> 
         /// Erforderliche Designervariable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
+        /// <summary> 
         /// Verwendete Ressourcen bereinigen.
         /// </summary>
         /// <param name="disposing">True, wenn verwaltete Ressourcen gelöscht werden sollen; andernfalls False.</param>
@@ -22,8 +22,8 @@
 
         #region Vom Komponenten-Designer generierter Code
 
-        /// <summary>
-        /// Erforderliche Methode für die Designerunterstützung.
+        /// <summary> 
+        /// Erforderliche Methode für die Designerunterstützung. 
         /// Der Inhalt der Methode darf nicht mit dem Code-Editor geändert werden.
         /// </summary>
         private void InitializeComponent()
@@ -40,9 +40,9 @@
             this.checkBoxExcel = new NetOffice.DeveloperToolbox.Controls.Check.GlowCheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
-            //
+            // 
             // pictureBox2
-            //
+            // 
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.Location = new System.Drawing.Point(185, 38);
@@ -51,20 +51,20 @@
             this.pictureBox2.Size = new System.Drawing.Size(18, 18);
             this.pictureBox2.TabIndex = 118;
             this.pictureBox2.TabStop = false;
-            //
+            // 
             // labelHint
-            //
+            // 
             this.labelHint.AutoSize = true;
             this.labelHint.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelHint.ForeColor = System.Drawing.Color.DimGray;
             this.labelHint.Location = new System.Drawing.Point(211, 38);
             this.labelHint.Name = "labelHint";
-            this.labelHint.Size = new System.Drawing.Size(432, 16);
+            this.labelHint.Size = new System.Drawing.Size(472, 16);
             this.labelHint.TabIndex = 119;
-            this.labelHint.Text = "Diese Einstellungen sind auch mit den Tasten 1-7 der Tastatur änderbar";
-            //
+            this.labelHint.Text = "Use also number keys(1-7) on your keyboard to select/deselect an application";
+            // 
             // checkBoxVisio
-            //
+            // 
             this.checkBoxVisio.AutoSize = true;
             this.checkBoxVisio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBoxVisio.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -76,9 +76,9 @@
             this.checkBoxVisio.Text = "Visio";
             this.checkBoxVisio.UseVisualStyleBackColor = true;
             this.checkBoxVisio.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
-            //
+            // 
             // checkBoxProject
-            //
+            // 
             this.checkBoxProject.AutoSize = true;
             this.checkBoxProject.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBoxProject.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -90,9 +90,9 @@
             this.checkBoxProject.Text = "Project";
             this.checkBoxProject.UseVisualStyleBackColor = true;
             this.checkBoxProject.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
-            //
+            // 
             // checkBoxAccess
-            //
+            // 
             this.checkBoxAccess.AutoSize = true;
             this.checkBoxAccess.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBoxAccess.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -104,9 +104,9 @@
             this.checkBoxAccess.Text = "Access";
             this.checkBoxAccess.UseVisualStyleBackColor = true;
             this.checkBoxAccess.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
-            //
+            // 
             // checkBoxPowerPoint
-            //
+            // 
             this.checkBoxPowerPoint.AutoSize = true;
             this.checkBoxPowerPoint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBoxPowerPoint.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -118,9 +118,9 @@
             this.checkBoxPowerPoint.Text = "Power Point";
             this.checkBoxPowerPoint.UseVisualStyleBackColor = true;
             this.checkBoxPowerPoint.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
-            //
+            // 
             // checkBoxOutlook
-            //
+            // 
             this.checkBoxOutlook.AutoSize = true;
             this.checkBoxOutlook.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBoxOutlook.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -132,9 +132,9 @@
             this.checkBoxOutlook.Text = "Outlook";
             this.checkBoxOutlook.UseVisualStyleBackColor = true;
             this.checkBoxOutlook.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
-            //
+            // 
             // checkBoxWord
-            //
+            // 
             this.checkBoxWord.AutoSize = true;
             this.checkBoxWord.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBoxWord.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -146,9 +146,9 @@
             this.checkBoxWord.Text = "Word";
             this.checkBoxWord.UseVisualStyleBackColor = true;
             this.checkBoxWord.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
-            //
+            // 
             // checkBoxExcel
-            //
+            // 
             this.checkBoxExcel.AutoSize = true;
             this.checkBoxExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBoxExcel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -160,12 +160,12 @@
             this.checkBoxExcel.Text = "Excel";
             this.checkBoxExcel.UseVisualStyleBackColor = true;
             this.checkBoxExcel.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
-            //
+            // 
             // HostControl
-            //
+            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(227)))), ((int)(((byte)(243)))));
             this.Controls.Add(this.labelHint);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.checkBoxVisio);

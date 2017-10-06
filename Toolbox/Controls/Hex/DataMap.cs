@@ -67,7 +67,7 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
         {
             if (_firstBlock == null)
                 throw new InvalidOperationException("The collection is empty.");
-
+           
             RemoveInternal(_firstBlock);
         }
 
@@ -75,7 +75,7 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
         {
             if (_firstBlock == null)
                 throw new InvalidOperationException("The collection is empty.");
-
+            
             RemoveInternal(GetLastBlock());
 		}
 

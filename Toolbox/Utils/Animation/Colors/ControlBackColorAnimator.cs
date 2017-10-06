@@ -84,7 +84,7 @@ namespace NetOffice.DeveloperToolbox.Utils.Animation.Colors
         }
 
         /// <summary>
-        /// Gets or sets the <see cref="Control"/> which
+        /// Gets or sets the <see cref="Control"/> which 
         /// <see cref="System.Windows.Forms.Control.BackColor"/> should be animated.
         /// </summary>
         [Browsable(true), Category("Behavior")]

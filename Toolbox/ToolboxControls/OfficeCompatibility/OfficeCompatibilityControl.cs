@@ -14,13 +14,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
     public partial class OfficeCompatibilityControl : UserControl, IToolboxControl
     {
         #region Fields
-
+     
         private AnalyzerResult _result;
         private string _assemblyFullFileName;
 
         #endregion
 
-        #region Construction
+        #region Ctor
 
         /// <summary>
         /// Creates an instance of the class
@@ -29,6 +29,15 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
         {
             InitializeComponent();
         }
+
+        #endregion
+
+        #region Properties
+
+        /// <summary>
+        /// Last Right Click Link Label
+        /// </summary>
+        private LinkLabel LastClickedLinkLabel { get; set; }
 
         #endregion
 
@@ -58,6 +67,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
             PictureBox box12 = tableLayoutResult.Controls["pictureBox" + name + "12"] as PictureBox;
             PictureBox box14 = tableLayoutResult.Controls["pictureBox" + name + "14"] as PictureBox;
             PictureBox box15 = tableLayoutResult.Controls["pictureBox" + name + "15"] as PictureBox;
+            PictureBox box16 = tableLayoutResult.Controls["pictureBox" + name + "16"] as PictureBox;
 
             if (name != "Project" && name != "Visio")
             {
@@ -68,6 +78,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
             SetImage(box12, info[3].Support);
             SetImage(box14, info[4].Support);
             SetImage(box15, info[5].Support);
+            SetImage(box16, info[6].Support);
         }
 
         private void ShowBadImageFormatError()
@@ -100,8 +111,8 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
         public IToolboxHost Host { get; private set; }
 
         public new void KeyDown(KeyEventArgs e)
-        {
-
+        { 
+            
         }
 
         public string ControlName
@@ -161,7 +172,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
 
         public void LoadComplete()
         {
-            labelCurrentNetOffice.Text = Program.CurrentNetOfficeVersion;
+            
         }
 
         public void Activate(bool firstTime)
@@ -176,17 +187,12 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
 
         public void LoadConfiguration(System.Xml.XmlNode configNode)
         {
-
+            
         }
 
         public void SaveConfiguration(System.Xml.XmlNode configNode)
         {
-
-        }
-
-        public void SetLanguage(int id)
-        {
-
+            
         }
 
         public void InitializeControl(IToolboxHost host)
@@ -194,76 +200,26 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
             Host = host;
         }
 
-        public Stream GetHelpText(int lcid)
+        public Stream GetHelpText()
         {
-            Translation.ToolLanguage language = Host.Languages[lcid, false];
-            if (null != language)
-            {
-                string content = language.Components["Office Compatibility-Help"].ControlRessources["richTextBoxHelpContent"].Value2;
-                return Ressources.RessourceUtils.CreateStreamFromString(content);
-            }
-            else
-                return Ressources.RessourceUtils.ReadStream("ToolboxControls.OfficeCompatibility.Info" + lcid.ToString() + ".rtf");
+            return Ressources.RessourceUtils.ReadStream("ToolboxControls.OfficeCompatibility.Info1033.rtf");
         }
 
         public void Release()
         {
-
+           
         }
 
         #endregion
-
-        #region ILocalizationDesign
-
-        public void EnableDesignView(int lcid, string parentComponentName)
-        {
-            panelAssemblyError.Visible = true;
-            labelDebugHint.Visible = true;
-            labelBadImageError.Visible = true;
-            labelNoNetOfficeError.Visible = true;
-        }
-
-        public void Localize(Translation.ItemCollection strings)
-        {
-            Translation.Translator.TranslateControls(this, strings);
-        }
-
-        public void Localize(string name, string text)
-        {
-            Translation.Translator.TranslateControl(this, name, text);
-        }
-
-        public string GetCurrentText(string name)
-        {
-            return Translation.Translator.TryGetControlText(this, name);
-        }
-
-        public string NameLocalization
-        {
-            get
-            {
-                return null;
-            }
-        }
-
-        public IEnumerable<ILocalizationChildInfo> Childs
-        {
-            get
-            {
-                return new ILocalizationChildInfo[] { new LocalizationDefaultChildInfo("Report", typeof(ReportControl)), new LocalizationDefaultChildInfo("Help", typeof(Controls.InfoLayer.InfoControl)) };
-            }
-        }
-
-        #endregion
-
+  
         #region Trigger
-
+        
         private void buttonSelectAssembly_Click(object sender, EventArgs e)
         {
             try
             {
                 OpenFileDialog dialog = new OpenFileDialog();
-                dialog.Filter = "*.dll|*.dll|*.exe|*.exe|All Files|*.*";
+                dialog.Filter = "*.dll|*.dll|*.exe|*.exe|All Files|*.*";        
                 if (DialogResult.OK  != dialog.ShowDialog(this))
                     return;
 
@@ -272,7 +228,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
             }
             catch (Exception exception)
             {
-                Forms.ErrorForm.ShowError(exception,ErrorCategory.NonCritical, Host.CurrentLanguageID);
+                Forms.ErrorForm.ShowError(this, exception, ErrorCategory.NonCritical);
             }
         }
 
@@ -283,7 +239,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                 if (null == _result)
                     return;
 
-                ReportControl reportBox = new ReportControl(_result, Host.CurrentLanguageID);
+                ReportControl reportBox = new ReportControl(_result);
                 this.Controls.Add(reportBox);
                 reportBox.Dock = DockStyle.Fill;
                 reportBox.BringToFront();
@@ -291,7 +247,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
             }
             catch (Exception exception)
             {
-                Forms.ErrorForm.ShowError(exception,ErrorCategory.NonCritical, Host.CurrentLanguageID);
+                Forms.ErrorForm.ShowError(this, exception,ErrorCategory.NonCritical);
             }
         }
 
@@ -337,18 +293,36 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
             }
         }
 
-        private void linkLabelNotSupported_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void linkLabelNotSupported_Click(object sender, EventArgs args)
         {
             try
             {
-                if (Host.CurrentLanguageID == 1031)
-                    System.Diagnostics.Process.Start("http://netoffice.codeplex.com/wikipage?title=UnsupportedVersions_DE");
-                else
-                    System.Diagnostics.Process.Start("http://netoffice.codeplex.com/wikipage?title=UnsupportedVersions_EN");
+                MouseEventArgs mouseArgs = args as MouseEventArgs;
+                if (null == mouseArgs)
+                    return;
+
+                if (mouseArgs.Button == MouseButtons.Left)
+                {
+                    LinkLabel label = sender as LinkLabel;
+                    System.Diagnostics.Process.Start(label.Tag as string);
+                }
+                else if (mouseArgs.Button == MouseButtons.Right)
+                {
+                    LastClickedLinkLabel = sender as LinkLabel;
+                    LinkContextMenu.Show(sender as Control, 0, 0);
+                }
             }
             catch (Exception exception)
             {
-                Forms.ErrorForm.ShowError(exception,ErrorCategory.NonCritical, Host.CurrentLanguageID);
+                Forms.ErrorForm.ShowError(this, exception, ErrorCategory.NonCritical);
+            }
+        }
+
+        private void LinkContextMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            if (null != LastClickedLinkLabel)
+            {
+                Clipboard.SetText(LastClickedLinkLabel.Tag as string);
             }
         }
 

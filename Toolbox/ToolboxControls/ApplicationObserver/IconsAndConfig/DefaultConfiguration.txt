@@ -5,5 +5,5 @@
   <MsAccess Enabled ="false" />
   <Project  Enabled ="false" />
   <Visio    Enabled ="false" />
-  <HotKey   Enabled ="false" Keys="32" Ask="true"/>
+  <HotKey   Enabled ="false" Keys="32" Ask="true"/>    
   <Tray     Enabled ="false" />

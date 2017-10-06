@@ -15,7 +15,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
         /// The well known local machine key
         /// </summary>
         HKEY_Local_Machine = 0,
-
+        
         /// <summary>
         /// The well known current user key
         /// </summary>
@@ -44,12 +44,12 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
                             return "# Visual C# Express 2010";
                         else
                             return "# Visual Basic Express 2010";
-                    case IDE.VS2012:
-                        if (language == ProgrammingLanguage.CSharp)
-                            return "# Visual C# Express 2012";
-                        else
-                            return "# Visual Basic Express 2012";
-                    case IDE.VS2013:
+                    //case IDE.VS2012:
+                    //    if (language == ProgrammingLanguage.CSharp)
+                    //        return "# Visual C# Express 2012";
+                    //    else
+                    //        return "# Visual Basic Express 2012";
+                    case IDE.VS20131517:
                         return "# Visual Studio Express 2013 for Windows Desktop\r\nVisualStudioVersion = 12.0.30723.0\r\nMinimumVisualStudioVersion = 10.0.40219.1";
                     default:
                         throw new ArgumentOutOfRangeException("environment");
@@ -76,9 +76,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
                 {
                     case IDE.VS2010:
                         return "11.00";
-                    case IDE.VS2012:
-                        return "11.00";
-                    case IDE.VS2013:
+                    //case IDE.VS2012:
+                    //    return "11.00";
+                    case IDE.VS20131517:
                         return "12.00";
                     default:
                         throw new ArgumentOutOfRangeException("environment");
@@ -105,9 +105,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
                 {
                     case IDE.VS2010:
                         return "4.0";
-                    case IDE.VS2012:
-                        return "4.0";
-                    case IDE.VS2013:
+                    //case IDE.VS2012:
+                    //    return "4.0";
+                    case IDE.VS20131517:
                         return "12.00";
                     default:
                         throw new ArgumentOutOfRangeException("environment");
@@ -132,18 +132,26 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
             {
                 switch (runtime)
                 {
-                    case NetVersion.Net2:
-                        return "    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>";
-                    case NetVersion.Net3:
-                        return "    <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>";
-                    case NetVersion.Net35:
-                        return "    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>";
+                    //case NetVersion.Net2:
+                    //    return "    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>";
+                    //case NetVersion.Net3:
+                    //    return "    <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>";
+                    //case NetVersion.Net35:
+                    //    return "    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>";
                     case NetVersion.Net4:
                         return "    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>";
                     case NetVersion.Net4Client:
                         return "    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>\r\n    <TargetFrameworkProfile>Client</TargetFrameworkProfile>";
                     case NetVersion.Net45:
                         return "    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>";
+                    case NetVersion.Net451:
+                        return "    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>";
+                    case NetVersion.Net452:
+                        return "    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>";
+                    case NetVersion.Net46:
+                        return "    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>";
+                    case NetVersion.Net461:
+                        return "    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>";
                     default:
                         throw new ArgumentOutOfRangeException("runtime");
                 }
@@ -171,7 +179,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
             {
                 if (overwrite && File.Exists(destFileName))
                     File.Delete(destFileName);
-                File.Move(sourceFileName, destFileName);
+                File.Move(sourceFileName, destFileName); 
             }
             else
             {
@@ -210,7 +218,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
         {
             if (!Directory.Exists(target.FullName))
                 Directory.CreateDirectory(target.FullName);
-
+            
             foreach (FileInfo fileInfo in source.GetFiles())
                 fileInfo.CopyTo(Path.Combine(target.ToString(), fileInfo.Name), true);
 

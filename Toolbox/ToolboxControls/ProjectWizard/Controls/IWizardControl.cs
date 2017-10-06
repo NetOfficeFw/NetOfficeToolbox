@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Xml;
-using System.Windows.Forms;
+using System.Windows.Forms; 
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,18 +16,16 @@ namespace NetOffice.DeveloperToolbox
     }
 
     public interface IWizardControl
-    {
+    {       
         event ReadyStateChangedHandler ReadyStateChanged;
 
         bool IsReadyForNextStep { get; }
-
+         
         string Caption { get; }
 
         string Description { get; }
 
         ImageType Image { get; }
-
-        void Translate();
 
         void Activate();
 

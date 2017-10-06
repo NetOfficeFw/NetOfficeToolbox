@@ -20,7 +20,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
         #endregion
 
         #region Events
-
+        
         /// <summary>
         /// Rises when the hotkey is pressed
         /// </summary>
@@ -46,7 +46,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
         {
             get { return _keys; }
         }
-
+        
         #endregion
 
         #region Methods
@@ -69,10 +69,10 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
         /// </summary>
         /// <param name="h">The Hotkey</param>
         public static void UnRegister(Hotkey h)
-        {
+        { 
             h.Dispose();
         }
-
+        
         #endregion
 
         #region IDisposable Member
@@ -198,5 +198,5 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
         }
 
         #endregion
-    }
+    } 
 }

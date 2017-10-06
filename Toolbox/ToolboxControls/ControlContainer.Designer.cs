@@ -2,12 +2,12 @@
 {
     partial class ControlContainer
     {
-        /// <summary>
+        /// <summary> 
         /// Erforderliche Designervariable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
+        /// <summary> 
         /// Verwendete Ressourcen bereinigen.
         /// </summary>
         /// <param name="disposing">True, wenn verwaltete Ressourcen gelöscht werden sollen; andernfalls False.</param>
@@ -22,8 +22,8 @@
 
         #region Vom Komponenten-Designer generierter Code
 
-        /// <summary>
-        /// Erforderliche Methode für die Designerunterstützung.
+        /// <summary> 
+        /// Erforderliche Methode für die Designerunterstützung. 
         /// Der Inhalt der Methode darf nicht mit dem Code-Editor geändert werden.
         /// </summary>
         private void InitializeComponent()
@@ -40,9 +40,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxWarning)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.controlBackColorAnimator1)).BeginInit();
             this.SuspendLayout();
-            //
+            // 
             // buttonInfo
-            //
+            // 
             this.buttonInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonInfo.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.buttonInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -56,20 +56,20 @@
             this.buttonInfo.UseVisualStyleBackColor = true;
             this.buttonInfo.Visible = false;
             this.buttonInfo.Click += new System.EventHandler(this.buttonInfo_Click);
-            //
+            // 
             // panelToolboxControl
-            //
-            this.panelToolboxControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            this.panelToolboxControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelToolboxControl.Location = new System.Drawing.Point(0, 53);
             this.panelToolboxControl.Margin = new System.Windows.Forms.Padding(0);
             this.panelToolboxControl.Name = "panelToolboxControl";
             this.panelToolboxControl.Size = new System.Drawing.Size(932, 468);
             this.panelToolboxControl.TabIndex = 29;
-            //
+            // 
             // pictureBoxInformation
-            //
+            // 
             this.pictureBoxInformation.BackColor = System.Drawing.Color.LightSteelBlue;
             this.pictureBoxInformation.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxInformation.Image")));
             this.pictureBoxInformation.Location = new System.Drawing.Point(28, 20);
@@ -78,11 +78,11 @@
             this.pictureBoxInformation.TabIndex = 76;
             this.pictureBoxInformation.TabStop = false;
             this.pictureBoxInformation.Visible = false;
-            //
+            // 
             // labelInfoMessage
-            //
+            // 
             this.labelInfoMessage.AutoSize = true;
-            this.labelInfoMessage.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.labelInfoMessage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(227)))), ((int)(((byte)(243)))));
             this.labelInfoMessage.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.labelInfoMessage.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelInfoMessage.ForeColor = System.Drawing.Color.Gray;
@@ -92,10 +92,10 @@
             this.labelInfoMessage.TabIndex = 75;
             this.labelInfoMessage.Text = "labelInfoMessage";
             this.labelInfoMessage.Visible = false;
-            //
+            // 
             // pictureBoxWarning
-            //
-            this.pictureBoxWarning.BackColor = System.Drawing.Color.LightSteelBlue;
+            // 
+            this.pictureBoxWarning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(227)))), ((int)(((byte)(243)))));
             this.pictureBoxWarning.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxWarning.Image")));
             this.pictureBoxWarning.Location = new System.Drawing.Point(28, 20);
             this.pictureBoxWarning.Name = "pictureBoxWarning";
@@ -103,20 +103,20 @@
             this.pictureBoxWarning.TabIndex = 83;
             this.pictureBoxWarning.TabStop = false;
             this.pictureBoxWarning.Visible = false;
-            //
+            // 
             // controlBackColorAnimator1
-            //
+            // 
             this.controlBackColorAnimator1.Control = this.buttonInfo;
             this.controlBackColorAnimator1.EndColor = System.Drawing.Color.CornflowerBlue;
             this.controlBackColorAnimator1.Intervall = 60;
             this.controlBackColorAnimator1.LoopMode = NetOffice.DeveloperToolbox.Utils.Animation.LoopMode.Bidirectional;
             this.controlBackColorAnimator1.StartColor = System.Drawing.Color.LightSteelBlue;
-            //
+            // 
             // ControlContainer
-            //
+            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(227)))), ((int)(((byte)(243)))));
             this.Controls.Add(this.pictureBoxWarning);
             this.Controls.Add(this.pictureBoxInformation);
             this.Controls.Add(this.labelInfoMessage);

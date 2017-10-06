@@ -29,7 +29,7 @@ namespace NetOffice.DeveloperToolbox
         /// Used as systemwide singleton to create a single-application-instance. Works different in Debug/Release build
         /// </summary>
         private static Mutex _systemSingleton = null;
-
+        
         /// <summary>
         /// Set in PerformSingleInstanceValidation. Its mean we are the origin owner of the mutex and we have to free them
         /// </summary>
@@ -44,7 +44,7 @@ namespace NetOffice.DeveloperToolbox
                                                                 "MSHTMLApi.dll", "MSProjectApi.dll", "NetOffice.dll",
                                                                 "OfficeApi.dll", "OutlookApi.dll", "OWC10Api.dll",
                                                                 "PowerPointApi.dll", "VBIDEApi.dll", "VisioApi.dll",
-                                                                "WordApi.dll", "MSFormsApi.dll" };
+                                                                "WordApi.dll", "MSFormsApi.dll", "PublisherApi.dll" };
 
 
         /// <summary>
@@ -107,18 +107,30 @@ namespace NetOffice.DeveloperToolbox
                 string resultPath = String.Empty;
 
                 #if DEBUG
-
-                    resultPath = Path.Combine(GetInternalRelativeDebugPath(), "Libs");
-
+                             
+                    resultPath = Path.Combine(GetInternalRelativeDebugPath(), "Assemblies\\Any CPU");
+                
                 #else
-
+                                        
                     resultPath = Path.Combine(System.Windows.Forms.Application.StartupPath, "Toolbox Binaries");
-
+                
                 #endif
 
-                if (!Directory.Exists(resultPath))
-                    throw new DirectoryNotFoundException(resultPath);
+                //if (!Directory.Exists(resultPath))
+                //    throw new DirectoryNotFoundException(resultPath);
 
+                return resultPath;
+            }
+        }
+
+        /// <summary>
+        /// The current used folder for dependent assemblies when application is given release package
+        /// </summary>
+        public static string DependencyReleaseSubFolder
+        {
+            get
+            {
+                string resultPath = Path.Combine(System.Windows.Forms.Application.StartupPath, @".NET 4\Assemblies\Any CPU");
                 return resultPath;
             }
         }
@@ -128,9 +140,9 @@ namespace NetOffice.DeveloperToolbox
         /// </summary>
         public static string CurrentNetOfficeVersion
         {
-            get
+            get 
             {
-                return "1.7.4.0";
+                return "1.7.4.1";
             }
         }
 
@@ -139,7 +151,7 @@ namespace NetOffice.DeveloperToolbox
         /// </summary>
         internal static bool IsAdmin
         {
-            get
+            get 
             {
                 if (null == _isAdmin)
                 {
@@ -171,14 +183,14 @@ namespace NetOffice.DeveloperToolbox
         internal static bool SelfElevation { get; set; }
 
         /// <summary>
-        /// Find the local root folder in debug mode. The method use the Application.Startup path and returns the folder 3x upward.
+        /// Find the local root folder in debug mode. The method use the Application.Startup path and returns the folder 4x upward.
         /// </summary>
         /// <returns>The current related debug root folder</returns>
         private static string GetInternalRelativeDebugPath()
         {
             string result = String.Empty;
             string[] array = Application.StartupPath.Split(new string[] { "\\" }, StringSplitOptions.RemoveEmptyEntries);
-            for (int i = 0; i < array.Length - 3; i++)
+            for (int i = 0; i < array.Length - 4; i++)
                 result += array[i] + "\\";
             return result;
         }
@@ -187,16 +199,16 @@ namespace NetOffice.DeveloperToolbox
         /// Creates the systemwide singleton mutex for the single-application pattern
         /// </summary>
         private static void CreateMutex()
-        {
+        {             
             #if DEBUG
-
+                
                 _systemSingleton = new Mutex(true, Guid.NewGuid().ToString());
-
+                
             #else
 
                 // The 0FF1CE idea in the GUID is from the MS-PowerPoint Product Code (i stoled from the pp devs)
                 _systemSingleton = new Mutex(true, "D3413BEF-46D9-4F96-82FC-0000000FF1CE");
-
+            
             #endif
         }
 
@@ -218,7 +230,7 @@ namespace NetOffice.DeveloperToolbox
         {
             if (null == args)
                 return;
-
+            
             SelfElevation = (null != args.FirstOrDefault(e => e.Equals("-SelfElevation", StringComparison.InvariantCultureIgnoreCase)));
         }
 
@@ -228,14 +240,14 @@ namespace NetOffice.DeveloperToolbox
         /// </summary>
         /// <returns>true if a previous instance is running, otherwise false</returns>
         private static bool PerformSingleInstanceValidation()
-        {
+        {            
             #if DEBUG
-
+            
                 // we want allow multiple instances in debug build
-                // (its also easier to use because sometimes the mutex still lives on if debugging is aborted at hand)
+                // (its also easier to use because sometimes the mutex still lives on if debugging is aborted at hand) 
                 _mutexOwner = true;
                 return false;
-
+            
             #else
 
                 if (!_systemSingleton.WaitOne(TimeSpan.Zero))
@@ -250,7 +262,7 @@ namespace NetOffice.DeveloperToolbox
                     _mutexOwner = true;
                     return false;
                 }
-
+            
             #endif
         }
 
@@ -294,12 +306,14 @@ namespace NetOffice.DeveloperToolbox
             try
             {
                 // we check its from well known dependencies folder and one of the registererd dependencies
+                // because we dont want load any injected code from an attacker scenario
                 // OPEN-TODO-1: Add file version/hash and signed assembly check to improve security
 
                 string assemblyFolderPath = Path.GetDirectoryName(assemblyFullPath);
                 string assemblyFileName = Path.GetFileName(assemblyFullPath);
-
-                if (!DependencySubFolder.Equals(assemblyFolderPath, StringComparison.InvariantCultureIgnoreCase))
+                
+                if (!DependencySubFolder.Equals(assemblyFolderPath, StringComparison.InvariantCultureIgnoreCase) &&
+                    !DependencyReleaseSubFolder.Equals(assemblyFolderPath, StringComparison.InvariantCultureIgnoreCase))
                     throw new System.Security.SecurityException("Invalid assembly directory.");
 
                 if (!_dependencies.Contains(assemblyFileName))
@@ -332,7 +346,7 @@ namespace NetOffice.DeveloperToolbox
             catch (Exception exception)
             {
                 // no idea whats the problem right now(may no message loop) but log the error to further investigation
-                Console.WriteLine("CurrentDomain_UnhandledException:{0}=>{1}", exception, e.ExceptionObject as Exception);
+                Console.WriteLine("CurrentDomain_UnhandledException:{0}=>{1}", exception, e.ExceptionObject as Exception);   
             }
         }
 
@@ -363,7 +377,13 @@ namespace NetOffice.DeveloperToolbox
                     if (File.Exists(assemblyFullPath))
                         return LoadFile(assemblyFullPath);
                     else
-                        throw new FileNotFoundException(String.Format("Failed to load {0}", assemblyName));
+                    {
+                        assemblyFullPath = Path.Combine(Program.DependencyReleaseSubFolder, assemblyName);
+                        if (File.Exists(assemblyFullPath))
+                            return LoadFile(assemblyFullPath);
+                        else
+                            throw new FileNotFoundException(String.Format("Failed to load {0}", assemblyName));
+                    }                        
                 }
             }
             catch (Exception exception)

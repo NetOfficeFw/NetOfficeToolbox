@@ -61,7 +61,7 @@ $classicUICreateCall$
 	    Try
 
 $classicUIRemoveCall$
-$applicationDestroy$
+$applicationDestroy$ 
 
         Catch ex As Exception
 

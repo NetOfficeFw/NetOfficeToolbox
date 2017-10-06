@@ -27,7 +27,7 @@ namespace NetOffice.DeveloperToolbox.Utils.Registry
         }
 
         #endregion
-
+     
         #region Properties
 
         public bool Exists
@@ -47,7 +47,7 @@ namespace NetOffice.DeveloperToolbox.Utils.Registry
 
         public bool IsLocalMachine
         {
-            get
+            get 
             {
                 return _hiveKey.Name.Equals("hkey_local_machine", StringComparison.InvariantCultureIgnoreCase);
             }
@@ -76,7 +76,7 @@ namespace NetOffice.DeveloperToolbox.Utils.Registry
                 return _hiveKey;
             }
         }
-
+         
         public UtilsRegistryKey Key
         {
             get
@@ -89,7 +89,7 @@ namespace NetOffice.DeveloperToolbox.Utils.Registry
 
         public string Path
         {
-            get
+            get 
             {
                 return _path;
             }
