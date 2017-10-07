@@ -393,7 +393,9 @@
             this.labelNetOfficeIsFree.Name = "labelNetOfficeIsFree";
             this.labelNetOfficeIsFree.Size = new System.Drawing.Size(208, 21);
             this.labelNetOfficeIsFree.TabIndex = 83;
+            this.labelNetOfficeIsFree.Tag = "http://osdn.net/projects/netoffice";
             this.labelNetOfficeIsFree.Text = "NetOffice is free software.";
+            this.linksToolTip.SetToolTip(this.labelNetOfficeIsFree, "http://osdn.net/projects/netoffice");
             this.labelNetOfficeIsFree.Click += new System.EventHandler(this.labelNetOfficeIsFree_Click);
             // 
             // label11

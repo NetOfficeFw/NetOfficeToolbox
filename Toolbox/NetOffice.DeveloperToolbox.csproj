@@ -203,12 +203,6 @@
     <Compile Include="ToolboxControls\About\AboutControl.Designer.cs">
       <DependentUpon>AboutControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ToolboxControls\About\EasterEggControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ToolboxControls\About\EasterEggControl.Designer.cs">
-      <DependentUpon>EasterEggControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="ToolboxControls\ControlContainer.cs">
       <SubType>UserControl</SubType>
@@ -380,9 +374,6 @@
     <EmbeddedResource Include="Controls\Text\Scroller.resx">
       <DependentUpon>Scroller.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ToolboxControls\About\EasterEggControl.resx">
-      <DependentUpon>EasterEggControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ToolboxControls\ProjectWizard\Controls\FinishControl.resx">
       <DependentUpon>FinishControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -535,15 +526,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="ToolboxControls\ApplicationObserver\Info1031.rtf" />
-    <EmbeddedResource Include="ToolboxControls\ApplicationObserver\Info1033.rtf" />
-    <EmbeddedResource Include="ToolboxControls\OutlookSecurity\Info1031.rtf" />
     <EmbeddedResource Include="ToolboxControls\OutlookSecurity\Info1033.rtf" />
-    <EmbeddedResource Include="ToolboxControls\OfficeCompatibility\Info1031.rtf" />
     <EmbeddedResource Include="ToolboxControls\OfficeCompatibility\Info1033.rtf" />
-    <EmbeddedResource Include="ToolboxControls\OfficeUI\Info1031.rtf" />
     <EmbeddedResource Include="ToolboxControls\OfficeUI\Info1033.rtf" />
-    <EmbeddedResource Include="ToolboxControls\ProjectWizard\Info1031.rtf" />
     <EmbeddedResource Include="ToolboxControls\ProjectWizard\Info1033.rtf" />
     <EmbeddedResource Include="ToolboxControls\ProxyView\ProxyControl.resx">
       <DependentUpon>ProxyControl.cs</DependentUpon>
@@ -618,11 +603,9 @@
     <Compile Include="ToolboxControls\OfficeCompatibility\OfficeCompatibilityControl.Designer.cs">
       <DependentUpon>OfficeCompatibilityControl.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="ToolboxControls\RegistryEditor\Info1031.rtf" />
     <EmbeddedResource Include="ToolboxControls\RegistryEditor\Info1033.rtf" />
-    <EmbeddedResource Include="ToolboxControls\About\Wait.zip" />
-    <EmbeddedResource Include="ToolboxControls\ProxyView\Info1031.rtf" />
     <EmbeddedResource Include="ToolboxControls\ProxyView\Info1033.rtf" />
+    <EmbeddedResource Include="ToolboxControls\ApplicationObserver\Info1033.rtf" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ToolboxControls\ApplicationObserver\IconsAndConfig\NotRunning.ico" />
@@ -699,7 +682,6 @@
     <EmbeddedResource Include="ToolboxControls\ProjectWizard\Controls\SummaryControl.txt" />
     <EmbeddedResource Include="ToolboxControls\ProjectWizard\Controls\HostControl.txt" />
     <EmbeddedResource Include="Ressources\TranslationControlStrings.txt" />
-    <EmbeddedResource Include="ToolboxControls\About\Gunshot.wav" />
     <EmbeddedResource Include="ToolboxControls\ProjectWizard\ProjectTemplates\ToolsMultiAddinCS\Addin.txt" />
     <EmbeddedResource Include="ToolboxControls\ProjectWizard\ProjectTemplates\ToolsMultiAddinCS\AssemblyInfo.txt" />
     <EmbeddedResource Include="ToolboxControls\ProjectWizard\ProjectTemplates\ToolsMultiAddinCS\Project.txt" />
