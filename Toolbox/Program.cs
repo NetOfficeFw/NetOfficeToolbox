@@ -6,7 +6,6 @@ using System.Windows.Forms;
 using System.Security.Principal;
 using System.Diagnostics;
 using System.Threading;
-using NetOffice.DeveloperToolbox.Utils.Native;
 
 namespace NetOffice.DeveloperToolbox
 {
@@ -72,7 +71,7 @@ namespace NetOffice.DeveloperToolbox
 
                 Forms.MainForm mainForm = new Forms.MainForm(args);
                 LoadedTime = DateTime.Now - StartTime;
-                Console.WriteLine("Loaded in {0} seconds", LoadedTime.TotalSeconds);
+                Console.WriteLine("DeveloperToolbox loaded in {0} seconds", LoadedTime.TotalSeconds);
 
                 Application.Run(mainForm);
             }
@@ -93,7 +92,7 @@ namespace NetOffice.DeveloperToolbox
         internal static DateTime StartTime { get; private set; }
 
         /// <summary>
-        /// How long we need to be loaded without show user interface
+        /// How long we need to be loaded without showing user interface
         /// </summary>
         internal static TimeSpan LoadedTime { get; private set; }
 
@@ -116,15 +115,12 @@ namespace NetOffice.DeveloperToolbox
                 
                 #endif
 
-                //if (!Directory.Exists(resultPath))
-                //    throw new DirectoryNotFoundException(resultPath);
-
                 return resultPath;
             }
         }
 
         /// <summary>
-        /// The current used folder for dependent assemblies when application is given release package
+        /// The current used folder for dependent assemblies when application is given in release package
         /// </summary>
         public static string DependencyReleaseSubFolder
         {
@@ -183,6 +179,35 @@ namespace NetOffice.DeveloperToolbox
         internal static bool SelfElevation { get; set; }
 
         /// <summary>
+        /// Perform self elevation if necessary and wanted
+        /// </summary>
+        /// <param name="forceElevation">force elevation even Program.SelfElevation is false</param>
+        /// <returns>true if new process is sucsessfuly started, otherwise false</returns>
+        internal static bool PerformSelfElevation(bool forceElevation = false)
+        {
+            if (!IsAdmin && (SelfElevation || forceElevation))
+            {
+                ProcessStartInfo proc = new ProcessStartInfo();
+                proc.UseShellExecute = true;
+                proc.WorkingDirectory = Environment.CurrentDirectory;
+                proc.FileName = Application.ExecutablePath;
+                proc.Verb = "runas";
+
+                try
+                {
+                    ReleaseMutex();
+                    Process.Start(proc);
+                    return true;
+                }
+                catch
+                {
+                    ; // The user refused the failed elevation. Do nothing and return directly ... (original MS guidance)
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
         /// Find the local root folder in debug mode. The method use the Application.Startup path and returns the folder 4x upward.
         /// </summary>
         /// <returns>The current related debug root folder</returns>
@@ -229,9 +254,8 @@ namespace NetOffice.DeveloperToolbox
         private static void ProceedCommandLineElevationArguments(string[] args)
         {
             if (null == args)
-                return;
-            
-            SelfElevation = (null != args.FirstOrDefault(e => e.Equals("-SelfElevation", StringComparison.InvariantCultureIgnoreCase)));
+                return;           
+            SelfElevation = args.Any(e => e.Equals("-SelfElevation", StringComparison.InvariantCultureIgnoreCase));
         }
 
         /// <summary>
@@ -264,33 +288,6 @@ namespace NetOffice.DeveloperToolbox
                 }
             
             #endif
-        }
-
-        /// <summary>
-        /// Perform self elevation if necessary and wanted
-        /// </summary>
-        /// <returns>true if new process is sucsessfuly started, otherwise false</returns>
-        private static bool PerformSelfElevation()
-        {
-            if (!IsAdmin && SelfElevation)
-            {
-                ProcessStartInfo proc = new ProcessStartInfo();
-                proc.UseShellExecute = true;
-                proc.WorkingDirectory = Environment.CurrentDirectory;
-                proc.FileName = Application.ExecutablePath;
-                proc.Verb = "runas";
-
-                try
-                {
-                    Process.Start(proc);
-                    return true;
-                }
-                catch
-                {
-                    ; // The user refused the failed elevation. Do nothing and return directly ... (original MS comment)
-                }
-            }
-            return false;
         }
 
         /// <summary>

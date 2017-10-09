@@ -122,6 +122,7 @@
             this.labelExplorerHeader.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labelExplorerHeader.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.labelExplorerHeader.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelExplorerHeader.ForeColor = System.Drawing.Color.Black;
             this.labelExplorerHeader.Location = new System.Drawing.Point(0, 0);
             this.labelExplorerHeader.Name = "labelExplorerHeader";
             this.labelExplorerHeader.Size = new System.Drawing.Size(265, 24);

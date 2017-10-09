@@ -112,6 +112,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.Welcome
                     ApplicationStateLabel1.Visible = false;
                     ApplicationStateLabel2.Visible = false;
                     ApplicationStateLabel3.Visible = false;
+                    linkLabelRunAsAdmin.Visible = false;
                 }
             }
         }
@@ -273,7 +274,20 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.Welcome
         #endregion
 
         #region Trigger
-        
+
+        private void linkLabelRunAsAdmin_LinkClicked(object sender, LinkLabelLinkClickedEventArgs args)
+        {
+            try
+            {
+                Program.PerformSelfElevation(true);
+                Application.Exit();
+            }
+            catch (Exception exception)
+            {
+                Forms.ErrorForm.ShowError(this, exception, ErrorCategory.NonCritical);
+            }
+        }
+
         private void LinkLabel_Clicked(object sender, EventArgs args)
         {
             try

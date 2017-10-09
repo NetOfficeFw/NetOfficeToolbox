@@ -509,8 +509,8 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.OfficeCompatibility
                     if (clearOldItems)
                         listViewDetail.Items.Clear();
                     listViewDetail.Columns.Clear();
-                    listViewDetail.Columns.Add("");
-                    listViewDetail.Columns.Add("");
+                    listViewDetail.Columns.Add("Instance");
+                    listViewDetail.Columns.Add("Target");
                     listViewDetail.Columns.Add("Support");
 
                     listViewDetail.Columns[0].Width = GetPercent(listViewDetail.Width, 25);

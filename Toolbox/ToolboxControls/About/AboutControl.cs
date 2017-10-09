@@ -35,7 +35,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.About
         /// <summary>
         /// Last Right Click Link Label
         /// </summary>
-        private LinkLabel LastClickedLinkLabel { get; set; }
+        private Control LastClickedLinkLabel { get; set; }
 
         #endregion
 
@@ -144,12 +144,16 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.About
 
         #region Trigger
 
-        private void labelNetOfficeIsFree_Click(object sender, EventArgs e)
+        private void labelNetOfficeIsFree_Click(object sender, EventArgs args)
         {
             try
             {
-                Control control = sender as Control;
-                System.Diagnostics.Process.Start(control.Tag as string);
+                MouseEventArgs mouseArgs = args as MouseEventArgs;
+                if (null != mouseArgs && mouseArgs.Button == MouseButtons.Left)
+                { 
+                    Control control = sender as Control;
+                    System.Diagnostics.Process.Start(control.Tag as string);
+                }
             }
             catch (Exception exception)
             {
@@ -162,6 +166,31 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.About
             if (null != LastClickedLinkLabel)
             {
                 Clipboard.SetText(LastClickedLinkLabel.Tag as string);
+            }
+        }
+
+        private void linkLabelMailContact_Click(object sender, EventArgs args)
+        {
+            try
+            {
+                MouseEventArgs mouseArgs = args as MouseEventArgs;
+                if (null == mouseArgs)
+                    return;
+
+                if (mouseArgs.Button == MouseButtons.Left)
+                {
+                    LinkLabel label = sender as LinkLabel;
+                    System.Diagnostics.Process.Start("mailto:" + label.Text as string);
+                }
+                else if (mouseArgs.Button == MouseButtons.Right)
+                {
+                    LastClickedLinkLabel = sender as Control;
+                    LinkContextMenu.Show(sender as Control, 0, 0);
+                }
+            }
+            catch (Exception exception)
+            {
+                Forms.ErrorForm.ShowError(this, exception, ErrorCategory.NonCritical);
             }
         }
 
@@ -180,7 +209,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.About
                 }
                 else if (mouseArgs.Button == MouseButtons.Right)
                 {
-                    LastClickedLinkLabel = sender as LinkLabel;
+                    LastClickedLinkLabel = sender as Control;
                     LinkContextMenu.Show(sender as Control, 0, 0);
                 }
             }

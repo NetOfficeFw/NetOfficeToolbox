@@ -63,6 +63,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBoxHeader = new System.Windows.Forms.PictureBox();
             this.linksToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.linkLabelRunAsAdmin = new System.Windows.Forms.LinkLabel();
             this.labelBeginBottom = new NetOffice.DeveloperToolbox.Controls.Text.AdvRichTextBox();
             this.labelBeginTop = new NetOffice.DeveloperToolbox.Controls.Text.AdvRichTextBox();
             this.controlForeColorAnimator1 = new NetOffice.DeveloperToolbox.Utils.Animation.ControlForeColorAnimator(this.components);
@@ -391,7 +392,7 @@
             this.ApplicationStateLabel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ApplicationStateLabel3.AutoSize = true;
             this.ApplicationStateLabel3.ForeColor = System.Drawing.Color.Black;
-            this.ApplicationStateLabel3.Location = new System.Drawing.Point(654, 67);
+            this.ApplicationStateLabel3.Location = new System.Drawing.Point(654, 60);
             this.ApplicationStateLabel3.Name = "ApplicationStateLabel3";
             this.ApplicationStateLabel3.Size = new System.Drawing.Size(234, 13);
             this.ApplicationStateLabel3.TabIndex = 112;
@@ -402,7 +403,7 @@
             this.ApplicationStateLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ApplicationStateLabel2.AutoSize = true;
             this.ApplicationStateLabel2.ForeColor = System.Drawing.Color.Black;
-            this.ApplicationStateLabel2.Location = new System.Drawing.Point(654, 49);
+            this.ApplicationStateLabel2.Location = new System.Drawing.Point(654, 46);
             this.ApplicationStateLabel2.Name = "ApplicationStateLabel2";
             this.ApplicationStateLabel2.Size = new System.Drawing.Size(158, 13);
             this.ApplicationStateLabel2.TabIndex = 111;
@@ -472,6 +473,18 @@
             this.pictureBoxHeader.TabIndex = 103;
             this.pictureBoxHeader.TabStop = false;
             // 
+            // linkLabelRunAsAdmin
+            // 
+            this.linkLabelRunAsAdmin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.linkLabelRunAsAdmin.AutoSize = true;
+            this.linkLabelRunAsAdmin.Location = new System.Drawing.Point(654, 466);
+            this.linkLabelRunAsAdmin.Name = "linkLabelRunAsAdmin";
+            this.linkLabelRunAsAdmin.Size = new System.Drawing.Size(104, 13);
+            this.linkLabelRunAsAdmin.TabIndex = 113;
+            this.linkLabelRunAsAdmin.TabStop = true;
+            this.linkLabelRunAsAdmin.Text = "Run as Administrator";
+            this.linkLabelRunAsAdmin.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelRunAsAdmin_LinkClicked);
+            // 
             // labelBeginBottom
             // 
             this.labelBeginBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(227)))), ((int)(((byte)(243)))));
@@ -519,6 +532,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(227)))), ((int)(((byte)(243)))));
+            this.Controls.Add(this.linkLabelRunAsAdmin);
             this.Controls.Add(this.pictureBoxHeader);
             this.Controls.Add(this.panelOptions);
             this.Controls.Add(this.labelVersionHint);
@@ -586,5 +600,6 @@
         private System.Windows.Forms.Label ApplicationStateLabel3;
         private System.Windows.Forms.ContextMenuStrip LinkContextMenu;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.LinkLabel linkLabelRunAsAdmin;
     }
 }
