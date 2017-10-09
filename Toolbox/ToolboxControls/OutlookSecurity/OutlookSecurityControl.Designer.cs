@@ -39,18 +39,18 @@
             this.labelHint = new System.Windows.Forms.Label();
             this.labelSources = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.LinkContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel3 = new System.Windows.Forms.LinkLabel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.labelDidYouKnow = new System.Windows.Forms.Label();
             this.labelSupressThisDialog = new System.Windows.Forms.Label();
-            this.LinkContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.linksToolTip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.LinkContextMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // checkBoxSupressEnabled
@@ -72,10 +72,10 @@
             this.labelMessages.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelMessages.BackColor = System.Drawing.Color.DimGray;
+            this.labelMessages.BackColor = System.Drawing.Color.LightSteelBlue;
             this.labelMessages.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labelMessages.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelMessages.ForeColor = System.Drawing.Color.White;
+            this.labelMessages.ForeColor = System.Drawing.Color.Black;
             this.labelMessages.Location = new System.Drawing.Point(23, 279);
             this.labelMessages.Multiline = true;
             this.labelMessages.Name = "labelMessages";
@@ -165,6 +165,20 @@
             this.linksToolTip.SetToolTip(this.linkLabel1, "http://msdn.microsoft.com/library/1thd35d7%28en-US,VS.80%29.aspx");
             this.linkLabel1.Click += new System.EventHandler(this.linkLabel_Clicked);
             // 
+            // LinkContextMenu
+            // 
+            this.LinkContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1});
+            this.LinkContextMenu.Name = "LinkContextMenu";
+            this.LinkContextMenu.Size = new System.Drawing.Size(177, 26);
+            this.LinkContextMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.LinkContextMenu_ItemClicked);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(176, 22);
+            this.toolStripMenuItem1.Text = "Copy Link Location";
+            // 
             // linkLabel2
             // 
             this.linkLabel2.AutoSize = true;
@@ -230,20 +244,6 @@
             this.labelSupressThisDialog.TabIndex = 80;
             this.labelSupressThisDialog.Text = "Suppress this Dialog";
             // 
-            // LinkContextMenu
-            // 
-            this.LinkContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1});
-            this.LinkContextMenu.Name = "LinkContextMenu";
-            this.LinkContextMenu.Size = new System.Drawing.Size(177, 26);
-            this.LinkContextMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.LinkContextMenu_ItemClicked);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(176, 22);
-            this.toolStripMenuItem1.Text = "Copy Link Location";
-            // 
             // OutlookSecurityControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -267,8 +267,8 @@
             this.Size = new System.Drawing.Size(924, 496);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.LinkContextMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

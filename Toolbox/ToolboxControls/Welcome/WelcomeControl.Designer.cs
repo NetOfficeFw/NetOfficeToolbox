@@ -391,8 +391,8 @@
             // 
             this.ApplicationStateLabel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ApplicationStateLabel3.AutoSize = true;
-            this.ApplicationStateLabel3.ForeColor = System.Drawing.Color.Black;
-            this.ApplicationStateLabel3.Location = new System.Drawing.Point(654, 60);
+            this.ApplicationStateLabel3.ForeColor = System.Drawing.Color.Gray;
+            this.ApplicationStateLabel3.Location = new System.Drawing.Point(654, 59);
             this.ApplicationStateLabel3.Name = "ApplicationStateLabel3";
             this.ApplicationStateLabel3.Size = new System.Drawing.Size(234, 13);
             this.ApplicationStateLabel3.TabIndex = 112;
@@ -402,8 +402,8 @@
             // 
             this.ApplicationStateLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ApplicationStateLabel2.AutoSize = true;
-            this.ApplicationStateLabel2.ForeColor = System.Drawing.Color.Black;
-            this.ApplicationStateLabel2.Location = new System.Drawing.Point(654, 46);
+            this.ApplicationStateLabel2.ForeColor = System.Drawing.Color.Gray;
+            this.ApplicationStateLabel2.Location = new System.Drawing.Point(654, 45);
             this.ApplicationStateLabel2.Name = "ApplicationStateLabel2";
             this.ApplicationStateLabel2.Size = new System.Drawing.Size(158, 13);
             this.ApplicationStateLabel2.TabIndex = 111;
@@ -413,8 +413,8 @@
             // 
             this.ApplicationStateLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ApplicationStateLabel1.AutoSize = true;
-            this.ApplicationStateLabel1.ForeColor = System.Drawing.Color.Black;
-            this.ApplicationStateLabel1.Location = new System.Drawing.Point(654, 32);
+            this.ApplicationStateLabel1.ForeColor = System.Drawing.Color.Gray;
+            this.ApplicationStateLabel1.Location = new System.Drawing.Point(654, 31);
             this.ApplicationStateLabel1.Name = "ApplicationStateLabel1";
             this.ApplicationStateLabel1.Size = new System.Drawing.Size(156, 13);
             this.ApplicationStateLabel1.TabIndex = 110;
@@ -477,7 +477,7 @@
             // 
             this.linkLabelRunAsAdmin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.linkLabelRunAsAdmin.AutoSize = true;
-            this.linkLabelRunAsAdmin.Location = new System.Drawing.Point(654, 466);
+            this.linkLabelRunAsAdmin.Location = new System.Drawing.Point(654, 467);
             this.linkLabelRunAsAdmin.Name = "linkLabelRunAsAdmin";
             this.linkLabelRunAsAdmin.Size = new System.Drawing.Size(104, 13);
             this.linkLabelRunAsAdmin.TabIndex = 113;

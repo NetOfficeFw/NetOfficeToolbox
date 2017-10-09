@@ -27,11 +27,6 @@ namespace NetOffice.DeveloperToolbox.Forms
         /// </summary>
         private List<IToolboxControl> _toolBoxControlsFirstShowPassed;
 
-        ///// <summary>
-        ///// application initialize flag 
-        ///// </summary>
-        //private bool _isCurrentlyLoading;
-
         /// <summary>
         /// store last selection to call IToolboxControl.Deactivated() in SelectedIndexChanged
         /// </summary>
@@ -47,7 +42,7 @@ namespace NetOffice.DeveloperToolbox.Forms
         #region Construction
 
         /// <summary>
-        /// Designtime Ctor
+        /// Stub Ctor
         /// </summary>
         public MainForm(): this(new string[0])
         {

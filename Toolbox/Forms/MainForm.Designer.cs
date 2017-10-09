@@ -54,7 +54,7 @@
             this.tabControlMain.Margin = new System.Windows.Forms.Padding(0);
             this.tabControlMain.Name = "tabControlMain";
             this.tabControlMain.SelectedIndex = 0;
-            this.tabControlMain.Size = new System.Drawing.Size(936, 661);
+            this.tabControlMain.Size = new System.Drawing.Size(924, 642);
             this.tabControlMain.TabIndex = 0;
             this.tabControlMain.SelectedIndexChanged += new System.EventHandler(this.TabControlMain_SelectedIndexChanged);
             this.tabControlMain.Deselecting += new System.Windows.Forms.TabControlCancelEventHandler(this.TabControlMain_Deselecting);
@@ -74,7 +74,7 @@
             this.splitContainer1.Panel1.Controls.Add(this.tabControlMain);
             this.splitContainer1.Panel2Collapsed = true;
             this.splitContainer1.Panel2MinSize = 200;
-            this.splitContainer1.Size = new System.Drawing.Size(936, 661);
+            this.splitContainer1.Size = new System.Drawing.Size(924, 642);
             this.splitContainer1.SplitterDistance = 25;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 1;
@@ -84,13 +84,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(936, 661);
+            this.ClientSize = new System.Drawing.Size(924, 642);
             this.Controls.Add(this.splitContainer1);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
-            this.MinimumSize = new System.Drawing.Size(944, 688);
+            this.MinimumSize = new System.Drawing.Size(940, 680);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = " NetOffice Developer Toolbox";

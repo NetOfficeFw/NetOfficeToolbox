@@ -41,8 +41,6 @@
             this.linkLabelHexBox = new System.Windows.Forms.LinkLabel();
             this.panelAboutDetails = new System.Windows.Forms.Panel();
             this.linkLabelMailContact = new System.Windows.Forms.LinkLabel();
-            this.LinkContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.labelLicense = new System.Windows.Forms.Label();
             this.linkLabelLicenceLink = new System.Windows.Forms.LinkLabel();
@@ -50,6 +48,8 @@
             this.labelVersionText = new System.Windows.Forms.Label();
             this.labelTechnicalDetails = new System.Windows.Forms.Label();
             this.pictureBoxInfo4 = new System.Windows.Forms.PictureBox();
+            this.LinkContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.panelAboutWarranty = new System.Windows.Forms.Panel();
             this.labelWarranty3 = new System.Windows.Forms.Label();
             this.labelWarranty2 = new System.Windows.Forms.Label();
@@ -60,17 +60,17 @@
             this.pictureBoxInfo1 = new System.Windows.Forms.PictureBox();
             this.labelAboutNetOffice = new System.Windows.Forms.Label();
             this.labelStallmanSays = new System.Windows.Forms.Label();
+            this.labelNetOfficeIsFree = new NetOffice.DeveloperToolbox.Controls.Label.GlowLabel();
             this.label11 = new System.Windows.Forms.Label();
             this.panelMain = new System.Windows.Forms.Panel();
             this.panelLanguageCredits = new System.Windows.Forms.Panel();
             this.linksToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.labelNetOfficeIsFree = new NetOffice.DeveloperToolbox.Controls.Label.GlowLabel();
             this.controlForeColorAnimator1 = new NetOffice.DeveloperToolbox.Utils.Animation.ControlForeColorAnimator(this.components);
             this.panelThanks.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxInfo5)).BeginInit();
             this.panelAboutDetails.SuspendLayout();
-            this.LinkContextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxInfo4)).BeginInit();
+            this.LinkContextMenu.SuspendLayout();
             this.panelAboutWarranty.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxInfo3)).BeginInit();
             this.panelAboutTop.SuspendLayout();
@@ -170,7 +170,7 @@
             this.labelHexBox.AutoSize = true;
             this.labelHexBox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelHexBox.ForeColor = System.Drawing.Color.Black;
-            this.labelHexBox.Location = new System.Drawing.Point(383, 56);
+            this.labelHexBox.Location = new System.Drawing.Point(383, 54);
             this.labelHexBox.Name = "labelHexBox";
             this.labelHexBox.Size = new System.Drawing.Size(240, 17);
             this.labelHexBox.TabIndex = 96;
@@ -218,20 +218,6 @@
             this.linkLabelMailContact.Text = "public.sebastian@web.de";
             this.linksToolTip.SetToolTip(this.linkLabelMailContact, "mailto:public.sebastian@web.de");
             this.linkLabelMailContact.Click += new System.EventHandler(this.linkLabelMailContact_Click);
-            // 
-            // LinkContextMenu
-            // 
-            this.LinkContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1});
-            this.LinkContextMenu.Name = "LinkContextMenu";
-            this.LinkContextMenu.Size = new System.Drawing.Size(177, 26);
-            this.LinkContextMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.LinkContextMenu_ItemClicked);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(176, 22);
-            this.toolStripMenuItem1.Text = "Copy Link Location";
             // 
             // label1
             // 
@@ -311,6 +297,20 @@
             this.pictureBoxInfo4.Size = new System.Drawing.Size(16, 16);
             this.pictureBoxInfo4.TabIndex = 80;
             this.pictureBoxInfo4.TabStop = false;
+            // 
+            // LinkContextMenu
+            // 
+            this.LinkContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1});
+            this.LinkContextMenu.Name = "LinkContextMenu";
+            this.LinkContextMenu.Size = new System.Drawing.Size(177, 26);
+            this.LinkContextMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.LinkContextMenu_ItemClicked);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(176, 22);
+            this.toolStripMenuItem1.Text = "Copy Link Location";
             // 
             // panelAboutWarranty
             // 
@@ -425,6 +425,22 @@
             this.labelStallmanSays.Text = "\"free software means to be honest with your users and allow them to be free by gi" +
     "ving them all possible control.\"";
             // 
+            // labelNetOfficeIsFree
+            // 
+            this.labelNetOfficeIsFree.AutoSize = true;
+            this.labelNetOfficeIsFree.BackColor = System.Drawing.Color.Transparent;
+            this.labelNetOfficeIsFree.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.labelNetOfficeIsFree.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNetOfficeIsFree.ForeColor = System.Drawing.Color.White;
+            this.labelNetOfficeIsFree.Location = new System.Drawing.Point(282, 67);
+            this.labelNetOfficeIsFree.Name = "labelNetOfficeIsFree";
+            this.labelNetOfficeIsFree.Size = new System.Drawing.Size(208, 21);
+            this.labelNetOfficeIsFree.TabIndex = 83;
+            this.labelNetOfficeIsFree.Tag = "http://osdn.net/projects/netoffice";
+            this.labelNetOfficeIsFree.Text = "NetOffice is free software.";
+            this.linksToolTip.SetToolTip(this.labelNetOfficeIsFree, "http://osdn.net/projects/netoffice");
+            this.labelNetOfficeIsFree.Click += new System.EventHandler(this.labelNetOfficeIsFree_Click);
+            // 
             // label11
             // 
             this.label11.AutoSize = true;
@@ -456,22 +472,6 @@
             this.panelLanguageCredits.Size = new System.Drawing.Size(786, 118);
             this.panelLanguageCredits.TabIndex = 93;
             // 
-            // labelNetOfficeIsFree
-            // 
-            this.labelNetOfficeIsFree.AutoSize = true;
-            this.labelNetOfficeIsFree.BackColor = System.Drawing.Color.Transparent;
-            this.labelNetOfficeIsFree.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.labelNetOfficeIsFree.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNetOfficeIsFree.ForeColor = System.Drawing.Color.White;
-            this.labelNetOfficeIsFree.Location = new System.Drawing.Point(282, 67);
-            this.labelNetOfficeIsFree.Name = "labelNetOfficeIsFree";
-            this.labelNetOfficeIsFree.Size = new System.Drawing.Size(208, 21);
-            this.labelNetOfficeIsFree.TabIndex = 83;
-            this.labelNetOfficeIsFree.Tag = "http://osdn.net/projects/netoffice";
-            this.labelNetOfficeIsFree.Text = "NetOffice is free software.";
-            this.linksToolTip.SetToolTip(this.labelNetOfficeIsFree, "http://osdn.net/projects/netoffice");
-            this.labelNetOfficeIsFree.Click += new System.EventHandler(this.labelNetOfficeIsFree_Click);
-            // 
             // controlForeColorAnimator1
             // 
             this.controlForeColorAnimator1.Control = this.labelNetOfficeIsFree;
@@ -496,8 +496,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxInfo5)).EndInit();
             this.panelAboutDetails.ResumeLayout(false);
             this.panelAboutDetails.PerformLayout();
-            this.LinkContextMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxInfo4)).EndInit();
+            this.LinkContextMenu.ResumeLayout(false);
             this.panelAboutWarranty.ResumeLayout(false);
             this.panelAboutWarranty.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxInfo3)).EndInit();

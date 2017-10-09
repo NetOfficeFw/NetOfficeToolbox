@@ -196,7 +196,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelInfo.Controls.Add(this.pictureBox5);
             this.panelInfo.Controls.Add(this.labelInfo);
-            this.panelInfo.Location = new System.Drawing.Point(265, 4);
+            this.panelInfo.Location = new System.Drawing.Point(265, 3);
             this.panelInfo.Name = "panelInfo";
             this.panelInfo.Size = new System.Drawing.Size(570, 24);
             this.panelInfo.TabIndex = 75;
