@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using System.Security.Principal;
 using System.Diagnostics;
 using System.Threading;
+using NetOffice.DeveloperToolbox.Utils.Native;
 
 namespace NetOffice.DeveloperToolbox
 {
