@@ -218,7 +218,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
            
             string toogle = true == checkBoxToogleButton.Checked ? " + Toogle" : "";
             result[0] += Environment.NewLine + "TaskPane";
-            if (checkBoxRibbonUISupport.Checked)
+            if (checkBoxTaskPaneSupport.Checked)
                 result[1] += Environment.NewLine + ProjectWizardControl.Singleton.Localized.Yes + toogle;
             else
                 result[1] += Environment.NewLine + ProjectWizardControl.Singleton.Localized.No;
