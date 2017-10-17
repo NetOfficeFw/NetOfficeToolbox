@@ -3,6 +3,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Linq;
 using System.Xml;
 using Microsoft.Win32;
 using System.Windows.Forms;
@@ -29,7 +30,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             
         #endregion
 
-        #region Construction
+        #region Ctor
 
         /// <summary>
         /// Creates an instance of the class
@@ -459,6 +460,19 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             return null;
         }
 
+        private void SelectEntryByExpression(string expression)
+        {
+            foreach (DataGridViewRow item in dataGridViewRegistry.Rows)
+            {
+                if (item.Cells[1].Value.ToString().Contains(expression) || item.Cells[3].Value.ToString().Contains(expression))
+                {
+                    item.Selected = true;
+                }
+                else
+                    item.Selected = false;
+            }
+        }
+
         private void SelectKey(UtilsRegistryKey targetKey)
         {
             if (null == targetKey)
@@ -546,17 +560,20 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             key = new UtilsRegistryKey(GetRegistry(targetNode), fullNodePath);
             result = SearchHive(expression, key.Root, key);
             if (null != result)
+            { 
                 SelectKey(result);
+                SelectEntryByExpression(expression);
+            }
             else
             {
                 if (key.Root.IsLocalMachine && false == key.Root.IsWow)
                 {
                     // localmachine32
-
                     result = SearchHive(expression, _currentUser32, null);
                     if (null != result)
                     {
                         SelectKey(result);
+                        SelectEntryByExpression(expression);
                         return;
                     }
 
@@ -564,6 +581,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                     if (null != result)
                     {
                         SelectKey(result);
+                        SelectEntryByExpression(expression);
                         return;
                     }
 
@@ -571,6 +589,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                     if (null != result)
                     {
                         SelectKey(result);
+                        SelectEntryByExpression(expression);
                         return;
                     }
                     else
@@ -579,11 +598,11 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                 else if (key.Root.IsLocalMachine && true == key.Root.IsWow)
                 {
                     // localmachine64
-
                     result = SearchHive(expression, _currentUser64, null);
                     if (null != result)
                     {
                         SelectKey(result);
+                        SelectEntryByExpression(expression);
                         return;
                     }
 
@@ -591,6 +610,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                     if (null != result)
                     {
                         SelectKey(result);
+                        SelectEntryByExpression(expression);
                         return;
                     }
 
@@ -598,6 +618,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                     if (null != result)
                     {
                         SelectKey(result);
+                        SelectEntryByExpression(expression);
                         return;
                     }
                     else
@@ -606,11 +627,11 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                 else if (false == key.Root.IsLocalMachine && false == key.Root.IsWow)
                 { 
                     // currentuser32
-
                     result = SearchHive(expression, _localMachine64, null);
                     if (null != result)
                     {
                         SelectKey(result);
+                        SelectEntryByExpression(expression);
                         return;
                     }
 
@@ -620,11 +641,11 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                         SelectKey(result);
                         return;
                     }
-
                     result = SearchHive(expression, _localMachine32, null);
                     if (null != result)
                     {
                         SelectKey(result);
+                        SelectEntryByExpression(expression);
                         return;
                     }
                     else
@@ -633,11 +654,11 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                 else
                 {
                     // currentuser64
-
                     result = SearchHive(expression, _localMachine32, null);
                     if (null != result)
                     {
                         SelectKey(result);
+                        SelectEntryByExpression(expression);
                         return;
                     }
 
@@ -645,6 +666,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                     if (null != result)
                     {
                         SelectKey(result);
+                        SelectEntryByExpression(expression);
                         return;
                     }
 
@@ -652,6 +674,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                     if (null != result)
                     {
                         SelectKey(result);
+                        SelectEntryByExpression(expression);
                         return;
                     }
                     else
@@ -766,7 +789,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                 if (pos1 > -1)
                     return key;
 
-                string valueString = item.Value.ToString();
+                string valueString = null != item.Value ? item.Value.ToString() : String.Empty;
                 int pos2 = valueString.IndexOf(expression, StringComparison.InvariantCultureIgnoreCase);
                 if (pos2 > -1)
                     return key;
@@ -983,16 +1006,26 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             try
             {
                 string currentPath = null;
-
+                string[] entries = new string[dataGridViewRegistry.SelectedRows.Count];
+                for (int i = 0; i < dataGridViewRegistry.SelectedRows.Count; i++)
+                    entries[i] = dataGridViewRegistry.SelectedRows[i].Cells[1].Value.ToString();
                 if (null != treeViewRegistry.SelectedNode)
                     currentPath = treeViewRegistry.SelectedNode.FullPath;
 
                 dataGridViewRegistry.Rows.Clear();
-
+                
                 ShowKeys();
 
                 if (null != currentPath)
                     RestoreExpandState(currentPath);
+
+                foreach (DataGridViewRow item in dataGridViewRegistry.Rows)
+                {
+                    if (entries.Contains(item.Cells[1].Value.ToString()))
+                        item.Selected = true;
+                    else
+                        item.Selected = false;
+                }
             }
             catch (Exception exception)
             {
@@ -1128,8 +1161,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             {
                 if (e.KeyData != Keys.Return || String.IsNullOrWhiteSpace(textBoxSearch.Text))
                     return;
-                DoSearch(textBoxSearch.Text);
-               
+                DoSearch(textBoxSearch.Text);               
             }
             catch (Exception exception)
             {
