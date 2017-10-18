@@ -374,7 +374,7 @@
             this.checkBoxDeleteQuestion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBoxDeleteQuestion.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBoxDeleteQuestion.ForeColor = System.Drawing.Color.Blue;
-            this.checkBoxDeleteQuestion.Location = new System.Drawing.Point(311, 2);
+            this.checkBoxDeleteQuestion.Location = new System.Drawing.Point(303, 2);
             this.checkBoxDeleteQuestion.Name = "checkBoxDeleteQuestion";
             this.checkBoxDeleteQuestion.Size = new System.Drawing.Size(138, 21);
             this.checkBoxDeleteQuestion.TabIndex = 36;
