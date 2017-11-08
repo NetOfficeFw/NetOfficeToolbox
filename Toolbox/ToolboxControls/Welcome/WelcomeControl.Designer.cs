@@ -359,7 +359,7 @@
             this.LinkContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem1});
             this.LinkContextMenu.Name = "LinkContextMenu";
-            this.LinkContextMenu.Size = new System.Drawing.Size(177, 26);
+            this.LinkContextMenu.Size = new System.Drawing.Size(177, 48);
             this.LinkContextMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.LinkContextMenu_ItemClicked);
             // 
             // toolStripMenuItem1
