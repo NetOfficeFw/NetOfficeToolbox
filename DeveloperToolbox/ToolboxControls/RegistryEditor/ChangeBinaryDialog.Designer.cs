@@ -8,7 +8,7 @@
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        /// Verwendete Ressourcen bereinigen.
+        /// Verwendete Resourcen bereinigen.
         /// </summary>
         protected override void Dispose(bool disposing)
         {
@@ -29,9 +29,9 @@
         {
             this.changeBinaryControl1 = new NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor.ChangeBinaryControl();
             this.SuspendLayout();
-            //
+            // 
             // changeBinaryControl1
-            //
+            // 
             this.changeBinaryControl1.BackColor = System.Drawing.Color.LightSteelBlue;
             this.changeBinaryControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.changeBinaryControl1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -40,9 +40,9 @@
             this.changeBinaryControl1.Size = new System.Drawing.Size(534, 432);
             this.changeBinaryControl1.TabIndex = 0;
             this.changeBinaryControl1.Close += new System.EventHandler(this.changeBinaryControl1_Close);
-            //
+            // 
             // ChangeBinaryDialog
-            //
+            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;

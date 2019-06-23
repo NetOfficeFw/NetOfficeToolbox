@@ -20,7 +20,7 @@
             string text = textStreamReader.ReadToEnd();
 			textStreamReader.Close();
             resourceStream.Close();
-            textStreamReader.Dispose();
+            textStreamReader.Dispose();            
             resourceStream.Dispose();
 
             return text;

@@ -61,13 +61,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Painter
             set
             {
                 if (value == null)
-                {
                     throw new ArgumentNullException();
-                }
                 if (_form != null)
-                {
                     throw new InvalidOperationException();
-                }
 
                 _form = value;
                 _form.Resize += new EventHandler(Form_Resize);
@@ -88,9 +84,7 @@ namespace NetOffice.DeveloperToolbox.Controls.Painter
             control.ControlAdded += new ControlEventHandler(Control_ControlAdded);
 
             foreach (Control child in control.Controls)
-            {
                 ConnectPaintEventHandlers(child);
-            }
         }
 
         private void DisconnectPaintEventHandlers(Control control)
@@ -98,17 +92,13 @@ namespace NetOffice.DeveloperToolbox.Controls.Painter
             control.Paint -= new PaintEventHandler(Control_Paint);
             control.ControlAdded -= new ControlEventHandler(Control_ControlAdded);
             foreach (Control child in control.Controls)
-            {
                 DisconnectPaintEventHandlers(child);
-            }
         }
 
         private void OnPaint(object sender, PaintEventArgs e)
         {
             if (Paint != null)
-            {
                 Paint(sender, e);
-            }
         }
 
         #endregion
@@ -118,17 +108,13 @@ namespace NetOffice.DeveloperToolbox.Controls.Painter
         private void OverlayPainter_Disposed(object sender, EventArgs e)
         {
             if (null != _form)
-            {
                 DisconnectPaintEventHandlers(_form);
-            }
         }
 
         private void Form_Resize(object sender, EventArgs e)
         {
             if(null != _form)
-            {
                 _form.Invalidate(true);
-            }
         }
 
         private void Control_ControlAdded(object sender, ControlEventArgs e)
@@ -139,17 +125,13 @@ namespace NetOffice.DeveloperToolbox.Controls.Painter
         private void Control_Paint(object sender, PaintEventArgs e)
         {
             if (null == _form || _form.IsDisposed)
-            {
                 return;
-            }
 
             Control control = sender as Control;
             Point location;
 
             if (control == _form)
-            {
                 location = control.Location;
-            }
             else
             {
                 location = _form.PointToClient(control.Parent.PointToScreen(control.Location));
@@ -157,9 +139,7 @@ namespace NetOffice.DeveloperToolbox.Controls.Painter
             }
 
             if (control != _form)
-            {
                 e.Graphics.TranslateTransform(-location.X, -location.Y);
-            }
 
             OnPaint(sender, e);
         }
@@ -185,13 +165,9 @@ namespace System.Windows.Forms
             Form form = control.TopLevelControl as Form;
 
             if (control == form)
-            {
                 coordinates = form.ClientRectangle;
-            }
             else
-            {
                 coordinates = form.RectangleToClient(control.Parent.RectangleToScreen(control.Bounds));
-            }
 
             return coordinates;
         }

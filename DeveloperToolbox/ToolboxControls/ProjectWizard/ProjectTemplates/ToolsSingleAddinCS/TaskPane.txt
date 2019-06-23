@@ -8,7 +8,7 @@ namespace $safeprojectname$
     public partial class MyTaskPane : UserControl , $appName$.Tools.ITaskPane
     {
 		#region Ctor
-
+        
 		public MyTaskPane()
         {
             InitializeComponent();
@@ -17,11 +17,11 @@ namespace $safeprojectname$
 		#endregion
 
 		#region Properties
-
+		
 		private Addin ParentAddin { get; set; }
 
 		#endregion
-
+		
         #region ITaskpane
 
         public void OnConnection($appName$.Application application, Office._CustomTaskPane definition, object[] customArguments)
@@ -37,7 +37,7 @@ namespace $safeprojectname$
 
         public void OnDockPositionChanged(MsoCTPDockPosition position)
         {
-
+            
         }
 
         public void OnVisibleStateChanged(bool visible)

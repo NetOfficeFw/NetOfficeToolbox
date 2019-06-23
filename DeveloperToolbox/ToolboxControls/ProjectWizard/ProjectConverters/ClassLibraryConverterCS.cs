@@ -16,15 +16,15 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
         private string _projectFile;
         private string _classFile;
         private string _assemblyFile;
-        private Guid   _projectGuid;
+        private Guid   _projectGuid;      
 
         #endregion
 
         #region Ctor
 
         internal ClassLibraryConverterCS(ProjectOptions options) : base(options)
-        {
-
+        { 
+        
         }
 
         #endregion
@@ -53,7 +53,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
             _solutionFile = _solutionFile.Replace("$projectguid$", _projectGuid.ToString().ToUpper());
             _solutionFile = _solutionFile.Replace("$solutionformat$", this.SolutionFormats[Options.IDE]);
             _solutionFile = _solutionFile.Replace("$ideversion$", this.Environments[Options.IDE, Options.Language]);
-
+            
             _projectFile = _projectFile.Replace("$safeprojectname$", Options.AssemblyName);
             _projectFile = _projectFile.Replace("$projectguid$", _projectGuid.ToString().ToUpper());
             _projectFile = _projectFile.Replace("$toolsversion$", this.Tools[Options.IDE]);
@@ -77,7 +77,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
         }
 
         private void WriteResultFilesToTempFolder()
-        {
+        {            
             File.AppendAllText(Path.Combine(TempSolutionPath, String.Format("{0}.sln", Options.AssemblyName)), _solutionFile, Encoding.UTF8);
             File.AppendAllText(Path.Combine(TempProjectPath, String.Format("{0}.csproj", Options.AssemblyName)), _projectFile, Encoding.UTF8);
             File.AppendAllText(Path.Combine(TempProjectPath, "Class1.cs"), _classFile, Encoding.UTF8);

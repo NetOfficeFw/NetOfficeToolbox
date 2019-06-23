@@ -21,7 +21,7 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 		/// Initializes a new instance of the DynamicByteProvider class.
 		/// </summary>
 		/// <param name="data"></param>
-		public DynamicByteProvider(byte[] data) : this(new List<Byte>(data))
+		public DynamicByteProvider(byte[] data) : this(new List<Byte>(data)) 
 		{
 		}
 
@@ -42,9 +42,7 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 			_hasChanges = true;
 
 			if(Changed != null)
-			{
-			    Changed(this, e);
-			}
+				Changed(this, e);
 		}
 
 		/// <summary>
@@ -53,9 +51,7 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 		void OnLengthChanged(EventArgs e)
 		{
 			if(LengthChanged != null)
-			{
-			    LengthChanged(this, e);
-			}
+				LengthChanged(this, e);
 		}
 
 		/// <summary>
@@ -119,10 +115,10 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 		/// <param name="index">the start index of the bytes to delete.</param>
 		/// <param name="length">the length of bytes to delete.</param>
 		public void DeleteBytes(long index, long length)
-		{
+		{ 
 			int internal_index = (int)Math.Max(0, index);
 			int internal_length = (int)Math.Min((int)Length, length);
-			_bytes.RemoveRange(internal_index, internal_length);
+			_bytes.RemoveRange(internal_index, internal_length); 
 
 			OnLengthChanged(EventArgs.Empty);
 			OnChanged(EventArgs.Empty);
@@ -134,8 +130,8 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
 		/// <param name="index">the start index of the bytes in the byte collection</param>
 		/// <param name="bs">the byte array to insert</param>
 		public void InsertBytes(long index, byte[] bs)
-		{
-			_bytes.InsertRange((int)index, bs);
+		{ 
+			_bytes.InsertRange((int)index, bs); 
 
 			OnLengthChanged(EventArgs.Empty);
 			OnChanged(EventArgs.Empty);

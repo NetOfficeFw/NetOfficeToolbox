@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
@@ -65,9 +65,7 @@ namespace NetOffice.DeveloperToolbox.Controls.Tree
                 // use the TreeView font.
                 Font nFont = e.Node.NodeFont;
                 if (nFont == null)
-                {
                     nFont = base.Font;
-                }
 
                 Rectangle nBounds = e.Node.Bounds;
                 int nTextX = nBounds.X;
@@ -105,11 +103,8 @@ namespace NetOffice.DeveloperToolbox.Controls.Tree
             {
                 if (node.Bounds.Contains(e.X, e.Y))
                 {
-                    if (base.SelectedNode == node)
-                    {
-                        base.SelectedNode = null;
-                    }
-                    base.SelectedNode = node;
+                    if (base.SelectedNode != node)
+                        base.SelectedNode = node;
                 }
             }
         }
@@ -126,15 +121,11 @@ namespace NetOffice.DeveloperToolbox.Controls.Tree
                 {
                     case Keys.Up:
                         if (base.SelectedNode.PrevVisibleNode != null)
-                        {
                             base.SelectedNode = base.SelectedNode.PrevVisibleNode;
-                        }
                         break;
                     case Keys.Down:
                         if (base.SelectedNode.NextVisibleNode != null)
-                        {
                             base.SelectedNode = base.SelectedNode.NextVisibleNode;
-                        }
                         break;
                     case Keys.Left:
                         base.SelectedNode.Collapse(true);
@@ -183,10 +174,7 @@ namespace NetOffice.DeveloperToolbox.Controls.Tree
         {
             bool bControl = (ModifierKeys == Keys.Control);
             bool bShift = (ModifierKeys == Keys.Shift);
-            if (!bShift)
-            {
-                last_node = node;
-            }
+            if (!bShift) last_node = node;
             if (bControl)
             {
                 ToogleNodeSelection(node);
@@ -207,9 +195,7 @@ namespace NetOffice.DeveloperToolbox.Controls.Tree
             foreach (TreeNode item in selected_nodes)
             {
                 if (item.Level != currentNodeLevel)
-                {
                     return;
-                }
             }
 
             if (!selected_nodes.Contains(node))
@@ -232,18 +218,14 @@ namespace NetOffice.DeveloperToolbox.Controls.Tree
         private void ToogleNodeSelection(TreeNode node)
         {
             if (selected_nodes.Contains(node))
-            {
                 DeselectNode(node);
-            }
             else
-            {
                 SelectNode(node);
-            }
         }
 
         private void SelectSingleNode(TreeNode node)
         {
-            SelectNodes(new List<TreeNode>(new TreeNode[]{ node }));
+            SelectNodes(new List<TreeNode>(new TreeNode[] { node }));
         }
 
         private void SelectNodes(List<TreeNode> nodes)
@@ -251,20 +233,10 @@ namespace NetOffice.DeveloperToolbox.Controls.Tree
             // Deselect nodes
             TreeNode[] selected_nodes2 = selected_nodes.ToArray();
             foreach (TreeNode node in selected_nodes2)
-            {
-                if (!nodes.Contains(node))
-                {
-                    DeselectNode(node);
-                }
-            }
+                if (!nodes.Contains(node)) DeselectNode(node);
             // Select nodes
             foreach (TreeNode node in nodes)
-            {
-                if (!selected_nodes.Contains(node))
-                {
-                    SelectNode(node);
-                }
-            }
+                if (!selected_nodes.Contains(node)) SelectNode(node);
         }
 
         private void SelectBetweenNodes(TreeNode node1, TreeNode node2)
@@ -304,41 +276,25 @@ namespace NetOffice.DeveloperToolbox.Controls.Tree
             TreeNode temp1 = node1;
             TreeNode temp2 = node2;
             while (temp1.Level > temp2.Level)
-            {
                 temp1 = temp1.Parent;
-            }
             while (temp2.Level > temp1.Level)
-            {
                 temp2 = temp2.Parent;
-            }
             while (temp1.Parent != temp2.Parent)
             {
                 temp1 = temp1.Parent;
                 temp2 = temp2.Parent;
             }
             if (temp1.Index == temp2.Index)
-            {
                 if (node1 == node2)
-                {
                     return 0;
-                }
                 else if (node1.Level < node2.Level)
-                {
                     return -1;
-                }
                 else
-                {
                     return 1;
-                }
-            }
             else if (temp1.Index < temp2.Index)
-            {
                 return -1;
-            }
             else
-            {
                 return 1;
-            }
         }
 
         private void SortSelectedNodes()

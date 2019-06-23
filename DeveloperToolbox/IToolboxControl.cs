@@ -10,19 +10,19 @@ namespace NetOffice.DeveloperToolbox
     /// toolboxcontrol message kind. the application is showing a corresponding icon.
     /// </summary>
     public enum ToolboxControlMessageKind
-    {
+    { 
         /// <summary>
         /// message is an information
         /// </summary>
         Information = 0,
-
+        
         /// <summary>
         /// message is a warning
         /// </summary>
         Warning = 1,
 
         /// <summary>
-        /// message is uncategorized
+        /// message is uncategorized 
         /// </summary>
         Uncategorized
     }
@@ -30,7 +30,7 @@ namespace NetOffice.DeveloperToolbox
     /// <summary>
     /// Represents a toolbox content control
     /// </summary>
-    public interface IToolboxControl : ILocalizationDesign, IDisposable
+    public interface IToolboxControl : IDisposable 
     {
         /// <summary>
         /// parent host application
@@ -79,7 +79,7 @@ namespace NetOffice.DeveloperToolbox
         void InitializeControl(IToolboxHost host);
 
         /// <summary>
-        /// method was called from host application while application tab selection is changed to control
+        /// method was called from host application while application tab selection is changed to control 
         /// </summary>
         /// <param name="firstTime">control is shown first time</param>
         void Activate(bool firstTime);
@@ -107,18 +107,11 @@ namespace NetOffice.DeveloperToolbox
         void SaveConfiguration(XmlNode configNode);
 
         /// <summary>
-        /// method was called from after start and after selection change from user
-        /// 1031 = english, 1033 = german
-        /// </summary>
-        /// <param name="id">lcid</param>
-        void SetLanguage(int id);
-
-        /// <summary>
         /// returns help richtext if supported, otherwise a NotImplementedException is thrown
         /// </summary>
         /// <param name="lcid">target language id</param>
         /// <returns>help content as rich text(.rtf)</returns>
-        Stream GetHelpText(int lcid);
+        Stream GetHelpText();
 
         /// <summary>
         /// redirected from host application if control is currently visible

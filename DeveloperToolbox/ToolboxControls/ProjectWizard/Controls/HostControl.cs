@@ -14,7 +14,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
     /// Supported office applications want selected here
     /// </summary>
     [ResourceTable("ToolboxControls.ProjectWizard.Controls.HostControl.txt")]
-    public partial class HostControl : UserControl, IWizardControl, ILocalizationDesign
+    public partial class HostControl : UserControl, IWizardControl
     {
         #region Fields
 
@@ -42,37 +42,23 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
         /// </summary>
         internal List<string> HostApplications
         {
-            get
+            get 
             {
                 List<string> list = new List<string>();
                 if (checkBoxExcel.Checked)
-                {
                     list.Add("Excel");
-                }
                 if (checkBoxWord.Checked)
-                {
                     list.Add("Word");
-                }
                 if (checkBoxOutlook.Checked)
-                {
                     list.Add("Outlook");
-                }
                 if (checkBoxPowerPoint.Checked)
-                {
                     list.Add("PowerPoint");
-                }
                 if (checkBoxAccess.Checked)
-                {
                     list.Add("Access");
-                }
                 if (checkBoxProject.Checked)
-                {
                     list.Add("Project");
-                }
                 if (checkBoxVisio.Checked)
-                {
-                    list.Add("Visio");
-                }
+                    list.Add("Visio");                
                 return list;
             }
         }
@@ -91,9 +77,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
                 {
                     CheckBox box = item as CheckBox;
                     if ((null != box) && (box.Checked))
-                    {
                         return true;
-                    }
                 }
                 return false;
             }
@@ -103,15 +87,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
         {
             get
             {
-
-                if (Forms.MainForm.Singleton.CurrentLanguageID == 1031)
-                {
-                    return "Welche Office Anwendungen möchten Sie unterstützen?";
-                }
-                else
-                {
-                    return "Which Office applications you want support?";
-                }
+                return "Which Office applications you want support?";
             }
         }
 
@@ -119,14 +95,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
         {
             get
             {
-                if (Forms.MainForm.Singleton.CurrentLanguageID == 1031)
-                {
-                    return "Wählen Sie eine oder mehrere Office Anwendungen.";
-                }
-                else
-                {
-                    return "Select one or more Office application(s).";
-                }
+                return "Select one or more Office application(s).";
             }
         }
 
@@ -145,21 +114,6 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
                 return _settings;
             }
         }
-
-        public void Translate()
-        {
-            Translation.ToolLanguage language = Forms.MainForm.Singleton.Languages.Where(l => l.LCID == Forms.MainForm.Singleton.CurrentLanguageID).FirstOrDefault();
-            if (null != language)
-            {
-                var component = language.Components["Project Wizard - Host"];
-                Translation.Translator.TranslateControls(this, component.ControlResources);
-            }
-            else
-            {
-                Translation.Translator.TranslateControls(this, "ToolboxControls.ProjectWizard.Controls.HostControl.txt", Forms.MainForm.Singleton.CurrentLanguageID);
-            }
-        }
-
 
         public new void KeyDown(KeyEventArgs e)
         {
@@ -185,9 +139,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
                     break;
                 case Keys.D7:
                     if (checkBoxVisio.Enabled)
-                    {
                         checkBoxVisio.Checked = !checkBoxVisio.Checked;
-                    }
                     break;
                 default:
                     break;
@@ -231,57 +183,10 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
             foreach (XmlNode item in _settings.FirstChild.ChildNodes)
             {
                 if (item.Attributes[0].Value.Equals("TRUE", StringComparison.InvariantCultureIgnoreCase))
-                {
                     result[1] += item.Name + " ";
-                }
             }
 
             return result;
-        }
-
-        #endregion
-
-        #region ILocalizationDesign
-
-        public void EnableDesignView(int lcid, string parentComponentName)
-        {
-
-        }
-
-        public void Localize(Translation.ItemCollection strings)
-        {
-            Translation.Translator.TranslateControls(this, strings);
-        }
-
-        public void Localize(string name, string text)
-        {
-            Translation.Translator.TranslateControl(this, name, text);
-        }
-
-        public string GetCurrentText(string name)
-        {
-            return Translation.Translator.TryGetControlText(this, name);
-        }
-
-        public IContainer Components
-        {
-            get { return components; }
-        }
-
-        public string NameLocalization
-        {
-            get
-            {
-                return null;
-            }
-        }
-
-        public IEnumerable<ILocalizationChildInfo> Childs
-        {
-            get
-            {
-                return new ILocalizationChildInfo[0];
-            }
         }
 
         #endregion
@@ -291,9 +196,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
         private void RaiseChangeEvent()
         {
             if (null != ReadyStateChanged)
-            {
                 ReadyStateChanged(this);
-            }
         }
 
         private void ChangeSettings()
@@ -344,11 +247,11 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
                 RaiseChangeEvent();
             }
             catch (Exception exception)
-            {
+            {                
                 Forms.ErrorForm.ShowError(this, exception, ErrorCategory.NonCritical);
             }
        }
-
+       
        #endregion
     }
 }

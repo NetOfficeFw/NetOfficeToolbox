@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NetOffice.DeveloperToolbox.Translation;
 
 namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
 {
@@ -12,16 +11,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
         {
             get
             {
-                Translation.ToolLanguage language = Forms.MainForm.Singleton.Languages.Where(l => l.LCID == Forms.MainForm.Singleton.CurrentLanguageID).FirstOrDefault();
-                if (null != language)
-                {
-                    var component = language.Components["Project Wizard - Messages"];
-                    return component.ControlResources["StepProgress"].Value2;
-                }
-                else
-                {
-                    return Translator.GetResourceValue("ToolboxControls.ProjectWizard.LocalizationStrings.txt", Forms.MainForm.Singleton.CurrentLanguageID, "StepProgress");
-                }
+                return Translator.GetResourceValue("ToolboxControls.ProjectWizard.LocalizationStrings.txt", "StepProgress");
             }
         }
 
@@ -29,16 +19,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
         {
             get
             {
-                Translation.ToolLanguage language = Forms.MainForm.Singleton.Languages.Where(l => l.LCID == Forms.MainForm.Singleton.CurrentLanguageID).FirstOrDefault();
-                if (null != language)
-                {
-                    var component = language.Components["Project Wizard - Messages"];
-                    return component.ControlResources["Completed"].Value2;
-                }
-                else
-                {
-                    return Translator.GetResourceValue("ToolboxControls.ProjectWizard.LocalizationStrings.txt", Forms.MainForm.Singleton.CurrentLanguageID, "Completed");
-                }
+                return Translator.GetResourceValue("ToolboxControls.ProjectWizard.LocalizationStrings.txt", "Completed");
             }
         }
 
@@ -46,16 +27,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
         {
             get
             {
-                Translation.ToolLanguage language = Forms.MainForm.Singleton.Languages.Where(l => l.LCID == Forms.MainForm.Singleton.CurrentLanguageID).FirstOrDefault();
-                if (null != language)
-                {
-                    var component = language.Components["Project Wizard - Messages"];
-                    return component.ControlResources["Yes"].Value2;
-                }
-                else
-                {
-                    return Translator.GetResourceValue("ToolboxControls.ProjectWizard.LocalizationStrings.txt", Forms.MainForm.Singleton.CurrentLanguageID, "Yes");
-                }
+                return Translator.GetResourceValue("ToolboxControls.ProjectWizard.LocalizationStrings.txt", "Yes");
             }
         }
 
@@ -63,16 +35,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
         {
             get
             {
-                Translation.ToolLanguage language = Forms.MainForm.Singleton.Languages.Where(l => l.LCID == Forms.MainForm.Singleton.CurrentLanguageID).FirstOrDefault();
-                if (null != language)
-                {
-                    var component = language.Components["Project Wizard - Messages"];
-                    return component.ControlResources["No"].Value2;
-                }
-                else
-                {
-                    return Translator.GetResourceValue("ToolboxControls.ProjectWizard.LocalizationStrings.txt", Forms.MainForm.Singleton.CurrentLanguageID, "No");
-                }
+                return Translator.GetResourceValue("ToolboxControls.ProjectWizard.LocalizationStrings.txt", "No");
             }
         }
 
@@ -80,16 +43,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
         {
             get
             {
-                Translation.ToolLanguage language = Forms.MainForm.Singleton.Languages.Where(l => l.LCID == Forms.MainForm.Singleton.CurrentLanguageID).FirstOrDefault();
-                if (null != language)
-                {
-                    var component = language.Components["Project Wizard - Messages"];
-                    return component.ControlResources["AddinOption1"].Value2;
-                }
-                else
-                {
-                    return Translator.GetResourceValue("ToolboxControls.ProjectWizard.LocalizationStrings.txt", Forms.MainForm.Singleton.CurrentLanguageID, "AddinOption1");
-                }
+                return Translator.GetResourceValue("ToolboxControls.ProjectWizard.LocalizationStrings.txt", "AddinOption1");
             }
         }
 
@@ -97,16 +51,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
         {
             get
             {
-                Translation.ToolLanguage language = Forms.MainForm.Singleton.Languages.Where(l => l.LCID == Forms.MainForm.Singleton.CurrentLanguageID).FirstOrDefault();
-                if (null != language)
-                {
-                    var component = language.Components["Project Wizard - Messages"];
-                    return component.ControlResources["AddinOption2"].Value2;
-                }
-                else
-                {
-                    return Translator.GetResourceValue("ToolboxControls.ProjectWizard.LocalizationStrings.txt", Forms.MainForm.Singleton.CurrentLanguageID, "AddinOption2");
-                }
+                return Translator.GetResourceValue("ToolboxControls.ProjectWizard.LocalizationStrings.txt", "AddinOption2");
             }
         }
 
@@ -114,16 +59,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
         {
             get
             {
-                Translation.ToolLanguage language = Forms.MainForm.Singleton.Languages.Where(l => l.LCID == Forms.MainForm.Singleton.CurrentLanguageID).FirstOrDefault();
-                if (null != language)
-                {
-                    var component = language.Components["Project Wizard - Messages"];
-                    return component.ControlResources["AddinOption3"].Value2;
-                }
-                else
-                {
-                    return Translator.GetResourceValue("ToolboxControls.ProjectWizard.LocalizationStrings.txt", Forms.MainForm.Singleton.CurrentLanguageID, "AddinOption3");
-                }
+                return Translator.GetResourceValue("ToolboxControls.ProjectWizard.LocalizationStrings.txt", "AddinOption3");
             }
         }
 
@@ -131,16 +67,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
         {
             get
             {
-                Translation.ToolLanguage language = Forms.MainForm.Singleton.Languages.Where(l => l.LCID == Forms.MainForm.Singleton.CurrentLanguageID).FirstOrDefault();
-                if (null != language)
-                {
-                    var component = language.Components["Project Wizard - Messages"];
-                    return component.ControlResources["AddinOption4"].Value2;
-                }
-                else
-                {
-                    return Translator.GetResourceValue("ToolboxControls.ProjectWizard.LocalizationStrings.txt", Forms.MainForm.Singleton.CurrentLanguageID, "AddinOption4");
-                }
+                return Translator.GetResourceValue("ToolboxControls.ProjectWizard.LocalizationStrings.txt", "AddinOption4");
             }
         }
 
@@ -148,16 +75,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
         {
             get
             {
-                Translation.ToolLanguage language = Forms.MainForm.Singleton.Languages.Where(l => l.LCID == Forms.MainForm.Singleton.CurrentLanguageID).FirstOrDefault();
-                if (null != language)
-                {
-                    var component = language.Components["Project Wizard - Messages"];
-                    return component.ControlResources["Registry"].Value2;
-                }
-                else
-                {
-                    return Translator.GetResourceValue("ToolboxControls.ProjectWizard.LocalizationStrings.txt", Forms.MainForm.Singleton.CurrentLanguageID, "Registry");
-                }
+                return Translator.GetResourceValue("ToolboxControls.ProjectWizard.LocalizationStrings.txt", "Registry");
             }
         }
 
@@ -165,16 +83,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
         {
             get
             {
-                Translation.ToolLanguage language = Forms.MainForm.Singleton.Languages.Where(l => l.LCID == Forms.MainForm.Singleton.CurrentLanguageID).FirstOrDefault();
-                if (null != language)
-                {
-                    var component = language.Components["Project Wizard - Messages"];
-                    return component.ControlResources["CurrentUser"].Value2;
-                }
-                else
-                {
-                    return Translator.GetResourceValue("ToolboxControls.ProjectWizard.LocalizationStrings.txt", Forms.MainForm.Singleton.CurrentLanguageID, "CurrentUser");
-                }
+                return Translator.GetResourceValue("ToolboxControls.ProjectWizard.LocalizationStrings.txt", "CurrentUser");
             }
         }
 
@@ -182,16 +91,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
         {
             get
             {
-                Translation.ToolLanguage language = Forms.MainForm.Singleton.Languages.Where(l => l.LCID == Forms.MainForm.Singleton.CurrentLanguageID).FirstOrDefault();
-                if (null != language)
-                {
-                    var component = language.Components["Project Wizard - Messages"];
-                    return component.ControlResources["LocalMachine"].Value2;
-                }
-                else
-                {
-                    return Translator.GetResourceValue("ToolboxControls.ProjectWizard.LocalizationStrings.txt", Forms.MainForm.Singleton.CurrentLanguageID, "LocalMachine");
-                }
+                return Translator.GetResourceValue("ToolboxControls.ProjectWizard.LocalizationStrings.txt", "LocalMachine");
             }
         }
 
@@ -199,16 +99,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
         {
             get
             {
-                Translation.ToolLanguage language = Forms.MainForm.Singleton.Languages.Where(l => l.LCID == Forms.MainForm.Singleton.CurrentLanguageID).FirstOrDefault();
-                if (null != language)
-                {
-                    var component = language.Components["Project Wizard - Messages"];
-                    return component.ControlResources["LoadBehavior"].Value2;
-                }
-                else
-                {
-                    return Translator.GetResourceValue("ToolboxControls.ProjectWizard.LocalizationStrings.txt", Forms.MainForm.Singleton.CurrentLanguageID, "LoadBehavior");
-                }
+                return Translator.GetResourceValue("ToolboxControls.ProjectWizard.LocalizationStrings.txt", "LoadBehavior");
             }
         }
 
@@ -216,16 +107,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
         {
             get
             {
-                Translation.ToolLanguage language = Forms.MainForm.Singleton.Languages.Where(l => l.LCID == Forms.MainForm.Singleton.CurrentLanguageID).FirstOrDefault();
-                if (null != language)
-                {
-                    var component = language.Components["Project Wizard - Messages"];
-                    return component.ControlResources["Language"].Value2;
-                }
-                else
-                {
-                    return Translator.GetResourceValue("ToolboxControls.ProjectWizard.LocalizationStrings.txt", Forms.MainForm.Singleton.CurrentLanguageID, "Language");
-                }
+                return Translator.GetResourceValue("ToolboxControls.ProjectWizard.LocalizationStrings.txt", "Language");
             }
         }
 
@@ -233,16 +115,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
         {
             get
             {
-                Translation.ToolLanguage language = Forms.MainForm.Singleton.Languages.Where(l => l.LCID == Forms.MainForm.Singleton.CurrentLanguageID).FirstOrDefault();
-                if (null != language)
-                {
-                    var component = language.Components["Project Wizard - Messages"];
-                    return component.ControlResources["Runtime"].Value2;
-                }
-                else
-                {
-                    return Translator.GetResourceValue("ToolboxControls.ProjectWizard.LocalizationStrings.txt", Forms.MainForm.Singleton.CurrentLanguageID, "Runtime");
-                }
+                return Translator.GetResourceValue("ToolboxControls.ProjectWizard.LocalizationStrings.txt", "Runtime");
             }
         }
 
@@ -250,16 +123,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
         {
             get
             {
-                Translation.ToolLanguage language = Forms.MainForm.Singleton.Languages.Where(l => l.LCID == Forms.MainForm.Singleton.CurrentLanguageID).FirstOrDefault();
-                if (null != language)
-                {
-                    var component = language.Components["Project Wizard - Messages"];
-                    return component.ControlResources["Applications"].Value2;
-                }
-                else
-                {
-                    return Translator.GetResourceValue("ToolboxControls.ProjectWizard.LocalizationStrings.txt", Forms.MainForm.Singleton.CurrentLanguageID, "Applications");
-                }
+                return Translator.GetResourceValue("ToolboxControls.ProjectWizard.LocalizationStrings.txt", "Applications");
             }
         }
 
@@ -267,16 +131,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
         {
             get
             {
-                Translation.ToolLanguage language = Forms.MainForm.Singleton.Languages.Where(l => l.LCID == Forms.MainForm.Singleton.CurrentLanguageID).FirstOrDefault();
-                if (null != language)
-                {
-                    var component = language.Components["Project Wizard - Messages"];
-                    return component.ControlResources["ProjectType"].Value2;
-                }
-                else
-                {
-                    return Translator.GetResourceValue("ToolboxControls.ProjectWizard.LocalizationStrings.txt", Forms.MainForm.Singleton.CurrentLanguageID, "ProjectType");
-                }
+                return Translator.GetResourceValue("ToolboxControls.ProjectWizard.LocalizationStrings.txt", "ProjectType");
             }
         }
 
@@ -284,16 +139,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
         {
             get
             {
-                Translation.ToolLanguage language = Forms.MainForm.Singleton.Languages.Where(l => l.LCID == Forms.MainForm.Singleton.CurrentLanguageID).FirstOrDefault();
-                if (null != language)
-                {
-                    var component = language.Components["Project Wizard - Messages"];
-                    return component.ControlResources["ProjectFolder"].Value2;
-                }
-                else
-                {
-                    return Translator.GetResourceValue("ToolboxControls.ProjectWizard.LocalizationStrings.txt", Forms.MainForm.Singleton.CurrentLanguageID, "ProjectFolder");
-                }
+                return Translator.GetResourceValue("ToolboxControls.ProjectWizard.LocalizationStrings.txt", "ProjectFolder");
             }
         }
     }

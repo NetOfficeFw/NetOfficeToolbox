@@ -40,7 +40,6 @@ namespace NetOffice.DeveloperToolbox.Controls.Text
 
 			// Enables double buffering (to remove flickering) and enables user paint.
 			SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint, true);
-
 		}
 
 		/// <summary>
@@ -108,9 +107,7 @@ namespace NetOffice.DeveloperToolbox.Controls.Text
 					m_topPartSizePercent = value;
 				}
 				else
-				{
-				    throw new InvalidEnumArgumentException("The value must be more than zero. and less than 100.");
-				}
+					throw new InvalidEnumArgumentException("The value must be more than zero. and less than 100.");
 			}
 		}
 
@@ -155,8 +152,6 @@ namespace NetOffice.DeveloperToolbox.Controls.Text
 			{
 				m_scrollingOffset = (int)this.Font.SizeInPoints * m_text.Length;
 			}
-
-
 
 			int topSizeWidth = (int)(this.Width * m_topPartSizePercent / 100.0f);
 

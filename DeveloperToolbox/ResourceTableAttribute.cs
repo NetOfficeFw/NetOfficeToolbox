@@ -24,7 +24,7 @@ namespace NetOffice.DeveloperToolbox
         {
             Address = address;
         }
-
+        
         /// <summary>
         /// Return all names and values for localization based on language
         /// </summary>
@@ -37,7 +37,8 @@ namespace NetOffice.DeveloperToolbox
             Assembly assembly = type.Assembly;
             object[] obj = type.GetCustomAttributes(typeof(ResourceTableAttribute), false);
             ResourceTableAttribute attrib = obj[0] as ResourceTableAttribute;
-            return Translation.Translator.GetTranslateResources(control, attrib.Address, languageID);
+            return null;
+            //return Translation.Translator.GetTranslateResources(control, attrib.Address, languageID);
         }
 
         /// <summary>
@@ -54,7 +55,8 @@ namespace NetOffice.DeveloperToolbox
             string content = reader.ReadToEnd();
             reader.Dispose();
             stream.Dispose();
-            return Translation.Translator.ReadResourceNames(content);
+            return null;
+//            return Translation.Translator.ReadResourceNames(content);
         }
     }
 }

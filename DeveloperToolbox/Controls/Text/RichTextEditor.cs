@@ -27,7 +27,7 @@ namespace NetOffice.DeveloperToolbox.Controls.Text
             GetFontCollection();
             _isInitialized = true;
         }
-
+        
         #endregion
 
         #region Events
@@ -38,9 +38,7 @@ namespace NetOffice.DeveloperToolbox.Controls.Text
         private void RaiseTextChanged()
         {
             if (null != TextChanged)
-            {
                 TextChanged(this, EventArgs.Empty);
-            }
         }
 
         #endregion
@@ -49,7 +47,7 @@ namespace NetOffice.DeveloperToolbox.Controls.Text
 
         public string RichText
         {
-            get
+            get 
             {
                 return richTextBox1.Rtf;
             }
@@ -74,9 +72,7 @@ namespace NetOffice.DeveloperToolbox.Controls.Text
         {
             InstalledFontCollection InsFonts = new InstalledFontCollection();
             foreach (FontFamily item in InsFonts.Families)
-            {
                 toolStripComboBox1.Items.Add(item.Name);
-            }
 
             toolStripComboBox1.SelectedIndex = 0;
         }
@@ -87,15 +83,11 @@ namespace NetOffice.DeveloperToolbox.Controls.Text
             if (null != font)
             {
                 if (font.Bold)
-                {
                     richTextBox1.SelectionFont = new Font(font.FontFamily, font.SizeInPoints, FontStyle.Regular);
-                }
                 else
-                {
                     richTextBox1.SelectionFont = new Font(font.FontFamily, font.SizeInPoints, FontStyle.Bold);
-                }
             }
-            else
+            else             
             {
                 richTextBox1.SelectionFont = new Font(toolStripComboBox1.SelectedItem.ToString(), GetSelectedFontSize(), FontStyle.Bold);
             }
@@ -107,13 +99,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Text
             if (null != font)
             {
                 if (font.Italic)
-                {
                     richTextBox1.SelectionFont = new Font(font.FontFamily, font.SizeInPoints, FontStyle.Regular);
-                }
                 else
-                {
                     richTextBox1.SelectionFont = new Font(font.FontFamily, font.SizeInPoints, FontStyle.Italic);
-                }
             }
             else
             {
@@ -128,13 +116,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Text
             if (null != font)
             {
                 if (font.Underline)
-                {
                     richTextBox1.SelectionFont = new Font(font.FontFamily, font.SizeInPoints, FontStyle.Regular);
-                }
                 else
-                {
                     richTextBox1.SelectionFont = new Font(font.FontFamily, font.SizeInPoints, FontStyle.Underline);
-                }
             }
             else
             {
@@ -148,13 +132,9 @@ namespace NetOffice.DeveloperToolbox.Controls.Text
             if (null != font)
             {
                 if (font.Strikeout)
-                {
                     richTextBox1.SelectionFont = new Font(font.FontFamily, font.SizeInPoints, FontStyle.Regular);
-                }
                 else
-                {
                     richTextBox1.SelectionFont = new Font(font.FontFamily, font.SizeInPoints, FontStyle.Strikeout);
-                }
             }
             else
             {
@@ -178,42 +158,30 @@ namespace NetOffice.DeveloperToolbox.Controls.Text
         private void SetSelectionFontSize()
         {
             if(null != richTextBox1.SelectionFont)
-            {
                 richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont.Name, GetSelectedFontSize(), richTextBox1.SelectionFont.Style);
-            }
             else
-            {
                 richTextBox1.SelectionFont = new Font(toolStripComboBox1.SelectedItem.ToString(), GetSelectedFontSize(), FontStyle.Regular);
-            }
         }
 
         private void SetSelectionFontColor()
         {
             if (colorDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
                 richTextBox1.SelectionColor = colorDialog1.Color;
-            }
         }
 
         private void SetSelectionBackColor()
         {
             if (colorDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
                 richTextBox1.SelectionBackColor = colorDialog1.Color;
-            }
         }
 
         private float GetSelectedFontSize()
         {
             float size;
             if (float.TryParse(toolStripComboBox2.SelectedItem.ToString(), out size))
-            {
                 return size;
-            }
             else
-            {
                 return 8.0f;
-            }
         }
 
         #endregion
@@ -225,9 +193,7 @@ namespace NetOffice.DeveloperToolbox.Controls.Text
         private void RaiseRichTextChanged()
         {
             if (null != PropertyChanged)
-            {
                 PropertyChanged(this, _changeArgs);
-            }
         }
 
         #endregion
@@ -239,9 +205,7 @@ namespace NetOffice.DeveloperToolbox.Controls.Text
             try
             {
                 if (!_isInitialized)
-                {
                     return;
-                }
                 SetSelectionFont();
             }
             catch (Exception exception)
@@ -255,9 +219,7 @@ namespace NetOffice.DeveloperToolbox.Controls.Text
             try
             {
                 if (!_isInitialized)
-                {
                     return;
-                }
                 SetSelectionFontSize();
             }
             catch (Exception exception)
@@ -271,9 +233,7 @@ namespace NetOffice.DeveloperToolbox.Controls.Text
             try
             {
                 if (!_isInitialized)
-                {
                     return;
-                }
                 SetSelectionBold();
             }
             catch (Exception exception)
@@ -287,9 +247,7 @@ namespace NetOffice.DeveloperToolbox.Controls.Text
             try
             {
                 if (!_isInitialized)
-                {
                     return;
-                }
                 SetSelectionItalic();
             }
             catch (Exception exception)
@@ -303,9 +261,7 @@ namespace NetOffice.DeveloperToolbox.Controls.Text
             try
             {
                 if (!_isInitialized)
-                {
                     return;
-                }
                 SetSelectionUnderline();
             }
             catch (Exception exception)
@@ -319,9 +275,7 @@ namespace NetOffice.DeveloperToolbox.Controls.Text
             try
             {
                 if (!_isInitialized)
-                {
                     return;
-                }
 
                 SetSelectionStrikeout();
             }
@@ -336,9 +290,7 @@ namespace NetOffice.DeveloperToolbox.Controls.Text
             try
             {
                 if (!_isInitialized)
-                {
                     return;
-                }
                 SetSelectionFontColor();
             }
             catch (Exception exception)
@@ -352,9 +304,7 @@ namespace NetOffice.DeveloperToolbox.Controls.Text
             try
             {
                 if (!_isInitialized)
-                {
                     return;
-                }
                 SetSelectionBackColor();
             }
             catch (Exception exception)
@@ -368,9 +318,7 @@ namespace NetOffice.DeveloperToolbox.Controls.Text
             try
             {
                 if (!_isInitialized)
-                {
                     return;
-                }
                 if (null != richTextBox1.SelectionFont)
                 {
                     toolStripComboBox2.Text = Convert.ToInt32(richTextBox1.SelectionFont.Size).ToString();
@@ -391,9 +339,7 @@ namespace NetOffice.DeveloperToolbox.Controls.Text
                 dlg.Filter = "Rich Text (*.rtf)|*.rtf|Text (*.txt)|*.txt";
                 dlg.InitialDirectory =  Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
                 if (DialogResult.OK == dlg.ShowDialog(this))
-                {
                     richTextBox1.LoadFile(dlg.FileName);
-                }
             }
             catch (Exception exception)
             {
@@ -406,9 +352,7 @@ namespace NetOffice.DeveloperToolbox.Controls.Text
             try
             {
                 if (!_isInitialized)
-                {
                     return;
-                }
                 RaiseTextChanged();
                 RaiseRichTextChanged();
             }

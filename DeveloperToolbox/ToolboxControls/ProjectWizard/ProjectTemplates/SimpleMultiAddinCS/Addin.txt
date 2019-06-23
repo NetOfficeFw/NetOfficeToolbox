@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Reflection;
-using System.Windows.Forms;
+using System.Windows.Forms; 
 using System.Runtime.InteropServices;
 using Microsoft.Win32;
 using Extensibility;
 $usingItems$
 namespace $safeprojectname$
 {
-	[ProgId("$safeprojectname$.Addin"), Guid("$randomGuid$"), ComVisible(true)]
+	[ProgId("$safeprojectname$.Addin"), Guid("$randomGuid$"), Codebase]
 	public class Addin : IDTExtensibility2$ribbonDefine$$taskpaneDefine$
 	{
 		#region Fields
@@ -40,7 +40,7 @@ $applicationConstruction$
 			}
 		}
 
-		void IDTExtensibility2.OnStartupComplete(ref Array custom)
+ 		void IDTExtensibility2.OnStartupComplete(ref Array custom)
 		{
 			try
 			{
@@ -81,7 +81,7 @@ $applicationDestroy$
 		}
 
 		void IDTExtensibility2.OnBeginShutdown(ref Array custom)
-		{
+ 		{
 			try
 			{
 
@@ -116,7 +116,7 @@ $classicUICreateRemoveMethod$
 				RegistryKey key = Registry.ClassesRoot.CreateSubKey("CLSID\\{" + type.GUID.ToString().ToUpper() + "}\\InprocServer32\\" + assemblyVersion);
 				key.SetValue("CodeBase", thisAssembly.CodeBase);
 				key.Close();
-
+				
 				Registry.ClassesRoot.CreateSubKey(@"CLSID\{" + type.GUID.ToString().ToUpper() + @"}\Programmable");
 				key = Registry.ClassesRoot.OpenSubKey(@"CLSID\{" + type.GUID.ToString().ToUpper() + @"}\InprocServer32"), true);
 				key.SetValue("", System.Environment.SystemDirectory + @"\mscoree.dll", RegistryValueKind.String);

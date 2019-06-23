@@ -20,7 +20,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
         #endregion
 
         #region Events
-
+        
         /// <summary>
         /// Rises when the hotkey is pressed
         /// </summary>
@@ -46,7 +46,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
         {
             get { return _keys; }
         }
-
+        
         #endregion
 
         #region Methods
@@ -69,10 +69,10 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
         /// </summary>
         /// <param name="h">The Hotkey</param>
         public static void UnRegister(Hotkey h)
-        {
+        { 
             h.Dispose();
         }
-
+        
         #endregion
 
         #region IDisposable Member
@@ -84,10 +84,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
         /// </summary>
         public void Dispose()
         {
-            if (_disposed)
-            {
-                return;
-            }
+            if (_disposed) return;
             _disposed = true;
             wnd.UnRegister(this);
         }
@@ -171,9 +168,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
                     { h.HotkeyPressed(h, null); }
                 }
                 else
-                {
                     base.WndProc(ref m);
-                }
             }
 
             internal static void Register(Hotkey h)
@@ -181,17 +176,11 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
                 h._id = Default.getNewId(GCHandle.ToIntPtr(GCHandle.Alloc(h, GCHandleType.WeakTrackResurrection)));
                 int modifiers = 0;
                 if ((h._keys & Keys.Alt) == Keys.Alt)
-                {
                     modifiers = modifiers | MOD_ALT;
-                }
                 if ((h._keys & Keys.Control) == Keys.Control)
-                {
                     modifiers = modifiers | MOD_CONTROL;
-                }
                 if ((h._keys & Keys.Shift) == Keys.Shift)
-                {
                     modifiers = modifiers | MOD_SHIFT;
-                }
                 Keys k = h._keys & ~Keys.Control & ~Keys.Shift & ~Keys.Alt;
                 RegisterHotKey((IntPtr)Default.Handle, h._id, modifiers, (int)k);
             }
@@ -209,5 +198,5 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
         }
 
         #endregion
-    }
+    } 
 }

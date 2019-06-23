@@ -76,7 +76,7 @@ namespace NetOffice.DeveloperToolbox
                 if (textBoxCustomFolder.Text == "")
                 {
                     string message = ProjectWizardControl.CurrentLanguageID == 1031 ? "Bitte wählen Sie einen benutzerdefinierten Speicherordner." : "Choose a custom folder first.";
-                    MessageBox.Show(this, message, "Developer Toolbox", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(this, message, "Developer Toolbox", MessageBoxButtons.OK, MessageBoxIcon.Error); 
                     return;
                 }
 
@@ -114,7 +114,7 @@ namespace NetOffice.DeveloperToolbox
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.Close();
         }
-
+        
         private void radioButtonCustomFolder_CheckedChanged(object sender, EventArgs e)
         {
             buttonChooseFolder.Enabled = radioButtonCustomFolder.Checked;

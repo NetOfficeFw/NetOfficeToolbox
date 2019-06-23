@@ -28,8 +28,8 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
         #region Ctor
 
         internal ToolsSingleAddinConverterCS(ProjectOptions options) : base(options)
-        {
-
+        { 
+        
         }
 
         #endregion
@@ -58,7 +58,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
             _solutionFile = _solutionFile.Replace("$projectguid$", _projectGuid.ToString().ToUpper());
             _solutionFile = _solutionFile.Replace("$solutionformat$", this.SolutionFormats[Options.IDE]);
             _solutionFile = _solutionFile.Replace("$ideversion$", this.Environments[Options.IDE, Options.Language]);
-
+            
             _projectFile = _projectFile.Replace("$safeprojectname$", Options.AssemblyName);
             _projectFile = _projectFile.Replace("$projectguid$", _projectGuid.ToString().ToUpper());
             _projectFile = _projectFile.Replace("$toolsversion$", this.Tools[Options.IDE]);
@@ -73,9 +73,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
                 {
                     int argumentStartIndex = applicationPath.IndexOf("/", 0);
                     if (argumentStartIndex > -1)
-                    {
                         applicationPath = applicationPath.Substring(0, argumentStartIndex).Trim();
-                    }
                     _projectUserFile = _projectUserFile.Replace("$toolsversion$", this.Tools[Options.IDE]);
                     _projectUserFile = _projectUserFile.Replace("$path$", applicationPath);
                     _applicationFound = true;
@@ -83,13 +81,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
             }
 
             if (Options.UseTaskPane)
-            {
                 _projectFile = _projectFile.Replace("$taskpaneFileReference$", "  <Compile Include=\"MyTaskPane.cs\">\r\n   <SubType>UserControl</SubType>\r\n   </Compile>\r\n  <Compile Include=\"MyTaskPane.Designer.cs\">\r\n    <DependentUpon>MyTaskPane.cs</DependentUpon>\r\n  </Compile>");
-            }
             else
-            {
                 _projectFile = _projectFile.Replace("$taskpaneFileReference$", String.Empty);
-            }
 
             _addinFile = _addinFile.Replace("$appName$", Options.OfficeApps[0]);
             _addinFile = _addinFile.Replace("$safeprojectname$", Options.AssemblyName);
@@ -97,7 +91,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
             _addinFile = _addinFile.Replace("$randomGuid$", Guid.NewGuid().ToString().ToUpper());
             _addinFile = _addinFile.Replace("$name$", Options.AssemblyName);
             _addinFile = _addinFile.Replace("$description$", Options.AssemblyDescription);
-            _addinFile = _addinFile.Replace("$loadbehavior$", Options.LoadBehaviour.ToString());
+            _addinFile = _addinFile.Replace("$loadbehavior$", ConvertLoadBehavoir(Options.LoadBehaviour));
 
             _assemblyFile = _assemblyFile.Replace("$safeprojectname$", Options.AssemblyName);
             _assemblyFile = _assemblyFile.Replace("$safeprojectdescription$", Options.AssemblyDescription);
@@ -110,21 +104,12 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
             _taskPaneDesignerFile = _taskPaneDesignerFile.Replace("$safeprojectname$", Options.AssemblyName);
             _taskPaneDesignerFile = _taskPaneDesignerFile.Replace("$usingItems$", this.GetNetOfficeProjectUsingItems());
 
-
-            string attributeString = "";
-
-            if (Options.HiveKey == "LocalMachine")
-            {
-                attributeString = "RegistryLocation(RegistrySaveLocation.LocalMachine)";
-            }
-            else
-            {
-                attributeString = "RegistryLocation(RegistrySaveLocation.CurrentUser)";
-            }
-
+            string attributeString = String.Empty;
             if (Options.UseRibbonUI)
             {
-                 attributeString += ", CustomUI(\"$safeprojectname$.RibbonUI.xml\")".Replace("$safeprojectname$", Options.AssemblyName);
+                if (attributeString != "")
+                    attributeString += ", ";
+                attributeString += "CustomUI(\"RibbonUI.xml\", true)".Replace("$safeprojectname$", Options.AssemblyName);
                 _addinFile = _addinFile.Replace("$ribbonProperty$", "\t\tinternal Office.IRibbonUI RibbonUI { get; private set; }");
                 _projectFile = _projectFile.Replace("$ribbonFileReference$", "  <ItemGroup>\r\n    <EmbeddedResource Include=\"RibbonUI.xml\" />\r\n  </ItemGroup>");
                 _ribbonFile = _ribbonFile.Replace("$safeprojectname$", Options.AssemblyName);
@@ -139,27 +124,33 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
                 _projectFile = _projectFile.Replace("$ribbonFileReference$", String.Empty);
                 _addinFile = _addinFile.Replace("$ribbonLoad$", String.Empty);
             }
-
+            
             if (Options.UseTaskPane)
             {
-                if (Options.UseRibbonUI || Options.HiveKey == "LocalMachine")
-                {
-                    attributeString += ", CustomPane(typeof(MyTaskPane), \"My TaskPane\", true, PaneDockPosition.msoCTPDockPositionRight)";
-                }
-                else
-                {
-                    attributeString += "CustomPane(typeof(MyTaskPane), \"My TaskPane\", true, PaneDockPosition.msoCTPDockPositionRight)";
-                }
+                if (attributeString != "")
+                    attributeString += ", ";
+                attributeString += "CustomPane(typeof(MyTaskPane), \"My TaskPane\", true, PaneDockPosition.msoCTPDockPositionRight)";
             }
             else
             {
                 _addinFile = _addinFile.Replace("$customPane$", String.Empty);
             }
 
-            if (!String.IsNullOrWhiteSpace(attributeString))
+            if (Options.HiveKey == "LocalMachine")
             {
-                attributeString = "\t[" + attributeString + "]";
+                if (attributeString != "")
+                    attributeString += ", ";
+                attributeString += "RegistryLocation(RegistrySaveLocation.LocalMachine)";
             }
+            else
+            {
+                if (attributeString != "")
+                    attributeString += ", ";
+                attributeString += "RegistryLocation(RegistrySaveLocation.InstallScopeCurrentUser)";
+            }
+
+            if (!String.IsNullOrWhiteSpace(attributeString))
+                attributeString = "\t[" + attributeString + "]";
             _addinFile = _addinFile.Replace("$attributes$", attributeString);
 
             string getVersion = "\t\t\tConsole.WriteLine(\"Addin started in %appName% Version {0}\", Application.Version);".Replace("%appName%", Options.OfficeApps[0]);
@@ -213,19 +204,15 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
         }
 
         private void WriteResultFilesToTempFolder()
-        {
+        {            
             File.AppendAllText(Path.Combine(TempSolutionPath, String.Format("{0}.sln", Options.AssemblyName)), _solutionFile, Encoding.UTF8);
             File.AppendAllText(Path.Combine(TempProjectPath, String.Format("{0}.csproj", Options.AssemblyName)), _projectFile, Encoding.UTF8);
             File.AppendAllText(Path.Combine(TempProjectPath, "Addin.cs"), _addinFile, Encoding.UTF8);
             if(_applicationFound)
-            {
                 File.AppendAllText(Path.Combine(TempProjectPath, String.Format("{0}.csproj.user", Options.AssemblyName)), _projectUserFile, Encoding.UTF8);
-            }
             File.AppendAllText(Path.Combine(TempPropertiesPath, "AssemblyInfo.cs"), _assemblyFile, Encoding.UTF8);
             if (Options.UseRibbonUI)
-            {
-                File.AppendAllText(Path.Combine(TempProjectPath, "RibbonUI.xml"), _ribbonFile, Encoding.UTF8);
-            }
+                 File.AppendAllText(Path.Combine(TempProjectPath, "RibbonUI.xml"), _ribbonFile, Encoding.UTF8);
             if (Options.UseTaskPane)
             {
                 File.AppendAllText(Path.Combine(TempProjectPath, "MyTaskPane.cs"), _taskPaneFile, Encoding.UTF8);

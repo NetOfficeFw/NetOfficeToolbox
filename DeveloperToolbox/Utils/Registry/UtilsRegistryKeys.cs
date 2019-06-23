@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 using Microsoft.Win32;
 
 namespace NetOffice.DeveloperToolbox.Utils.Registry
@@ -10,11 +11,16 @@ namespace NetOffice.DeveloperToolbox.Utils.Registry
     {
         #region Member
 
-        UtilsRegistryKey _parent;
+        private UtilsRegistryKey _parent;
 
         #endregion
 
         #region Construction
+
+        protected UtilsRegistryKeys()
+        {
+
+        }
 
         internal UtilsRegistryKeys(UtilsRegistryKey parent)
         {
@@ -47,11 +53,66 @@ namespace NetOffice.DeveloperToolbox.Utils.Registry
             }
         }
 
+        public UtilsRegistryKey this[int index]
+        {
+            get
+            {
+                RegistryKey parentKey = _parent.Open();
+                if (null == parentKey)
+                    throw new InvalidOperationException("Unable to open parent key.");
+                string[] valueNames = parentKey.GetSubKeyNames();
+                parentKey.Close();
+
+                RegistryKey key = _parent.Open();
+                UtilsRegistryKey newKey = new UtilsRegistryKey(_parent.Root, key, _parent.Path + "\\" + valueNames[index]);
+                key.Close();
+                return newKey;
+            }
+        }
+
+        internal string LastName
+        {
+            get
+            {
+                RegistryKey key = _parent.Open();
+                if (null != key)
+                {
+                    string[] valueNames = key.GetSubKeyNames();
+                    string result = valueNames[valueNames.Length -1];
+                    key.Close();
+                    return result;
+                }
+                else
+                    return null;
+            }
+        }
+
         #endregion
 
         #region Methods
 
-        public UtilsRegistryEntry Add(RegistryValueKind kind, object value)
+        public int IndexOf(string name)
+        {
+            RegistryKey key = _parent.Parent.Open();
+            if (null != key)
+            {
+                int i = 0;
+                string[] valueNames = key.GetSubKeyNames();
+                foreach (var item in valueNames)
+                {
+                    if (item == name)
+                    {
+                        key.Close();
+                        return i;
+                    }
+                    i++;
+                }
+                key.Close();
+            }
+            throw new ArgumentOutOfRangeException("name");
+        }
+
+        public virtual UtilsRegistryEntry Add(RegistryValueKind kind, object value)
         {
             RegistryKey key = _parent.Open(true);
             string[] names = key.GetValueNames();
@@ -77,9 +138,7 @@ namespace NetOffice.DeveloperToolbox.Utils.Registry
                     }
                 }
                 if (!found)
-                {
                     break;
-                }
                 else
                 {
                     result = "#Neu " + kind.ToString() + i.ToString();
@@ -100,9 +159,7 @@ namespace NetOffice.DeveloperToolbox.Utils.Registry
             {
                 string[] valueNames = key.GetSubKeyNames();
                 foreach (string item in valueNames)
-                {
                     yield return this[item];
-                }
                 key.Close();
             }
         }
@@ -114,9 +171,7 @@ namespace NetOffice.DeveloperToolbox.Utils.Registry
             {
                 string[] valueNames = key.GetSubKeyNames();
                 foreach (string item in valueNames)
-                {
                     yield return this[item];
-                }
                 key.Close();
             }
         }

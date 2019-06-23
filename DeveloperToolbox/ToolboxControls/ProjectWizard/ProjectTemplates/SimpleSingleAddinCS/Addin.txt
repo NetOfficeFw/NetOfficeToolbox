@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Reflection;
-using System.Windows.Forms;
+using System.Windows.Forms; 
 using System.Runtime.InteropServices;
 using Microsoft.Win32;
 using Extensibility;
@@ -40,7 +40,7 @@ $applicationConstruction$
 			}
 		}
 
-		void IDTExtensibility2.OnStartupComplete(ref Array custom)
+ 		void IDTExtensibility2.OnStartupComplete(ref Array custom)
 		{
 			try
 			{
@@ -81,7 +81,7 @@ $applicationDestroy$
 		}
 
 		void IDTExtensibility2.OnBeginShutdown(ref Array custom)
-		{
+ 		{
 			try
 			{
 

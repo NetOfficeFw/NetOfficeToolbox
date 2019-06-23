@@ -94,18 +94,14 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
                     {
                         Control winControl = item as Control;
                         if (winControl.Visible)
-                        {
                             item.KeyDown(e);
-                        }
                     }
                 }
             }
             else
             {
                 if (e.KeyCode == Keys.Return)
-                {
                     buttonCreateProject_Click(buttonCreateProject, EventArgs.Empty);
-                }
             }
         }
 
@@ -163,48 +159,37 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
 
         public void Activate(bool firstTime)
         {
+            controlForeColorAnimator1.Start(false);
+            controlBackColorAnimator1.Start(false);
         }
 
         public void Deactivated()
         {
+            controlForeColorAnimator1.Stop();
+            controlBackColorAnimator1.Stop();
+
             if (IsCurrentlyActive)
-            {
                 Reset();
-            }
         }
 
         public void LoadComplete()
         {
-
+           
         }
 
         public void LoadConfiguration(System.Xml.XmlNode configNode)
         {
-
+        
         }
 
         public void SaveConfiguration(System.Xml.XmlNode configNode)
         {
-
+            
         }
 
-        public void SetLanguage(int id)
+        public Stream GetHelpText()
         {
-
-        }
-
-        public Stream GetHelpText(int lcid)
-        {
-            Translation.ToolLanguage language = Host.Languages[lcid, false];
-            if (null != language)
-            {
-                string content = language.Components["Project Wizard - Help"].ControlResources["richTextBoxHelpContent"].Value2;
-                return Resources.ResourceUtils.CreateStreamFromString(content);
-            }
-            else
-            {
-                return Resources.ResourceUtils.ReadStream("ToolboxControls.ProjectWizard.Info" + lcid.ToString() + ".rtf");
-            }
+            return Resources.ResourceUtils.ReadStream("ToolboxControls.ProjectWizard.Info1033.rtf");
         }
 
         public void Release()
@@ -215,66 +200,6 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
         public IContainer Components
         {
             get { return components; }
-        }
-
-        #endregion
-
-        #region ILocalizationDesign
-
-        public void EnableDesignView(int lcid, string parentComponentName)
-        {
-            panelWizardHost.Visible = true;
-            finishButton.Visible = true;
-            cancelButton.Visible = true;
-            backButton.Visible = true;
-            nextButton.Visible = true;
-            panelLeftHeader.Visible = false;
-            panel2.Visible = false;
-            panel3.Visible = false;
-        }
-
-        public void Localize(Translation.ItemCollection strings)
-        {
-            Translation.Translator.TranslateControls(this, strings);
-        }
-
-        public void Localize(string name, string text)
-        {
-            Translation.Translator.TranslateControl(this, name, text);
-        }
-
-        public string GetCurrentText(string name)
-        {
-            return Translation.Translator.TryGetControlText(this, name);
-        }
-
-        public string NameLocalization
-        {
-            get
-            {
-                return null;
-            }
-        }
-
-        public IEnumerable<ILocalizationChildInfo> Childs
-        {
-            get
-            {
-                return new LocalizationDefaultChildInfo[] {
-                    new LocalizationDefaultChildInfo("Captions", typeof(LocalizedCaptionsControl)),
-                    new LocalizationDefaultChildInfo("Messages", typeof(LocalizationStringsControl)),
-                    new LocalizationDefaultChildInfo("Captions", typeof(LocalizationStringsControl)),
-                    new LocalizationDefaultChildInfo("Host", typeof(HostControl)),
-                    new LocalizationDefaultChildInfo("Load", typeof(LoadControl)),
-                    new LocalizationDefaultChildInfo("Environment", typeof(EnvironmentControl)),
-                    new LocalizationDefaultChildInfo("Gui", typeof(GuiControl)),
-                    new LocalizationDefaultChildInfo("Name", typeof(NameControl)),
-                    new LocalizationDefaultChildInfo("Project", typeof(ProjectControl)),
-                    new LocalizationDefaultChildInfo("Summary", typeof(SummaryControl)),
-                    new LocalizationDefaultChildInfo("Finish", typeof(FinishControl)),
-                    new LocalizationDefaultChildInfo("Help", typeof(NetOffice.DeveloperToolbox.Controls.InfoLayer.InfoControl))
-                };
-            }
         }
 
         #endregion
@@ -318,7 +243,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
             control2.Dock = DockStyle.Fill;
             control3.Dock = DockStyle.Fill;
             control4.Dock = DockStyle.Fill;
-            control4.Dock = DockStyle.Fill;
+            control5.Dock = DockStyle.Fill;
 
             SummaryControl control6 = new SummaryControl(_listControls);
 
@@ -342,9 +267,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
             }
 
             while (panelControls.Controls.Count > 0)
-            {
                 panelControls.Controls.RemoveAt(0);
-            }
             _listControls.Clear();
 
             if (null != _currentControl)
@@ -355,11 +278,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
             }
             panelHint.Visible = true;
             panelWizardHost.Visible = false;
-
+    
             if(null != _finishControl)
-            {
                 _finishControl.Deactivate();
-            }
         }
 
         private int GetControlIndex(IWizardControl control)
@@ -368,9 +289,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
             foreach (IWizardControl item in _listControls)
             {
                 if (item == control)
-                {
                     return i;
-                }
                 i++;
             }
             throw new ArgumentOutOfRangeException("control");
@@ -416,7 +335,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
                                     otherChecked = true;
                                 }
                             }
-	                    }
+	                    }   
                     }
                 }
 
@@ -434,9 +353,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
                     if (null != ctrl)
                     {
                         if (ProjectType.NetOfficeAddin == ctrl.SelectedProjectType() || ProjectType.SimpleAddin == ctrl.SelectedProjectType())
-                        {
                             return true;
-                        }
                     }
                 }
                 return false;
@@ -453,9 +370,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
                     if (null != ctrl)
                     {
                         if (ProjectType.SimpleAddin == ctrl.SelectedProjectType())
-                        {
                             return true;
-                        }
                     }
                 }
                 return false;
@@ -474,9 +389,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
             string targetControlName = String.Format("pictureBoxStep{0}", step + 1);
             PictureBox stepBox = panelLeftHeader.Controls[targetControlName] as PictureBox;
             if (null != stepBox)
-            {
                 stepBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            }
         }
 
         private void SetActiveControl(IWizardControl control)
@@ -485,19 +398,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
             {
                 IWizardControl oldActiveControl = _currentControl as IWizardControl;
                 if (null != oldActiveControl)
-                {
                     oldActiveControl.ReadyStateChanged -= new ReadyStateChangedHandler(currentControl_ReadyStateChanged);
-                }
 
                 foreach (Control item in panelControls.Controls)
-                {
                     item.Visible = false;
-                }
 
                 if (null != oldActiveControl)
-                {
                     oldActiveControl.Deactivate();
-                }
 
                 (control as Control).Visible = true;
                 _currentControl = control;
@@ -516,27 +423,20 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
                     nextButton.Visible = true;
                     finishButton.Visible = false;
                 }
-
-                (_currentControl as IWizardControl).Translate();
+                
                 (_currentControl as IWizardControl).Activate();
                 labelCaption.Text = Captions.GetCaption(_currentControl as IWizardControl);
                 labelDescription.Text = Captions.GetDescription(_currentControl as IWizardControl);
                 if ((_currentControl as IWizardControl).Image == ImageType.Question)
-                {
                     imageBox.Image = imageListIcons.Images[0];
-                }
                 else
-                {
                     imageBox.Image = imageListIcons.Images[1];
-                }
                 nextButton.Enabled = (_currentControl as IWizardControl).IsReadyForNextStep;
 
                 int currentIndex = GetControlIndex(_currentControl) + 1;
                 int totalCount = IsAddinProject == true ? _listControls.Count : _listControls.Count - 2;
                 if (currentIndex > totalCount)
-                {
                     currentIndex = totalCount;
-                }
 
                 labelCurrentStep.Text = Localized.StepProgress.Replace("{0}", currentIndex.ToString()).Replace("{1}", totalCount.ToString());
 
@@ -558,34 +458,25 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
         {
             IWizardControl oldActiveControl = _currentControl as IWizardControl;
             if (null != oldActiveControl)
-            {
                 oldActiveControl.ReadyStateChanged -= new ReadyStateChangedHandler(currentControl_ReadyStateChanged);
-            }
 
             foreach (Control item in panelControls.Controls)
-            {
                 item.Visible = false;
-            }
 
             backButton.Visible = false;
             nextButton.Visible = false;
             finishButton.Visible = false;
             cancelButton.Visible = false;
 
-            _finishControl.Translate();
             _finishControl.Activate();
-
+            
             labelCurrentStep.Text = Localized.Completed;;
             labelCaption.Text = _finishControl.Caption;
             labelDescription.Text = _finishControl.Description;
             if (_finishControl.Image == ImageType.Question)
-            {
                 imageBox.Image = imageListIcons.Images[0];
-            }
             else
-            {
                 imageBox.Image = imageListIcons.Images[1];
-            }
 
             _finishControl.SetSolutionPath(solutionPath);
 
@@ -675,19 +566,13 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
         private void FinishControl_ReadyStateChanged(Control sender)
         {
             if (_finishControl.IsReadyForNextStep)
-            {
                 Reset();
-            }
         }
 
         private void buttonCreateProject_Click(object sender, EventArgs e)
         {
             try
             {
-                foreach (var item in _listControls)
-                {
-                    item.Translate();
-                }
                 CreateNewProject();
             }
             catch (Exception exception)

@@ -28,8 +28,8 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
         #region Ctor
 
         internal SimpleMultiAddinConverterCS(ProjectOptions options) : base(options)
-        {
-
+        { 
+        
         }
 
         #endregion
@@ -58,7 +58,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
             _solutionFile = _solutionFile.Replace("$projectguid$", _projectGuid.ToString().ToUpper());
             _solutionFile = _solutionFile.Replace("$solutionformat$", this.SolutionFormats[Options.IDE]);
             _solutionFile = _solutionFile.Replace("$ideversion$", this.Environments[Options.IDE, Options.Language]);
-
+            
             _projectFile = _projectFile.Replace("$safeprojectname$", Options.AssemblyName);
             _projectFile = _projectFile.Replace("$projectguid$", _projectGuid.ToString().ToUpper());
             _projectFile = _projectFile.Replace("$toolsversion$", this.Tools[Options.IDE]);
@@ -73,9 +73,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
                 {
                     int argumentStartIndex = applicationPath.IndexOf("/", 0);
                     if (argumentStartIndex > -1)
-                    {
                         applicationPath = applicationPath.Substring(0, argumentStartIndex).Trim();
-                    }
                     _projectUserFile = _projectUserFile.Replace("$toolsversion$", this.Tools[Options.IDE]);
                     _projectUserFile = _projectUserFile.Replace("$path$", applicationPath);
                     _applicationFound = true;
@@ -83,13 +81,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
             }
 
             if (Options.UseTaskPane)
-            {
                 _projectFile = _projectFile.Replace("$taskpaneFileReference$", "  <Compile Include=\"MyTaskPane.cs\">\r\n   <SubType>UserControl</SubType>\r\n   </Compile>\r\n  <Compile Include=\"MyTaskPane.Designer.cs\">\r\n    <DependentUpon>MyTaskPane.cs</DependentUpon>\r\n  </Compile>");
-            }
             else
-            {
                 _projectFile = _projectFile.Replace("$taskpaneFileReference$", String.Empty);
-            }
 
             _addinFile = _addinFile.Replace("$safeprojectname$", Options.AssemblyName);
             _addinFile = _addinFile.Replace("$usingItems$", this.GetNetOfficeProjectUsingItems());
@@ -143,7 +137,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
                 _addinFile = _addinFile.Replace("$taskpaneDefine$", " , Office.ICustomTaskPaneConsumer");
                 _addinFile = _addinFile.Replace("$taskpaneImplement$", ReadProjectTemplateFile("SimpleMultiAddinCS.TaskPaneImplement.txt").Replace("$safeprojectname$", Options.AssemblyName));
                 _addinFile = _addinFile.Replace("$taskpaneField$", "\t\tprivate MyTaskPane _mytaskPane;");
-
+                
             }
             else
             {
@@ -172,13 +166,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
             }
 
             if (Options.UseRibbonUI)
-            {
                 _addinFile = _addinFile.Replace("$readResource$", ReadProjectTemplateFile("SimpleMultiAddinCS.ReadResource.txt"));
-            }
-            else
-            {
+            else 
                 _addinFile = _addinFile.Replace("$readResource$", String.Empty);
-            }
 
             _addinFile = ValidateFileContentFormat(_addinFile);
         }
@@ -196,19 +186,15 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.ProjectConver
         }
 
         private void WriteResultFilesToTempFolder()
-        {
+        {            
             File.AppendAllText(Path.Combine(TempSolutionPath, String.Format("{0}.sln", Options.AssemblyName)), _solutionFile, Encoding.UTF8);
             File.AppendAllText(Path.Combine(TempProjectPath, String.Format("{0}.csproj", Options.AssemblyName)), _projectFile, Encoding.UTF8);
             File.AppendAllText(Path.Combine(TempProjectPath, "Addin.cs"), _addinFile, Encoding.UTF8);
             if(_applicationFound)
-            {
                 File.AppendAllText(Path.Combine(TempProjectPath, String.Format("{0}.csproj.user", Options.AssemblyName)), _projectUserFile, Encoding.UTF8);
-            }
             File.AppendAllText(Path.Combine(TempPropertiesPath, "AssemblyInfo.cs"), _assemblyFile, Encoding.UTF8);
             if (Options.UseRibbonUI)
-            {
-                File.AppendAllText(Path.Combine(TempProjectPath, "RibbonUI.xml"), _ribbonFile, Encoding.UTF8);
-            }
+                 File.AppendAllText(Path.Combine(TempProjectPath, "RibbonUI.xml"), _ribbonFile, Encoding.UTF8);
             if (Options.UseTaskPane)
             {
                 File.AppendAllText(Path.Combine(TempProjectPath, "MyTaskPane.cs"), _taskPaneFile, Encoding.UTF8);

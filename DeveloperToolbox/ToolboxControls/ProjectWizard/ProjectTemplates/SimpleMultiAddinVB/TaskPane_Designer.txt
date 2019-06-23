@@ -12,7 +12,7 @@ Partial Class MyTaskPane
             MyBase.Dispose(disposing)
         End Try
     End Sub
-
+ 
     Private components As System.ComponentModel.IContainer
 
     <System.Diagnostics.DebuggerStepThrough()> _

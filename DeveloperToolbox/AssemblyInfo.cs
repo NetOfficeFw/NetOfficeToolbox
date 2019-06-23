@@ -23,9 +23,7 @@ namespace NetOffice.DeveloperToolbox
                 {
                     AssemblyTitleAttribute titleAttribute = (AssemblyTitleAttribute)attributes[0];
                     if (titleAttribute.Title != String.Empty)
-                    {
                         return titleAttribute.Title;
-                    }
                 }
                 return System.IO.Path.GetFileNameWithoutExtension(Assembly.GetExecutingAssembly().CodeBase);
             }
@@ -51,9 +49,7 @@ namespace NetOffice.DeveloperToolbox
             {
                 object[] attributes = GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyDescriptionAttribute), false);
                 if (attributes.Length == 0)
-                {
                     return String.Empty;
-                }
                 return ((AssemblyDescriptionAttribute)attributes[0]).Description;
             }
         }
@@ -67,9 +63,7 @@ namespace NetOffice.DeveloperToolbox
             {
                 object[] attributes = GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyProductAttribute), false);
                 if (attributes.Length == 0)
-                {
                     return String.Empty;
-                }
                 return ((AssemblyProductAttribute)attributes[0]).Product;
             }
         }
@@ -83,9 +77,7 @@ namespace NetOffice.DeveloperToolbox
             {
                 object[] attributes = GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyCopyrightAttribute), false);
                 if (attributes.Length == 0)
-                {
                     return String.Empty;
-                }
                 return ((AssemblyCopyrightAttribute)attributes[0]).Copyright;
             }
         }
@@ -99,9 +91,7 @@ namespace NetOffice.DeveloperToolbox
             {
                 object[] attributes = GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyCompanyAttribute), false);
                 if (attributes.Length == 0)
-                {
                     return String.Empty;
-                }
                 return ((AssemblyCompanyAttribute)attributes[0]).Company;
             }
         }
@@ -111,9 +101,7 @@ namespace NetOffice.DeveloperToolbox
             lock (_lock)
             {
                 if (null == _executingAssembly)
-                {
-                    _executingAssembly = Assembly.GetExecutingAssembly();
-                }
+                    _executingAssembly = Assembly.GetExecutingAssembly();                
             }
             return _executingAssembly;
         }

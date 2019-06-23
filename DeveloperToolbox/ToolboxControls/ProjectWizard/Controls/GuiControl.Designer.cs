@@ -2,15 +2,15 @@
 {
     partial class GuiControl
     {
-        /// <summary>
+        /// <summary> 
         /// Erforderliche Designervariable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Verwendete Ressourcen bereinigen.
+        /// <summary> 
+        /// Verwendete Resourcen bereinigen.
         /// </summary>
-        /// <param name="disposing">True, wenn verwaltete Ressourcen gelöscht werden sollen; andernfalls False.</param>
+        /// <param name="disposing">True, wenn verwaltete Resourcen gelöscht werden sollen; andernfalls False.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,8 +22,8 @@
 
         #region Vom Komponenten-Designer generierter Code
 
-        /// <summary>
-        /// Erforderliche Methode für die Designerunterstützung.
+        /// <summary> 
+        /// Erforderliche Methode für die Designerunterstützung. 
         /// Der Inhalt der Methode darf nicht mit dem Code-Editor geändert werden.
         /// </summary>
         private void InitializeComponent()
@@ -37,9 +37,9 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
-            //
+            // 
             // checkBoxClassicUISupport
-            //
+            // 
             this.checkBoxClassicUISupport.AutoSize = true;
             this.checkBoxClassicUISupport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBoxClassicUISupport.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -51,9 +51,9 @@
             this.checkBoxClassicUISupport.Text = "I want customize the classic Office UI";
             this.checkBoxClassicUISupport.UseVisualStyleBackColor = true;
             this.checkBoxClassicUISupport.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
-            //
+            // 
             // checkBoxRibbonUISupport
-            //
+            // 
             this.checkBoxRibbonUISupport.AutoSize = true;
             this.checkBoxRibbonUISupport.Checked = true;
             this.checkBoxRibbonUISupport.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -67,9 +67,9 @@
             this.checkBoxRibbonUISupport.Text = "I want customize the Ribbon UI";
             this.checkBoxRibbonUISupport.UseVisualStyleBackColor = true;
             this.checkBoxRibbonUISupport.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
-            //
+            // 
             // checkBoxTaskPaneSupport
-            //
+            // 
             this.checkBoxTaskPaneSupport.AutoSize = true;
             this.checkBoxTaskPaneSupport.Checked = true;
             this.checkBoxTaskPaneSupport.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -83,9 +83,9 @@
             this.checkBoxTaskPaneSupport.Text = "Ich want a custom Task Pane";
             this.checkBoxTaskPaneSupport.UseVisualStyleBackColor = true;
             this.checkBoxTaskPaneSupport.CheckedChanged += new System.EventHandler(this.checkBoxTaskPaneSupport_CheckedChanged);
-            //
+            // 
             // checkBoxToogleButton
-            //
+            // 
             this.checkBoxToogleButton.AutoSize = true;
             this.checkBoxToogleButton.Checked = true;
             this.checkBoxToogleButton.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -100,9 +100,9 @@
             this.checkBoxToogleButton.UseVisualStyleBackColor = true;
             this.checkBoxToogleButton.Visible = false;
             this.checkBoxToogleButton.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
-            //
+            // 
             // labelHint
-            //
+            // 
             this.labelHint.AutoSize = true;
             this.labelHint.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelHint.ForeColor = System.Drawing.Color.DimGray;
@@ -111,9 +111,9 @@
             this.labelHint.Size = new System.Drawing.Size(443, 16);
             this.labelHint.TabIndex = 121;
             this.labelHint.Text = "Use also number keys(1-4) on your keyboard to select/deselect an option";
-            //
+            // 
             // pictureBox2
-            //
+            // 
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.Location = new System.Drawing.Point(37, 174);
@@ -122,12 +122,12 @@
             this.pictureBox2.Size = new System.Drawing.Size(18, 18);
             this.pictureBox2.TabIndex = 120;
             this.pictureBox2.TabStop = false;
-            //
+            // 
             // GuiControl
-            //
+            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(227)))), ((int)(((byte)(243)))));
             this.Controls.Add(this.labelHint);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.checkBoxToogleButton);

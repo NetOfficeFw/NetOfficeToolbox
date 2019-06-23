@@ -9,12 +9,12 @@ using NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls;
 namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
 {
     public enum ProjectType
-    {
+    { 
         SimpleAddin = 0,
         NetOfficeAddin = 1,
         WindowsForms = 2,
         ClassLibrary = 3,
-        Console = 4,
+        Console = 4,        
     }
 
     public enum ProgrammingLanguage
@@ -26,18 +26,18 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
     public enum IDE
     {
         VS2010 = 0,
-        VS2012 = 1,
-        VS2013 = 2
+        VS20131517 = 2
     }
-
+    
     public enum NetVersion
-    {
-        Net2 = 0,
-        Net3 = 1,
-        Net35 = 2,
-        Net4 = 3,
-        Net4Client = 4,
-        Net45 = 5
+    { 
+        Net4 = 0,
+        Net4Client = 1,
+        Net45 = 2,
+        Net451 = 3,
+        Net452 = 4,
+        Net46 = 5,
+        Net461 = 6
     }
 
     public class ProjectOptions
@@ -69,9 +69,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
 
             List<string> list = new List<string>();
             foreach (var item in OfficeApps)
-            {
                 list.Add(String.Format("Software\\Microsoft\\Office\\{0}\\AddIns", item));
-            }
             RegistryKeys = list.ToArray();
 
             HiveKey = loadControl.Hivekey;
@@ -82,31 +80,20 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
             UseTaskPane = guiControl.TaskPaneEnabled;
             UseToogle = guiControl.ToogleEnabled;
 
-            // unable to use switch with doubles
-            if (NetRuntimeTarget == 2.0)
-            {
-                NetRuntime = NetVersion.Net2;
-            }
-            else if (NetRuntimeTarget == 3.0)
-            {
-                NetRuntime = NetVersion.Net3;
-            }
-            else if (NetRuntimeTarget == 3.5)
-            {
-                NetRuntime = NetVersion.Net35;
-            }
-            else if (NetRuntimeTarget == 4.0)
-            {
+            if (NetRuntimeTarget == "4.0")
                 NetRuntime = UseNetRuntimeClient == true ? NetVersion.Net4Client : NetVersion.Net4;
-            }
-            else if (NetRuntimeTarget == 4.5)
-            {
+            else if (NetRuntimeTarget == "4.5")
                 NetRuntime = NetVersion.Net45;
-            }
+            else if (NetRuntimeTarget == "4.5.1")
+                NetRuntime = NetVersion.Net451;
+            else if (NetRuntimeTarget == "4.5.2")
+                NetRuntime = NetVersion.Net452;
+            else if (NetRuntimeTarget == "4.6")
+                NetRuntime = NetVersion.Net46;
+            else if (NetRuntimeTarget == "4.6.1")
+                NetRuntime = NetVersion.Net461;
             else
-            {
                 throw new IndexOutOfRangeException("NetRuntimeTarget");
-            }
         }
 
         #endregion
@@ -119,7 +106,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
         public ProgrammingLanguage Language { get; private set; }
         public IDE IDE { get; private set; }
         public NetVersion NetRuntime { get; private set; }
-        public double  NetRuntimeTarget { get; private set; }
+        public string  NetRuntimeTarget { get; private set; }
         public bool UseNetRuntimeClient { get; private set; }
         public string[] OfficeApps { get; private set; }
         public string AssemblyName { get; private set; }
@@ -141,71 +128,49 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
         {
             List<string> list = new List<string>();
             if (control.checkBoxExcel.Checked)
-            {
                 list.Add("Excel");
-            }
             if (control.checkBoxWord.Checked)
-            {
                 list.Add("Word");
-            }
             if (control.checkBoxOutlook.Checked)
-            {
                 list.Add("Outlook");
-            }
             if (control.checkBoxPowerPoint.Checked)
-            {
                 list.Add("PowerPoint");
-            }
             if (control.checkBoxAccess.Checked)
-            {
                 list.Add("Access");
-            }
             if (control.checkBoxProject.Checked)
-            {
                 list.Add("MSProject");
-            }
             if (control.checkBoxVisio.Checked)
-            {
                 list.Add("Visio");
-            }
 
             OfficeApps = list.ToArray();
         }
 
-        private double ToRuntime(string value)
+        private string ToRuntime(string value)
         {
             if (value.IndexOf("Client", StringComparison.InvariantCultureIgnoreCase) > -1)
             {
-                return 4.0;
+                return "4.0";
             }
             else
-            {
-                return Convert.ToDouble(value, CultureInfo.InvariantCulture);
+            { 
+                return value;
             }
         }
 
         private bool ToRuntimeUseClient(string value)
         {
             if (value.IndexOf("Client", StringComparison.InvariantCultureIgnoreCase) > -1)
-            {
                 return true;
-            }
             else
-            {
                 return false;
-            }
         }
 
         private ProgrammingLanguage ToLanguage(string value)
         {
             if (value == "C#")
-            {
                 return ProgrammingLanguage.CSharp;
-            }
             else
-            {
                 return ProgrammingLanguage.VB;
-            }
         }
 
         private string GetSelectedFolder(string selectedFolder)
@@ -241,42 +206,24 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
 
             string folderPath = TryGetRegistryValue(folder11, "VisualStudioProjectsLocation");
             if(null == folderPath)
-            {
                 folderPath = TryGetRegistryValue(folder10, "VisualStudioProjectsLocation");
-            }
             if (null == folderPath)
-            {
                 folderPath = TryGetRegistryValue(folder09, "VisualStudioProjectsLocation");
-            }
             if (null == folderPath)
-            {
                 folderPath = TryGetRegistryValue(folderExpress11CS, "VisualStudioProjectsLocation");
-            }
             if (null == folderPath)
-            {
                 folderPath = TryGetRegistryValue(folderExpress11VB, "VisualStudioProjectsLocation");
-            }
             if (null == folderPath)
-            {
                 folderPath = TryGetRegistryValue(folderExpress10CS, "VisualStudioProjectsLocation");
-            }
             if (null == folderPath)
-            {
                 folderPath = TryGetRegistryValue(folderExpress09CS, "VisualStudioProjectsLocation");
-            }
             if (null == folderPath)
-            {
                 folderPath = TryGetRegistryValue(folderExpress10VB, "VisualStudioProjectsLocation");
-            }
             if (null == folderPath)
-            {
                 folderPath = TryGetRegistryValue(folderExpress09VB, "VisualStudioProjectsLocation");
-            }
 
             if(null == folderPath)
-            {
                 folderPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            }
 
             return folderPath;
         }
@@ -291,21 +238,16 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
                 return regValue;
             }
             else
-            {
                 return null;
-            }
         }
 
         private IDE ToIDE(string value)
         {
             switch (value)
             {
-                case "2012":
-                    return IDE.VS2012;
-                case "2013":
-                    return IDE.VS2013;
+                case "2010":
                 default:
-                   return IDE.VS2010;
+                   return IDE.VS20131517;
             }
         }
 
@@ -335,9 +277,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
             {
                 ProjectControl ctrl = item as ProjectControl;
                 if (null != ctrl)
-                {
                     return ctrl;
-                }
             }
             throw new IndexOutOfRangeException("controls");
         }
@@ -348,9 +288,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
             {
                 EnvironmentControl ctrl = item as EnvironmentControl;
                 if (null != ctrl)
-                {
                     return ctrl;
-                }
             }
             throw new IndexOutOfRangeException("controls");
         }
@@ -361,9 +299,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
             {
                 HostControl ctrl = item as HostControl;
                 if (null != ctrl)
-                {
                     return ctrl;
-                }
             }
             throw new IndexOutOfRangeException("controls");
         }
@@ -374,9 +310,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
             {
                 NameControl ctrl = item as NameControl;
                 if (null != ctrl)
-                {
                     return ctrl;
-                }
             }
             throw new IndexOutOfRangeException("controls");
         }
@@ -387,9 +321,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
             {
                 LoadControl ctrl = item as LoadControl;
                 if (null != ctrl)
-                {
                     return ctrl;
-                }
             }
             throw new IndexOutOfRangeException("controls");
         }
@@ -400,9 +332,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard
             {
                 GuiControl ctrl = item as GuiControl;
                 if (null != ctrl)
-                {
                     return ctrl;
-                }
             }
             throw new IndexOutOfRangeException("controls");
         }

@@ -7,4 +7,4 @@
   <AuthenticationMode>0</AuthenticationMode>
   <ApplicationType>2</ApplicationType>
   <SaveMySettingsOnExit>true</SaveMySettingsOnExit>
-</MyApplicationData>
+</MyApplicationData>	

@@ -8,7 +8,7 @@
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        /// Verwendete Ressourcen bereinigen.
+        /// Verwendete Resourcen bereinigen.
         /// </summary>
         protected override void Dispose(bool disposing)
         {
@@ -29,9 +29,9 @@
         {
             this.changeStringControl1 = new NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor.ChangeStringControl();
             this.SuspendLayout();
-            //
+            // 
             // changeStringControl1
-            //
+            // 
             this.changeStringControl1.BackColor = System.Drawing.Color.LightSteelBlue;
             this.changeStringControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.changeStringControl1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -40,9 +40,9 @@
             this.changeStringControl1.Size = new System.Drawing.Size(345, 137);
             this.changeStringControl1.TabIndex = 0;
             this.changeStringControl1.Close += new System.EventHandler(this.changeStringControl1_Close);
-            //
+            // 
             // ChangeStringDialog
-            //
+            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;

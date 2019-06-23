@@ -2,12 +2,12 @@ namespace NetOffice.DeveloperToolbox.Controls.Text
 {
 	partial class Scroller
 	{
-		/// <summary>
+		/// <summary> 
 		/// Required designer variable.
 		/// </summary>
 		private System.ComponentModel.IContainer components = null;
 
-		/// <summary>
+		/// <summary> 
 		/// Clean up any resources being used.
 		/// </summary>
 		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
@@ -22,8 +22,8 @@ namespace NetOffice.DeveloperToolbox.Controls.Text
 
 		#region Component Designer generated code
 
-		/// <summary>
-		/// Required method for Designer support - do not modify
+		/// <summary> 
+		/// Required method for Designer support - do not modify 
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -31,14 +31,14 @@ namespace NetOffice.DeveloperToolbox.Controls.Text
 			this.components = new System.ComponentModel.Container();
 			this.m_timer = new System.Windows.Forms.Timer(this.components);
 			this.SuspendLayout();
-			//
+			// 
 			// m_timer
-			//
+			// 
 			this.m_timer.Interval = 50;
 			this.m_timer.Tick += new System.EventHandler(this.OnTimerTick);
-			//
+			// 
 			// Scroller
-			//
+			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Name = "Scroller";

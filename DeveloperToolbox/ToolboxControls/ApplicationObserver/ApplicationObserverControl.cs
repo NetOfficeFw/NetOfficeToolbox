@@ -32,6 +32,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
                 InitializeComponent();
                 if (!Program.IsDesign)
                 {
+                    CreateHandle();
                     _applicationObserver = new OfficeApplicationObserver(listViewApps);
                     textBoxHotKey.Text = _applicationObserver.HotKey.ToString();
                     _applicationObserver.InstanceRunningCountChanged += new EventHandler(ApplicationObserver_InstanceRunningCountChanged);
@@ -40,7 +41,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
             }
             catch (Exception exception)
             {
-                Forms.ErrorForm.ShowError(exception,ErrorCategory.NonCritical, Host.CurrentLanguageID);
+                Forms.ErrorForm.ShowError(this, exception, ErrorCategory.NonCritical);
             }
         }
 
@@ -135,9 +136,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
         public void LoadConfiguration(XmlNode configNode)
         {
             if (configNode.ChildNodes.Count == 0)
-            {
                 configNode.InnerXml = Resources.ResourceUtils.ReadString("ToolboxControls.ApplicationObserver.IconsAndConfig.DefaultConfiguration.txt");
-            }
 
             string val = "";
 
@@ -179,9 +178,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
         public void SaveConfiguration(XmlNode configNode)
         {
             if (configNode.ChildNodes.Count == 0)
-            {
                 configNode.InnerXml = Resources.ResourceUtils.ReadString("ToolboxControls.ApplicationObserver.IconsAndConfig.DefaultConfiguration.txt");
-            }
 
             configNode.SelectSingleNode("Excel").Attributes[0].Value = listViewApps.Items[0].Checked.ToString();
             configNode.SelectSingleNode("Winword").Attributes[0].Value = listViewApps.Items[1].Checked.ToString();
@@ -196,25 +193,11 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
             configNode.SelectSingleNode("HotKey").Attributes[2].Value = checkBoxShowQuestion.Checked.ToString();
         }
 
-        public void SetLanguage(int id)
-        {
-            _applicationObserver.CurrentLanguageID = id;
-        }
 
-        public Stream GetHelpText(int lcid)
+        public Stream GetHelpText()
         {
-            Translation.ToolLanguage language = Host.Languages[lcid, false];
-            if (null != language)
-            {
-                string content = language.Components["Application Observer-Help"].ControlResources["richTextBoxHelpContent"].Value2;
-                return Resources.ResourceUtils.CreateStreamFromString(content);
-            }
-            else
-            {
-                return Resources.ResourceUtils.ReadStream("ToolboxControls.ApplicationObserver.Info" + lcid.ToString() + ".rtf");
-            }
+                return Resources.ResourceUtils.ReadStream("ToolboxControls.ApplicationObserver.Info1033.rtf");
         }
-
 
         public void Release()
         {
@@ -222,46 +205,6 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
             {
                 _applicationObserver.Dispose();
                 _applicationObserver = null;
-            }
-        }
-
-        #endregion
-
-        #region ILocalizationDesign
-
-        public void EnableDesignView(int lcid, string parentComponentName)
-        {
-
-        }
-
-        public void Localize(Translation.ItemCollection strings)
-        {
-            Translation.Translator.TranslateControls(this, strings);
-        }
-
-        public void Localize(string name, string text)
-        {
-            Translation.Translator.TranslateControl(this, name, text);
-        }
-
-        public string GetCurrentText(string name)
-        {
-            return Translation.Translator.TryGetControlText(this, name);
-        }
-
-        public string NameLocalization
-        {
-            get
-            {
-                return null;
-            }
-        }
-
-        public IEnumerable<ILocalizationChildInfo> Childs
-        {
-            get
-            {
-                return new ILocalizationChildInfo[] { new LocalizationDefaultChildInfo("Help", typeof(Controls.InfoLayer.InfoControl)) };
             }
         }
 
@@ -315,18 +258,16 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
                 int i = 0;
                 foreach (ListViewItem item in listViewProcess.Items)
                 {
-                    Color color = i % 2 != 0 ? Color.White : Color.LightGray;
+                    Color color = i % 2 != 0 ? Color.White : Color.WhiteSmoke;
                     item.BackColor = color;
                     foreach (ListViewItem.ListViewSubItem subItem in item.SubItems)
-                    {
                         subItem.BackColor = color;
-                    }
                     i++;
                 }
             }
             catch (Exception exception)
             {
-                Forms.ErrorForm.ShowError(exception,ErrorCategory.NonCritical, Host.CurrentLanguageID);
+                Forms.ErrorForm.ShowError(this, exception,ErrorCategory.NonCritical);
             }
         }
 
@@ -350,7 +291,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
             }
             catch (Exception exception)
             {
-                Forms.ErrorForm.ShowError(exception,ErrorCategory.NonCritical, Host.CurrentLanguageID);
+                Forms.ErrorForm.ShowError(this, exception, ErrorCategory.NonCritical);
             }
         }
 
@@ -358,12 +299,18 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
         {
             try
             {
-                string appName = e.Item.Text;
-
-                if (((e.Item.SubItems[1].Text != "0") && (!buttonKillApps.Enabled)))
+                bool killPossible = false;
+                foreach (ListViewItem item in listViewApps.Items)
                 {
-                    buttonKillApps.Enabled = true;
+                    if (item.SubItems[1].Text != "0" && item.Checked)
+                    {
+                        killPossible = true;
+                        break;
+                    }
                 }
+                buttonKillApps.Enabled = killPossible;
+
+                string appName = e.Item.Text;
 
                 switch (appName)
                 {
@@ -392,7 +339,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
             }
             catch (Exception exception)
             {
-                Forms.ErrorForm.ShowError(exception,ErrorCategory.NonCritical, Host.CurrentLanguageID);
+                Forms.ErrorForm.ShowError(this, exception,ErrorCategory.NonCritical);
             }
         }
 
@@ -404,7 +351,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
             }
             catch (Exception exception)
             {
-                Forms.ErrorForm.ShowError(exception,ErrorCategory.NonCritical, Host.CurrentLanguageID);
+                Forms.ErrorForm.ShowError(this, exception, ErrorCategory.NonCritical);
             }
         }
 
@@ -416,7 +363,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
             }
             catch (Exception exception)
             {
-                Forms.ErrorForm.ShowError(exception,ErrorCategory.NonCritical, Host.CurrentLanguageID);
+                Forms.ErrorForm.ShowError(this, exception, ErrorCategory.NonCritical);
             }
         }
 
@@ -425,53 +372,33 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
             try
             {
                 if (true == checkBoxAppKill.Checked)
-                {
                     checkBoxAppKill.Checked = false;
-                }
 
                 string CtrlKeys = "";
                 if (e.Control)
-                {
                     CtrlKeys += "Ctrl ";
-                }
                 if (e.Alt)
-                {
                     CtrlKeys += "Alt ";
-                }
 
                 if (e.KeyCode == (Keys.LButton | Keys.ShiftKey))
-                {
                     textBoxHotKey.Text = CtrlKeys;
-                }
                 else if (e.KeyCode == Keys.Menu)
-                {
                     textBoxHotKey.Text = CtrlKeys;
-                }
                 else
-                {
                     textBoxHotKey.Text = CtrlKeys + e.KeyCode.ToString();
-                }
 
                 if ((e.Control) && (e.Alt))
-                {
                     _applicationObserver.HotKey = e.KeyCode | Keys.Control | Keys.Alt;
-                }
                 else if (e.Control)
-                {
                     _applicationObserver.HotKey = e.KeyCode | Keys.Control;
-                }
                 else if (e.Alt)
-                {
                     _applicationObserver.HotKey = e.KeyCode | Keys.Alt;
-                }
                 else
-                {
                     _applicationObserver.HotKey = e.KeyCode;
-                }
             }
             catch (Exception exception)
             {
-                Forms.ErrorForm.ShowError(exception,ErrorCategory.NonCritical, Host.CurrentLanguageID);
+                Forms.ErrorForm.ShowError(this, exception, ErrorCategory.NonCritical);
             }
         }
 
@@ -479,23 +406,15 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
         {
             try
             {
+                if(_applicationObserver.ShowQuestionBeforeKill &&
+                    DialogResult.No == MessageBox.Show("End selected instances?", "NetOffice Developer Toolbox", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+                    return;
+
                 _applicationObserver.KillProcesses();
             }
             catch (Exception exception)
             {
-                Forms.ErrorForm.ShowError(exception,ErrorCategory.NonCritical, Host.CurrentLanguageID);
-            }
-        }
-
-        private void labelKillQuestion_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                _applicationObserver.KillQuestion = labelKillQuestion.Text;
-            }
-            catch (Exception exception)
-            {
-                Forms.ErrorForm.ShowError(exception,ErrorCategory.NonCritical, Host.CurrentLanguageID);
+                Forms.ErrorForm.ShowError(this, exception, ErrorCategory.NonCritical);
             }
         }
 
@@ -507,7 +426,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
             }
             catch (Exception exception)
             {
-                Forms.ErrorForm.ShowError(exception,ErrorCategory.NonCritical, Host.CurrentLanguageID);
+                Forms.ErrorForm.ShowError(this, exception, ErrorCategory.NonCritical);
             }
         }
 
@@ -519,7 +438,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ApplicationObserver
             }
             catch (Exception exception)
             {
-                Forms.ErrorForm.ShowError(exception, ErrorCategory.NonCritical, Host.CurrentLanguageID);
+                Forms.ErrorForm.ShowError(this, exception, ErrorCategory.NonCritical);
             }
         }
 

@@ -13,7 +13,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
     /// DWORD Value Editor
     /// </summary>
     [ResourceTable("ToolboxControls.RegistryEditor.ChangeDWordDialogMessageTable.txt")]
-    public partial class ChangeDWORDControl : UserControl, ILocalizationDesign
+    public partial class ChangeDWORDControl : UserControl
     {
         #region Ctor
 
@@ -37,9 +37,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
         private void RaiseClose()
         {
             if (null != Close)
-            {
                 Close(this, EventArgs.Empty);
-            }
         }
 
         #endregion
@@ -75,51 +73,6 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
 
         #endregion
 
-        #region ILocalizationDesign
-
-        public void EnableDesignView(int lcid, string parentComponentName)
-        {
-
-        }
-
-        public void Localize(Translation.ItemCollection strings)
-        {
-            Translation.Translator.TranslateControls(this, strings);
-        }
-
-        public void Localize(string name, string text)
-        {
-            Translation.Translator.TranslateControl(this, name, text);
-        }
-
-        public string GetCurrentText(string name)
-        {
-            return Translation.Translator.TryGetControlText(this, name);
-        }
-
-        public IContainer Components
-        {
-            get { return components; }
-        }
-
-        public string NameLocalization
-        {
-            get
-            {
-                return null;
-            }
-        }
-
-        public IEnumerable<ILocalizationChildInfo> Childs
-        {
-            get
-            {
-                return new ILocalizationChildInfo[0];
-            }
-        }
-
-        #endregion
-
         #region Methods
 
         /// <summary>
@@ -145,13 +98,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
         {
 
             if (radioButtonHex.Checked == true)
-            {
                 return ConvertDecimalStringToHexValue(value);
-            }
             else
-            {
                 return ConvertHexStringToDecimal(value);
-            }
         }
 
         private object ConvertDecimalStringToHexValue(string value)
@@ -173,9 +122,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
                 return string.Format("{0:x}", value);
             }
             else
-            {
                 return value.ToString();
-            }
         }
 
         private string FinalConvertValue(string value)
@@ -225,9 +172,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.RegistryEditor
             try
             {
                 if ("1234567890,\b".IndexOf(e.KeyChar.ToString()) < 0)
-                {
                     e.Handled = true;
-                }
             }
             catch (Exception exception)
             {

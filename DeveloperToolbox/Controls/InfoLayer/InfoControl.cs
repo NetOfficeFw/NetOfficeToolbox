@@ -14,15 +14,8 @@ namespace NetOffice.DeveloperToolbox.Controls.InfoLayer
     /// Control to display rich text
     /// </summary>
     [ResourceTable("Controls.InfoLayer.Strings.txt")]
-    public partial class InfoControl : UserControl, ILocalizationDesign, ILocalizationReplaceProvider
+    public partial class InfoControl : UserControl
     {
-        #region Fields
-
-        private int _designLCID;
-        private string _parentComponentName;
-
-        #endregion
-
         #region Ctor
 
         /// <summary>
@@ -41,7 +34,7 @@ namespace NetOffice.DeveloperToolbox.Controls.InfoLayer
         {
             InitializeComponent();
             this.Dock = DockStyle.Fill;
-            richTextBoxHelpContent.Text = text;
+            richTextBoxHelpContent.Text = text;            
         }
 
         /// <summary>
@@ -85,12 +78,10 @@ namespace NetOffice.DeveloperToolbox.Controls.InfoLayer
             string assemblyName = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
             System.IO.Stream resourceStream = ass.GetManifestResourceStream(assemblyName + "." + resId);
             if (resourceStream == null)
-            {
                 throw (new System.IO.IOException("Error accessing resource Stream."));
-            }
             return resourceStream;
         }
-
+            
         #endregion
 
         #region Trigger
@@ -116,64 +107,6 @@ namespace NetOffice.DeveloperToolbox.Controls.InfoLayer
             catch
             {
                 ;
-            }
-        }
-
-        #endregion
-
-        #region ILocalizationDesign
-
-        public void EnableDesignView(int lcid, string parentComponentName)
-        {
-            _designLCID = lcid;
-            _parentComponentName = parentComponentName;
-        }
-
-        public void Localize(Translation.ItemCollection strings)
-        {
-            Translation.Translator.TranslateControls(this, strings);
-        }
-
-        public void Localize(string name, string text)
-        {
-            Translation.Translator.TranslateControl(this, name, text);
-        }
-
-        public string GetCurrentText(string name)
-        {
-            return Translation.Translator.TryGetControlText(this, name);
-        }
-
-        public IContainer Components
-        {
-            get { return components; }
-        }
-
-        public string NameLocalization
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        public IEnumerable<ILocalizationChildInfo> Childs
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        #endregion
-
-        #region ILocalizationReplaceProvider
-
-        public string Replace(string marker)
-        {
-            if (marker == "{0:$HelpContent}")
-            {
-                string target = _parentComponentName.Substring(0, _parentComponentName.LastIndexOf(".")) + ".Info" + _designLCID  + ".rtf";
-                string content =Resources.ResourceUtils.ReadString(target, false, false);
-                return content;
-            }
-            else
-            {
-                return "";
             }
         }
 

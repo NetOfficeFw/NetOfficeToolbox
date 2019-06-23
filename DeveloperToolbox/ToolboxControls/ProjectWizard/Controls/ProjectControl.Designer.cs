@@ -2,15 +2,15 @@
 {
     partial class ProjectControl
     {
-        /// <summary>
+        /// <summary> 
         /// Erforderliche Designervariable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Verwendete Ressourcen bereinigen.
+        /// <summary> 
+        /// Verwendete Resourcen bereinigen.
         /// </summary>
-        /// <param name="disposing">True, wenn verwaltete Ressourcen gelöscht werden sollen; andernfalls False.</param>
+        /// <param name="disposing">True, wenn verwaltete Resourcen gelöscht werden sollen; andernfalls False.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,8 +22,8 @@
 
         #region Vom Komponenten-Designer generierter Code
 
-        /// <summary>
-        /// Erforderliche Methode für die Designerunterstützung.
+        /// <summary> 
+        /// Erforderliche Methode für die Designerunterstützung. 
         /// Der Inhalt der Methode darf nicht mit dem Code-Editor geändert werden.
         /// </summary>
         private void InitializeComponent()
@@ -47,16 +47,13 @@
             this.labelFolder = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.checkBoxUseTools = new NetOffice.DeveloperToolbox.Controls.Check.GlowCheckBox();
-            this.linkLabelNSTOInfo = new System.Windows.Forms.LinkLabel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            //
+            // 
             // pictureBox5
-            //
+            // 
             this.pictureBox5.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
             this.pictureBox5.Location = new System.Drawing.Point(40, 33);
@@ -64,9 +61,9 @@
             this.pictureBox5.Size = new System.Drawing.Size(18, 17);
             this.pictureBox5.TabIndex = 99;
             this.pictureBox5.TabStop = false;
-            //
+            // 
             // radioButtonClassLibrary
-            //
+            // 
             this.radioButtonClassLibrary.AutoSize = true;
             this.radioButtonClassLibrary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.radioButtonClassLibrary.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -78,9 +75,9 @@
             this.radioButtonClassLibrary.Text = "Class Library";
             this.radioButtonClassLibrary.UseVisualStyleBackColor = true;
             this.radioButtonClassLibrary.CheckedChanged += new System.EventHandler(this.radioButtonProjectType_CheckedChanged);
-            //
+            // 
             // radioButtonWindowsForms
-            //
+            // 
             this.radioButtonWindowsForms.AutoSize = true;
             this.radioButtonWindowsForms.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.radioButtonWindowsForms.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -92,9 +89,9 @@
             this.radioButtonWindowsForms.Text = "Windows Forms Project";
             this.radioButtonWindowsForms.UseVisualStyleBackColor = true;
             this.radioButtonWindowsForms.CheckedChanged += new System.EventHandler(this.radioButtonProjectType_CheckedChanged);
-            //
+            // 
             // radioButtonConsole
-            //
+            // 
             this.radioButtonConsole.AutoSize = true;
             this.radioButtonConsole.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.radioButtonConsole.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -106,11 +103,11 @@
             this.radioButtonConsole.Text = "Console Project";
             this.radioButtonConsole.UseVisualStyleBackColor = true;
             this.radioButtonConsole.CheckedChanged += new System.EventHandler(this.radioButtonProjectType_CheckedChanged);
-            //
+            // 
             // labelProjectType
-            //
+            // 
             this.labelProjectType.AutoSize = true;
-            this.labelProjectType.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.labelProjectType.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(227)))), ((int)(((byte)(243)))));
             this.labelProjectType.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelProjectType.ForeColor = System.Drawing.Color.Black;
             this.labelProjectType.Location = new System.Drawing.Point(67, 33);
@@ -118,9 +115,9 @@
             this.labelProjectType.Size = new System.Drawing.Size(85, 16);
             this.labelProjectType.TabIndex = 95;
             this.labelProjectType.Text = "Project Type";
-            //
+            // 
             // radioButtonAutomationAddin
-            //
+            // 
             this.radioButtonAutomationAddin.AutoSize = true;
             this.radioButtonAutomationAddin.Checked = true;
             this.radioButtonAutomationAddin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -134,9 +131,9 @@
             this.radioButtonAutomationAddin.Text = "Automation Addin";
             this.radioButtonAutomationAddin.UseVisualStyleBackColor = true;
             this.radioButtonAutomationAddin.CheckedChanged += new System.EventHandler(this.radioButtonProjectType_CheckedChanged);
-            //
+            // 
             // labelNoAdminHint
-            //
+            // 
             this.labelNoAdminHint.AutoSize = true;
             this.labelNoAdminHint.BackColor = System.Drawing.Color.Orange;
             this.labelNoAdminHint.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -145,11 +142,11 @@
             this.labelNoAdminHint.Size = new System.Drawing.Size(538, 16);
             this.labelNoAdminHint.TabIndex = 112;
             this.labelNoAdminHint.Text = "Developer Toolbox has detected the write permissions are not available for some f" +
-                "olders.";
+    "olders.";
             this.labelNoAdminHint.Visible = false;
-            //
+            // 
             // buttonChooseFolder
-            //
+            // 
             this.buttonChooseFolder.Enabled = false;
             this.buttonChooseFolder.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.buttonChooseFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -163,9 +160,9 @@
             this.buttonChooseFolder.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.buttonChooseFolder.UseVisualStyleBackColor = true;
             this.buttonChooseFolder.Click += new System.EventHandler(this.buttonChooseFolder_Click);
-            //
+            // 
             // textBoxCustomFolder
-            //
+            // 
             this.textBoxCustomFolder.BackColor = System.Drawing.Color.LightSteelBlue;
             this.textBoxCustomFolder.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxCustomFolder.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -174,9 +171,9 @@
             this.textBoxCustomFolder.ReadOnly = true;
             this.textBoxCustomFolder.Size = new System.Drawing.Size(309, 22);
             this.textBoxCustomFolder.TabIndex = 110;
-            //
+            // 
             // radioButtonCustomFolder
-            //
+            // 
             this.radioButtonCustomFolder.AutoSize = true;
             this.radioButtonCustomFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.radioButtonCustomFolder.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -188,9 +185,9 @@
             this.radioButtonCustomFolder.Text = "Custom";
             this.radioButtonCustomFolder.UseVisualStyleBackColor = true;
             this.radioButtonCustomFolder.CheckedChanged += new System.EventHandler(this.radioButtonProjectFolder_CheckedChanged);
-            //
+            // 
             // radioButtonVSProjectFolder
-            //
+            // 
             this.radioButtonVSProjectFolder.AutoSize = true;
             this.radioButtonVSProjectFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.radioButtonVSProjectFolder.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -202,9 +199,9 @@
             this.radioButtonVSProjectFolder.Text = "VS Project Folder (if available)";
             this.radioButtonVSProjectFolder.UseVisualStyleBackColor = true;
             this.radioButtonVSProjectFolder.CheckedChanged += new System.EventHandler(this.radioButtonProjectFolder_CheckedChanged);
-            //
+            // 
             // radioButtonDesktop
-            //
+            // 
             this.radioButtonDesktop.AutoSize = true;
             this.radioButtonDesktop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.radioButtonDesktop.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -216,9 +213,9 @@
             this.radioButtonDesktop.Text = "Desktop";
             this.radioButtonDesktop.UseVisualStyleBackColor = true;
             this.radioButtonDesktop.CheckedChanged += new System.EventHandler(this.radioButtonProjectFolder_CheckedChanged);
-            //
+            // 
             // radioButtonUserFolder
-            //
+            // 
             this.radioButtonUserFolder.AutoSize = true;
             this.radioButtonUserFolder.Checked = true;
             this.radioButtonUserFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -226,15 +223,15 @@
             this.radioButtonUserFolder.ForeColor = System.Drawing.Color.Blue;
             this.radioButtonUserFolder.Location = new System.Drawing.Point(40, 50);
             this.radioButtonUserFolder.Name = "radioButtonUserFolder";
-            this.radioButtonUserFolder.Size = new System.Drawing.Size(112, 21);
+            this.radioButtonUserFolder.Size = new System.Drawing.Size(93, 21);
             this.radioButtonUserFolder.TabIndex = 106;
             this.radioButtonUserFolder.TabStop = true;
-            this.radioButtonUserFolder.Text = "Eigene Dateien";
+            this.radioButtonUserFolder.Text = "User Folder";
             this.radioButtonUserFolder.UseVisualStyleBackColor = true;
             this.radioButtonUserFolder.CheckedChanged += new System.EventHandler(this.radioButtonProjectFolder_CheckedChanged);
-            //
+            // 
             // radioButtonApplicationData
-            //
+            // 
             this.radioButtonApplicationData.AutoSize = true;
             this.radioButtonApplicationData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.radioButtonApplicationData.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -246,9 +243,9 @@
             this.radioButtonApplicationData.Text = "Application Data";
             this.radioButtonApplicationData.UseVisualStyleBackColor = true;
             this.radioButtonApplicationData.CheckedChanged += new System.EventHandler(this.radioButtonProjectFolder_CheckedChanged);
-            //
+            // 
             // pictureBox4
-            //
+            // 
             this.pictureBox4.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
             this.pictureBox4.Location = new System.Drawing.Point(15, 18);
@@ -256,11 +253,11 @@
             this.pictureBox4.Size = new System.Drawing.Size(18, 17);
             this.pictureBox4.TabIndex = 104;
             this.pictureBox4.TabStop = false;
-            //
+            // 
             // labelFolder
-            //
+            // 
             this.labelFolder.AutoSize = true;
-            this.labelFolder.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.labelFolder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(227)))), ((int)(((byte)(243)))));
             this.labelFolder.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelFolder.ForeColor = System.Drawing.Color.Black;
             this.labelFolder.Location = new System.Drawing.Point(39, 21);
@@ -268,9 +265,9 @@
             this.labelFolder.Size = new System.Drawing.Size(92, 16);
             this.labelFolder.TabIndex = 103;
             this.labelFolder.Text = "Project Folder";
-            //
+            // 
             // panel1
-            //
+            // 
             this.panel1.Controls.Add(this.labelNoAdminHint);
             this.panel1.Controls.Add(this.buttonChooseFolder);
             this.panel1.Controls.Add(this.textBoxCustomFolder);
@@ -285,9 +282,9 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(629, 177);
             this.panel1.TabIndex = 113;
-            //
+            // 
             // checkBoxUseTools
-            //
+            // 
             this.checkBoxUseTools.AutoSize = true;
             this.checkBoxUseTools.Checked = true;
             this.checkBoxUseTools.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -296,41 +293,16 @@
             this.checkBoxUseTools.ForeColor = System.Drawing.SystemColors.ControlText;
             this.checkBoxUseTools.Location = new System.Drawing.Point(72, 95);
             this.checkBoxUseTools.Name = "checkBoxUseTools";
-            this.checkBoxUseTools.Size = new System.Drawing.Size(141, 21);
+            this.checkBoxUseTools.Size = new System.Drawing.Size(140, 21);
             this.checkBoxUseTools.TabIndex = 114;
             this.checkBoxUseTools.Text = "Use NetOffice Tools";
             this.checkBoxUseTools.UseVisualStyleBackColor = true;
-            //
-            // linkLabelNSTOInfo
-            //
-            this.linkLabelNSTOInfo.AutoSize = true;
-            this.linkLabelNSTOInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabelNSTOInfo.Location = new System.Drawing.Point(286, 97);
-            this.linkLabelNSTOInfo.Name = "linkLabelNSTOInfo";
-            this.linkLabelNSTOInfo.Size = new System.Drawing.Size(368, 16);
-            this.linkLabelNSTOInfo.TabIndex = 115;
-            this.linkLabelNSTOInfo.TabStop = true;
-            this.linkLabelNSTOInfo.Text = "Nice to know: How to use the NetOffice tools in addin projects";
-            this.linkLabelNSTOInfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelNSTOInfo_LinkClicked);
-            //
-            // pictureBox1
-            //
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(265, 97);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(18, 18);
-            this.pictureBox1.TabIndex = 116;
-            this.pictureBox1.TabStop = false;
-            //
+            // 
             // ProjectControl
-            //
+            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.linkLabelNSTOInfo);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(227)))), ((int)(((byte)(243)))));
             this.Controls.Add(this.checkBoxUseTools);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox5);
@@ -345,7 +317,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -371,7 +342,5 @@
         private System.Windows.Forms.Label labelFolder;
         private System.Windows.Forms.Panel panel1;
         private NetOffice.DeveloperToolbox.Controls.Check.GlowCheckBox checkBoxUseTools;
-        private System.Windows.Forms.LinkLabel linkLabelNSTOInfo;
-        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

@@ -40,9 +40,7 @@ namespace NetOffice.DeveloperToolbox.Controls.Text
             ++updating;
 
             if (updating > 1)
-            {
                 return;
-            }
 
             // Prevent the control from raising any events.
             oldEventMask = SendMessage(new HandleRef(this, Handle),
@@ -67,9 +65,7 @@ namespace NetOffice.DeveloperToolbox.Controls.Text
             --updating;
 
             if (updating > 0)
-            {
                 return;
-            }
 
             // Allow the control to redraw itself.
             SendMessage(new HandleRef(this, Handle),
@@ -102,9 +98,7 @@ namespace NetOffice.DeveloperToolbox.Controls.Text
 
                 // Default to Left align.
                 if ((fmt.dwMask & PFM_ALIGNMENT) == 0)
-                {
                     return TextAlign.Left;
-                }
 
                 return (TextAlign)fmt.wAlignment;
             }

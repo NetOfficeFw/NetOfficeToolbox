@@ -14,7 +14,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
     /// Step 2 in wizard to select programming language / ide / .net version
     /// </summary>
     [ResourceTable("ToolboxControls.ProjectWizard.Controls.EnvironmentControl.txt")]
-    public partial class EnvironmentControl : UserControl, IWizardControl, ILocalizationDesign
+    public partial class EnvironmentControl : UserControl, IWizardControl
     {
         #region Fields
 
@@ -31,7 +31,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
         {
             InitializeComponent();
             CreateSettingsDocument();
-            comboBoxNetRuntime.SelectedIndex = 3;
+            comboBoxNetRuntime.SelectedIndex = 0;
         }
 
         #endregion
@@ -46,13 +46,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
             get
             {
                 if (radioButtonCSharp.Checked)
-                {
                     return "C#";
-                }
                 else
-                {
                     return "VB";
-                }
             }
         }
 
@@ -64,17 +60,9 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
             get
             {
                 if (radioButtonVS2010.Checked)
-                {
                     return "2010";
-                }
-                else if (radioButtonVS2012.Checked)
-                {
-                    return "2012";
-                }
                 else
-                {
-                    return "2013";
-                }
+                    return "2013/2015/2017";
             }
         }
 
@@ -94,7 +82,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
         #region IWizardControl
 
         public event ReadyStateChangedHandler ReadyStateChanged;
-
+        
         public new void KeyDown(KeyEventArgs e)
         {
             switch (e.KeyCode)
@@ -117,14 +105,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
         {
             get
             {
-                if (Forms.MainForm.Singleton.CurrentLanguageID == 1031)
-                {
-                    return "Umgebung";
-                }
-                else
-                {
-                    return "Environment";
-                }
+                return "Environment";
             }
         }
 
@@ -132,14 +113,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
         {
             get
             {
-                if (Forms.MainForm.Singleton.CurrentLanguageID == 1031)
-                {
-                    return "Der Assistent kann die Implementierung für Sie vorbereiten.";
-                }
-                else
-                {
                     return "The assistent prepare the implementation for you.";
-                }
             }
         }
 
@@ -151,28 +125,14 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
             }
         }
 
-        public void Translate()
-        {
-            Translation.ToolLanguage language = Forms.MainForm.Singleton.Languages.FirstOrDefault(l => l.LCID == Forms.MainForm.Singleton.CurrentLanguageID);
-            if (null != language)
-            {
-                var component = language.Components["Project Wizard - Environment"];
-                Translation.Translator.TranslateControls(this, component.ControlResources);
-            }
-            else
-            {
-                Translation.Translator.TranslateControls(this, "ToolboxControls.ProjectWizard.Controls.EnvironmentControl.txt", Forms.MainForm.Singleton.CurrentLanguageID);
-            }
-        }
-
         public void Activate()
         {
-
+             
         }
 
         public void Deactivate()
-        {
-
+        { 
+        
         }
 
         public System.Xml.XmlDocument SettingsDocument
@@ -182,7 +142,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
 
         public string[] GetSettingsSummary()
         {
-
+            
             string[] result = new string[2];
             result[0] += ProjectWizardControl.Singleton.Localized.Language + Environment.NewLine;
             result[1] += SelectedLanguage + Environment.NewLine;
@@ -194,51 +154,6 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
             result[1] += SelectedRuntime;
 
             return result;
-        }
-
-        #endregion
-
-        #region ILocalizationDesign
-
-        public void EnableDesignView(int lcid, string parentComponentName)
-        {
-            labelNet45Hint.Visible = true;
-        }
-
-        public void Localize(Translation.ItemCollection strings)
-        {
-            Translation.Translator.TranslateControls(this, strings);
-        }
-
-        public void Localize(string name, string text)
-        {
-            Translation.Translator.TranslateControl(this, name, text);
-        }
-
-        public string GetCurrentText(string name)
-        {
-            return Translation.Translator.TryGetControlText(this, name);
-        }
-
-        public IContainer Components
-        {
-            get { return components; }
-        }
-
-        public string NameLocalization
-        {
-            get
-            {
-                return null;
-            }
-        }
-
-        public IEnumerable<ILocalizationChildInfo> Childs
-        {
-            get
-            {
-                return new ILocalizationChildInfo[0];
-            }
         }
 
         #endregion
@@ -264,9 +179,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
         private void RaiseChangeEvent()
         {
             if (null != ReadyStateChanged)
-            {
                 ReadyStateChanged(this);
-            }
         }
 
         #endregion
@@ -283,7 +196,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
             catch (Exception exception)
             {
                 Forms.ErrorForm.ShowError(this, exception, ErrorCategory.NonCritical);
-            }
+            } 
         }
 
         private void radioButtonIDE_CheckedChanged(object sender, EventArgs e)
@@ -296,7 +209,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
             catch (Exception exception)
             {
                 Forms.ErrorForm.ShowError(this, exception, ErrorCategory.NonCritical);
-            }
+            } 
         }
 
         private void comboBoxNetRuntime_SelectedIndexChanged(object sender, EventArgs e)
@@ -305,22 +218,20 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
             {
                 ChangeSettings();
                 RaiseChangeEvent();
-                if (comboBoxNetRuntime.SelectedIndex == 5)
+                if (comboBoxNetRuntime.SelectedIndex >= 2)
                 {
                     // .net 4.5
                     labelNet45Hint.Visible = true;
                     radioButtonVS2010.Enabled = false;
-                    radioButtonVS2012.Enabled = false;
-                    radioButtonVS2013.Enabled = true;
-                    radioButtonVS2013.Checked = true;
+                    radioButtonVS2015.Enabled = true;
+                    radioButtonVS2015.Checked = true;
                 }
                 else
                 {
                     // else
                     labelNet45Hint.Visible = false;
                     radioButtonVS2010.Enabled = true;
-                    radioButtonVS2012.Enabled = true;
-                    radioButtonVS2013.Enabled = true;
+                    radioButtonVS2015.Enabled = true;
                 }
             }
             catch (Exception exception)

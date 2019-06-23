@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using NetOffice.DeveloperToolbox.Forms;
 
 namespace NetOffice.DeveloperToolbox.Controls.Error
 {
@@ -8,7 +9,7 @@ namespace NetOffice.DeveloperToolbox.Controls.Error
     /// Control to display errors
     /// </summary>
     [ResourceTable("Resources.ErrorFormStrings.txt")]
-    public partial class ErrorControl : UserControl, ILocalizationDesign
+    public partial class ErrorControl : UserControl
     {
         #region Fields
 
@@ -39,9 +40,7 @@ namespace NetOffice.DeveloperToolbox.Controls.Error
         private void RaiseUserClose()
         {
             if (null != UserClose)
-            {
                 UserClose(this, EventArgs.Empty);
-            }
         }
 
         #endregion
@@ -55,18 +54,14 @@ namespace NetOffice.DeveloperToolbox.Controls.Error
         /// <param name="message">user friendly message</param>
         /// <param name="category"error category></param>
         /// <param name="currentLanguageID">user preferred lcid</param>
-        internal void ShowError(Exception exception, string message, ErrorCategory category, int currentLanguageID)
+        internal void ShowError(Exception exception, string message, ErrorCategory category)
         {
             _category = category;
             labelErrorMessage.Text = message;
             labelErrorMessage.Visible = true;
             if (ErrorCategory.Critical == category)
-            {
                 labelExitMessage.Visible = true;
-            }
             DisplayException(exception);
-            currentLanguageID = ValidateLanguageID(currentLanguageID);
-            Translation.Translator.TranslateControls(this, "Resources.ErrorFormStrings.txt", currentLanguageID);
         }
 
         /// <summary>
@@ -75,32 +70,12 @@ namespace NetOffice.DeveloperToolbox.Controls.Error
         /// <param name="exception">exception to display</param>
         /// <param name="category"error category></param>
         /// <param name="currentLanguageID">user preferred lcid</param>
-        internal void ShowError(Exception exception, ErrorCategory category, int currentLanguageID)
+        internal void ShowError(Exception exception, ErrorCategory category)
         {
             _category = category;
             if (ErrorCategory.Critical == category)
-            {
                 labelExitMessage.Visible = true;
-            }
             DisplayException(exception);
-            currentLanguageID = ValidateLanguageID(currentLanguageID);
-            Translation.Translator.TranslateControls(this, "Resources.ErrorFormStrings.txt", currentLanguageID);
-        }
-
-        private int ValidateLanguageID(int currentLanguageID)
-        {
-            switch (currentLanguageID)
-            {
-                case 1:
-                    currentLanguageID = 1031;
-                    break;
-                default:
-                    currentLanguageID = 1033;
-                    break;
-
-            }
-
-            return currentLanguageID;
         }
 
         private void DisplayException(Exception exception)
@@ -112,65 +87,12 @@ namespace NetOffice.DeveloperToolbox.Controls.Error
                 viewItem.SubItems.Add(exception.Message);
                 viewItem.SubItems.Add(exception.GetType().Name.ToString());
                 if (null != exception.TargetSite)
-                {
                     viewItem.SubItems.Add(exception.TargetSite.ToString());
-                }
                 else
-                {
                     viewItem.SubItems.Add("");
-                }
                 viewItem.Tag = exception;
                 exception = exception.InnerException;
                 i++;
-            }
-        }
-
-        #endregion
-
-        #region ILocalizationDesign
-
-        public void EnableDesignView(int lcid, string parentComponentName)
-        {
-            labelErrorMessage.Visible = true;
-            labelExitMessage.Visible = true;
-        }
-
-        public void Localize(Translation.ItemCollection strings)
-        {
-            Translation.Translator.TranslateControls(this, strings);
-        }
-
-        public void Localize(string name, string text)
-        {
-            Translation.Translator.TranslateControl(this, name, text);
-        }
-
-        public string GetCurrentText(string name)
-        {
-            return Translation.Translator.TryGetControlText(this, name);
-        }
-
-        public System.ComponentModel.IContainer Components
-        {
-            get
-            {
-                return components;
-            }
-        }
-
-        public string NameLocalization
-        {
-            get
-            {
-                return null;
-            }
-        }
-
-        public IEnumerable<ILocalizationChildInfo> Childs
-        {
-            get
-            {
-                return new ILocalizationChildInfo[0];
             }
         }
 
@@ -199,9 +121,7 @@ namespace NetOffice.DeveloperToolbox.Controls.Error
             {
                 RaiseUserClose();
                 if (ErrorCategory.Critical == _category)
-                {
                     Application.Exit();
-                }
             }
             catch (Exception exception)
             {
@@ -216,9 +136,7 @@ namespace NetOffice.DeveloperToolbox.Controls.Error
                 string clipboardContent = "";
 
                 foreach (ListViewItem item in listViewTrace.Items)
-                {
                     clipboardContent += item.SubItems[0].Text + " | " + item.SubItems[1].Text + " | " + item.SubItems[2].Text + " | " + item.SubItems[3].Text + Environment.NewLine;
-                }
 
                 Clipboard.SetData(DataFormats.Text, clipboardContent);
             }
@@ -230,14 +148,7 @@ namespace NetOffice.DeveloperToolbox.Controls.Error
 
         private void linkLabelDiscussionBoard_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            try
-            {
-                System.Diagnostics.Process.Start((sender as LinkLabel).Tag as string);
-            }
-            catch
-            {
-                ;
-            }
+            SelectTicketProviderForm.ShowForm(this);
         }
 
         private void listViewTrace_DoubleClick(object sender, EventArgs e)

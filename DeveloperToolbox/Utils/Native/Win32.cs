@@ -19,7 +19,7 @@ namespace NetOffice.DeveloperToolbox.Utils.Native
         /// Registered custom WM Message
         /// </summary>
         public static readonly int WM_SHOWTOOLBOX = RegisterWindowMessage("WM_SHOWTOOLBOX");
-
+        
         /// <summary>
         /// Well known Win32 PostMessage method to post a message to a window directly
         /// </summary>

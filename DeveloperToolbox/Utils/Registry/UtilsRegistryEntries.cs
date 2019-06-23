@@ -23,6 +23,11 @@ namespace NetOffice.DeveloperToolbox.Utils.Registry
 
         #region Construction
 
+        protected UtilsRegistryEntries()
+        {
+
+        }
+
         internal UtilsRegistryEntries(UtilsRegistryKey parent)
         {
             _parent = parent;
@@ -54,13 +59,9 @@ namespace NetOffice.DeveloperToolbox.Utils.Registry
             {
                 UtilsRegistryEntry entry = null;
                 if (name == "")
-                {
                     entry = new UtilsRegistryEntry(_parent, name, UtilsRegistryEntryType.Default);
-                }
                 else
-                {
                     entry = new UtilsRegistryEntry(_parent, name);
-                }
 
                 return entry;
             }
@@ -76,9 +77,7 @@ namespace NetOffice.DeveloperToolbox.Utils.Registry
             string[] names = key.GetValueNames();
             names = SortArray(names);
             foreach (string item in names)
-            {
                 yield return this[item];
-            }
             key.Close();
         }
 
@@ -88,9 +87,7 @@ namespace NetOffice.DeveloperToolbox.Utils.Registry
             string[] names = key.GetValueNames();
             names = SortArray(names);
             foreach (string item in names)
-            {
                 yield return this[item];
-            }
             key.Close();
         }
 
@@ -115,13 +112,11 @@ namespace NetOffice.DeveloperToolbox.Utils.Registry
                     list.Insert(0, item);
                 }
                 else
-                {
                     list.Add(item);
-                }
             }
             return list.ToArray();
         }
 
         #endregion
-        }
+   }
 }

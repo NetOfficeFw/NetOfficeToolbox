@@ -18,14 +18,10 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
         public DataMap(IEnumerable collection)
         {
             if (collection == null)
-            {
                 throw new ArgumentNullException("collection");
-            }
 
             foreach (DataBlock item in collection)
-            {
                 AddLast(item);
-            }
         }
 
         public DataBlock FirstBlock
@@ -49,25 +45,17 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
         public void AddFirst(DataBlock block)
         {
             if (_firstBlock == null)
-            {
                 AddBlockToEmptyMap(block);
-            }
             else
-            {
                 AddBeforeInternal(_firstBlock, block);
-            }
         }
 
         public void AddLast(DataBlock block)
         {
             if (_firstBlock == null)
-            {
                 AddBlockToEmptyMap(block);
-            }
             else
-            {
                 AddAfterInternal(GetLastBlock(), block);
-            }
         }
 
         public void Remove(DataBlock block)
@@ -78,20 +66,16 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
         public void RemoveFirst()
         {
             if (_firstBlock == null)
-            {
                 throw new InvalidOperationException("The collection is empty.");
-            }
-
+           
             RemoveInternal(_firstBlock);
         }
 
         public void RemoveLast()
         {
             if (_firstBlock == null)
-            {
                 throw new InvalidOperationException("The collection is empty.");
-            }
-
+            
             RemoveInternal(GetLastBlock());
 		}
 
@@ -123,9 +107,7 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
             newBlock._map = this;
 
             if (block._nextBlock != null)
-            {
                 block._nextBlock._previousBlock = newBlock;
-            }
 
             block._nextBlock = newBlock;
 
@@ -140,16 +122,12 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
             newBlock._map = this;
 
             if (block._previousBlock != null)
-            {
                 block._previousBlock._nextBlock = newBlock;
-            }
 
             block._previousBlock = newBlock;
 
             if (_firstBlock == block)
-            {
                 _firstBlock = newBlock;
-            }
 
             this._version++;
             this._count++;
@@ -161,19 +139,13 @@ namespace NetOffice.DeveloperToolbox.Controls.Hex
             DataBlock nextBlock = block._nextBlock;
 
             if (previousBlock != null)
-            {
                 previousBlock._nextBlock = nextBlock;
-            }
 
             if (nextBlock != null)
-            {
                 nextBlock._previousBlock = previousBlock;
-            }
 
             if (_firstBlock == block)
-            {
                 _firstBlock = nextBlock;
-            }
 
             InvalidateBlock(block);
 

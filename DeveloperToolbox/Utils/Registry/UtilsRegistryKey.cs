@@ -15,7 +15,12 @@ namespace NetOffice.DeveloperToolbox.Utils.Registry
 
         #endregion
 
-        #region Construction
+        #region Ctor
+
+        protected UtilsRegistryKey()
+        {
+
+        }
 
         internal UtilsRegistryKey(UtilsRegistry root, string fullPath)
         {
@@ -32,14 +37,70 @@ namespace NetOffice.DeveloperToolbox.Utils.Registry
             _path = path;
         }
 
-        private UtilsRegistryKey Parent
+        #endregion
+
+        #region Properties
+
+        public virtual string Path
+        {
+            get
+            {
+                return _path;
+            }
+        }
+
+        public virtual string Name
+        {
+            get
+            {
+                if (_path.Contains("\\"))
+                {
+                    int postion = _path.LastIndexOf("\\", StringComparison.InvariantCultureIgnoreCase);
+                    return _path.Substring(postion + 1);
+                }
+                else
+                {
+                    using (var key = Open())
+                    {
+                        return key.Name;
+                    }
+                }
+            }
+            set
+            {
+                if ((value != Name) && (value != null))
+                {
+                    RegistryKey parentKey = Parent.Open(true);
+                    RegistryKey key = Open(true);
+                    _innerKey = UtilsRegistry.RenameSubKey(parentKey, Name, value);
+                    _path = UtilsRegistry.ReCalculatePath(_path, value);
+                    parentKey.Close();
+                }
+            }
+        }
+
+        public virtual UtilsRegistryKeys Keys
+        {
+            get
+            {
+                return new UtilsRegistryKeys(this);
+            }
+        }
+
+        public virtual UtilsRegistryEntries Entries
+        {
+            get
+            {
+                return new UtilsRegistryEntries(this);
+            }
+        }
+
+        public virtual UtilsRegistryKey Parent
         {
             get
             {
                 if (_root.Key.Path == this.Path)
-                {
                     return null;
-                }
 
                 int position = _path.LastIndexOf("\\", StringComparison.InvariantCultureIgnoreCase);
                 if (-1 == position)
@@ -61,10 +122,6 @@ namespace NetOffice.DeveloperToolbox.Utils.Registry
             }
         }
 
-        #endregion
-
-        #region Properties
-
         internal RegistryKey InnerKey
         {
             get
@@ -78,50 +135,6 @@ namespace NetOffice.DeveloperToolbox.Utils.Registry
             get
             {
                 return _root;
-            }
-        }
-
-        public string Path
-        {
-            get
-            {
-                return _path;
-            }
-        }
-
-        public string Name
-        {
-            get
-            {
-                int postion = _path.LastIndexOf("\\", StringComparison.InvariantCultureIgnoreCase);
-                return _path.Substring(postion + 1);
-            }
-            set
-            {
-                if ((value != Name) && (value != null))
-                {
-                    RegistryKey parentKey = Parent.Open(true);
-                    RegistryKey key = Open(true);
-                    _innerKey = UtilsRegistry.RenameSubKey(parentKey, Name, value);
-                    _path = UtilsRegistry.ReCalculatePath(_path, value);
-                    parentKey.Close();
-                }
-            }
-        }
-
-        public UtilsRegistryKeys Keys
-        {
-            get
-            {
-                return new UtilsRegistryKeys(this);
-            }
-        }
-
-        public UtilsRegistryEntries Entries
-        {
-            get
-            {
-                return new UtilsRegistryEntries(this);
             }
         }
 
@@ -146,9 +159,7 @@ namespace NetOffice.DeveloperToolbox.Utils.Registry
             {
                 i++;
                 if (name.Equals(item, StringComparison.InvariantCultureIgnoreCase))
-                {
                     name += i;
-                }
             }
 
             return name;
@@ -170,12 +181,13 @@ namespace NetOffice.DeveloperToolbox.Utils.Registry
                 RegistryKey key = regKey.CreateSubKey(name);
                 key.Close();
                 regKey.Close();
-
             }
         }
 
         public void Delete()
         {
+            if (Path == Root.Path)
+                throw new NotSupportedException("Delete a root key is not supported because this may cause issues in some applications.");
             _root.HiveKey.DeleteSubKeyTree(Path);
         }
 

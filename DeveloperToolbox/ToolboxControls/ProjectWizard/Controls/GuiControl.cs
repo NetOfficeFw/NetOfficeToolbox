@@ -13,7 +13,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
     /// User interface options in addin projects
     /// </summary>
     [ResourceTable("ToolboxControls.ProjectWizard.Controls.GuiControl.txt")]
-    public partial class GuiControl : UserControl, IWizardControl, ILocalizationDesign
+    public partial class GuiControl : UserControl, IWizardControl
     {
         #region Fields
 
@@ -41,7 +41,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
         /// </summary>
         internal bool ClassicUIEnabled
         {
-            get
+            get 
             {
                 return checkBoxClassicUISupport.Checked;
             }
@@ -76,7 +76,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
         {
             get
             {
-                return checkBoxToogleButton.Checked && checkBoxToogleButton.Enabled;
+                return checkBoxToogleButton.Checked && checkBoxToogleButton.Enabled; 
             }
         }
 
@@ -84,14 +84,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
         {
             get
             {
-                if (Forms.MainForm.Singleton.CurrentLanguageID == 1031)
-                {
-                    return "Ribbon UI:";
-                }
-                else
-                {
-                    return "Ribbon UI:";
-                }
+                return "Ribbon UI:";
             }
         }
 
@@ -99,14 +92,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
         {
             get
             {
-                if (Forms.MainForm.Singleton.CurrentLanguageID == 1031)
-                {
-                    return "Klassische UI:";
-                }
-                else
-                {
-                    return "Classic UI:";
-                }
+                return "Classic UI:";
             }
         }
 
@@ -125,14 +111,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
         {
             get
             {
-                if (Forms.MainForm.Singleton.CurrentLanguageID == 1031)
-                {
-                    return "Benutzerschnittstelle";
-                }
-                else
-                {
-                    return "User Interface";
-                }
+                return "User Interface";
             }
         }
 
@@ -140,14 +119,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
         {
             get
             {
-                if (Forms.MainForm.Singleton.CurrentLanguageID == 1031)
-                {
-                    return "Der Assistent kann die Implementierung für Sie vorbereiten.";
-                }
-                else
-                {
-                    return "The assistent prepare the implementation for you.";
-                }
+                return "The assistent prepare the implementation for you.";
             }
         }
 
@@ -156,20 +128,6 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
             get
             {
                 return ImageType.Question;
-            }
-        }
-
-        public void Translate()
-        {
-            Translation.ToolLanguage language = Forms.MainForm.Singleton.Languages.Where(l => l.LCID == Forms.MainForm.Singleton.CurrentLanguageID).FirstOrDefault();
-            if (null != language)
-            {
-                var component = language.Components["Project Wizard - Gui"];
-                Translation.Translator.TranslateControls(this, component.ControlResources);
-            }
-            else
-            {
-                Translation.Translator.TranslateControls(this, "ToolboxControls.ProjectWizard.Controls.GuiControl.txt", Forms.MainForm.Singleton.CurrentLanguageID);
             }
         }
 
@@ -188,9 +146,7 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
                     break;
                 case Keys.D4:
                     if(checkBoxToogleButton.Enabled)
-                    {
                         checkBoxToogleButton.Checked = !checkBoxToogleButton.Checked;
-                    }
                     break;
                 default:
                     break;
@@ -259,70 +215,21 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
                 result[0] += Environment.NewLine + LocalizedUglyUI;
                 result[1] += Environment.NewLine + ProjectWizardControl.Singleton.Localized.No;
             }
-
+           
             string toogle = true == checkBoxToogleButton.Checked ? " + Toogle" : "";
             result[0] += Environment.NewLine + "TaskPane";
-            if (checkBoxRibbonUISupport.Checked)
-            {
+            if (checkBoxTaskPaneSupport.Checked)
                 result[1] += Environment.NewLine + ProjectWizardControl.Singleton.Localized.Yes + toogle;
-            }
             else
-            {
                 result[1] += Environment.NewLine + ProjectWizardControl.Singleton.Localized.No;
-            }
 
             return result;
         }
 
         #endregion
 
-        #region ILocalizationDesign
-
-        public void EnableDesignView(int lcid, string parentComponentName)
-        {
-            checkBoxToogleButton.Visible = true;
-        }
-
-        public void Localize(Translation.ItemCollection strings)
-        {
-            Translation.Translator.TranslateControls(this, strings);
-        }
-
-        public void Localize(string name, string text)
-        {
-            Translation.Translator.TranslateControl(this, name, text);
-        }
-
-        public string GetCurrentText(string name)
-        {
-            return Translation.Translator.TryGetControlText(this, name);
-        }
-
-        public IContainer Components
-        {
-            get { return components; }
-        }
-
-        public string NameLocalization
-        {
-            get
-            {
-                return null;
-            }
-        }
-
-        public IEnumerable<ILocalizationChildInfo> Childs
-        {
-            get
-            {
-                return new ILocalizationChildInfo[0];
-            }
-        }
-
-        #endregion
-
         #region Methods
-
+       
         private void ChangeSettings()
         {
             _settings.FirstChild.SelectSingleNode("UseClassicUI").InnerText = checkBoxClassicUISupport.Checked.ToString();
@@ -344,12 +251,10 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
         private void RaiseChangeEvent()
         {
             if (null != ReadyStateChanged)
-            {
                 ReadyStateChanged(this);
-            }
         }
 
-        #endregion
+        #endregion   
 
         #region Trigger
 
@@ -359,16 +264,14 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
             {
                 checkBoxToogleButton.Enabled = checkBoxTaskPaneSupport.Checked && checkBoxRibbonUISupport.Checked;
                 if (!checkBoxToogleButton.Enabled && checkBoxToogleButton.Checked)
-                {
                     checkBoxToogleButton.Checked = false;
-                }
                 ChangeSettings();
                 RaiseChangeEvent();
             }
             catch (Exception exception)
             {
                 Forms.ErrorForm.ShowError(this, exception, ErrorCategory.NonCritical);
-            }
+            } 
         }
 
         private void checkBoxTaskPaneSupport_CheckedChanged(object sender, EventArgs e)
@@ -377,16 +280,14 @@ namespace NetOffice.DeveloperToolbox.ToolboxControls.ProjectWizard.Controls
             {
                 checkBoxToogleButton.Enabled = checkBoxTaskPaneSupport.Checked && checkBoxRibbonUISupport.Checked;
                 if (!checkBoxToogleButton.Enabled && checkBoxToogleButton.Checked)
-                {
                     checkBoxToogleButton.Checked = false;
-                }
                 ChangeSettings();
                 RaiseChangeEvent();
             }
             catch (Exception exception)
             {
                 Forms.ErrorForm.ShowError(this, exception, ErrorCategory.NonCritical);
-            }
+            } 
         }
 
         #endregion
