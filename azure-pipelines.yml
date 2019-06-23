@@ -28,7 +28,7 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    sourceFolder: '$(System.ArtifactsDirectory)\NetOffice Assemblies\net40'
+    sourceFolder: '$(System.ArtifactsDirectory)\NetOffice Assemblies'
     targetFolder: 'Libs'
 
 - task: VSBuild@1
