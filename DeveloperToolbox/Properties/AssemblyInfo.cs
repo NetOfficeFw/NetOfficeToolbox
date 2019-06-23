@@ -1,16 +1,16 @@
-﻿using System.Reflection;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("NetOffice DeveloperToolbox")]
-[assembly: AssemblyDescription("some stuff in a box")]
+[assembly: AssemblyTitle("NetOffice Developer Toolbox")]
+[assembly: AssemblyDescription("Productivity tool for .NET developers who create solutions with and for Microsoft Office.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("NetOffice")]
-[assembly: AssemblyCopyright("Copyright ©  2011 Sebastian Lange")]
+[assembly: AssemblyCompany("NetOffice")]
+[assembly: AssemblyProduct("NetOffice Developer Toolbox")]
+[assembly: AssemblyCopyright("Copyright © 2011-2018 Sebastian Lange, 2015-2019 Jozef Izso")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
