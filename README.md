@@ -1,5 +1,7 @@
 # NetOffice Toolbox
 
+[![Build Status](https://dev.azure.com/netoffice/NetOffice/_apis/build/status/NetOfficeFw.NetOfficeToolbox?branchName=master)](https://dev.azure.com/netoffice/NetOffice/_build/latest?definitionId=5&branchName=master)
+
 > NetOffice Developer Toolbox is a productivity tool for .NET developers who create solutions for Microsoft Office.
 
 
