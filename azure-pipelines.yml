@@ -1,0 +1,44 @@
+# NetOffice Developer Toolbox project build pipeline
+
+pool:
+  vmImage: 'windows-2019'
+
+variables:
+  solution: DeveloperToolbox.sln
+  buildPlatform: Any CPU
+  buildConfiguration: Debug
+  BuildNumber: $(Build.BuildId)
+
+steps:
+- task: NuGetToolInstaller@0
+
+- task: NuGetCommand@2
+  inputs:
+    restoreSolution: '$(solution)'
+
+- task: DownloadBuildArtifacts@0
+  displayName: Download NetOffice assemblies
+  inputs:
+    buildType: specific
+    project: 'NetOffice'
+    pipeline: 'NetOfficeFw.NetOffice'
+    buildVersionToDownload: 'latestFromBranch'
+    artifactName: 'NetOffice Assemblies'
+    downloadPath: 'Libs'
+
+- task: VSBuild@1
+  displayName: Build NetOffice Developer Toolbox
+  inputs:
+    solution: '$(solution)'
+    vsVersion: '16.0'
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+    msbuildArgs: '/t:Build'
+    createLogFile: true
+    logFileVerbosity: 'detailed'
+
+- task: PublishBuildArtifacts@1
+  displayName: Publish NetOffice Developer Toolbox binaries
+  inputs:
+    pathtoPublish: 'DeveloperToolbox\bin\$(buildConfiguration)'
+    artifactName: 'NetOffice Developer Toolbox'
