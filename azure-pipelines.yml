@@ -24,7 +24,12 @@ steps:
     pipeline: 'NetOfficeFw.NetOffice'
     buildVersionToDownload: 'latestFromBranch'
     artifactName: 'NetOffice Assemblies'
-    downloadPath: 'Libs'
+    downloadPath: '$(System.ArtifactsDirectory)'
+
+- task: CopyFiles@2
+  inputs:
+    sourceFolder: '$(System.ArtifactsDirectory)\NetOffice Assemblies\net40'
+    targetFolder: 'Libs'
 
 - task: VSBuild@1
   displayName: Build NetOffice Developer Toolbox
